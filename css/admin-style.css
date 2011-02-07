@@ -1,0 +1,357 @@
+/*-------------------------------------------------------------------------------------------*/
+/* OptionsFramework Admin Styles */
+/*-------------------------------------------------------------------------------------------*/
+
+.updated {
+	width:770px;
+}
+#of_container {
+	margin: 10px 0;
+	width: 785px;
+	position:relative;
+	z-index: 0
+}
+#of_container #header {
+	height: 60px;
+	background:#dfdfdf url("../../../../wp-admin/images/gray-grad.png") repeat-x left top;
+	border: 1px solid #ccc;
+	border-top-left-radius: 6px;
+	-moz-border-radius-topleft: 6px;
+	-webkit-border-top-left-radius: 6px;
+	-webkit-border-top-right-radius: 6px;
+	border-top-right-radius: 6px;
+	-moz-border-radius-topright: 6px;
+}
+#of_container #header .logo {
+	float: left;
+	margin:5px 20px;
+}
+#of_container #header .logo h2 {
+	font-style:normal;
+	font-size: 22px;
+	line-height: 26px;
+}
+#of_container #header .icon-option {
+	float: right;
+	height: 32px;
+	width: 32px;
+	background: url(images/icon_option.png) no-repeat;
+	margin:25px 20px;
+}
+#of_container #main {
+	background-color: #f1f1f1;
+	border-left: 1px solid #d8d8d8;
+	border-right: 1px solid #d8d8d8;
+	border-bottom: 1px solid #d8d8d8;
+}
+#of_container #of-nav {
+	float: left;
+	position: relative;
+	z-index: 9999;
+	width: 160px;
+}
+#of_container #of-nav li {
+	margin-bottom:0
+}
+#of_container #of-nav ul li a:link, #of-nav ul li a:visited {
+	display: block;
+	padding: 10px 10px 10px 15px;
+	font-family: Georgia, Serif;
+	font-size: 13px;
+	text-decoration: none;
+	color: #797979;
+	border-bottom: 1px solid #d8d8d8;
+}
+#of_container #of-nav ul li.current a, #of-nav ul li a:hover {
+	color: #21759b;
+	background-color: #fff;
+}
+#of_container #content {
+	float: left;
+	min-height: 560px;
+	width: 595px;
+	margin-left: -1px;
+	padding: 0 14px;
+	font-family: "Lucida Grande", Sans-serif;
+	background-color: #fff;
+	border-left: 1px solid #d8d8d8;
+}
+#of_container #content .section {
+	margin-bottom: 10px;
+}
+#of_container #content .section h3.heading {
+	margin: 10px 0 10px 0;
+	padding: 7px 0px;
+	border-bottom: 1px solid #e7e7e7;
+}
+#of_container #content .section .controls {
+	float: left;
+	width: 345px;
+	margin: 0 15px 0 0;
+}
+#of_container #content .section .explain {
+	float: left;
+	width: 225px;
+	padding: 0 10px 0 0;
+	font-size: 11px;
+	color: #999999;
+}
+#of_container #content .section-checkbox .controls {
+	width:25px
+}
+#of_container #content .section-checkbox .explain {
+	width:540px
+}
+#of_container #content .section-color .controls {
+	width:125px
+}
+#of_container #content .section-color .explain {
+	width:440px
+}
+#of_container #content .section-info h3.heading {
+	font-size: 12px;
+	font-weight: 100;
+	border: 0;
+	margin-top: 20px;
+	letter-spacing: 1px;
+	border-top: 1px solid #FFF298;
+	margin-bottom: 0;
+	background:#EFE186;
+	padding: 10px 20px;
+}
+#of_container #content .section-info .controls {
+	margin: 0 0 20px;
+	padding: 15px 20px;
+	width: auto;
+	line-height: 1.5em;
+	font-size: 14px;
+	font-style: italic;
+	font-family: Georgia, arial;
+	background: #FFF298;
+	border:1px solid #ECD852;
+	color:#424242;
+}
+#of_container #content .section-info .controls small {
+	font-size: 12px
+}
+#of_container #content .section-info h3.heading {
+	-moz-border-radius-topleft:4px;
+	-moz-border-radius-topright:4px;
+}
+#of_container #content .section-info .controls {
+	-moz-border-radius-bottomleft:4px;
+	-moz-border-radius-bottomright:4px;
+}
+#of_container textarea, #of_container input, #of_container select {
+	-moz-border-radius-bottomleft:4px;
+	-moz-border-radius-bottomright:4px;
+	-moz-border-radius-topleft:4px;
+	-moz-border-radius-topright:4px;
+	border-style:solid;
+	border-width:1px;
+}
+#of_container .controls input, #of_container .controls select, #of_container .controls textarea {
+	margin-bottom: 9px !important;
+	background-color: #f1f1f1;
+	border: 1px solid;
+	border-color: #ccc #e6e6e6 #e6e6e6 #ccc;
+	width: 340px;
+	padding: 4px;
+	font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Verdana, sans-serif;
+	font-size: 12px;
+}
+#of_container .controls select {
+	padding: 0 0 0 4px;
+	width: 340px
+}
+#of_container .controls textarea {
+	width: 345px;
+}
+#of_container input[type=text] {
+	width: 340px;
+}
+#of_container input.checkbox {
+	width: 30px;
+}
+#of_container input.of-radio {
+	width: 30px;
+}
+#of_container .controls .input-text-small {
+	width: 60px;
+	margin-right:10px
+}
+#of_container .meta-two {
+	margin-right:10px
+}
+#of_container .controls .of-color {
+	float:left;
+	width: 80px;
+	margin-left:5px; /* font-size:20px; height:34px;*/
+}
+#of_container #content .section-typography .controls {
+	width:425px
+}
+#of_container #content .section-typography .explain {
+	width:140px
+}
+#of_container .controls .of-typography-size {
+	width:80px;
+	float:left
+}
+#of_container .controls .of-typography-unit {
+	width:50px;
+	float:left
+}
+#of_container .controls .of-typography-face {
+	width:100px;
+	float:left
+}
+#of_container .controls .of-typography-style {
+	width:80px;
+	float:left
+}
+#of_container .controls .of-radio-img-img {
+	border:3px solid #fff;
+	margin:0 5px 10px 0;
+	display:none;
+	cursor:pointer;
+	float:left;
+}
+#of_container .controls .of-radio-img-selected {
+	border:3px solid #ccc
+}
+#of_container .controls .of-radio-img-img:hover {
+	opacity:.8;
+}
+#of_container .controls .of-border-width {
+	width:80px;
+	float:left
+}
+#of_container .controls .of-border-style {
+	width:120px;
+	float:left
+}
+#of_container .group {
+	padding-bottom:20px
+}
+#of_container .group h2 {
+	display:none;
+	border-bottom:3px solid #e7e7e7
+}
+#of_container .controls input:focus, #of_container select:focus, #of_container textarea:focus {
+	background:#fff;
+}
+#of_container .controls input.upload {
+	width:280px;
+	padding-bottom:6px;
+}
+#of_container .controls input.upload_button {
+	float:right;
+	width:45px;
+	border-color:#BBBBBB;
+	cursor:pointer;
+	height:16px;
+}
+#of_container .controls input.upload_button:hover {
+	border-color:#666666;
+	color:#000;
+}
+#of_container .screenshot {
+	float:left;
+	margin-left:1px;
+	position:relative;
+	width:344px;
+	margin-top:3px;
+}
+#of_container .screenshot img {
+	-moz-border-radius:4px;
+	-webkit-border-radius:4px;
+	-border-radius:4px;
+	background:#FAFAFA;
+	border-color:#CCCCCC #EEEEEE #EEEEEE #CCCCCC;
+	border-style:solid;
+	border-width:1px;
+	float:left;
+	max-width:334px;
+	padding:4px;
+}
+#of_container .screenshot .mlu_remove {
+	background:url("../images/ico-delete.png") no-repeat;
+	border:medium none;
+	bottom:-4px;
+	display:block;
+	float:left;
+	height:16px;
+	padding:0;
+	position:absolute;
+	left:-4px;
+	text-indent:-9999px;
+	width:16px;
+}
+#of_container .screenshot .no_image .file_link {
+	margin-left: 20px;
+}
+#of_container .screenshot .no_image .mlu_remove {
+	bottom: 0px;
+}
+.reset-button {
+	float:left;
+}
+.save_bar_top {
+	background: #f3f3f3;
+	border:solid #ccc;
+	border-width:0px 1px 1px 1px;
+	padding: 10px 20px 0px 20px;
+	height: 35px;
+	text-align: right;
+	-moz-border-radius-bottomright: 6px;
+	-moz-border-radius-bottomleft: 6px;
+	-webkit-border-bottom-right-radius: 6px;
+	-webkit-border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
+	border-bottom-left-radius: 6px;
+}
+.hide {
+	display:none
+}
+.of-option-image {
+	max-width:340px;
+}
+#of_container .mini .controls select, #of_container #content .section .mini .controls {
+	width: 70px;
+}
+#of_container .mini .controls input, #of_container #content .mini .controls {
+	width: 70px;
+}
+#of_container #content .mini .explain {
+	width:500px;
+}
+.of-notice {
+	background: #ffd1d1;
+	border:1px solid #DFA8A7;
+	-moz-border-radius:8px;
+	-webkit-border-radius:8px;
+	text-align: center;
+	margin-bottom: 15px
+}
+/*-------------------------------------------------------------------------------------------*/
+/* GENERAL STYLES */
+/*-------------------------------------------------------------------------------------------*/
+
+/* http://sonspring.com/journal/clearing-floats */
+
+html body * span.clear, html body * div.clear, html body * li.clear, html body * dd.clear {
+	background: none;
+	border: 0;
+	clear: both;
+	display: block;
+	float: none;
+	font-size: 0;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+}

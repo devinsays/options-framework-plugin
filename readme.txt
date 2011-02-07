@@ -1,0 +1,3 @@
+The Options Framework Plugin is designed to help theme developers easily add options to their projects.  Right now it's in a really rough form, but in the coming weeks it should be fleshed out and added to the WordPress plugin repository.
+
+The code is heavily based on WooThemes Canvas (http://www.woothemes.com/2010/02/canvas/).  I'd encourage you to check out and support WooThemes if you find this plugin helpful.
