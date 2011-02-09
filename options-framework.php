@@ -66,7 +66,7 @@ function optionsframework_init() {
 		require_once dirname( __FILE__ ) . '/options.php';
 	}
 
-	register_setting('theme_options', 'theme_options', 'theme_options_validate' );
+	register_setting('theme_options', 'theme_options', 'optionsframework_validate' );
 	add_settings_section('theme_settings', 'Theme Settings', '', __FILE__);
 	
 	// Here's where we get that options data from the array
@@ -91,20 +91,22 @@ function optionsframework_init() {
 }
 
 /* Let's add a subpage called "Theme Options" to the appearance menu. */
- 
+
+if ( !function_exists( 'optionsframework_add_page' ) ) {
 function optionsframework_add_page() {
 
 	$of_page = add_submenu_page('themes.php', $themename, 'Theme Options', 'edit_theme_options', 'options-framework','optionsframework_page');
 	
 	// Loads the required css and javascripts
-	add_action("admin_print_styles-$of_page",'of_load_styles');
-	add_action("admin_print_scripts-$of_page", 'of_load_scripts');
+	add_action("admin_print_styles-$of_page",'optionsframework_load_styles');
+	add_action("admin_print_scripts-$of_page", 'optionsframework_load_scripts');
 	
+}
 }
 
 /* Load the required CSS */
 
-function of_load_styles() {
+function optionsframework_load_styles() {
 	wp_enqueue_style('admin-style', OPTIONS_FRAMEWORK_URL.'css/admin-style.css');
 	wp_enqueue_style('color-picker', OPTIONS_FRAMEWORK_URL.'css/colorpicker.css');
 }	
@@ -116,7 +118,7 @@ function of_load_styles() {
  *
  */
 
-function of_load_scripts() {
+function optionsframework_load_scripts() {
 
 	// Loads inline scripts in options-interface.php
 	add_action('admin_head', 'of_admin_head');
@@ -142,6 +144,7 @@ function of_load_scripts() {
  *
  */
 
+if ( !function_exists( 'optionsframework_page' ) ) {
 function optionsframework_page() {
 
 	// Get the theme name so we can display it up top
@@ -194,6 +197,7 @@ function optionsframework_page() {
 
 <?php
 }
+}
 
 /* 
  * Data sanitization!
@@ -202,9 +206,29 @@ function optionsframework_page() {
  * the fields for stuff that's not supposed to be there.
  *
  */
- 
-function theme_options_validate($input) {
+
+if ( !function_exists( 'optionsframework_validate' ) ) {
+function optionsframework_validate($input) {
 
 	// At the moment no sanitization is happening.  Just wait...
 	return $input; // return validated input
+}
+}
+
+/* 
+ * Helper function to return the theme option.
+ * If no value has been saved, returns $default.
+ *
+ */
+
+if ( !function_exists( 'of_get_option' ) ) {
+function of_get_option($name, $default) {
+
+	$options = get_option('theme_options');
+	if ($value = $options[$name] ) {
+		return $value;
+	} else {
+		return $default;
+	}
+}
 }
