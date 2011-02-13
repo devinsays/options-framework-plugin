@@ -229,6 +229,7 @@ function optionsframework_validate($input) {
 				if ( ! in_array( $input[($option['id'])], $option['options'] ) ) {
 					$input[($option['id'])] = null;
 				}
+			break;
 			
 			// If it's an upload, make sure there's no spaces in the filename
 			case 'upload':
