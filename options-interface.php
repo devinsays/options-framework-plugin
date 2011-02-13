@@ -250,8 +250,7 @@ function optionsframework_fields() {
 		break;
 		
 		// Small Select Box
-		case 'select':
-
+		case ($value['type'] == 'select' || $value['type'] == 'select2'):
 			$output .= '<select class="of-input" name="of_theme_options['. $value['id'] .']" id="'. $value['id'] .'">';
 			$select_value = $settings[($value['id'])];
 			
@@ -266,28 +265,6 @@ function optionsframework_fields() {
 				 $output .= '<option'. $selected .'>';
 				 $output .= $option;
 				 $output .= '</option>';
-			 } 
-			 $output .= '</select>';
-		break;
-		
-		// Large Select Box
-		case 'select2':
-
-			$output .= '<select class="of-input" name="of_theme_options['. $value['id'] .']" id="'. $value['id'] .'">';
-			$select_value = $settings[($value['id'])];
-			 
-			foreach ($value['options'] as $option => $name) {
-				$selected = '';
-				 if($select_value != '') {
-					 if ( $select_value == $option) { $selected = ' selected="selected"';} 
-			     } else {
-					 if ( isset($value['std']) )
-						 if ($value['std'] == $option) { $selected = ' selected="selected"'; }
-				 }
-				 $output .= '<option'. $selected .' value="'.$option.'">';
-				 $output .= $name;
-				 $output .= '</option>';
-			 
 			 } 
 			 $output .= '</select>';
 		break;
@@ -342,21 +319,21 @@ function optionsframework_fields() {
 				$of_key = $value['id'] . '_' . $key;
 				$saved_std = $settings[$of_key];
 					
-				if(!empty($saved_std)) 
-				{ 
-					if($saved_std == 'true') {
-					 $checked = 'checked="checked"';  
-					} 
-					else {
-						$checked = '';     
-					}    
-				} 
-				elseif ( $std == $key) {
-			  	 	$checked = 'checked="checked"';
+				if (!empty($saved_std)) {
+				if($saved_std == 'true') {
+					$checked = 'checked="checked"';
 				}
 				else {
-					$checked = '';
+				   $checked = '';
 				}
+			}
+			else {
+			   if ( $std == 'true') {
+			   		$checked = 'checked="checked"';
+				} else {
+				$checked = '';
+				}
+			}
 			$output .= '<input id="'. $of_key .'" class="checkbox of-input" type="checkbox" name="of_theme_options['. $of_key .']" value="true" '. $checked .' /><label for="'. $of_key .'">'. $option .'</label><br />';						
 			}
 		break;

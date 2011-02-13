@@ -81,11 +81,9 @@ function optionsframework_init() {
 				add_settings_field($checkbox_id, $checkbox_name, __FILE__, 'of_theme_options');
 			}
 		}
-		else {
-			$opt_id = ereg_replace("[^A-Za-z0-9]", "", strtolower($value['id']) );
-			$opt_name = ereg_replace("[^A-Za-z0-9]", "", strtolower($value['name']) );
-			add_settings_field($opt_id, $opt_name, '', __FILE__, 'of_theme_options');
-		}
+		$opt_id = ereg_replace("[^A-Za-z0-9]", "", strtolower($value['id']) );
+		$opt_name = ereg_replace("[^A-Za-z0-9]", "", strtolower($value['name']) );
+		add_settings_field($opt_id, $opt_name, '', __FILE__, 'of_theme_options');
 	}
 }
 
@@ -157,9 +155,6 @@ function optionsframework_page() {
     <?php screen_icon( 'themes' ); ?>
 	<h2>Theme Options</h2>
     
-    <?php 
-	?>
-    
     <?php if ( false !== $_REQUEST['updated'] ) : ?>
 		<div id="message" class="updated fade"><p><strong><?php _e( 'Options saved' ); ?></strong></p></div>
 	<?php endif; ?>
@@ -219,16 +214,16 @@ function optionsframework_validate($input) {
 			switch ( $option['type'] ) {
 			
 			// If it's a checkbox, make sure it's checked or ''
-			case 'checkbox':
+			case ($option['type'] == 'checkbox' || $option['type'] == 'multicheck'):
 				if ( $input[($option['id'])] != "true" )
 					$input[($option['id'])] = '';
 			break;
 			
 			// If it's a select make sure it's in the array we supplied
-			case ('select') :
-				if ( ! in_array( $input[($option['id'])], $option['options'] ) ) {
+			case ($option['type'] == 'select' || $option['type'] == 'select2') :
+				if ( ! in_array( $input[($option['id'])], $option['options'] ) )
 					$input[($option['id'])] = null;
-				}
+			break;
 			
 			// If it's an upload, make sure there's no spaces in the filename
 			case 'upload':
