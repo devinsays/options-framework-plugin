@@ -38,6 +38,7 @@ if ( !function_exists( 'add_action' ) ) {
 /* Let the fun begin! */
 
 add_action('admin_init', 'optionsframework_init' );
+add_action( 'admin_init', 'optionsframework_mlu_init' );
 add_action('admin_menu', 'optionsframework_add_page');
 
 /* 
@@ -223,11 +224,6 @@ function optionsframework_validate($input) {
 			case ($option['type'] == 'select' || $option['type'] == 'select2') :
 				if ( ! in_array( $input[($option['id'])], $option['options'] ) )
 					$input[($option['id'])] = null;
-			break;
-			
-			// If it's an upload, make sure there's no spaces in the filename
-			case 'upload':
-				$input[($option['id'])] = preg_replace('/[^a-zA-Z0-9._\-]/', '', $input[($option['id'])]); 
 			break;
 			
 			// For the remaining options, strip any tags that aren't allowed in posts
