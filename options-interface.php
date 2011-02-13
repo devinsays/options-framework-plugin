@@ -2,7 +2,7 @@
 
 /**
  * Creates the options fields and inline javascript that will be used in the form.  It uses the array
- * defined in options.php to set up the fields, and the settings in get_option('theme_options')
+ * defined in options.php to set up the fields, and the settings in get_option('of_theme_options')
  * to output the saved values.
  */
 
@@ -22,7 +22,7 @@ jQuery(document).ready(function() {
 			
 	// Color Picker
 	<?php
-	$settings = get_option('theme_options');
+	$settings = get_option('of_theme_options');
 	$options = of_options();
 			
 	foreach($options as $option){ 
@@ -196,7 +196,7 @@ jQuery(document).ready(function() {
 
 function optionsframework_fields() {
 
-	$settings = get_option('theme_options');
+	$settings = get_option('of_theme_options');
     $options = of_options();
         
     $counter = 0;
@@ -224,7 +224,7 @@ function optionsframework_fields() {
 			$val = $value['std'];
 			$std = $settings[($value['id'])];
 			if ( $std != "") { $val = $std; }
-			$output .= '<input id="'. $value['id'] .'" class="of-input" name="theme_options['. $value['id'] .']" type="'. $value['type'] .'" value="'. $val .'" />';
+			$output .= '<input id="'. $value['id'] .'" class="of-input" name="of_theme_options['. $value['id'] .']" type="'. $value['type'] .'" value="'. $val .'" />';
 		break;
 		
 		// Textarea
@@ -246,13 +246,13 @@ function optionsframework_fields() {
 			}
 				$std = $settings[($value['id'])];
 				if( $std != "") { $ta_value = stripslashes( $std ); }
-				$output .= '<textarea id="'. $value['id'] .'" class="of-input" name="theme_options['. $value['id'] .']" cols="'. $cols .'" rows="8">'.$ta_value.'</textarea>';
+				$output .= '<textarea id="'. $value['id'] .'" class="of-input" name="of_theme_options['. $value['id'] .']" cols="'. $cols .'" rows="8">'.$ta_value.'</textarea>';
 		break;
 		
 		// Small Select Box
 		case 'select':
 
-			$output .= '<select class="of-input" name="theme_options['. $value['id'] .']" id="'. $value['id'] .'">';
+			$output .= '<select class="of-input" name="of_theme_options['. $value['id'] .']" id="'. $value['id'] .'">';
 			$select_value = $settings[($value['id'])];
 			
 			foreach ($value['options'] as $option) {
@@ -273,7 +273,7 @@ function optionsframework_fields() {
 		// Large Select Box
 		case 'select2':
 
-			$output .= '<select class="of-input" name="theme_options['. $value['id'] .']" id="'. $value['id'] .'">';
+			$output .= '<select class="of-input" name="of_theme_options['. $value['id'] .']" id="'. $value['id'] .'">';
 			$select_value = $settings[($value['id'])];
 			 
 			foreach ($value['options'] as $option => $name) {
@@ -305,7 +305,7 @@ function optionsframework_fields() {
 				   } else {
 					if ($value['std'] == $key) { $checked = ' checked'; }
 				   }
-				$output .= '<input class="of-input of-radio" type="radio" name="theme_options['. $value['id'] .']" value="'. $key .'" '. $checked .' />' . $option .'<br />';
+				$output .= '<input class="of-input of-radio" type="radio" name="of_theme_options['. $value['id'] .']" value="'. $key .'" '. $checked .' />' . $option .'<br />';
 			}
 		break;
 		
@@ -316,21 +316,22 @@ function optionsframework_fields() {
 		   $saved_std = $settings[($value['id'])];
 		   $checked = '';
 			
-			if(!empty($saved_std)) {
+			if (!empty($saved_std)) {
 				if($saved_std == 'true') {
-				$checked = 'checked="checked"';
+					$checked = 'checked="checked"';
 				}
-				else{
+				else {
 				   $checked = '';
 				}
 			}
-			elseif( $std == 'true') {
-			   $checked = 'checked="checked"';
-			}
 			else {
+			   if ( $std == 'true') {
+			   		$checked = 'checked="checked"';
+				} else {
 				$checked = '';
+				}
 			}
-			$output .= '<input id="'. $value['id'] .'" class="checkbox of-input" type="checkbox" name="theme_options['. $value['id'] .']" value="true" '. $checked .' />';
+			$output .= '<input id="'. $value['id'] .'" class="checkbox of-input" type="checkbox" name="of_theme_options['. $value['id'] .']" value="true" '. $checked .' />';
 		break;
 		
 		// Multicheck
@@ -356,7 +357,7 @@ function optionsframework_fields() {
 				else {
 					$checked = '';
 				}
-			$output .= '<input id="'. $of_key .'" class="checkbox of-input" type="checkbox" name="theme_options['. $of_key .']" value="true" '. $checked .' /><label for="'. $of_key .'">'. $option .'</label><br />';						
+			$output .= '<input id="'. $of_key .'" class="checkbox of-input" type="checkbox" name="of_theme_options['. $of_key .']" value="true" '. $checked .' /><label for="'. $of_key .'">'. $option .'</label><br />';						
 			}
 		break;
 		
@@ -366,7 +367,7 @@ function optionsframework_fields() {
 			$stored  = $settings[($value['id'])];
 			if ( $stored != "") { $val = $stored; }
 			$output .= '<div id="' . $value['id'] . '_picker" class="colorSelector"><div></div></div>';
-			$output .= '<input class="of-color" name="theme_options['. $value['id'] .']" id="'. $value['id'] .'" type="text" value="'. $val .'" />';
+			$output .= '<input class="of-color" name="of_theme_options['. $value['id'] .']" id="'. $value['id'] .'" type="text" value="'. $val .'" />';
 		break; 
 		
 		// Uploader

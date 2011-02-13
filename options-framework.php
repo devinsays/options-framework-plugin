@@ -66,8 +66,7 @@ function optionsframework_init() {
 		require_once dirname( __FILE__ ) . '/options.php';
 	}
 
-	register_setting('theme_options', 'theme_options', 'optionsframework_validate' );
-	add_settings_section('theme_settings', 'Theme Settings', '', __FILE__);
+	register_setting('of_theme_options', 'of_theme_options', 'optionsframework_validate' );
 	
 	// Here's where we get that options data from the array
 	$of_options = of_options();
@@ -79,13 +78,13 @@ function optionsframework_init() {
 			foreach ($option['options'] as $key) {
 				$checkbox_id = ereg_replace("[^A-Za-z0-9]", "", strtolower($option['id']. '_' . $key));
 				$checkbox_name = ereg_replace("[^A-Za-z0-9]", "", strtolower($option['name']. '_' . $key));
-				add_settings_field($checkbox_id, $checkbox_name, __FILE__, 'theme_settings');
+				add_settings_field($checkbox_id, $checkbox_name, __FILE__, 'of_theme_options');
 			}
 		}
 		else {
 			$opt_id = ereg_replace("[^A-Za-z0-9]", "", strtolower($value['id']) );
 			$opt_name = ereg_replace("[^A-Za-z0-9]", "", strtolower($value['name']) );
-			add_settings_field($opt_id, $opt_name, '', __FILE__, 'theme_settings');
+			add_settings_field($opt_id, $opt_name, '', __FILE__, 'of_theme_options');
 		}
 	}
 }
@@ -167,7 +166,7 @@ function optionsframework_page() {
     
     <div id="of_container">
        <form action="options.php" method="post">
-	  <?php settings_fields('theme_options'); ?>
+	  <?php settings_fields('of_theme_options'); ?>
 
         <div id="header">
           <div class="logo">
@@ -210,8 +209,44 @@ function optionsframework_page() {
 if ( !function_exists( 'optionsframework_validate' ) ) {
 function optionsframework_validate($input) {
 
-	// At the moment no sanitization is happening.  Just wait...
+	// Get the options array we have defined in options.php
+	$options = of_options();
+	
+	foreach ($options as $option) {
+	
+		if (isset ($input[($option['id'])]) ) {
+	
+			switch ( $option['type'] ) {
+			
+			// If it's a checkbox, make sure it's checked or ''
+			case 'checkbox':
+				if ( $input[($option['id'])] != "true" )
+					$input[($option['id'])] = '';
+			break;
+			
+			// If it's a select make sure it's in the array we supplied
+			case ('select') :
+				if ( ! in_array( $input[($option['id'])], $option['options'] ) ) {
+					$input[($option['id'])] = null;
+				}
+			break;
+			
+			// If it's an upload, make sure there's no spaces in the filename
+			case 'upload':
+				$input[($option['id'])] = preg_replace('/[^a-zA-Z0-9._\-]/', '', $input[($option['id'])]); 
+			break;
+			
+			// For the remaining options, strip any tags that aren't allowed in posts
+			default:
+				$input[($option['id'])] = wp_filter_post_kses( $input[($option['id'])] );
+			
+			}
+		}
+	
+	}
+	
 	return $input; // return validated input
+	
 }
 }
 
@@ -224,7 +259,7 @@ function optionsframework_validate($input) {
 if ( !function_exists( 'of_get_option' ) ) {
 function of_get_option($name, $default) {
 
-	$options = get_option('theme_options');
+	$options = get_option('of_theme_options');
 	if ($value = $options[$name] ) {
 		return $value;
 	} else {
