@@ -210,8 +210,43 @@ function optionsframework_page() {
 if ( !function_exists( 'optionsframework_validate' ) ) {
 function optionsframework_validate($input) {
 
-	// At the moment no sanitization is happening.  Just wait...
+	// Get the options array we have defined in options.php
+	$options = of_options();
+	
+	foreach ($options as $option) {
+	
+		if (isset ($input[($option['id'])]) ) {
+	
+			switch ( $option['type'] ) {
+			
+			// If it's a checkbox, make sure it's checked or ''
+			case 'checkbox':
+				if ( $input[($option['id'])] != "true" )
+					$input[($option['id'])] = '';
+			break;
+			
+			// If it's a select or radio, make sure it's in the array we supplied
+			case ('select' || 'select2' || 'radio'):
+				if ( ! array_key_exists( $input[($option['id'])], $option['options'] ) )
+					$input[($option['id'])] = null;
+			break;
+			
+			// If it's an upload, make sure there's no spaces in the filename
+			case 'upload':
+				$input[($option['id'])] = preg_replace('/[^a-zA-Z0-9._\-]/', '', $input[($option['id'])]); 
+			break;
+			
+			// For the remaining options, strip any tags that aren't allowed in posts
+			default:
+				$input[($option['id'])] = wp_filter_post_kses( $input[($option['id'])] );
+			
+			}
+		}
+	
+	}
+	
 	return $input; // return validated input
+	
 }
 }
 

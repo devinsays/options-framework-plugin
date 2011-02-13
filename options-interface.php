@@ -316,19 +316,20 @@ function optionsframework_fields() {
 		   $saved_std = $settings[($value['id'])];
 		   $checked = '';
 			
-			if(!empty($saved_std)) {
+			if (!empty($saved_std)) {
 				if($saved_std == 'true') {
-				$checked = 'checked="checked"';
+					$checked = 'checked="checked"';
 				}
-				else{
+				else {
 				   $checked = '';
 				}
 			}
-			elseif( $std == 'true') {
-			   $checked = 'checked="checked"';
-			}
 			else {
+			   if ( $std == 'true') {
+			   		$checked = 'checked="checked"';
+				} else {
 				$checked = '';
+				}
 			}
 			$output .= '<input id="'. $value['id'] .'" class="checkbox of-input" type="checkbox" name="theme_options['. $value['id'] .']" value="true" '. $checked .' />';
 		break;

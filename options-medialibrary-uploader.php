@@ -95,7 +95,7 @@ if ( ! function_exists( 'optionsframework_mlu_js' ) ) {
 
 if ( ! function_exists( 'optionsframework_medialibrary_uploader' ) ) {
 
-	function optionsframework_medialibrary_uploader ( $_id, $_value, $_mode = 'full', $_desc = '', $_postid = 0 ) {
+	function optionsframework_medialibrary_uploader( $_id, $_value, $_mode = 'full', $_desc = '', $_postid = 0 ) {
 	
 		$output = '';
 		$id = '';
@@ -177,7 +177,7 @@ if ( ! function_exists( 'optionsframework_mlu_get_silentpost' ) ) {
 			
 			// Tell the function what to look for in a post.
 			
-			$_args = array( 'post_type' => 'optionsframework', 'post_name' => 'woo-wf-' . $_token, 'post_status' => 'draft', 'comment_status' => 'closed', 'ping_status' => 'closed' );
+			$_args = array( 'post_type' => 'optionsframework', 'post_name' => 'of-' . $_token, 'post_status' => 'draft', 'comment_status' => 'closed', 'ping_status' => 'closed' );
 			
 			// Look in the database for a "silent" post that meets our criteria.
 			$query = 'SELECT ID FROM ' . $wpdb->posts . ' WHERE post_parent = 0';
