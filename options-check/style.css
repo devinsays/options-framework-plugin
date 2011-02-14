@@ -1,0 +1,13 @@
+/*
+Theme Name: Options Check
+Theme URI: http://wptheming.com
+Description: A example/test theme to make sure all the options work in the Options Framework plugin.
+Author: Devin Price
+Author URI: http://wptheming.com
+Version: 0.1
+Template: twentyten
+*/
+
+@import url('../twentyten/style.css');
+
+#header img {display:none;}
