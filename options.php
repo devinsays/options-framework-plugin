@@ -22,40 +22,12 @@ if ( ! function_exists( 'of_options' ) ) {
 		
 		$options = array();
 		
-		$options[] = array( "name" => "Advanced Settings",
-							"type" => "heading");
-							
-		$options[] = array( "name" => "Uploader",
-							"desc" => "This creates a full size uploader that previews the image.",
-							"id" => "fullsizeuploader",
-							"std" => "",
-							"type" => "upload");
-							
-		$options[] = array( "name" => "Second Uploader",
-							"desc" => "This is just for testing to make sure that two can work.",
-							"id" => "seconduploader",
-							"std" => "",
-							"type" => "upload");
-								
-		$options[] = array( "name" => "Multicheck",
-							"desc" => "Multicheck description.",
-							"id" => "example_multicheck",
-							"std" => "two",
-							"type" => "multicheck",
-							"options" => $options_radio);
-							
-		$options[] = array( "name" => "Colorpicker",
-							"desc" => "No color selected.",
-							"id" => "example_colorpicker",
-							"std" => "",
-							"type" => "color");
-		
 		$options[] = array( "name" => "Basic Settings",
 							"type" => "heading");
 								
 		$options[] = array( "name" => "Input Text",
 							"desc" => "A text input field.",
-							"id" => "test_text",
+							"id" => "example_text",
 							"std" => "Default Value",
 							"type" => "text");
 							
@@ -78,7 +50,7 @@ if ( ! function_exists( 'of_options' ) ) {
 							"id" => "example_select_wide",
 							"std" => "two",
 							"type" => "select2",
-							"options" => $options_radio);
+							"options" => $options_select);
 							
 		$options[] = array( "name" => "Input Radio (one)",
 							"desc" => "Radio select with default of 'one'.",
@@ -88,11 +60,39 @@ if ( ! function_exists( 'of_options' ) ) {
 							"options" => $options_radio);
 							
 												
-		$options[] = array( "name" => "Input Checkbox (false)",
-							"desc" => "Example checkbox with false selected.",
-							"id" => "example_checkbox_false",
+		$options[] = array( "name" => "Input Checkbox",
+							"desc" => "Example checkbox, defaults to true.",
+							"id" => "example_checkbox",
 							"std" => "false",
 							"type" => "checkbox");
+							
+		$options[] = array( "name" => "Advanced Settings",
+							"type" => "heading");
+							
+		$options[] = array( "name" => "Uploader Test",
+							"desc" => "This creates a full size uploader that previews the image.",
+							"id" => "example_uploader",
+							"std" => "",
+							"type" => "upload");
+							
+		$options[] = array( "name" => "Second Uploader",
+							"desc" => "This is just for testing to make sure that two can work.",
+							"id" => "example_uploader2",
+							"std" => "",
+							"type" => "upload");
+								
+		$options[] = array( "name" => "Multicheck",
+							"desc" => "Multicheck description.",
+							"id" => "example_multicheck",
+							"std" => "two",
+							"type" => "multicheck",
+							"options" => $options_radio);
+							
+		$options[] = array( "name" => "Colorpicker",
+							"desc" => "No color selected.",
+							"id" => "example_colorpicker",
+							"std" => "",
+							"type" => "color");
 							
 		return $options;
 	

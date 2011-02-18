@@ -74,17 +74,21 @@ function optionsframework_init() {
 	
 	// No callback, optionsframework_fields will take care of it
 	foreach ($of_options as $option) {
-		// Each item in the multicheck gets saved on its own setting
-		if ($option['type'] == 'multicheck') {
-			foreach ($option['options'] as $key) {
-				$checkbox_id = ereg_replace("[^A-Za-z0-9]", "", strtolower($option['id']. '_' . $key));
-				$checkbox_name = ereg_replace("[^A-Za-z0-9]", "", strtolower($option['name']. '_' . $key));
-				add_settings_field($checkbox_id, $checkbox_name, __FILE__, 'of_theme_options');
+	
+		if ($option['type'] != 'heading') {
+	
+			// Each item in the multicheck gets saved on its own setting
+			if ($option['type'] == 'multicheck') {
+				foreach ($option['options'] as $key) {
+					$checkbox_id = ereg_replace("[^A-Za-z0-9]", "", strtolower($option['id']. '_' . $key));
+					$checkbox_name = ereg_replace("[^A-Za-z0-9]", "", strtolower($option['name']. '_' . $key));
+					add_settings_field($checkbox_id, $checkbox_name, __FILE__, 'of_theme_options');
+				}
 			}
+			$opt_id = ereg_replace("[^A-Za-z0-9]", "", strtolower($option['id']) );
+			$opt_name = ereg_replace("[^A-Za-z0-9]", "", strtolower($option['name']) );
+			add_settings_field($opt_id, $opt_name, '', __FILE__, 'of_theme_options');
 		}
-		$opt_id = ereg_replace("[^A-Za-z0-9]", "", strtolower($value['id']) );
-		$opt_name = ereg_replace("[^A-Za-z0-9]", "", strtolower($value['name']) );
-		add_settings_field($opt_id, $opt_name, '', __FILE__, 'of_theme_options');
 	}
 }
 
@@ -93,7 +97,7 @@ function optionsframework_init() {
 if ( !function_exists( 'optionsframework_add_page' ) ) {
 function optionsframework_add_page() {
 
-	$of_page = add_submenu_page('themes.php', $themename, 'Theme Options', 'edit_theme_options', 'options-framework','optionsframework_page');
+	$of_page = add_submenu_page('themes.php', 'Theme Options', 'Theme Options', 'edit_theme_options', 'options-framework','optionsframework_page');
 	
 	// Loads the required css and javascripts
 	add_action("admin_print_styles-$of_page",'optionsframework_load_styles');
@@ -248,7 +252,6 @@ function optionsframework_validate($input) {
 
 if ( !function_exists( 'of_get_option' ) ) {
 function of_get_option($name, $default) {
-
 	$options = get_option('of_theme_options');
 	if ($value = $options[$name] ) {
 		return $value;

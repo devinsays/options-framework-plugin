@@ -331,7 +331,7 @@ function optionsframework_fields() {
 			   if ( $std == 'true') {
 			   		$checked = 'checked="checked"';
 				} else {
-				$checked = '';
+					$checked = '';
 				}
 			}
 			$output .= '<input id="'. $of_key .'" class="checkbox of-input" type="checkbox" name="of_theme_options['. $of_key .']" value="true" '. $checked .' /><label for="'. $of_key .'">'. $option .'</label><br />';						

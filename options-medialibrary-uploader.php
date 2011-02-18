@@ -276,4 +276,3 @@ if ( ! function_exists( 'optionsframework_mlu_modify_tabs' ) ) {
 		return $tabs;
 	}
 }
-?>
