@@ -40,6 +40,7 @@ if ( !function_exists( 'add_action' ) ) {
 add_action('admin_init', 'optionsframework_init' );
 add_action( 'admin_init', 'optionsframework_mlu_init' );
 add_action('admin_menu', 'optionsframework_add_page');
+add_action('after_setup_theme', 'optionsframework_helpers');
 
 /* 
  * Creates the settings in the database by looping through the array
@@ -247,19 +248,27 @@ function optionsframework_validate($input) {
 }
 }
 
-/* 
- * Helper function to return the theme option.
- * If no value has been saved, returns $default.
- *
- */
+/* Loads after theme_setup, so it can easily be overridden */
 
-if ( !function_exists( 'of_get_option' ) ) {
-function of_get_option($name, $default) {
-	$options = get_option('of_theme_options');
-	if ($value = $options[$name] ) {
-		return $value;
-	} else {
-		return $default;
+function optionsframework_helpers() {
+
+	/* 
+	 * Helper function to return the theme option.
+	 * If no value has been saved, returns $default.
+	 *
+	 */
+	
+	if ( !function_exists( 'of_get_option' ) ) {
+	function of_get_option($name, $default) {
+		if ( get_option('of_theme_options') ) {
+			$options = get_option('of_theme_options');
+		}
+		
+		if ( !empty($options[$name]) ) {
+			return $options[$name];
+		} else {
+			return $default;
+		}
 	}
-}
+	}
 }

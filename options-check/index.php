@@ -16,7 +16,7 @@ get_header(); ?>
 			<h2 class="entry-title">Options Check Theme</h2>
             
             <div class="entry-content">
-            <p>Using of_get_option( $show, $default ) to retrieve items from the database.</p>
+            <p>Using of_get_option( $name, $default ) to retrieve items from the database.</p>
             
             <h3>Basic Options</h3>
             
@@ -68,6 +68,14 @@ get_header(); ?>
             </dl>
             
             <dl>
+            <dt>type: multicheck</dt>
+            <dd>get_option( 'example_multicheck'):
+			<?php echo of_get_option( 'example_multicheck', 'no entry' ); ?>
+            </span>
+            </dd>
+            </dl>
+            
+            <dl>
             <dt>type: colorpicker</dt>
             <dd>get_option( 'example_colorpicker'):
             <span style="color:<?php echo of_get_option( 'example_colorpicker', '#000' ); ?>">
@@ -75,8 +83,6 @@ get_header(); ?>
             </span>
             </dd>
             </dl>
-            
-           
             
             </div>
 			
