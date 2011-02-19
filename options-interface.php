@@ -229,7 +229,6 @@ function optionsframework_fields() {
 		
 		// Textarea
 		case 'textarea':
-			
 			$cols = '8';
 			$ta_value = '';
 			
@@ -271,7 +270,6 @@ function optionsframework_fields() {
 		
 		// Radio Box
 		case "radio":
-			
 			 $select_value = $settings[($value['id'])];
 				   
 			 foreach ($value['options'] as $key => $option) 
@@ -288,7 +286,6 @@ function optionsframework_fields() {
 		
 		// Checkbox
 		case "checkbox": 
-		
 		   $std = $value['std'];  
 		   $saved_std = $settings[($value['id'])];
 		   $checked = '';
@@ -313,18 +310,17 @@ function optionsframework_fields() {
 		
 		// Multicheck
 		case "multicheck":
-		
 			$std =  $value['std'];
 			foreach ($value['options'] as $key => $option) {						 
 				$of_key = $value['id'] . '_' . $key;
-				$saved_std = $settings[$of_key];
-					
-				if (!empty($saved_std)) {
-				if($saved_std == 'true') {
-					$checked = 'checked="checked"';
-				}
-				else {
-				   $checked = '';
+				
+				if ( isset($settings[$of_key]) ) {
+					$saved_std = $settings[$of_key];
+					if ($saved_std == 'true') {
+						$checked = 'checked="checked"';
+					}
+					else {
+				   		$checked = '';
 				}
 			}
 			else {
@@ -339,10 +335,11 @@ function optionsframework_fields() {
 		break;
 		
 		// Color picker
+		
 		case "color":
 			$val = $value['std'];
 			$stored  = $settings[($value['id'])];
-			if ( $stored != "") { $val = $stored; }
+			if ( isset($stored) ) { $val = $stored; }
 			$output .= '<div id="' . $value['id'] . '_picker" class="colorSelector"><div></div></div>';
 			$output .= '<input class="of-color" name="of_theme_options['. $value['id'] .']" id="'. $value['id'] .'" type="text" value="'. $val .'" />';
 		break; 

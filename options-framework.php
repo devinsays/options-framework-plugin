@@ -69,7 +69,7 @@ function optionsframework_init() {
 
 	register_setting('of_theme_options', 'of_theme_options', 'optionsframework_validate' );
 	
-	// Here's where we get that options data from the array
+	// Here's where we get the options data from the array
 	$of_options = of_options();
 	
 	// No callback, optionsframework_fields will take care of it
@@ -213,27 +213,30 @@ function optionsframework_validate($input) {
 	$options = of_options();
 	
 	foreach ($options as $option) {
-	
-		if (isset ($input[($option['id'])]) ) {
-	
-			switch ( $option['type'] ) {
-			
-			// If it's a checkbox, make sure it's checked or ''
-			case ($option['type'] == 'checkbox' || $option['type'] == 'multicheck'):
-				if ( $input[($option['id'])] != "true" )
-					$input[($option['id'])] = '';
-			break;
-			
-			// If it's a select make sure it's in the array we supplied
-			case ($option['type'] == 'select' || $option['type'] == 'select2') :
-				if ( ! in_array( $input[($option['id'])], $option['options'] ) )
-					$input[($option['id'])] = null;
-			break;
-			
-			// For the remaining options, strip any tags that aren't allowed in posts
-			default:
-				$input[($option['id'])] = wp_filter_post_kses( $input[($option['id'])] );
-			
+		// Verify that the option has an id
+		if ( isset ($option['id']) ) {
+			// Verify that there's a value in the $input
+			if (isset ($input[($option['id'])]) ) {
+		
+				switch ( $option['type'] ) {
+				
+				// If it's a checkbox, make sure it's checked or ''
+				case ($option['type'] == 'checkbox' || $option['type'] == 'multicheck'):
+					if ( $input[($option['id'])] != "true" )
+						$input[($option['id'])] = '';
+				break;
+				
+				// If it's a select make sure it's in the array we supplied
+				case ($option['type'] == 'select' || $option['type'] == 'select2') :
+					if ( ! in_array( $input[($option['id'])], $option['options'] ) )
+						$input[($option['id'])] = null;
+				break;
+				
+				// For the remaining options, strip any tags that aren't allowed in posts
+				default:
+					$input[($option['id'])] = wp_filter_post_kses( $input[($option['id'])] );
+				
+				}
 			}
 		}
 	
