@@ -18,6 +18,9 @@ if ( ! function_exists( 'of_options' ) ) {
 		$options_select = array("one","two","three","four","five"); 
 		$options_radio = array("one" => "One","two" => "Two","three" => "Three","four" => "Four","five" => "Five");
 		
+		// If you use images, define a path for them
+		$imagepath =  get_bloginfo('stylesheet_directory') . '/images/';
+		
 		// Options Array
 		
 		$options = array();
@@ -75,11 +78,18 @@ if ( ! function_exists( 'of_options' ) ) {
 							"std" => "",
 							"type" => "upload");
 							
-		$options[] = array( "name" => "Second Uploader",
-							"desc" => "This is just for testing to make sure that two can work.",
-							"id" => "example_uploader2",
-							"std" => "",
-							"type" => "upload");
+		$options[] = array( "name" => "Example Image Selector",
+							"desc" => "Images for layout.",
+							"id" => "example_images",
+							"std" => "2c-l-fixed",
+							"type" => "images",
+							"options" => array(
+								'1col-fixed' => $imagepath . '1col.png',
+								'2c-r-fixed' => $imagepath . '2cr.png',
+								'2c-l-fixed' => $imagepath . '2cl.png',
+								'3c-fixed' => $imagepath . '3cm.png',
+								'3c-r-fixed' => $imagepath . '3cr.png')
+							);
 								
 		$options[] = array( "name" => "Multicheck",
 							"desc" => "Multicheck description.",
@@ -89,7 +99,7 @@ if ( ! function_exists( 'of_options' ) ) {
 							"options" => $options_radio);
 							
 		$options[] = array( "name" => "Colorpicker",
-							"desc" => "No color selected.",
+							"desc" => "No color selected by default.",
 							"id" => "example_colorpicker",
 							"std" => "",
 							"type" => "color");

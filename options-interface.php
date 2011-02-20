@@ -357,7 +357,35 @@ function optionsframework_fields() {
 		case "info":
 			$default = $value['std'];
 			$output .= $default;
-		break;                                   
+		break;
+		
+		// Image Selectors
+		case "images":
+			$i = 0;
+			$select_value = $settings[($value['id'])];
+				   
+			foreach ($value['options'] as $key => $option) { 
+			 $i++;
+
+				 $checked = '';
+				 $selected = '';
+				   if($select_value != '') {
+						if ( $select_value == $key) { $checked = ' checked'; $selected = 'of-radio-img-selected'; } 
+				    } else {
+						if ($value['std'] == $key) { $checked = ' checked'; $selected = 'of-radio-img-selected'; }
+						elseif ($i == 1  && !isset($select_value)) { $checked = ' checked'; $selected = 'of-radio-img-selected'; }
+						elseif ($i == 1  && $value['std'] == '') { $checked = ' checked'; $selected = 'of-radio-img-selected'; }
+						else { $checked = ''; }
+					}	
+				
+				$output .= '<span>';
+				$output .= '<input type="radio" id="of-radio-img-' . $value['id'] . $i . '" class="checkbox of-radio-img-radio" value="'.$key.'" name="of_theme_options['. $value['id'] .']" '.$checked.' />';
+				$output .= '<div class="of-radio-img-label">'. $key .'</div>';
+				$output .= '<img src="'.$option.'" alt="" class="of-radio-img-img '. $selected .'" onClick="document.getElementById(\'of-radio-img-'. $value['id'] . $i.'\').checked = true;" />';
+				$output .= '</span>';
+				
+			}
+		break;                              
 		
 		// Heading for Navigation
 		case "heading":

@@ -52,7 +52,7 @@ get_header(); ?>
             
             <dl>
             <dt>type: checkbox</dt>
-            <dd>get_option( 'example_checkbox'): <?php echo of_get_option( 'example_checkbox', 'true' ); ?></dd>
+            <dd>get_option( 'example_checkbox'): <?php echo of_get_option( 'example_checkbox', 'no entry' ); ?></dd>
             </dl>
             
              <hr/>
@@ -65,6 +65,11 @@ get_header(); ?>
             <?php if ( of_get_option( 'example_uploader', 'false' ) ) { ?>
             <img src="<?php echo of_get_option( 'example_uploader' ) ?>" />
 			<?php } ?>
+            </dl>
+            
+            <dl>
+            <dt>type: image</dt>
+            <dd>get_option( 'example_images'): <?php echo of_get_option( 'example_images', 'no entry' ); ?></dd>
             </dl>
             
             <dl>
