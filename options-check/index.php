@@ -70,10 +70,19 @@ get_header(); ?>
             <dl>
             <dt>type: multicheck</dt>
             <dd>get_option( 'example_multicheck'):
-			<?php echo of_get_option( 'example_multicheck', 'no entry' ); ?>
-            </span>
+            <?php $example_multicheck = of_get_option( 'example_multicheck', 'no entry' ); ?>
+			<?php echo $example_multicheck; ?>
             </dd>
             </dl>
+            
+            <p>You can get all the items that were marked true:</p>
+            <ul>
+            <?php foreach ($example_multicheck as $mc) {
+				echo '<li>' . $mc . '</li>';
+			} ?>
+            </ul>
+            
+            <p>Or an individual checkbox in the group by using get_option( 'example_multicheck_$key') where $key is on of the items in the checkbox $options array.</p>
             
             <dl>
             <dt>type: colorpicker</dt>

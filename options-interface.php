@@ -311,6 +311,7 @@ function optionsframework_fields() {
 		// Multicheck
 		case "multicheck":
 			$std =  $value['std'];
+			$output .= '<input id="'. $value['id'] .'" type="hidden" name="of_theme_options['. $value['id'] .']" value="' . $std . '" />';	
 			foreach ($value['options'] as $key => $option) {						 
 				$of_key = $value['id'] . '_' . $key;
 				

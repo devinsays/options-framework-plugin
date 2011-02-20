@@ -221,10 +221,32 @@ function optionsframework_validate($input) {
 		
 				switch ( $option['type'] ) {
 				
-				// If it's a checkbox, make sure it's checked or ''
-				case ($option['type'] == 'checkbox' || $option['type'] == 'multicheck'):
-					if ( $input[($option['id'])] != "true" )
-						$input[($option['id'])] = '';
+				// If it's a checkbox, make sure it's either null or checked
+				case ($option['type'] == 'checkbox'):
+					if ( !empty($input[($option['id'])]) )
+						$input[($option['id'])] = 'true';
+				break;
+				
+				// If it's a multicheck
+				case ($option['type'] == 'multicheck'):
+					$i = 0;
+					foreach ($option['options'] as $key) {
+						// Make sure the key is lowercase and without spaces
+						$key = ereg_replace("[^A-Za-z0-9]", "", strtolower($key));
+						// Check that the option isn't null
+						if (!empty($input[($option['id']. '_' . $key)])) {
+							// If it's not null, make sure it's true, add it to an array
+							if ( $input[($option['id']. '_' . $key)] ) {
+								$input[($option['id']. '_' . $key)] = 'true';
+								$checkboxarray[$i] = $key;
+								$i++;
+							}
+						}
+					}
+					// Take all the items that were checked, and set them as the main option
+					//if (!empty($checkboxarray)) {
+						$input[($option['id'])] = $checkboxarray;
+					//}
 				break;
 				
 				// If it's a select make sure it's in the array we supplied
