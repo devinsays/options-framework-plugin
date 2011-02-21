@@ -6,7 +6,7 @@ Tested up to: 3.0.5
 Stable tag: 0.1
 License: GPLv2
 
-The Options Framework helps to easily enables options in your themes.
+If a theme has been developed for use with this plugin, theme options will be enabled on install.
 
 == Description ==
 

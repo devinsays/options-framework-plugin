@@ -60,7 +60,6 @@ function optionsframework_init() {
 	require_once dirname( __FILE__ ) . '/options-medialibrary-uploader.php';
 	
 	/* Loads the options array from the theme */
-	
 	if ( $optionsfile = locate_template( array('options.php') ) ) {
 		require_once($optionsfile);
 	}
@@ -69,15 +68,20 @@ function optionsframework_init() {
 	}
 
 	register_setting('of_theme_options', 'of_theme_options', 'optionsframework_validate' );
-	
+}
+
+/* Initialize the Options */
+/* Note: Not set up or working at this moment. */
+
+function optionsframework_optionsinit() {
+
 	// Here's where we get the options data from the array
 	$of_options = of_options();
-	
+		
 	// No callback, optionsframework_fields will take care of it
 	foreach ($of_options as $option) {
-	
 		if ( ($option['type'] != 'heading') && ($option['type'] != 'info') ) {
-	
+		
 			// Each item in the multicheck gets saved on its own setting
 			if ($option['type'] == 'multicheck') {
 				foreach ($option['options'] as $key) {
@@ -94,6 +98,13 @@ function optionsframework_init() {
 			update_option('of_theme_options['. $opt_id . ']', $value);
 		}
 	}
+}
+
+/* When uninstalled, deletes all options */
+
+register_uninstall_hook( __FILE__, 'optionsframework_delete_options' );
+function optionsframework_delete_options() {
+	delete_option('of_theme_options');
 }
 
 /* Let's add a subpage called "Theme Options" to the appearance menu. */
@@ -134,7 +145,6 @@ function optionsframework_load_scripts() {
 	wp_register_script('jquery-input-mask', OPTIONS_FRAMEWORK_URL.'js/jquery.maskedinput-1.2.2.js', array( 'jquery' ));
 	wp_enqueue_script('jquery-input-mask');
 	wp_enqueue_script('color-picker', OPTIONS_FRAMEWORK_URL.'js/colorpicker.js', array('jquery'));
-	
 }
 
 /* 
@@ -156,15 +166,13 @@ function optionsframework_page() {
 	// Get the theme name so we can display it up top
 	$themename = get_theme_data(STYLESHEETPATH . '/style.css');
 	$themename = $themename['Name'];
-	if ( ! isset( $_REQUEST['updated'] ) )
-		$_REQUEST['updated'] = false;
 	?>
     
 	<div class="wrap">
     <?php screen_icon( 'themes' ); ?>
 	<h2>Theme Options</h2>
     
-    <?php if ( false !== $_REQUEST['updated'] ) : ?>
+    <?php if ( isset( $_GET['updated'] ) ) : ?>
 		<div id="message" class="updated fade"><p><strong><?php _e( 'Options saved' ); ?></strong></p></div>
 	<?php endif; ?>
     
@@ -191,8 +199,9 @@ function optionsframework_page() {
           <div class="clear"></div>
         </div>
         <div class="save_bar_top">
-    	<input type="submit" class="button-primary" value="<?php _e( 'Save Options' ); ?>" />
-       </div>
+			<input type="submit" class="button-primary" value="<?php _e( 'Save Options' ); ?>" />
+		</div>
+	  </form>
   </form>
 <div class="clear"></div>
 </div>  
