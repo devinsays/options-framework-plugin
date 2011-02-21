@@ -207,8 +207,8 @@ function optionsframework_fields() {
 		$counter++;
 		$val = '';
 		
-		//Start Heading
-		 if ( $value['type'] != "heading" )
+		// Wrap all options
+		 if ( ($value['type'] != "heading") && ($value['type'] != "info") )
 		 {
 		 	$class = ''; if(isset( $value['class'] )) { $class = $value['class']; }
 			$output .= '<div class="section section-'.$value['type'].' '. $class .'">'."\n";
@@ -221,9 +221,12 @@ function optionsframework_fields() {
 		
 		// Basic text input
 		case 'text':
-			$val = $value['std'];
-			$std = $settings[($value['id'])];
-			if ( $std != "") { $val = $std; }
+			if ( isset($settings[($value['id'])]) ) {
+				$val = $settings[($value['id'])];
+			}
+			else {
+				$val = $value['std'];
+			}
 			$output .= '<input id="'. $value['id'] .'" class="of-input" name="of_theme_options['. $value['id'] .']" type="'. $value['type'] .'" value="'. $val .'" />';
 		break;
 		
@@ -336,7 +339,6 @@ function optionsframework_fields() {
 		break;
 		
 		// Color picker
-		
 		case "color":
 			$val = $value['std'];
 			$stored  = $settings[($value['id'])];
@@ -355,8 +357,11 @@ function optionsframework_fields() {
 		
 		// Info
 		case "info":
-			$default = $value['std'];
-			$output .= $default;
+			$class = ''; if(isset( $value['class'] )) { $class = $value['class']; }
+			$output .= '<div class="section section-'.$value['type'].' '. $class .'">'."\n";
+			if ( $value['name'] )  { $output .= '<h3 class="heading">'. $value['name'] .'</h3>'."\n"; }
+			if ( $value['desc'] )  { $output .= '<p>'. $value['desc'] .'</p>'."\n"; }
+			$output .= '<div class="clear"></div></div>'."\n";
 		break;
 		
 		// Image Selectors
@@ -399,7 +404,7 @@ function optionsframework_fields() {
 		break;                                  
 		}
 		
-		if ( $value['type'] != "heading" ) { 
+		if ( ($value['type'] != "heading") && ($value['type'] != "info") ) { 
 			if ( $value['type'] != "checkbox" ) 
 				{ 
 				$output .= '<br/>';

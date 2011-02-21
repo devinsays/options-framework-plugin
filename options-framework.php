@@ -76,19 +76,22 @@ function optionsframework_init() {
 	// No callback, optionsframework_fields will take care of it
 	foreach ($of_options as $option) {
 	
-		if ($option['type'] != 'heading') {
+		if ( ($option['type'] != 'heading') && ($option['type'] != 'info') ) {
 	
 			// Each item in the multicheck gets saved on its own setting
 			if ($option['type'] == 'multicheck') {
 				foreach ($option['options'] as $key) {
 					$checkbox_id = ereg_replace("[^A-Za-z0-9]", "", strtolower($option['id']. '_' . $key));
-					$checkbox_name = ereg_replace("[^A-Za-z0-9]", "", strtolower($option['name']. '_' . $key));
-					add_settings_field($checkbox_id, $checkbox_name, __FILE__, 'of_theme_options');
+					update_option('of_theme_options['. $checkbox_id . ']', '');
 				}
 			}
 			$opt_id = ereg_replace("[^A-Za-z0-9]", "", strtolower($option['id']) );
-			$opt_name = ereg_replace("[^A-Za-z0-9]", "", strtolower($option['name']) );
-			add_settings_field($opt_id, $opt_name, '', __FILE__, 'of_theme_options');
+			if ( isset($option['std' ]) ) {
+				$value = wp_filter_post_kses($option['std']);
+			} else {
+				$value = '';
+			}
+			update_option('of_theme_options['. $opt_id . ']', $value);
 		}
 	}
 }
@@ -244,9 +247,9 @@ function optionsframework_validate($input) {
 						}
 					}
 					// Take all the items that were checked, and set them as the main option
-					//if (!empty($checkboxarray)) {
+					if (!empty($checkboxarray)) {
 						$input[($option['id'])] = $checkboxarray;
-					//}
+					}
 				break;
 				
 				// If it's a select make sure it's in the array we supplied

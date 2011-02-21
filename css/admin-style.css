@@ -108,40 +108,6 @@
 #of_container #content .section-color .explain {
 	width:440px
 }
-#of_container #content .section-info h3.heading {
-	font-size: 12px;
-	font-weight: 100;
-	border: 0;
-	margin-top: 20px;
-	letter-spacing: 1px;
-	border-top: 1px solid #FFF298;
-	margin-bottom: 0;
-	background:#EFE186;
-	padding: 10px 20px;
-}
-#of_container #content .section-info .controls {
-	margin: 0 0 20px;
-	padding: 15px 20px;
-	width: auto;
-	line-height: 1.5em;
-	font-size: 14px;
-	font-style: italic;
-	font-family: Georgia, arial;
-	background: #FFF298;
-	border:1px solid #ECD852;
-	color:#424242;
-}
-#of_container #content .section-info .controls small {
-	font-size: 12px
-}
-#of_container #content .section-info h3.heading {
-	-moz-border-radius-topleft:4px;
-	-moz-border-radius-topright:4px;
-}
-#of_container #content .section-info .controls {
-	-moz-border-radius-bottomleft:4px;
-	-moz-border-radius-bottomright:4px;
-}
 #of_container textarea, #of_container input, #of_container select {
 	-moz-border-radius-bottomleft:4px;
 	-moz-border-radius-bottomright:4px;
