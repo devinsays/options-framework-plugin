@@ -44,15 +44,6 @@ function optionsframework_rolescheck () {
 }
 add_action('admin_init', 'optionsframework_rolescheck' );
 
-/* Make plugin available for translation */
-
-load_theme_textdomain( 'optionsframework', OPTIONS_FRAMEWORK_URL . '/languages' );
-
-$locale = get_locale();
-$locale_file = OPTIONS_FRAMEWORK_URL . "/languages/$locale.php";
-if ( is_readable( $locale_file ) )
-	require_once( $locale_file );
-
 /* Let the fun begin! */
 
 add_action('admin_init', 'optionsframework_init' );
