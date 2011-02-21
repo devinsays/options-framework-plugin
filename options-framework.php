@@ -44,6 +44,15 @@ function optionsframework_rolescheck () {
 }
 add_action('admin_init', 'optionsframework_rolescheck' );
 
+/* Make plugin available for translation */
+
+load_theme_textdomain( 'optionsframework', OPTIONS_FRAMEWORK_URL . '/languages' );
+
+$locale = get_locale();
+$locale_file = OPTIONS_FRAMEWORK_URL . "/languages/$locale.php";
+if ( is_readable( $locale_file ) )
+	require_once( $locale_file );
+
 /* Let the fun begin! */
 
 add_action('admin_init', 'optionsframework_init' );
@@ -179,7 +188,7 @@ function optionsframework_page() {
     
 	<div class="wrap">
     <?php screen_icon( 'themes' ); ?>
-	<h2>Theme Options</h2>
+	<h2><?php _e('Theme Options'); ?></h2>
     
     <?php if ( isset( $_GET['updated'] ) ) : ?>
 		<div id="message" class="updated fade"><p><strong><?php _e( 'Options saved' ); ?></strong></p></div>
