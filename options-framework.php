@@ -35,6 +35,15 @@ if ( !function_exists( 'add_action' ) ) {
 	exit;
 }
 
+/* If the user can't edit options, let's also stop the show */
+
+function optionsframework_rolescheck () {
+	if ( !current_user_can('edit_theme_options') ) {
+		wp_die(__('Cheatin&#8217; uh?'));
+	}
+}
+add_action('admin_init', 'optionsframework_rolescheck' );
+
 /* Let the fun begin! */
 
 add_action('admin_init', 'optionsframework_init' );
@@ -277,7 +286,7 @@ function optionsframework_validate($input) {
 	
 	}
 	
-	return $input; // return validated input
+	return $input; // Return validated input
 	
 }
 }
