@@ -121,6 +121,13 @@ function optionsframework_delete_options() {
 if ( !function_exists( 'optionsframework_add_page' ) ) {
 function optionsframework_add_page() {
 
+	// Still working on reset
+	if ($_POST['reset']) {
+		global $_POST;
+		header("Location: themes.php?page=options-framework&reset=true");
+		die;
+	}
+
 	$of_page = add_submenu_page('themes.php', 'Theme Options', 'Theme Options', 'edit_theme_options', 'options-framework','optionsframework_page');
 	
 	// Loads the required css and javascripts
@@ -175,19 +182,22 @@ function optionsframework_page() {
 	// Get the theme name so we can display it up top
 	$themename = get_theme_data(STYLESHEETPATH . '/style.css');
 	$themename = $themename['Name'];
+	$message = '';
+	
+	if ( isset( $_GET['reset'] ) )
+		$message = __( 'Options reset' );
+		
+	if ( isset( $_GET['updated'] ) )
+		$message = __( 'Options saved' );
 	?>
     
 	<div class="wrap">
     <?php screen_icon( 'themes' ); ?>
 	<h2><?php _e('Theme Options'); ?></h2>
     
-    <?php if ($_POST['reset']) { ?>
-    	<div id="message" class="updated fade"><p><strong><?php _e( 'Options reset' ); ?></strong></p></div>
+    <?php if ($message) { ?>
+    	<div id="message" class="updated fade"><p><strong><?php echo $message; ?></strong></p></div>
     <?php } ?>
-    
-    <?php if ( isset( $_GET['updated'] ) && !$_POST['reset']) : ?>
-		<div id="message" class="updated fade"><p><strong><?php _e( 'Options saved' ); ?></strong></p></div>
-	<?php endif; ?>
     
     <div id="of_container">
        <form action="options.php" method="post">
@@ -214,6 +224,9 @@ function optionsframework_page() {
         <div class="of_admin_bar">
 			<input type="submit" class="button-primary" name="update" value="<?php _e( 'Save Options' ); ?>" />
             </form>
+            
+            <?php // Still working on reset ?>
+            
             <form action="<?php /*echo wp_specialchars( $_SERVER['REQUEST_URI'] )*/ ?>" method="post">
             <input type="submit" class="reset-button" name="reset" value="<?php _e('Reset to Default')?>" onclick="return confirm('Click OK to reset. Any theme settings will be lost!');"/>
             </form>
