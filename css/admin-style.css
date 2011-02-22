@@ -260,10 +260,15 @@
 #of_container .screenshot .no_image .mlu_remove {
 	bottom: 0px;
 }
-.reset-button {
+#of_container .reset-button {
 	float:left;
+	cursor:pointer;
 }
-.save_bar_top {
+
+#of_container .button-primary {
+	float:right;
+}
+#of_container .of_admin_bar {
 	background: #f3f3f3;
 	border:solid #ccc;
 	border-width:0px 1px 1px 1px;
@@ -277,10 +282,10 @@
 	border-bottom-right-radius: 6px;
 	border-bottom-left-radius: 6px;
 }
-.hide {
+#of_container .hide {
 	display:none
 }
-.of-option-image {
+#of_container .of-option-image {
 	max-width:340px;
 }
 #of_container .mini .controls select, #of_container #content .section .mini .controls {

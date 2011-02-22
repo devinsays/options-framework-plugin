@@ -181,7 +181,11 @@ function optionsframework_page() {
     <?php screen_icon( 'themes' ); ?>
 	<h2><?php _e('Theme Options'); ?></h2>
     
-    <?php if ( isset( $_GET['updated'] ) ) : ?>
+    <?php if ($_POST['reset']) { ?>
+    	<div id="message" class="updated fade"><p><strong><?php _e( 'Options reset' ); ?></strong></p></div>
+    <?php } ?>
+    
+    <?php if ( isset( $_GET['updated'] ) && !$_POST['reset']) : ?>
 		<div id="message" class="updated fade"><p><strong><?php _e( 'Options saved' ); ?></strong></p></div>
 	<?php endif; ?>
     
@@ -207,14 +211,16 @@ function optionsframework_page() {
           </div>
           <div class="clear"></div>
         </div>
-        <div class="save_bar_top">
-			<input type="submit" class="button-primary" value="<?php _e( 'Save Options' ); ?>" />
+        <div class="of_admin_bar">
+			<input type="submit" class="button-primary" name="update" value="<?php _e( 'Save Options' ); ?>" />
+            </form>
+            <form action="<?php /*echo wp_specialchars( $_SERVER['REQUEST_URI'] )*/ ?>" method="post">
+            <input type="submit" class="reset-button" name="reset" value="<?php _e('Reset to Default')?>" onclick="return confirm('Click OK to reset. Any theme settings will be lost!');"/>
+            </form>
 		</div>
-	  </form>
-  </form>
 <div class="clear"></div>
-</div>  
-</div>
+</div> <!-- / #container -->  
+</div> <!-- / .wrap -->
 
 <?php
 }
@@ -291,7 +297,7 @@ function optionsframework_validate($input) {
 }
 }
 
-/* Loads after theme_setup, so it can easily be overridden */
+/* Loads after theme_setup, so it can be overridden */
 
 function optionsframework_helpers() {
 
