@@ -44,6 +44,20 @@ function optionsframework_rolescheck () {
 }
 add_action('admin_init', 'optionsframework_rolescheck' );
 
+/* Might add an activation message on install */
+
+register_activation_hook(__FILE__,'optionsframework_activation_hook'); 
+function optionsframework_activation_hook() {
+	/* But for now, nothing */
+}
+
+/* When uninstalled, deletes options */
+
+register_uninstall_hook( __FILE__, 'optionsframework_delete_options' );
+function optionsframework_delete_options() {
+	delete_option('of_theme_options');
+}
+
 /* Let the fun begin! */
 
 add_action('admin_init', 'optionsframework_init' );
@@ -77,56 +91,39 @@ function optionsframework_init() {
 	}
 
 	register_setting('of_theme_options', 'of_theme_options', 'optionsframework_validate' );
-}
-
-/* Initialize the Options */
-/* Note: Not set up or working at this moment. */
-
-function optionsframework_optionsinit() {
-
+	
+	
 	// Here's where we get the options data from the array
 	$of_options = of_options();
+	
+	/* NOTE: This is not yet working yet */
 		
-	// No callback, optionsframework_fields will take care of it
+	// If the options haven't been added to the database yet, it will get added now
 	foreach ($of_options as $option) {
 		if ( ($option['type'] != 'heading') && ($option['type'] != 'info') ) {
 		
 			// Each item in the multicheck gets saved on its own setting
 			if ($option['type'] == 'multicheck') {
 				foreach ($option['options'] as $key) {
-					$checkbox_id = ereg_replace("[^A-Za-z0-9]", "", strtolower($option['id']. '_' . $key));
-					update_option('of_theme_options['. $checkbox_id . ']', '');
+					$checkbox_id = preg_replace("/\W/", "", strtolower($option['id']. '_' . $key));
+					add_option('of_theme_options['. $checkbox_id . ']', '');
 				}
 			}
-			$opt_id = ereg_replace("[^A-Za-z0-9]", "", strtolower($option['id']) );
+			$opt_id = preg_replace("/\W/", "", strtolower($option['id']) );
 			if ( isset($option['std' ]) ) {
 				$value = wp_filter_post_kses($option['std']);
 			} else {
 				$value = '';
 			}
-			update_option('of_theme_options['. $opt_id . ']', $value);
+			add_option('of_theme_options['. $opt_id . ']', $value);
 		}
 	}
-}
-
-/* When uninstalled, deletes all options */
-
-register_uninstall_hook( __FILE__, 'optionsframework_delete_options' );
-function optionsframework_delete_options() {
-	delete_option('of_theme_options');
 }
 
 /* Let's add a subpage called "Theme Options" to the appearance menu. */
 
 if ( !function_exists( 'optionsframework_add_page' ) ) {
 function optionsframework_add_page() {
-
-	// Still working on reset
-	if ($_POST['reset']) {
-		global $_POST;
-		header("Location: themes.php?page=options-framework&reset=true");
-		die;
-	}
 
 	$of_page = add_submenu_page('themes.php', 'Theme Options', 'Theme Options', 'edit_theme_options', 'options-framework','optionsframework_page');
 	
@@ -228,7 +225,7 @@ function optionsframework_page() {
             <?php // Still working on reset ?>
             
             <form action="<?php /*echo wp_specialchars( $_SERVER['REQUEST_URI'] )*/ ?>" method="post">
-            <input type="submit" class="reset-button" name="reset" value="<?php _e('Reset to Default')?>" onclick="return confirm('Click OK to reset. Any theme settings will be lost!');"/>
+            <input type="submit" class="reset-button" name="reset" value="<?php _e('Reset to Default')?>" onclick="return confirm('Click OK to reset. Any theme settings will be lost! NOTE: This is not working yet.');"/>
             </form>
 		</div>
 <div class="clear"></div>
