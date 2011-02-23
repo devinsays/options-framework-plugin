@@ -181,6 +181,7 @@ function optionsframework_page() {
 	$themename = $themename['Name'];
 	$message = '';
 	
+	/* Reset isn't working yet, just testing */
 	if ( isset( $_GET['reset'] ) )
 		$message = __( 'Options reset' );
 		

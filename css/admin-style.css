@@ -31,13 +31,6 @@
 	font-size: 22px;
 	line-height: 26px;
 }
-#of_container #header .icon-option {
-	float: right;
-	height: 32px;
-	width: 32px;
-	background: url(images/icon_option.png) no-repeat;
-	margin:25px 20px;
-}
 #of_container #main {
 	background-color: #f1f1f1;
 	border-left: 1px solid #d8d8d8;
@@ -72,7 +65,6 @@
 	width: 595px;
 	margin-left: -1px;
 	padding: 0 14px;
-	font-family: "Lucida Grande", Sans-serif;
 	background-color: #fff;
 	border-left: 1px solid #d8d8d8;
 }
@@ -117,13 +109,12 @@
 	border-width:1px;
 }
 #of_container .controls input, #of_container .controls select, #of_container .controls textarea {
-	margin-bottom: 9px !important;
+	margin-bottom: 10px;
 	background-color: #f1f1f1;
 	border: 1px solid;
 	border-color: #ccc #e6e6e6 #e6e6e6 #ccc;
 	width: 340px;
 	padding: 4px;
-	font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, Verdana, sans-serif;
 	font-size: 12px;
 }
 #of_container .controls select {
@@ -142,17 +133,10 @@
 #of_container input.of-radio {
 	width: 30px;
 }
-#of_container .controls .input-text-small {
-	width: 60px;
-	margin-right:10px
-}
-#of_container .meta-two {
-	margin-right:10px
-}
 #of_container .controls .of-color {
 	float:left;
 	width: 80px;
-	margin-left:5px; /* font-size:20px; height:34px;*/
+	margin-left:5px;
 }
 #of_container #content .section-typography .controls {
 	width:425px
@@ -207,6 +191,24 @@
 #of_container .controls input:focus, #of_container select:focus, #of_container textarea:focus {
 	background:#fff;
 }
+#of_container .hide {
+	display:none
+}
+#of_container .of-option-image {
+	max-width:340px;
+}
+#of_container .mini .controls select, #of_container #content .section .mini .controls {
+	width: 70px;
+}
+#of_container .mini .controls input, #of_container #content .mini .controls {
+	width: 70px;
+}
+#of_container #content .mini .explain {
+	width:500px;
+}
+
+/* Image Uploader */
+
 #of_container .controls input.upload {
 	width:280px;
 	padding-bottom:6px;
@@ -265,6 +267,8 @@
 	cursor:pointer;
 }
 
+/* Bottom Section */
+
 #of_container .button-primary {
 	float:right;
 }
@@ -281,48 +285,4 @@
 	-webkit-border-bottom-left-radius: 6px;
 	border-bottom-right-radius: 6px;
 	border-bottom-left-radius: 6px;
-}
-#of_container .hide {
-	display:none
-}
-#of_container .of-option-image {
-	max-width:340px;
-}
-#of_container .mini .controls select, #of_container #content .section .mini .controls {
-	width: 70px;
-}
-#of_container .mini .controls input, #of_container #content .mini .controls {
-	width: 70px;
-}
-#of_container #content .mini .explain {
-	width:500px;
-}
-.of-notice {
-	background: #ffd1d1;
-	border:1px solid #DFA8A7;
-	-moz-border-radius:8px;
-	-webkit-border-radius:8px;
-	text-align: center;
-	margin-bottom: 15px
-}
-/*-------------------------------------------------------------------------------------------*/
-/* GENERAL STYLES */
-/*-------------------------------------------------------------------------------------------*/
-
-/* http://sonspring.com/journal/clearing-floats */
-
-html body * span.clear, html body * div.clear, html body * li.clear, html body * dd.clear {
-	background: none;
-	border: 0;
-	clear: both;
-	display: block;
-	float: none;
-	font-size: 0;
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-	visibility: hidden;
-	width: 0;
-	height: 0;
 }
