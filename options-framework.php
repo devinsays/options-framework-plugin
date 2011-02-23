@@ -25,6 +25,8 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+/* Basic plugin definitions */
+
 define('OPTIONS_FRAMEWORK_VERSION', '0.1');
 define('OPTIONS_FRAMEWORK_URL', plugin_dir_url( __FILE__ ));
 
@@ -35,14 +37,22 @@ if ( !function_exists( 'add_action' ) ) {
 	exit;
 }
 
-/* If the user can't edit options, let's also stop the show */
+/* If the user can't edit theme options, no use running this plugin */
 
 function optionsframework_rolescheck () {
 	if ( !current_user_can('edit_theme_options') ) {
 		wp_die(__('Cheatin&#8217; uh?'));
+	} 
+	else
+	{
+		/* If the user can edit theme options, let the fun begin! */
+		add_action('admin_menu', 'optionsframework_add_page');
+		add_action('admin_init', 'optionsframework_init' );
+		add_action( 'admin_init', 'optionsframework_mlu_init' );
+		add_action('after_setup_theme', 'optionsframework_helpers');
 	}
 }
-add_action('admin_init', 'optionsframework_rolescheck' );
+add_action('init', 'optionsframework_rolescheck' );
 
 /* Might add an activation message on install */
 
@@ -57,13 +67,6 @@ register_uninstall_hook( __FILE__, 'optionsframework_delete_options' );
 function optionsframework_delete_options() {
 	delete_option('of_theme_options');
 }
-
-/* Let the fun begin! */
-
-add_action('admin_init', 'optionsframework_init' );
-add_action( 'admin_init', 'optionsframework_mlu_init' );
-add_action('admin_menu', 'optionsframework_add_page');
-add_action('after_setup_theme', 'optionsframework_helpers');
 
 /* 
  * Creates the settings in the database by looping through the array
@@ -89,35 +92,40 @@ function optionsframework_init() {
 	else if (file_exists( dirname( __FILE__ ) . '/options.php' ) ) {
 		require_once dirname( __FILE__ ) . '/options.php';
 	}
-
+	
 	register_setting('of_theme_options', 'of_theme_options', 'optionsframework_validate' );
+	optionsframework_setdefaults();
+}
+
+/* 
+ * Add default options to the database if they aren't already present.
+ * May update this later to load only on plugin activation, or theme
+ * activation since most people won't be editing the options.php
+ * on a regular basis.
+ *
+ * http://codex.wordpress.org/Function_Reference/add_option
+ *
+ */
+
+function optionsframework_setdefaults() {
 	
-	
-	// Here's where we get the options data from the array
-	$of_options = of_options();
-	
-	/* NOTE: This is not yet working yet */
+	// Here's where we get the default options data from the array in options.php
+	$options = of_options();
 		
-	// If the options haven't been added to the database yet, it will get added now
-	foreach ($of_options as $option) {
+	// If the options haven't been added to the database yet, it gets added now
+	foreach ($options as $option) {
 		if ( ($option['type'] != 'heading') && ($option['type'] != 'info') ) {
-		
-			// Each item in the multicheck gets saved on its own setting
-			if ($option['type'] == 'multicheck') {
-				foreach ($option['options'] as $key) {
-					$checkbox_id = preg_replace("/\W/", "", strtolower($option['id']. '_' . $key));
-					add_option('of_theme_options['. $checkbox_id . ']', '');
-				}
-			}
 			$opt_id = preg_replace("/\W/", "", strtolower($option['id']) );
+			echo 'option:' . $opt_id . '<br/>';
 			if ( isset($option['std' ]) ) {
 				$value = wp_filter_post_kses($option['std']);
 			} else {
 				$value = '';
 			}
-			add_option('of_theme_options['. $opt_id . ']', $value);
+			$values[$opt_id] = $value;
 		}
 	}
+	add_option('of_theme_options', $values);
 }
 
 /* Let's add a subpage called "Theme Options" to the appearance menu. */
@@ -142,7 +150,7 @@ function optionsframework_load_styles() {
 }	
 
 /* 
- * Loads the javascripts required to make all those sweet effects.
+ * Loads the javascripts required to make all those sweet fading effects.
  * You'll notice the inline script called by of_admin_head is actually
  * hanging out with the rest of the party in options-interface.php.
  *
@@ -220,14 +228,10 @@ function optionsframework_page() {
           <div class="clear"></div>
         </div>
         <div class="of_admin_bar">
-			<input type="submit" class="button-primary" name="update" value="<?php _e( 'Save Options' ); ?>" />
+			<input type="submit" class="button-primary" name="of_theme_options[update]" value="<?php _e( 'Save Options' ); ?>" />
             </form>
             
-            <?php // Still working on reset ?>
-            
-            <form action="<?php /*echo wp_specialchars( $_SERVER['REQUEST_URI'] )*/ ?>" method="post">
-            <input type="submit" class="reset-button" name="reset" value="<?php _e('Reset to Default')?>" onclick="return confirm('Click OK to reset. Any theme settings will be lost! NOTE: This is not working yet.');"/>
-            </form>
+            <input type="submit" class="reset-button" name="of_theme_options[reset]" value="<?php _e('Reset to Default')?>" onclick="return confirm('Click OK to reset. Any theme settings will be lost! NOTE: This is not working yet.');"/>
 		</div>
 <div class="clear"></div>
 </div> <!-- / #container -->  
