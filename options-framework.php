@@ -116,7 +116,6 @@ function optionsframework_setdefaults() {
 	foreach ($options as $option) {
 		if ( ($option['type'] != 'heading') && ($option['type'] != 'info') ) {
 			$opt_id = preg_replace("/\W/", "", strtolower($option['id']) );
-			echo 'option:' . $opt_id . '<br/>';
 			if ( isset($option['std' ]) ) {
 				$value = wp_filter_post_kses($option['std']);
 			} else {
