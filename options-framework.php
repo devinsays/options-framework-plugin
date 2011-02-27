@@ -89,14 +89,21 @@ function optionsframework_init() {
 		require_once dirname( __FILE__ ) . '/options.php';
 	}
 	
-	register_setting('of_theme_options', 'of_theme_options', 'optionsframework_validate' );
+	// Updates the unique id in the database if it has changed
+	optionsframework_option_name();
 	
-	// I'm not sure this is working perfectly yet, will need to test more
+	// Gets the unique id, returning a default if it isn't defined
+	$option_name = get_option('optionsframework[id]','optionsframework_theme_options');
+	
+	// Registers the settings fields and callback
+	register_setting('optionsframework', 'of_theme_options', 'optionsframework_validate' );
+	
+	// Adds the options and their defaults to the databse if they haven't been set
 	optionsframework_setdefaults();
 }
 
 /* 
- * Add default options to the database if they aren't already present.
+ * Adds default options to the database if they aren't already present.
  * May update this later to load only on plugin activation, or theme
  * activation since most people won't be editing the options.php
  * on a regular basis.
