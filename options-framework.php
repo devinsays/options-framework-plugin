@@ -89,14 +89,14 @@ function optionsframework_init() {
 		require_once dirname( __FILE__ ) . '/options.php';
 	}
 	
-	// Updates the unique id in the database if it has changed
+	// Updates the unique option id in the database if it has changed
 	optionsframework_option_name();
 	
 	// Gets the unique id, returning a default if it isn't defined
 	$option_name = get_option('optionsframework[id]','optionsframework_theme_options');
 	
 	// Registers the settings fields and callback
-	register_setting('optionsframework', 'of_theme_options', 'optionsframework_validate' );
+	register_setting('optionsframework', $option_name, 'optionsframework_validate' );
 	
 	// Adds the options and their defaults to the databse if they haven't been set
 	optionsframework_setdefaults();
@@ -113,15 +113,18 @@ function optionsframework_init() {
  */
 
 function optionsframework_setdefaults() {
+
+	// Gets the unique option id, returning a default if it isn't defined
+	$option_name = get_option('optionsframework[id]','optionsframework_theme_options');
 	
-	// Grab the default options data from the array in options.php
-	$options = of_options();
+	// Gets the default options data from the array in options.php
+	$options = optionsframework_options();
 		
-	// If the options haven't been added to the database yet, it gets added now
+	// If the options haven't been added to the database yet, they are added now
 	foreach ($options as $option) {
 	
 		if ( ($option['type'] != 'heading') && ($option['type'] != 'info') ) {
-			$opt_id = preg_replace("/\W/", "", strtolower($option['id']) );
+			$option_id = preg_replace("/\W/", "", strtolower($option['id']) );
 			
 			// wp_filter_post_kses for strings
 			if ( !is_array($option['std' ]) ) {
@@ -130,20 +133,20 @@ function optionsframework_setdefaults() {
 				} else {
 					$value = '';
 				}
-			$values[$opt_id] = $value;
+			$values[$option_id] = $value;
 			}
 			
 			// wp_filter_post_kses for array
 			if ( is_array($option['std' ]) ) {
 				foreach ($option['std' ] as $key => $value) {
-					$values[$opt_id . '_' . $key] = wp_filter_post_kses($value);
+					$values[$option_id . '_' . $key] = wp_filter_post_kses($value);
 					$optionarray[$key] = wp_filter_post_kses($value);
 				}
-				$values[$opt_id] = $optionarray;
+				$values[$option_id] = $optionarray;
 			}
 		}
 	}
-	add_option('of_theme_options', $values);
+	add_option($option_name, $values);
 }
 
 /* Add a subpage called "Theme Options" to the appearance menu. */
@@ -153,45 +156,39 @@ function optionsframework_add_page() {
 
 	$of_page = add_submenu_page('themes.php', 'Theme Options', 'Theme Options', 'edit_theme_options', 'options-framework','optionsframework_page');
 	
-	// Loads the required css and javascripts
+	// Adds actions to hook in the required css and javascript
 	add_action("admin_print_styles-$of_page",'optionsframework_load_styles');
 	add_action("admin_print_scripts-$of_page", 'optionsframework_load_scripts');
 	
 }
 }
 
-/* Load the required CSS */
+/* Loads the CSS */
 
 function optionsframework_load_styles() {
 	wp_enqueue_style('admin-style', OPTIONS_FRAMEWORK_URL.'css/admin-style.css');
 	wp_enqueue_style('color-picker', OPTIONS_FRAMEWORK_URL.'css/colorpicker.css');
 }	
 
-/* 
- * Loads the javascripts required to make those sweet fading effects.
- * You'll notice the inline script called by of_admin_head is actually
- * hanging out with the rest of the party in options-interface.php.
- *
- */
+/* Loads the javascript */
 
 function optionsframework_load_scripts() {
 
-	// Loads inline scripts in options-interface.php
+	// Inline scripts from options-interface.php
 	add_action('admin_head', 'of_admin_head');
 	
-	// Loads enqueued scripts
+	// Enqueued scripts
 	wp_enqueue_script('jquery-ui-core');
 	wp_enqueue_script('color-picker', OPTIONS_FRAMEWORK_URL.'js/colorpicker.js', array('jquery'));
 }
 
 /* 
- * Let's build out the options panel.
+ * Builds out the options panel.
  *
- * If we were using the Settings API as it was likely intended
- * we would call do_settings_sections here.  But as we don't want the
- * settings wrapped in a table, we'll call our own custom
- * optionsframework_fields.  Saunter over to options-interface.php
- * if you want to see how each individual field is generated.
+ * If we were using the Settings API as it was likely intended we would use
+ * do_settings_sections here.  But as we don't want the settings wrapped in a table,
+ * we'll call our own custom optionsframework_fields.  See options-interface.php
+ * for specifics on how each individual field is generated.
  *
  * Nonces are provided using the settings_fields()
  *
@@ -205,7 +202,7 @@ function optionsframework_page() {
 	$themename = $themename['Name'];
 	
 	// Display message when options are reset/updated
-	$message = get_option('of_theme_options[message]');
+	$message = get_option('optionsframework[message]');
 	
 	if ( $message == 'reset' ) {
 		$message = __( 'Options reset.' );
@@ -215,7 +212,7 @@ function optionsframework_page() {
 	}
 	
 	// Sets the option back to null, so the message doesn't display on refresh
-	update_option('of_theme_options[message]','')
+	update_option('optionsframework[message]','')
 	?>
     
 	<div class="wrap">
@@ -228,7 +225,7 @@ function optionsframework_page() {
     
     <div id="of_container">
        <form action="options.php" method="post">
-	  <?php settings_fields('of_theme_options'); ?>
+	  <?php settings_fields('optionsframework'); ?>
 
         <div id="header">
           <div class="logo">
@@ -249,10 +246,10 @@ function optionsframework_page() {
           <div class="clear"></div>
         </div>
         <div class="of_admin_bar">
-			<input type="submit" class="button-primary" name="of_theme_options[update]" value="<?php _e( 'Save Options' ); ?>" />
+			<input type="submit" class="button-primary" name="update" value="<?php _e( 'Save Options' ); ?>" />
             </form>
             
-            <input type="submit" class="reset-button" name="of_theme_options[reset]" value="<?php _e('Reset to Default')?>" onclick="return confirm('Click OK to reset. Any theme settings will be lost!');"/>
+            <input type="submit" class="reset-button" name="reset" value="<?php _e('Reset to Default')?>" onclick="return confirm('Click OK to reset. Any theme settings will be lost!');"/>
 		</div>
 <div class="clear"></div>
 </div> <!-- / #container -->  
@@ -273,11 +270,14 @@ function optionsframework_page() {
 if ( !function_exists( 'optionsframework_validate' ) ) {
 function optionsframework_validate($input) {
 	
+	// Gets the unique option id, returning a default if it isn't defined
+	$option_name = get_option('optionsframework[id]','optionsframework_theme_options');
+	
 	// If the reset button was clicked
-	if (!empty($input['reset'])) {
-		delete_option('of_theme_options');
-		update_option('of_theme_options[message]', 'reset');
-		header('Location: themes.php?page=options-framework&reset=true');
+	if (!empty($_REQUEST['reset'])) {
+		delete_option($option_name);
+		update_option('optionsframework[message]', 'reset');
+		header('Location: themes.php?page=options-framework');
 		exit;
 	}
 	
@@ -285,10 +285,10 @@ function optionsframework_validate($input) {
 	
 	{
 	
-	if (!empty($input['update'])) { update_option('of_theme_options[message]', 'update'); }
+	if (!empty($_REQUEST['update'])) { update_option('optionsframework[message]', 'update'); }
 
 	// Get the options array we have defined in options.php
-	$options = of_options();
+	$options = optionsframework_options();
 	
 	foreach ($options as $option) {
 		// Verify that the option has an id
@@ -370,8 +370,12 @@ function optionsframework_helpers() {
 	
 	if ( !function_exists( 'of_get_option' ) ) {
 	function of_get_option($name, $default) {
-		if ( get_option('of_theme_options') ) {
-			$options = get_option('of_theme_options');
+	
+		// Gets the unique option id, returning a default if it isn't defined
+		$option_name = get_option('optionsframework[id]','optionsframework_theme_options');
+	
+		if ( get_option($option_name) ) {
+			$options = get_option($option_name);
 		}
 		
 		if ( !empty($options[$name]) ) {

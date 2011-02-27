@@ -95,6 +95,9 @@ if ( ! function_exists( 'optionsframework_medialibrary_uploader' ) ) {
 
 	function optionsframework_medialibrary_uploader( $_id, $_value, $_mode = 'full', $_desc = '', $_postid = 0 ) {
 	
+		// Gets the unique option id, returning a default if it isn't defined
+		$option_name = get_option('optionsframework[id]','optionsframework_theme_options');
+	
 		$output = '';
 		$id = '';
 		$class = '';
@@ -111,7 +114,7 @@ if ( ! function_exists( 'optionsframework_medialibrary_uploader' ) ) {
 		}
 		
 		if ( $value ) { $class = ' has-file'; }
-		$output .= '<input id="' . $id . '" class="upload' . $class . '" type="text" name="of_theme_options['. $id .']" value="' . $value . '" />' . "\n";
+		$output .= '<input id="' . $id . '" class="upload' . $class . '" type="text" name="'.$option_name.'['.$id.']" value="' . $value . '" />' . "\n";
 		$output .= '<input id="upload_' . $id . '" class="upload_button button" type="button" value="' . __( 'Upload' ) . '" rel="' . $int . '" />' . "\n";
 		
 		if ( $_desc != '' ) {
