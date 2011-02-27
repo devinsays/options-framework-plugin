@@ -185,14 +185,15 @@ function optionsframework_page() {
 	// Get the theme name so we can display it up top
 	$themename = get_theme_data(STYLESHEETPATH . '/style.css');
 	$themename = $themename['Name'];
-	$message = '';
+	$message = get_option('of_theme_options[message]');
 	
 	// Reset isn't working yet, just testing
-	if ( isset( $_GET['reset'] ) )
-		$message = __( 'Options reset' );
-		
-	if ( isset( $_GET['updated'] ) )
-		$message = __( 'Options saved' );
+	if ( $message == 'reset' ) {
+		$message = __( 'Options reset.' );
+	}
+	if ( $message == 'update' ) {
+		$message = __( 'Options updated.' );
+	}
 	?>
     
 	<div class="wrap">
@@ -249,6 +250,9 @@ function optionsframework_page() {
 
 if ( !function_exists( 'optionsframework_validate' ) ) {
 function optionsframework_validate($input) {
+	
+	if (!empty($input['reset'])) { update_option('of_theme_options[message]', 'reset'); }
+	if (!empty($input['update'])) { update_option('of_theme_options[message]', 'update'); }
 
 	// Get the options array we have defined in options.php
 	$options = of_options();
