@@ -161,8 +161,9 @@ function optionsframework_load_scripts() {
 	
 	// Loads enqueued scripts
 	wp_enqueue_script('jquery-ui-core');
-	wp_register_script('jquery-input-mask', OPTIONS_FRAMEWORK_URL.'js/jquery.maskedinput-1.2.2.js', array( 'jquery' ));
-	wp_enqueue_script('jquery-input-mask');
+	// Should some of the validation be done as javascript?
+	// wp_register_script('jquery-input-mask', OPTIONS_FRAMEWORK_URL.'js/jquery.maskedinput-1.2.2.js', array( 'jquery' ));
+	// wp_enqueue_script('jquery-input-mask');
 	wp_enqueue_script('color-picker', OPTIONS_FRAMEWORK_URL.'js/colorpicker.js', array('jquery'));
 }
 
@@ -185,15 +186,19 @@ function optionsframework_page() {
 	// Get the theme name so we can display it up top
 	$themename = get_theme_data(STYLESHEETPATH . '/style.css');
 	$themename = $themename['Name'];
+	
+	// Display message when options are reset/updated
 	$message = get_option('of_theme_options[message]');
 	
-	// Reset isn't working yet, just testing
 	if ( $message == 'reset' ) {
 		$message = __( 'Options reset.' );
 	}
 	if ( $message == 'update' ) {
 		$message = __( 'Options updated.' );
 	}
+	
+	// Sets the option back to null, so the message doesn't display on refresh
+	update_option('of_theme_options[message]','')
 	?>
     
 	<div class="wrap">
@@ -230,7 +235,7 @@ function optionsframework_page() {
 			<input type="submit" class="button-primary" name="of_theme_options[update]" value="<?php _e( 'Save Options' ); ?>" />
             </form>
             
-            <input type="submit" class="reset-button" name="of_theme_options[reset]" value="<?php _e('Reset to Default')?>" onclick="return confirm('Click OK to reset. Any theme settings will be lost! NOTE: This is not working yet.');"/>
+            <input type="submit" class="reset-button" name="of_theme_options[reset]" value="<?php _e('Reset to Default')?>" onclick="return confirm('Click OK to reset. Any theme settings will be lost!');"/>
 		</div>
 <div class="clear"></div>
 </div> <!-- / #container -->  
@@ -243,15 +248,26 @@ function optionsframework_page() {
 /* 
  * Data sanitization!
  *
- * This runs after the submit button has been clicked and checks
- * the fields for stuff that's not supposed to be there.
+ * This runs after the submit/reset button has been clicked and
+ * validates the inputs.
  *
  */
 
 if ( !function_exists( 'optionsframework_validate' ) ) {
 function optionsframework_validate($input) {
 	
-	if (!empty($input['reset'])) { update_option('of_theme_options[message]', 'reset'); }
+	// If the reset button was clicked
+	if (!empty($input['reset'])) {
+		delete_option('of_theme_options');
+		update_option('of_theme_options[message]', 'reset');
+		header('Location: themes.php?page=options-framework&reset=true');
+		exit;
+	}
+	
+	else
+	
+	{
+	
 	if (!empty($input['update'])) { update_option('of_theme_options[message]', 'update'); }
 
 	// Get the options array we have defined in options.php
@@ -315,6 +331,8 @@ function optionsframework_validate($input) {
 				}
 			}
 		}
+	
+	}
 	
 	}
 	
