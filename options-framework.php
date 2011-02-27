@@ -161,9 +161,6 @@ function optionsframework_load_scripts() {
 	
 	// Loads enqueued scripts
 	wp_enqueue_script('jquery-ui-core');
-	// Should some of the validation be done as javascript?
-	// wp_register_script('jquery-input-mask', OPTIONS_FRAMEWORK_URL.'js/jquery.maskedinput-1.2.2.js', array( 'jquery' ));
-	// wp_enqueue_script('jquery-input-mask');
 	wp_enqueue_script('color-picker', OPTIONS_FRAMEWORK_URL.'js/colorpicker.js', array('jquery'));
 }
 
