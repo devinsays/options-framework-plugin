@@ -112,15 +112,28 @@ function optionsframework_setdefaults() {
 		
 	// If the options haven't been added to the database yet, it gets added now
 	foreach ($options as $option) {
+	
 		if ( ($option['type'] != 'heading') && ($option['type'] != 'info') ) {
 			$opt_id = preg_replace("/\W/", "", strtolower($option['id']) );
-			// Excluding arrays for the moment since wp_filter_post_kses accepts only strings
-			if ( isset($option['std' ]) && !is_array($option['std' ]) ) {
-				$value = wp_filter_post_kses($option['std']);
-			} else {
-				$value = '';
-			}
+			
+			// wp_filter_post_kses for strings
+			if ( !is_array($option['std' ]) ) {
+				if (isset($option['std' ]) ) {
+					$value = wp_filter_post_kses($option['std']);
+				} else {
+					$value = '';
+				}
 			$values[$opt_id] = $value;
+			}
+			
+			// wp_filter_post_kses for array
+			if ( is_array($option['std' ]) ) {
+				foreach ($option['std' ] as $key => $value) {
+					$values[$opt_id . '_' . $key] = wp_filter_post_kses($value);
+					$optionarray[$key] = wp_filter_post_kses($value);
+				}
+				$values[$opt_id] = $optionarray;
+			}
 		}
 	}
 	add_option('of_theme_options', $values);
