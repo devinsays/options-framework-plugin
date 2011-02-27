@@ -27,17 +27,14 @@ jQuery(document).ready(function() {
 			
 	foreach($options as $option){ 
 			
-		if($option['type'] == 'color' OR $option['type'] == 'typography' OR $option['type'] == 'border') {
-			if($option['type'] == 'typography' OR $option['type'] == 'border') {
-				$option_id = $option['id'];
-				$temp_color = get_option($option_id);
+		if($option['type'] == 'color' OR $option['type'] == 'typography') {
+			if($option['type'] == 'typography') {
 				$option_id = $option['id'] . '_color';
-				$color = $temp_color['color'];
 			}
 			else {
 				$option_id = $option['id'];
-				$color = $settings[($option['id'])];
 			}
+			$color = $settings[($option['id'])];
 			?>
 			 jQuery('#<?php echo $option_id; ?>_picker').children('div').css('backgroundColor', '<?php echo $color; ?>');    
 			 jQuery('#<?php echo $option_id; ?>_picker').ColorPicker({
@@ -241,7 +238,7 @@ function optionsframework_fields() {
 		// Multicheck
 		case "multicheck":
 			$std =  $value['std'];
-			$output .= '<input id="'. $value['id'] .'" type="hidden" name="of_theme_options['. $value['id'] .']" value="' . $std . '" />';	
+			$output .= '<input id="'. $value['id'] .'" type="hidden" name="of_theme_options['. $value['id'] .']" />';	
 			foreach ($value['options'] as $key => $option) {						 
 				$of_key = $value['id'] . '_' . $key;
 				
@@ -282,14 +279,59 @@ function optionsframework_fields() {
 			$output .= optionsframework_medialibrary_uploader( $value['id'], $val, null ); // New AJAX Uploader using Media Library	
 		break;
 		
-		// Info
-		case "info":
-			$class = ''; if(isset( $value['class'] )) { $class = $value['class']; }
-			$output .= '<div class="section section-'.$value['type'].' '. $class .'">'."\n";
-			if ( $value['name'] )  { $output .= '<h3 class="heading">'. $value['name'] .'</h3>'."\n"; }
-			if ( $value['desc'] )  { $output .= '<p>'. $value['desc'] .'</p>'."\n"; }
-			$output .= '<div class="clear"></div></div>'."\n";
-		break;
+		// Typography
+		case 'typography':	
+		
+			//Set main option
+			$output .= '<input id="'. $value['id'] .'" type="hidden" name="of_theme_options['. $value['id'] .']" />';
+			$typography_stored = $settings[($value['id'])];
+			
+			if (empty($typography_stored)) {
+				$typography_stored = $value['std'];
+			}
+			
+			/* Font Size */ 
+			$output .= '<select class="of-typography of-typography-size" name="of_theme_options['. $value['id'].'_size]" id="'. $value['id'].'_size">';
+			for ($i = 9; $i < 71; $i++) { 
+				$size = $i.'px';
+				if ($typography_stored['size'] == $size) { $selected = ' selected="selected"'; }
+				$output .= '<option value="'. $i .'px" ' . selected($typography_stored['size'], $size, false) . '>'. $i .'px</option>'; 
+			}
+			$output .= '</select>';
+		
+			/* Font Face */
+			$output .= '<select class="of-typography of-typography-face" name="of_theme_options['. $value['id'].'_face]" id="'. $value['id'].'_face">';
+			$faces = array('arial'=>'Arial',
+							'verdana'=>'Verdana, Geneva',
+							'trebuchet'=>'Trebuchet',
+							'georgia' =>'Georgia',
+							'times'=>'Times New Roman',
+							'tahoma'=>'Tahoma, Geneva',
+							'palatino'=>'Palatino',
+							'helvetica'=>'Helvetica*' );
+			
+			foreach ($faces as $i=>$face) {
+				$output .= '<option value="'. $i .'" ' . selected($typography_stored['face'], $i, false) . '>'. $face .'</option>';
+			}			
+			$output .= '</select>';	
+			
+			/* Font Weight */
+			$output .= '<select class="of-typography of-typography-style" name="of_theme_options['. $value['id'].'_style]" id="'. $value['id'].'_style">';
+			$styles = array('normal'=>'Normal',
+							'italic'=>'Italic',
+							'bold'=>'Bold',
+							'bold italic'=>'Bold Italic');
+							
+			foreach ($styles as $i=>$style) {
+				$output .= '<option value="'. $i .'" ' . selected($typography_stored['style'], $i, false) . '>'. $style .'</option>';		
+			}
+			$output .= '</select>';
+			
+			/* Font Color */			
+			$output .= '<div id="' . $value['id'] . '_color_picker" class="colorSelector"><div style="background-color:'.$typography_stored['color'].'"></div></div>';
+			$output .= '<input class="of-color of-typography of-typography-color" name="of_theme_options['. $value['id'].'_color]" id="'. $value['id'] .'_color" type="text" value="'. $typography_stored['color'] .'" />';
+
+		break;  
 		
 		// Image Selectors
 		case "images":
@@ -317,7 +359,16 @@ function optionsframework_fields() {
 				$output .= '</span>';
 				
 			}
-		break;                              
+		break;   
+		
+		// Info
+		case "info":
+			$class = ''; if(isset( $value['class'] )) { $class = $value['class']; }
+			$output .= '<div class="section section-'.$value['type'].' '. $class .'">'."\n";
+			if ( $value['name'] )  { $output .= '<h3 class="heading">'. $value['name'] .'</h3>'."\n"; }
+			if ( $value['desc'] )  { $output .= '<p>'. $value['desc'] .'</p>'."\n"; }
+			$output .= '<div class="clear"></div></div>'."\n";
+		break;                       
 		
 		// Heading for Navigation
 		case "heading":

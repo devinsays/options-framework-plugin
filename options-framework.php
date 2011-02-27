@@ -41,7 +41,7 @@ if ( !function_exists( 'add_action' ) ) {
 
 function optionsframework_rolescheck () {
 	if ( current_user_can('edit_theme_options') ) {
-		/* If the user can edit theme options, let the fun begin! */
+		// If the user can edit theme options, let the fun begin!
 		add_action('admin_menu', 'optionsframework_add_page');
 		add_action('admin_init', 'optionsframework_init' );
 		add_action( 'admin_init', 'optionsframework_mlu_init' );
@@ -54,7 +54,7 @@ add_action('init', 'optionsframework_rolescheck' );
 
 register_activation_hook(__FILE__,'optionsframework_activation_hook'); 
 function optionsframework_activation_hook() {
-	/* But for now, nothing */
+	// But for now, nothing
 }
 
 /* When uninstalled, deletes options */
@@ -77,11 +77,11 @@ function optionsframework_delete_options() {
 
 function optionsframework_init() {
 
-	/* Include the required files */
+	// Include the required files
 	require_once dirname( __FILE__ ) . '/options-interface.php';
 	require_once dirname( __FILE__ ) . '/options-medialibrary-uploader.php';
 	
-	/* Loads the options array from the theme */
+	// Loads the options array from the theme
 	if ( $optionsfile = locate_template( array('options.php') ) ) {
 		require_once($optionsfile);
 	}
@@ -90,6 +90,8 @@ function optionsframework_init() {
 	}
 	
 	register_setting('of_theme_options', 'of_theme_options', 'optionsframework_validate' );
+	
+	// I'm not sure this is working perfectly yet, will need to test more
 	optionsframework_setdefaults();
 }
 
@@ -105,14 +107,15 @@ function optionsframework_init() {
 
 function optionsframework_setdefaults() {
 	
-	// Here's where we get the default options data from the array in options.php
+	// Grab the default options data from the array in options.php
 	$options = of_options();
 		
 	// If the options haven't been added to the database yet, it gets added now
 	foreach ($options as $option) {
 		if ( ($option['type'] != 'heading') && ($option['type'] != 'info') ) {
 			$opt_id = preg_replace("/\W/", "", strtolower($option['id']) );
-			if ( isset($option['std' ]) ) {
+			// Excluding arrays for the moment since wp_filter_post_kses accepts only strings
+			if ( isset($option['std' ]) && !is_array($option['std' ]) ) {
 				$value = wp_filter_post_kses($option['std']);
 			} else {
 				$value = '';
@@ -123,7 +126,7 @@ function optionsframework_setdefaults() {
 	add_option('of_theme_options', $values);
 }
 
-/* Let's add a subpage called "Theme Options" to the appearance menu. */
+/* Add a subpage called "Theme Options" to the appearance menu. */
 
 if ( !function_exists( 'optionsframework_add_page' ) ) {
 function optionsframework_add_page() {
@@ -145,7 +148,7 @@ function optionsframework_load_styles() {
 }	
 
 /* 
- * Loads the javascripts required to make all those sweet fading effects.
+ * Loads the javascripts required to make those sweet fading effects.
  * You'll notice the inline script called by of_admin_head is actually
  * hanging out with the rest of the party in options-interface.php.
  *
@@ -184,7 +187,7 @@ function optionsframework_page() {
 	$themename = $themename['Name'];
 	$message = '';
 	
-	/* Reset isn't working yet, just testing */
+	// Reset isn't working yet, just testing
 	if ( isset( $_GET['reset'] ) )
 		$message = __( 'Options reset' );
 		
@@ -284,6 +287,15 @@ function optionsframework_validate($input) {
 					if (!empty($checkboxarray)) {
 						$input[($option['id'])] = $checkboxarray;
 					}
+				break;
+				
+				// If it's a typography option
+				case ($option['type'] == 'typography') :
+					$typography_id = $option['id'];
+					$input[$typography_id] = array('size' => $input[$typography_id .'_size'],
+												  'face' => $input[$typography_id .'_face'],
+												  'style' => $input[$typography_id .'_style'],
+												  'color' => $input[$typography_id .'_color']);
 				break;
 				
 				// If it's a select make sure it's in the array we supplied
