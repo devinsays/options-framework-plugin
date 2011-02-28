@@ -61,7 +61,7 @@ function optionsframework_activation_hook() {
 
 register_uninstall_hook( __FILE__, 'optionsframework_delete_options' );
 function optionsframework_delete_options() {
-	delete_option('of_theme_options');
+	delete_option('optionsframework');
 }
 
 /* 
@@ -363,14 +363,17 @@ function optionsframework_validate($input) {
 function optionsframework_helpers() {
 
 	/* 
-	 * Helper function to return the theme option.
-	 * If no value has been saved, returns $default.
+	 * Helper function to return the theme option value. If no value has been saved, it returns $default.
+	 * Needed because options are saved as serialized strings.
 	 *
 	 */
 	
 	if ( !function_exists( 'of_get_option' ) ) {
 	function of_get_option($name, $default) {
 	
+		// If a default wasn't passed, make it false
+		if (!$default) {$default = 'false'; }
+		
 		// Gets the unique option id, returning a default if it isn't defined
 		$option_name = get_option('optionsframework[id]','optionsframework_theme_options');
 	
