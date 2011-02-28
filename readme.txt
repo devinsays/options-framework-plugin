@@ -2,7 +2,7 @@
 Contributors: Devin Price
 Tags: theme options
 Requires at least: 3.0
-Tested up to: 3.0.5
+Tested up to: 3.1
 Stable tag: 0.1
 License: GPLv2
 
@@ -10,7 +10,7 @@ If a theme has been developed for use with this plugin, theme options will be en
 
 == Description ==
 
-The Options Framework Plugin is designed to help theme developers easily add options to their projects.  Right now it's in a really rough form, but in the coming weeks it should be fleshed out and added to the WordPress plugin repository.
+The Options Framework Plugin is designed to help theme developers easily add options to their projects.
 
 Please visit [http://wptheming.com/options-framework-plugin](http://wptheming.com/options-framework-plugin) for a full description of how to define and use the theme options.
 
