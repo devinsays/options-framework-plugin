@@ -61,6 +61,13 @@ function optionsframework_activation_hook() {
 
 register_uninstall_hook( __FILE__, 'optionsframework_delete_options' );
 function optionsframework_delete_options() {
+	// Each theme saves its data in a seperate option, which all gets deleted
+	$knownoptions = get_option('optionsframework[knownoptions]');
+	if ($knownoptions) {
+		foreach ($knownoption as $key) {
+			delete_option($key);
+		}
+	}
 	delete_option('optionsframework');
 }
 
@@ -116,6 +123,23 @@ function optionsframework_setdefaults() {
 
 	// Gets the unique option id, returning a default if it isn't defined
 	$option_name = get_option('optionsframework[id]','optionsframework_theme_options');
+	
+	/* 
+	 * Each theme will hopefully have a unique id, and all of its options saved
+	 * as a separate option set.  We need to track all of these option sets so
+	 * it can be easily deleted if someone wishes to remove the plugin and
+	 * its associated data.  No need to clutter the database.  
+	 *
+	 */
+	if ( $knownoptions = get_option('optionsframework[knownoptions]') ) {
+		if ( !in_array($option_name, $knownoptions) ) {
+			array_push( $knownoptions, $option_name );
+			update_option('optionsframework[knownoptions]', $knownoptions);
+		}
+	} else {
+		$newoptionname = array($option_name);
+		update_option('optionsframework[knownoptions]', $newoptionname);
+	}
 	
 	// Gets the default options data from the array in options.php
 	$options = optionsframework_options();
