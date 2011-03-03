@@ -1,4 +1,14 @@
 <?php
+
+/**
+* This file should only load if options.php isn't present in the theme. I've included sample options
+* (commented out) in case you simply wanted to copy this file into your theme and get to work.
+*
+* When you create the "id" field, make sure it is all lowercase and doesn't contain spaces because this is
+* how it is saved in the database.
+*
+*/
+
 /**
  * A unique identifier is defined to store the options in the database and reference them from the theme.
  * By default it uses the theme name, in lowercase and without spaces, but this can be changed if needed.
@@ -13,8 +23,8 @@ function optionsframework_option_name() {
 	$themename = $themename['Name'];
 	$themename = preg_replace("/\W/", "", strtolower($themename) );
 	
-	// This is just for the blank default.  You should delete it
-	// and uncomment the line below if you move this into your theme
+	// Delete the line directly below this, and uncomment the next one if
+	// you are moving this into your theme folder
 	update_option('optionsframework[id]', 'optionsframework');
 	
 	// update_option('optionsframework[id]', $themename);
@@ -32,7 +42,7 @@ function optionsframework_options() {
 							"type" => "heading");
 		
 		$options[] = array( "name" => "No Options Are Loaded",
-							"desc" => "If you are seeing this notice, it means your theme isn't set up to use the Options Framework yet.",
+							"desc" => "If you are seeing this, it means your theme isn't set up to use the Options Framework yet.",
 							"type" => "info");
 							
 		$options[] = array(  "desc" => "If this is a mistake, make sure that the file options.php is in your theme folder, and that you have the correct theme activated.",
