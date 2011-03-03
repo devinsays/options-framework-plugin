@@ -372,7 +372,7 @@ function optionsframework_fields() {
 		case "info":
 			$class = ''; if(isset( $value['class'] )) { $class = $value['class']; }
 			$output .= '<div class="section section-'.$value['type'].' '. $class .'">'."\n";
-			if ( $value['name'] )  { $output .= '<h3 class="heading">'. $value['name'] .'</h3>'."\n"; }
+			if ( isset($value['name']) )  { $output .= '<h3 class="heading">'. $value['name'] .'</h3>'."\n"; }
 			if ( $value['desc'] )  { $output .= '<p>'. $value['desc'] .'</p>'."\n"; }
 			$output .= '<div class="clear"></div></div>'."\n";
 		break;                       

@@ -170,7 +170,10 @@ function optionsframework_setdefaults() {
 			}
 		}
 	}
-	add_option($option_name, $values);
+	
+	if ( isset($values) ) {
+		add_option($option_name, $values);
+	}
 }
 
 /* Add a subpage called "Theme Options" to the appearance menu. */
