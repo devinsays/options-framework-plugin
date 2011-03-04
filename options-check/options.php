@@ -13,8 +13,11 @@ function optionsframework_option_name() {
 	$themename = $themename['Name'];
 	$themename = preg_replace("/\W/", "", strtolower($themename) );
 	
+	$optionsframework_settings = get_option('optionsframework');
+	$optionsframework_settings['id'] = $themename;
+	update_option('optionsframework', $optionsframework_settings);
+	
 	// echo $themename;
-	update_option('optionsframework[id]', $themename);
 }
 
 /**

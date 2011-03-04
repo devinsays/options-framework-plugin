@@ -9,8 +9,10 @@
 
 function of_get_option($name, $default = 'false') {
 	
-	// Gets the unique option id, returning a default if it isn't defined
-	$option_name = get_option('optionsframework[id]','optionsframework_theme_options');
+	$optionsframework_settings = get_option('optionsframework');
+	
+	// Gets the unique option id
+	$option_name = $option_name = $optionsframework_settings['id'];
 	
 	if ( get_option($option_name) ) {
 		$options = get_option($option_name);

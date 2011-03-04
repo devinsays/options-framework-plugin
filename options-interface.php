@@ -23,8 +23,10 @@ jQuery(document).ready(function() {
 	// Color Picker
 	<?php
 	
-	// Gets the unique option id, returning a default if it isn't defined
-	$option_name = get_option('optionsframework[id]','optionsframework_theme_options');
+	$optionsframework_settings = get_option('optionsframework');
+	
+	// Gets the unique option id
+	$option_name = $optionsframework_settings['id'];
 	
 	$settings = get_option($option_name);
 	$options = optionsframework_options();
@@ -124,8 +126,10 @@ jQuery(document).ready(function() {
 
 function optionsframework_fields() {
 
-	// Gets the unique option id, returning a default if it isn't defined
-	$option_name = get_option('optionsframework[id]','optionsframework_theme_options');
+	$optionsframework_settings = get_option('optionsframework');
+
+	// Gets the unique option id
+	$option_name = $optionsframework_settings['id'];
 
 	$settings = get_option($option_name);
     $options = optionsframework_options();

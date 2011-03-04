@@ -23,11 +23,16 @@ function optionsframework_option_name() {
 	$themename = $themename['Name'];
 	$themename = preg_replace("/\W/", "", strtolower($themename) );
 	
-	// Delete the line directly below this, and uncomment the next one if
+	// Delete the 3 lines directly below this, and uncomment the next one if
 	// you are moving this into your theme folder
-	update_option('optionsframework[id]', 'optionsframework');
 	
-	// update_option('optionsframework[id]', $themename);
+	$optionsframework_settings = get_option('optionsframework');
+	$optionsframework_settings['id'] = 'optionsframework';
+	update_option('optionsframework', $optionsframework_settings);
+	
+	// $optionsframework_settings = get_option('optionsframework');
+	// $optionsframework_settings['id'] = $themename;
+	// update_option('optionsframework', $optionsframework_settings);
 }
 
 /**

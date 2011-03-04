@@ -95,8 +95,10 @@ if ( ! function_exists( 'optionsframework_medialibrary_uploader' ) ) {
 
 	function optionsframework_medialibrary_uploader( $_id, $_value, $_mode = 'full', $_desc = '', $_postid = 0 ) {
 	
-		// Gets the unique option id, returning a default if it isn't defined
-		$option_name = get_option('optionsframework[id]','optionsframework_theme_options');
+		$optionsframework_settings = get_option('optionsframework');
+		
+		// Gets the unique option id
+		$option_name = $optionsframework_settings['id'];
 	
 		$output = '';
 		$id = '';

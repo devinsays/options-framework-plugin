@@ -61,8 +61,11 @@ function optionsframework_activation_hook() {
 
 register_uninstall_hook( __FILE__, 'optionsframework_delete_options' );
 function optionsframework_delete_options() {
+
+	$optionsframework_settings = get_option('optionsframework');
+	
 	// Each theme saves its data in a seperate option, which all gets deleted
-	$knownoptions = get_option('optionsframework[knownoptions]');
+	$knownoptions = $optionsframework_settings['knownoptions'];
 	if ($knownoptions) {
 		foreach ($knownoption as $key) {
 			delete_option($key);
@@ -99,8 +102,10 @@ function optionsframework_init() {
 	// Updates the unique option id in the database if it has changed
 	optionsframework_option_name();
 	
+	$optionsframework_settings = get_option('optionsframework');
+	
 	// Gets the unique id, returning a default if it isn't defined
-	$option_name = get_option('optionsframework[id]','optionsframework_theme_options');
+	$option_name = $optionsframework_settings['id'];
 	
 	// Registers the settings fields and callback
 	register_setting('optionsframework', $option_name, 'optionsframework_validate' );
@@ -121,8 +126,10 @@ function optionsframework_init() {
 
 function optionsframework_setdefaults() {
 
-	// Gets the unique option id, returning a default if it isn't defined
-	$option_name = get_option('optionsframework[id]','optionsframework_theme_options');
+	$optionsframework_settings = get_option('optionsframework');
+
+	// Gets the unique option id
+	$option_name = $optionsframework_settings['id'];
 	
 	/* 
 	 * Each theme will hopefully have a unique id, and all of its options saved
@@ -131,14 +138,16 @@ function optionsframework_setdefaults() {
 	 * its associated data.  No need to clutter the database.  
 	 *
 	 */
-	if ( $knownoptions = get_option('optionsframework[knownoptions]') ) {
+	if ( $knownoptions =  $optionsframework_settings['knownoptions']) {
 		if ( !in_array($option_name, $knownoptions) ) {
 			array_push( $knownoptions, $option_name );
-			update_option('optionsframework[knownoptions]', $knownoptions);
+			$optionsframework_settings['knownoptions'] = $knownoptions;
+			update_option('optionsframework', $optionsframework_settings);
 		}
 	} else {
 		$newoptionname = array($option_name);
-		update_option('optionsframework[knownoptions]', $newoptionname);
+		$optionsframework_settings['knownoptions'] = $newoptionname;
+		update_option('optionsframework', $optionsframework_settings);
 	}
 	
 	// Gets the default options data from the array in options.php
@@ -228,8 +237,10 @@ function optionsframework_page() {
 	$themename = get_theme_data(STYLESHEETPATH . '/style.css');
 	$themename = $themename['Name'];
 	
+	$optionsframework_settings = get_option('optionsframework');
+	
 	// Display message when options are reset/updated
-	$message = get_option('optionsframework[message]');
+	$message = $optionsframework_settings['message'];
 	
 	if ( $message == 'reset' ) {
 		$message = __( 'Options reset.' );
@@ -239,7 +250,8 @@ function optionsframework_page() {
 	}
 	
 	// Sets the option back to null, so the message doesn't display on refresh
-	update_option('optionsframework[message]','')
+	$optionsframework_settings['message'] = '';
+	update_option('optionsframework',$optionsframework_settings)
 	?>
     
 	<div class="wrap">
@@ -296,14 +308,17 @@ function optionsframework_page() {
 
 if ( !function_exists( 'optionsframework_validate' ) ) {
 function optionsframework_validate($input) {
+
+	$optionsframework_settings = get_option('optionsframework');
 	
-	// Gets the unique option id, returning a default if it isn't defined
-	$option_name = get_option('optionsframework[id]','optionsframework_theme_options');
+	// Gets the unique option id
+	$option_name = $optionsframework_settings['id'];
 	
 	// If the reset button was clicked
 	if (!empty($_REQUEST['reset'])) {
 		delete_option($option_name);
-		update_option('optionsframework[message]', 'reset');
+		$optionsframework_settings['message'] = 'reset';
+		update_option('optionsframework', $optionsframework_settings);
 		header('Location: themes.php?page=options-framework');
 		exit;
 	}
@@ -312,7 +327,10 @@ function optionsframework_validate($input) {
 	
 	{
 	
-	if (!empty($_REQUEST['update'])) { update_option('optionsframework[message]', 'update'); }
+	if (!empty($_REQUEST['update'])) {
+	
+		$optionsframework_settings['message'] = 'update';
+		update_option('optionsframework', $optionsframework_settings); }
 
 	// Get the options array we have defined in options.php
 	$options = optionsframework_options();
@@ -401,8 +419,10 @@ function optionsframework_helpers() {
 		// If a default wasn't passed, make it false
 		if (!$default) {$default = 'false'; }
 		
-		// Gets the unique option id, returning a default if it isn't defined
-		$option_name = get_option('optionsframework[id]','optionsframework_theme_options');
+		$optionsframework_settings = get_option('optionsframework');
+		
+		// Gets the unique option id
+		$option_name = $optionsframework_settings['id'];
 	
 		if ( get_option($option_name) ) {
 			$options = get_option($option_name);
