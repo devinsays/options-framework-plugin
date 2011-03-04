@@ -296,7 +296,7 @@ function optionsframework_page() {
 			<input type="submit" class="button-primary" name="update" value="<?php _e( 'Save Options' ); ?>" />
             </form>
             
-            <input type="submit" class="reset-button" name="reset" value="<?php _e('Reset to Default')?>" onclick="return confirm('Click OK to reset. Any theme settings will be lost!');"/>
+            <input type="submit" class="reset-button button-secondary" name="reset" value="<?php _e('Reset to Default')?>" onclick="return confirm('Click OK to reset. Any theme settings will be lost!');"/>
 		</div>
 <div class="clear"></div>
 </div> <!-- / #container -->  
