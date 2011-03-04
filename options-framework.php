@@ -138,7 +138,10 @@ function optionsframework_setdefaults() {
 	 * its associated data.  No need to clutter the database.  
 	 *
 	 */
-	if ( $knownoptions =  $optionsframework_settings['knownoptions']) {
+	 
+	 $knownoptions =  $optionsframework_settings['knownoptions'];
+	 
+	if ( $knownoptions ) {
 		if ( !in_array($option_name, $knownoptions) ) {
 			array_push( $knownoptions, $option_name );
 			$optionsframework_settings['knownoptions'] = $knownoptions;
@@ -240,7 +243,11 @@ function optionsframework_page() {
 	$optionsframework_settings = get_option('optionsframework');
 	
 	// Display message when options are reset/updated
-	$message = $optionsframework_settings['message'];
+	$message = null;
+	
+	if ($optionsframework_settings['message']) {
+		$message = $optionsframework_settings['message'];
+	}
 	
 	if ( $message == 'reset' ) {
 		$message = __( 'Options reset.' );
