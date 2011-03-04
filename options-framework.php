@@ -139,6 +139,7 @@ function optionsframework_setdefaults() {
 	 *
 	 */
 	 
+	 $knownoptions = 'false';
 	 $knownoptions =  $optionsframework_settings['knownoptions'];
 	 
 	if ( $knownoptions ) {
@@ -243,7 +244,7 @@ function optionsframework_page() {
 	$optionsframework_settings = get_option('optionsframework');
 	
 	// Display message when options are reset/updated
-	$message = null;
+	$message = '';
 	
 	if ($optionsframework_settings['message']) {
 		$message = $optionsframework_settings['message'];
