@@ -7,6 +7,7 @@
  * This code allows the theme to work without errors if the Options Framework plugin has been disabled.
  */
 
+if ( !function_exists( 'of_get_option' ) ) {
 function of_get_option($name, $default = 'false') {
 	
 	$optionsframework_settings = get_option('optionsframework');
@@ -23,4 +24,5 @@ function of_get_option($name, $default = 'false') {
 	} else {
 		return $default;
 	}
+}
 }
