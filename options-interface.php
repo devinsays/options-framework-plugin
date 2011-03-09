@@ -14,6 +14,7 @@ function of_admin_head() {
  */
  
 ?>
+
 <script type="text/javascript">
 jQuery(document).ready(function() {
 	
@@ -22,7 +23,6 @@ jQuery(document).ready(function() {
 			
 	// Color Picker
 	<?php
-	
 	$optionsframework_settings = get_option('optionsframework');
 	
 	// Gets the unique option id
@@ -117,7 +117,12 @@ jQuery(document).ready(function() {
 			}); 	 		
 		});	
 </script>
+
 <?php
+
+// Hook to add custom scripts
+do_action( 'optionsframework_custom_scripts' );
+	
 }
 
 /**
@@ -146,7 +151,7 @@ function optionsframework_fields() {
 		 if ( ($value['type'] != "heading") && ($value['type'] != "info") )
 		 {
 		 	$class = ''; if(isset( $value['class'] )) { $class = $value['class']; }
-			$output .= '<div class="section section-'.$value['type'].' '. $class .'">'."\n";
+			$output .= '<div id="section-' . $value['id'] .'" class="section section-'.$value['type'].' '. $class .'">'."\n";
 			$output .= '<h3 class="heading">'. $value['name'] .'</h3>'."\n";
 			$output .= '<div class="option">'."\n" . '<div class="controls">'."\n";
 

@@ -94,6 +94,19 @@ function optionsframework_options() {
 	$options[] = array( "name" => "Advanced Settings",
 						"type" => "heading");
 						
+	$options[] = array( "name" => "Check to Show a Hidden Text Input",
+						"desc" => "Click here and see what happens.",
+						"id" => "example_showhidden",
+						"std" => "false",
+						"type" => "checkbox");
+	
+	$options[] = array( "name" => "Hidden Text Input",
+						"desc" => "This option is hidden unless activated by a checkbox click.",
+						"id" => "example_text_hidden",
+						"std" => "Hello",
+						"class" => "hidden",
+						"type" => "text");
+						
 	$options[] = array( "name" => "Uploader Test",
 						"desc" => "This creates a full size uploader that previews the image.",
 						"id" => "example_uploader",
