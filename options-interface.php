@@ -216,15 +216,15 @@ function optionsframework_fields() {
 			$output .= '<select class="of-input" name="'.$option_name.'['.$value['id'].']" id="'. $value['id'] .'">';
 			$select_value = $settings[($value['id'])];
 			
-			foreach ($value['options'] as $option_value => $option) {
+			foreach ($value['options'] as $key => $option ) {
 				$selected = '';
 				 if($select_value != '') {
-					 if ( $select_value == $option_value) { $selected = ' selected="selected"';} 
+					 if ( $select_value == $key) { $selected = ' selected="selected"';} 
 			     } else {
 					 if ( isset($value['std']) )
-						 if ($value['std'] == $option_value) { $selected = ' selected="selected"'; }
+						 if ($value['std'] == $key) { $selected = ' selected="selected"'; }
 				 }
-				 $output .= '<option'. $selected .' value="' . $option_value . '">';
+				 $output .= '<option'. $selected .' value="' . $key . '">';
 				 $output .= $option;
 				 $output .= '</option>';
 			 } 
