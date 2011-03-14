@@ -160,6 +160,29 @@
 	width:80px;
 	float:left
 }
+#of_container #content .section-background .controls {
+	width:425px
+}
+#of_container #content .section-background .explain {
+	width:140px
+}
+#of_container .controls .of-background-repeat {
+	width:160px;
+	float:left
+}
+#of_container .controls .of-background-position {
+	width:130px;
+	float:left
+}
+#of_container .controls .of-background-attachment {
+	width:130px;
+	float:left
+}
+
+#of_container div.section-background .controls input.upload {
+    width: 240px;
+}
+
 #of_container .controls .of-radio-img-img {
 	border:3px solid #fff;
 	margin:0 5px 10px 0;
