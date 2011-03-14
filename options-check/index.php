@@ -101,11 +101,52 @@ get_header(); ?>
             <dl>
             <dt>type: typography</dt>
             <dd>of_get_option('typography'):
-			<?php echo of_get_option('example_typography', 'no entry' ); ?>
+			<?php $typography = of_get_option('example_typography', false );
+				if ($typography !='false') {
+						echo '<span style="font:'.$typography['size'] . ' ' . $typography['face']. ' ' . $typography['style'] . '; color:'.$typography['color'].';">Some sample text in your style</span>';
+						
+						echo '<ul>';
+						foreach ($typography as $i=>$param){
+						echo '<li>'.$i . ' = ' . $param.'</li>';
+						}
+						echo '</ul>';
+				} else {
+					echo "no entry";
+				}; ?>
             </span>
             </dd>
             </dl>
-            
+
+            <dl>
+            <dt>type: background</dt>
+            <dd>of_get_option('background'):
+			<?php $background = of_get_option('example_background', false );
+					if ($background != 'false') {
+						if ($background['image']){
+							echo '<span style="display: block; height: 200px; width: 200px; background:url('.$background['image']. ') "></span>';
+							
+							echo '<ul>';
+							foreach ($background as $i=>$param){
+							echo '<li>'.$i . ' = ' . $param.'</li>';
+							}
+							echo '</ul>';
+												
+						} else {
+							echo '<span style="display: inline-block; height: 20px; width: 20px; background:'.$background['color']. ' "></span>';
+							echo '<ul>';
+							
+							echo '<li>'.$background['color'].'</li>';
+							
+							echo '</ul>';
+						}
+						
+				} else {
+					echo "no entry";
+				}; ?>
+            </span>
+            </dd>
+            </dl>
+			
             </div>
 			
 			</div><!-- #content -->

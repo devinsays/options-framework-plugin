@@ -93,7 +93,13 @@ function optionsframework_options() {
 						
 	$options[] = array( "name" => "Advanced Settings",
 						"type" => "heading");
-						
+
+	$options[] = array( "name" =>  "Example Background",
+					"desc" => "Change the background CSS.",
+					"id" => "example_background",
+					"std" => array('repeat' => 'repeat','position' => 'top center','attachment'=>'scroll'), 
+					"type" => "background");
+					
 	$options[] = array( "name" => "Check to Show a Hidden Text Input",
 						"desc" => "Click here and see what happens.",
 						"id" => "example_showhidden",

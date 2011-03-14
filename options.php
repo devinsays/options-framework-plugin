@@ -124,7 +124,13 @@ function optionsframework_options() {
 						
 	$options[] = array( "name" => "Advanced Settings",
 						"type" => "heading");
-						
+
+	$options[] = array( "name" =>  "Example Background",
+					"desc" => "Change the background CSS.",
+					"id" => "example_background",
+					"std" => array('repeat' => 'repeat','position' => 'top center','attachment'=>'scroll'), 
+					"type" => "background");
+					
 	$options[] = array( "name" => "Uploader Test",
 						"desc" => "This creates a full size uploader that previews the image.",
 						"id" => "example_uploader",
