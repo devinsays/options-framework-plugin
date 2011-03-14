@@ -389,7 +389,7 @@ function optionsframework_validate($input) {
 				break;
 				
 				// If it's a select make sure it's in the array we supplied
-				case ($option['type'] == 'select' || $option['type'] == 'select2') :
+				case ($option['type'] == 'select') :
 					if ( ! in_array( $input[($option['id'])], $option['options'] ) )
 						$input[($option['id'])] = null;
 				break;
