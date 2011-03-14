@@ -255,7 +255,10 @@
 	margin-left:1px;
 	position:relative;
 	width:344px;
-	margin:3px 0 18px 0;
+	margin-top:3px;
+}
+#of_container .section-background .screenshot {
+	margin-bottom:18px;
 }
 #of_container .screenshot img {
 	-moz-border-radius:4px;
