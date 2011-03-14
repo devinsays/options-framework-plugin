@@ -166,16 +166,19 @@
 #of_container #content .section-background .explain {
 	width:140px
 }
+#of_container .of-background-properties {
+	margin-top: 18px;
+}
 #of_container .controls .of-background-repeat {
 	width:160px;
 	float:left
 }
 #of_container .controls .of-background-position {
-	width:130px;
+	width:125px;
 	float:left
 }
 #of_container .controls .of-background-attachment {
-	width:130px;
+	width:125px;
 	float:left
 }
 
@@ -215,7 +218,7 @@
 	background:#fff;
 }
 #of_container .hide {
-	display:none
+	display: none;
 }
 #of_container .of-option-image {
 	max-width:340px;
@@ -252,7 +255,7 @@
 	margin-left:1px;
 	position:relative;
 	width:344px;
-	margin-top:3px;
+	margin:3px 0 18px 0;
 }
 #of_container .screenshot img {
 	-moz-border-radius:4px;

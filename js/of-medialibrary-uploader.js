@@ -22,6 +22,7 @@
         $(this).hide();
         $(this).parents().parents().children('.upload').attr('value', '');
         $(this).parents('.screenshot').slideUp();
+		$(this).parents('.screenshot').siblings('.of-background-properties').hide(); //remove background properties
         
         return false;
       });
@@ -127,7 +128,10 @@
           $('#' + formfield).val(itemurl);
           // $('#' + formfield).next().next('div').slideDown().html(btnContent);
           $('#' + formfield).siblings('.screenshot').slideDown().html(btnContent);
-          tb_remove();
+		  
+		  $('#' + formfield).siblings('.of-background-properties').show(); //show background properties
+		  
+		  tb_remove();
           
         } else {
           window.original_send_to_editor(html);

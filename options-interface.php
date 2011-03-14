@@ -356,7 +356,10 @@ function optionsframework_fields() {
 			if ( $stored != "") { $val = $stored; }
 			$output .= optionsframework_medialibrary_uploader( $value['id'] . '_image', $background_stored['image'], null ); // New AJAX Uploader using Media Library	
 
-			$output .= '<div class="of-background-properties">';
+			if($background_stored['image']==''){$hide = ' hide ';} else {$hide='';}
+
+			$output .= '<div class="of-background-properties' . $hide . '">';
+			
 			/* Background Repeat */
 			$output .= '<select class="of-background of-background-repeat" name="'.$option_name.'['.$value['id'].'_repeat]" id="'. $value['id'].'_repeat">';
 			
