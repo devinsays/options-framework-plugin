@@ -123,21 +123,22 @@ get_header(); ?>
 			<?php $background = of_get_option('example_background', false );
 					if ($background != 'false') {
 						if ($background['image']){
-							echo '<span style="display: block; height: 200px; width: 200px; background:url('.$background['image']. ') "></span>';
+							echo '<span style="display: block; height: 200px; width: 200px; background:url('.$background['image']. ') '. $background['color'] . ' ' . $background['repeat'] . ' ' . $background['position'] . ' ' .$background['attachment'] .' "></span>';
 							
-							echo '<ul>';
-							foreach ($background as $i=>$param){
-							echo '<li>'.$i . ' = ' . $param.'</li>';
-							}
-							echo '</ul>';
-												
+						echo '<ul>';
+						foreach ($background as $i=>$param){
+						echo '<li>'.$i . ' = ' . $param.'</li>';
+						}
+						echo '</ul>';
+						
+						
 						} else {
-							echo '<span style="display: inline-block; height: 20px; width: 20px; background:'.$background['color']. ' "></span>';
-							echo '<ul>';
-							
-							echo '<li>'.$background['color'].'</li>';
-							
-							echo '</ul>';
+						echo '<span style="display: inline-block; height: 20px; width: 20px; background:'.$background['color']. ' "></span>';
+						echo '<ul>';
+						
+						echo '<li>'.$background['color'].'</li>';
+						
+						echo '</ul>';
 						}
 						
 				} else {
