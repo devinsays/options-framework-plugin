@@ -71,7 +71,7 @@ function optionsframework_options() {
 						"desc" => "A wider select box.",
 						"id" => "example_select_wide",
 						"std" => "two",
-						"type" => "select2",
+						"type" => "select",
 						"options" => $options_select);
 						
 	$options[] = array( "name" => "Input Radio (one)",

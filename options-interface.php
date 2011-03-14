@@ -192,7 +192,7 @@ function optionsframework_fields() {
 		break;
 		
 		// Small Select Box
-		case ($value['type'] == 'select' || $value['type'] == 'select2'):
+		case ($value['type'] == 'select'):
 			$output .= '<select class="of-input" name="'.$option_name.'['.$value['id'].']" id="'. $value['id'] .'">';
 			$select_value = $settings[($value['id'])];
 			

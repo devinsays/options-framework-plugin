@@ -37,7 +37,7 @@ get_header(); ?>
             </dl>
             
             <dl>
-            <dt>type: select2 (wide)</dt>
+            <dt>type: select (wide)</dt>
             <dd>of_get_option('example_select_wide'): <?php echo of_get_option('example_select_wide', 'no entry' ); ?></dd>
             </dl>
             
