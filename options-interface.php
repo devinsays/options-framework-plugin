@@ -211,6 +211,27 @@ function optionsframework_fields() {
 			 $output .= '</select>';
 		break;
 		
+		// Select Box with Option Values
+		case ($value['type'] == 'select_with_values'):
+			$output .= '<select class="of-input" name="'.$option_name.'['.$value['id'].']" id="'. $value['id'] .'">';
+			$select_value = $settings[($value['id'])];
+			
+			foreach ($value['options'] as $option_value => $option) {
+				$selected = '';
+				 if($select_value != '') {
+					 if ( $select_value == $option_value) { $selected = ' selected="selected"';} 
+			     } else {
+					 if ( isset($value['std']) )
+						 if ($value['std'] == $option_value) { $selected = ' selected="selected"'; }
+				 }
+				 $output .= '<option'. $selected .' value="' . $option_value . '">';
+				 $output .= $option;
+				 $output .= '</option>';
+			 } 
+			 $output .= '</select>';
+		break;
+
+		
 		// Radio Box
 		case "radio":
 			 $select_value = $settings[($value['id'])];
