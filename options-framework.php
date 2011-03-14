@@ -419,10 +419,7 @@ function optionsframework_validate($input) {
  */
 	
 if ( !function_exists( 'of_get_option' ) ) {
-function of_get_option($name, $default) {
-	
-	// If a default wasn't passed, make it false
-	if (!$default) {$default = 'false'; }
+function of_get_option($name, $default = 'false') {
 	
 	$optionsframework_settings = get_option('optionsframework');
 	
