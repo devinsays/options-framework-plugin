@@ -76,6 +76,14 @@ get_header(); ?>
             </dd>
             </dl>
             
+             <dl>
+            <dt>type: select_with_values</dt>
+            <dd>of_get_option('select_with_values'):
+            <?php $select_with_values = of_get_option('example_category_select', 'uncategorized' ); ?>
+			<?php echo $select_with_values; ?>
+            </dd>
+            </dl>
+            
             <p>You can get all the items that were marked true:</p>
             <ul>
             <?php

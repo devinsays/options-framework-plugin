@@ -159,7 +159,7 @@ function optionsframework_options() {
 	$options[] = array( "name" => "Select with values",
 						"desc" => "Choose the category name; save the category slug.",
 						"id" => "example_category_select",
-						"std" => "",
+						"std" => "uncategorized",
 						"type" => "select_with_values",
 						"options" => $options_categories);
 							

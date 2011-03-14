@@ -31,6 +31,11 @@ function optionsframework_options() {
 	// Test data
 	$options_select = array("one","two","three","four","five"); 
 	$options_radio = array("one" => "One","two" => "Two","three" => "Three","four" => "Four","five" => "Five");
+	$categories = get_categories();
+    $options_categories = array();
+	foreach($categories as $category) {
+		$options_categories[$category->slug] = $category->name;	
+	}
 		
 	// If using image radio buttons, define a directory path
 	$imagepath =  get_bloginfo('stylesheet_directory') . '/images/';
@@ -132,7 +137,14 @@ function optionsframework_options() {
 						"std" => "two",
 						"type" => "multicheck",
 						"options" => $options_radio);
-							
+						
+	$options[] = array( "name" => "Select with values",
+						"desc" => "Choose the category name; save the category slug.",
+						"id" => "example_category_select",
+						"std" => "uncategorized",
+						"type" => "select_with_values",
+						"options" => $options_categories);
+												
 	$options[] = array( "name" => "Colorpicker",
 						"desc" => "No color selected by default.",
 						"id" => "example_colorpicker",
