@@ -37,7 +37,7 @@ get_header(); ?>
             </dl>
             
             <dl>
-            <dt>type: select (wide)</dt>
+            <dt>type: select2 (wide)</dt>
             <dd>of_get_option('example_select_wide'): <?php echo of_get_option('example_select_wide', 'no entry' ); ?></dd>
             </dl>
             
@@ -90,6 +90,31 @@ get_header(); ?>
             <p>Or an individual checkbox in the group by using of_get_option('multicheck_$key') where $key is one of the items in the checkbox $options array.</p>
             
             <dl>
+            <dt>type: background</dt>
+            <dd>of_get_option('background'):
+            <?php $background = of_get_option('example_background', false );
+            if ($background != 'false') {
+				if ($background['image']) {
+					echo '<span style="display: block; height: 200px; width: 200px; background:url('.$background['image']. ') "></span>';
+					echo '<ul>';
+					foreach ($background as $i=>$param){
+						echo '<li>'.$i . ' = ' . $param.'</li>';
+				}
+				echo '</ul>';
+				} else {
+					echo '<span style="display: inline-block; height: 20px; width: 20px; background:'.$background['color']. ' "></span>';
+					echo '<ul>';
+					echo '<li>'.$background['color'].'</li>';
+					echo '</ul>';
+				}	
+            } else {
+            	echo "no entry";
+            }; ?>
+            </span>
+            </dd>
+            </dl>
+            
+            <dl>
             <dt>type: colorpicker</dt>
             <dd>of_get_option('colorpicker'):
             <span style="color:<?php echo of_get_option('example_colorpicker', '#000' ); ?>">
@@ -101,7 +126,17 @@ get_header(); ?>
             <dl>
             <dt>type: typography</dt>
             <dd>of_get_option('typography'):
-			<?php echo of_get_option('example_typography', 'no entry' ); ?>
+            <?php $typography = of_get_option('example_typography', false );
+            if ($typography !='false') {
+				echo '<span style="font:'.$typography['size'] . ' ' . $typography['face']. ' ' . $typography['style'] . '; color:'.$typography['color'].';">Some sample text in your style</span>';
+				echo '<ul>';
+				foreach ($typography as $i=>$param) {
+					echo '<li>'.$i . ' = ' . $param.'</li>';
+				}
+				echo '</ul>';
+				} else {
+					echo "no entry";
+            } ?>
             </span>
             </dd>
             </dl>

@@ -138,6 +138,12 @@ function optionsframework_options() {
 							'3c-fixed' => $imagepath . '3cm.png',
 							'3c-r-fixed' => $imagepath . '3cr.png')
 						);
+						
+	$options[] = array( "name" =>  "Example Background",
+						"desc" => "Change the background CSS.",
+						"id" => "example_background",
+						"std" => array('repeat' => 'repeat','position' => 'top center','attachment'=>'scroll'), 
+						"type" => "background");
 								
 	$options[] = array( "name" => "Multicheck",
 						"desc" => "Multicheck description.",
