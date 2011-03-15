@@ -160,6 +160,30 @@
 	width:80px;
 	float:left
 }
+#of_container #content .section-background .controls {
+	width:425px
+}
+#of_container #content .section-background .explain {
+	width:140px
+}
+#of_container .of-background-properties {
+	margin-top: 18px;	
+}
+#of_container .controls .of-background-repeat {
+	width:160px;
+	float:left
+}
+#of_container .controls .of-background-position {
+	width:125px;
+	float:left
+}
+#of_container .controls .of-background-attachment {
+	width:125px;
+	float:left
+}
+#of_container div.section-background .controls input.upload {
+    width: 240px;
+}
 #of_container .controls .of-radio-img-img {
 	border:3px solid #fff;
 	margin:0 5px 10px 0;
@@ -192,10 +216,11 @@
 	background:#fff;
 }
 #of_container .hide {
-	display:none
+	display:none;
 }
 #of_container .of-option-image {
 	max-width:340px;
+	margin:3px 0 18px 0;
 }
 #of_container .mini .controls select, #of_container #content .section .mini .controls {
 	width: 70px;
@@ -231,12 +256,15 @@
 	width:344px;
 	margin-top:3px;
 }
+#of_container .section-background .screenshot {
+	margin-bottom:18px;	
+}
 #of_container .screenshot img {
 	-moz-border-radius:4px;
 	-webkit-border-radius:4px;
 	-border-radius:4px;
 	background:#FAFAFA;
-	border-color:#CCCCCC #EEEEEE #EEEEEE #CCCCCC;
+	border-color:#ccc #eee #eee #ccc;
 	border-style:solid;
 	border-width:1px;
 	float:left;

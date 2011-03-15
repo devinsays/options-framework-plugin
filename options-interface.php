@@ -328,8 +328,62 @@ function optionsframework_fields() {
 			/* Font Color */			
 			$output .= '<div id="' . $value['id'] . '_color_picker" class="colorSelector"><div style="background-color:'.$typography_stored['color'].'"></div></div>';
 			$output .= '<input class="of-color of-typography of-typography-color" name="'.$option_name.'['.$value['id'].'_color]" id="'. $value['id'] .'_color" type="text" value="'. $typography_stored['color'] .'" />';
-
-		break;  
+			
+		break;
+		
+		// Background
+		case 'background':
+		
+			//Set main option
+			$output .= '<input id="'. $value['id'] .'" type="hidden" name="'.$option_name.'['.$value['id'].']" />';
+			$background_stored = $settings[($value['id'])];
+			
+			if (empty($background_stored)) {
+				$background_stored = $value['std'];
+			}
+			
+			// Background Color
+			$output .= '<div id="' . $value['id'] . '_color_picker" class="colorSelector"><div style="background-color:'.$background_stored['color'].'"></div></div>';
+			$output .= '<input class="of-color of-background of-background-color" name="'.$option_name.'['.$value['id'].'_color]" id="'. $value['id'] .'_color" type="text" value="'. $background_stored['color'] .'" />';
+			
+			// Background Image
+			$val = $value['std'];
+			$stored = $settings[($value['id'])];
+			if ( $stored != "") { $val = $stored; }
+			
+			// New AJAX Uploader using Media Library
+			$output .= optionsframework_medialibrary_uploader( $value['id'] . '_image', $background_stored['image'], null );
+			if ($background_stored['image']=='') {$hide = ' hide ';} else { $hide=''; }
+			$output .= '<div class="of-background-properties' . $hide . '">';
+			
+			// Background Repeat
+			$output .= '<select class="of-background of-background-repeat" name="'.$option_name.'['.$value['id'].'_repeat]" id="'. $value['id'].'_repeat">';
+			$repeats = array("no-repeat"=>"No Repeat","repeat-x"=>"Repeat Horizontally","repeat-y"=>"Repeat Vertically","repeat"=>"Repeat All");
+			
+			foreach ($repeats as $i=>$repeat) {
+				$output .= '<option value="'. $i .'" ' . selected($background_stored['repeat'], $i, false) . '>'. $repeat .'</option>';
+			}
+			$output .= '</select>';
+			
+			// Background Position
+			$output .= '<select class="of-background of-background-position" name="'.$option_name.'['.$value['id'].'_position]" id="'. $value['id'].'_position">';
+			$positions = array("top left"=>"Top Left","top center"=>"Top Center","top right"=>"Top Right","center left"=>"Middle Left","center center"=>"Middle Center","center right"=>"Middle Right","bottom left"=>"Bottom Left","bottom center"=>"Bottom Center","bottom right"=>"Bottom Right");
+			
+			foreach ($positions as $i=>$position) {
+				$output .= '<option value="'. $i .'" ' . selected($background_stored['position'], $i, false) . '>'. $position .'</option>';
+			}
+			$output .= '</select>';
+			
+			// Background Attachment
+			$output .= '<select class="of-background of-background-attachment" name="'.$option_name.'['.$value['id'].'_attachment]" id="'. $value['id'].'_attachment">';
+			$attachments = array("scroll"=>"Scroll Normally","fixed"=>"Fixed in Place");
+			foreach ($attachments as $i=>$attachment) {
+				$output .= '<option value="'. $i .'" ' . selected($background_stored['attachment'], $i, false) . '>'. $attachment .'</option>';
+			}
+			$output .= '</select>';
+			$output .= '</div>';
+		
+		break; 
 		
 		// Image Selectors
 		case "images":
