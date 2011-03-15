@@ -101,7 +101,7 @@ function optionsframework_options() {
 	$options[] = array( "name" => "Input Checkbox",
 						"desc" => "Example checkbox, defaults to true.",
 						"id" => "example_checkbox",
-						"std" => "false",
+						"std" => "true",
 						"type" => "checkbox");
 						
 	$options[] = array( "name" => "Advanced Settings",

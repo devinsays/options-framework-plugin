@@ -378,20 +378,28 @@ function optionsframework_validate($input) {
 				// If it's a typography option
 				case ($option['type'] == 'typography') :
 					$typography_id = $option['id'];
-					$input[$typography_id] = array('size' => $input[$typography_id .'_size'],
-												  'face' => $input[$typography_id .'_face'],
-												  'style' => $input[$typography_id .'_style'],
-												  'color' => $input[$typography_id .'_color']);
+					$input[$typography_id] = array(
+						'size' => $input[$typography_id .'_size'],
+						'face' => $input[$typography_id .'_face'],
+						'style' => $input[$typography_id .'_style'],
+						'color' => $input[$typography_id .'_color']);
 				break;
 				
 				// If it's a background option
 				case ($option['type'] == 'background') :
 					$background_id = $option['id'];
-					$input[$background_id] = array('color' => $input[$background_id .'_color'],
-					'image' => $input[$background_id .'_image'],
-					'repeat' => $input[$background_id .'_repeat'],
-					'position' => $input[$background_id .'_position'],
-					'attachment' => $input[$background_id .'_attachment']);
+					if ( empty($input[$background_id .'_color']) ) {
+						$input[$background_id .'_color'] = '';
+					}
+					if ( empty($input[$background_id .'_image']) ) {
+						$input[$background_id .'_image'] = '';
+					}
+					$input[$background_id] = array(
+						'color' => $input[$background_id .'_color'],
+						'image' => $input[$background_id .'_image'],
+						'repeat' => $input[$background_id .'_repeat'],
+						'position' => $input[$background_id .'_position'],
+						'attachment' => $input[$background_id .'_attachment']);
 				break;
 				
 				// If it's a select make sure it's in the array we supplied

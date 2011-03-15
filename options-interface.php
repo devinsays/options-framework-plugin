@@ -211,24 +211,16 @@ function optionsframework_fields() {
 		
 		// Checkbox
 		case "checkbox": 
-		   $std = $value['std'];  
-		   $saved_std = $settings[($value['id'])];
-		   $checked = '';
-			
-			if (!empty($saved_std)) {
-				if($saved_std == 'true') {
-					$checked = 'checked="checked"';
-				}
-				else {
-				   $checked = '';
-				}
+			$std = $value['std'];
+			if ( !empty( $settings[($value['id'])] ) ) {
+				$std = $settings[($value['id'])];
 			}
-			else {
-			   if ( $std == 'true') {
-			   		$checked = 'checked="checked"';
-				} else {
+			$checked = '';
+		   
+			if ( $std == 'true') {
+				$checked = 'checked="checked"';
+			} else {
 				$checked = '';
-				}
 			}
 			$output .= '<input id="'. $value['id'] .'" class="checkbox of-input" type="checkbox" name="'.$option_name.'['.$value['id'].']" value="true" '. $checked .' />';
 		break;
@@ -391,25 +383,23 @@ function optionsframework_fields() {
 			$select_value = $settings[($value['id'])];
 				   
 			foreach ($value['options'] as $key => $option) { 
-			 $i++;
-
-				 $checked = '';
-				 $selected = '';
-				   if($select_value != '') {
-						if ( $select_value == $key) { $checked = ' checked'; $selected = 'of-radio-img-selected'; } 
-				    } else {
-						if ($value['std'] == $key) { $checked = ' checked'; $selected = 'of-radio-img-selected'; }
-						elseif ($i == 1  && !isset($select_value)) { $checked = ' checked'; $selected = 'of-radio-img-selected'; }
-						elseif ($i == 1  && $value['std'] == '') { $checked = ' checked'; $selected = 'of-radio-img-selected'; }
-						else { $checked = ''; }
-					}	
+				$i++;
+				$checked = '';
+				$selected = '';
+				if ($select_value != '') {
+					if ( $select_value == $key) { $checked = ' checked'; $selected = 'of-radio-img-selected'; }
+				} else {
+					if ($value['std'] == $key) { $checked = ' checked'; $selected = 'of-radio-img-selected'; }
+					elseif ($i == 1  && !isset($select_value)) { $checked = ' checked'; $selected = 'of-radio-img-selected'; }
+					elseif ($i == 1  && $value['std'] == '') { $checked = ' checked'; $selected = 'of-radio-img-selected'; }
+					else { $checked = ''; }
+				}	
 				
 				$output .= '<span>';
 				$output .= '<input type="radio" id="of-radio-img-' . $value['id'] . $i . '" class="checkbox of-radio-img-radio" value="'.$key.'" name="'.$option_name.'['.$value['id'].']" '.$checked.' />';
 				$output .= '<div class="of-radio-img-label">'. $key .'</div>';
 				$output .= '<img src="'.$option.'" alt="" class="of-radio-img-img '. $selected .'" onClick="document.getElementById(\'of-radio-img-'. $value['id'] . $i.'\').checked = true;" />';
 				$output .= '</span>';
-				
 			}
 		break;   
 		
