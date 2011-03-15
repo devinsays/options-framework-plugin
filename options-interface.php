@@ -16,51 +16,32 @@ function of_admin_head() {
 ?>
 
 <script type="text/javascript">
-jQuery(document).ready(function() {
+	jQuery(document).ready(function($) {
 	
-	// Fade out the save message
-	jQuery('#message').delay(1000).fadeOut(1000);
-			
-	// Color Picker
-	<?php
-	$optionsframework_settings = get_option('optionsframework');
-	
-	// Gets the unique option id
-	$option_name = $optionsframework_settings['id'];
-	
-	$settings = get_option($option_name);
-	$options = optionsframework_options();
-			
-	foreach($options as $option){ 
-			
-		if($option['type'] == 'color' OR $option['type'] == 'typography') {
-			if($option['type'] == 'typography') {
-				$option_id = $option['id'] . '_color';
-			}
-			else {
-				$option_id = $option['id'];
-			}
-			$color = $settings[($option['id'])];
-			?>
-			 jQuery('#<?php echo $option_id; ?>_picker').children('div').css('backgroundColor', '<?php echo $color; ?>');    
-			 jQuery('#<?php echo $option_id; ?>_picker').ColorPicker({
-				color: '<?php echo $color; ?>',
-				onShow: function (colpkr) {
-					jQuery(colpkr).fadeIn(500);
-					return false;
-				},
-				onHide: function (colpkr) {
-					jQuery(colpkr).fadeOut(500);
-					return false;
-				},
-				onChange: function (hsb, hex, rgb) {
-					//jQuery(this).css('border','1px solid red');
-					jQuery('#<?php echo $option_id; ?>_picker').children('div').css('backgroundColor', '#' + hex);
-					jQuery('#<?php echo $option_id; ?>_picker').next('input').attr('value','#' + hex);					
-				}
-			});
-		<?php } } ?> 
-});
+		// Fade out the save message
+		jQuery('#message').delay(1000).fadeOut(1000);
+		
+		// Color Picker
+		$('.colorSelector').each(function(){
+			var Othis = this; //cache a copy of the this variable for use inside nested function
+			var initialColor = $(Othis).next('input').attr('value');
+			$(this).ColorPicker({
+			color: initialColor,
+			onShow: function (colpkr) {
+			$(colpkr).fadeIn(500);
+			return false;
+			},
+			onHide: function (colpkr) {
+			$(colpkr).fadeOut(500);
+			return false;
+			},
+			onChange: function (hsb, hex, rgb) {
+			$(Othis).children('div').css('backgroundColor', '#' + hex);
+			$(Othis).next('input').attr('value','#' + hex);
+		}
+		});
+		}); //end color picker
+	});//end document ready functions
 </script>
         
 <script type="text/javascript">
@@ -284,7 +265,7 @@ function optionsframework_fields() {
 			$val = $value['std'];
 			$stored  = $settings[($value['id'])];
 			if ( isset($stored) ) { $val = $stored; }
-			$output .= '<div id="' . $value['id'] . '_picker" class="colorSelector"><div></div></div>';
+			$output .= '<div id="' . $value['id'] . '_picker" class="colorSelector"><div style="background-color:'.$val.'"></div></div>';
 			$output .= '<input class="of-color" name="'.$option_name.'['.$value['id'].']" id="'. $value['id'] .'" type="text" value="'. $val .'" />';
 		break; 
 		
