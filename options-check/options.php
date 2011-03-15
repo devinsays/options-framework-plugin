@@ -29,8 +29,15 @@ function optionsframework_option_name() {
 function optionsframework_options() {
 	
 	// Test data
-	$options_select = array("one","two","three","four","five"); 
+	$options_select = array("One","Two","Three","Four","Five"); 
 	$options_radio = array("one" => "One","two" => "Two","three" => "Three","four" => "Four","five" => "Five");
+	
+	//Access the WordPress Categories via an Array
+	$options_categories = array();  
+	$options_categories_obj = get_categories();
+	foreach ($options_categories_obj as $category) {
+    	$options_categories[$category->cat_ID] = $category->cat_name;
+	}
 		
 	// If using image radio buttons, define a directory path
 	$imagepath =  get_bloginfo('stylesheet_directory') . '/images/';
@@ -65,7 +72,7 @@ function optionsframework_options() {
 						"std" => "three",
 						"type" => "select",
 						"class" => "mini", //mini, tiny, small
-						"options" => $options_select);  
+						"options" => $options_select);			 
 						
 	$options[] = array( "name" => "Input Select Wide",
 						"desc" => "A wider select box.",
@@ -73,6 +80,12 @@ function optionsframework_options() {
 						"std" => "two",
 						"type" => "select",
 						"options" => $options_select);
+						
+	$options[] = array( "name" => "Select Categories",
+						"desc" => "Passed an array of options to be sorted by key.",
+						"id" => "example_select_categories",
+						"type" => "select",
+						"options" => $options_categories);
 						
 	$options[] = array( "name" => "Input Radio (one)",
 						"desc" => "Radio select with default options 'one'.",
