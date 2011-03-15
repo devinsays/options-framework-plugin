@@ -191,28 +191,8 @@ function optionsframework_fields() {
 				$output .= '<textarea id="'. $value['id'] .'" class="of-input" name="'.$option_name.'['.$value['id'].']" cols="'. $cols .'" rows="8">'.$ta_value.'</textarea>';
 		break;
 		
-		// Small Select Box
+		// Select Box
 		case ($value['type'] == 'select'):
-			$output .= '<select class="of-input" name="'.$option_name.'['.$value['id'].']" id="'. $value['id'] .'">';
-			$select_value = $settings[($value['id'])];
-			
-			foreach ($value['options'] as $option) {
-				$selected = '';
-				 if($select_value != '') {
-					 if ( $select_value == $option) { $selected = ' selected="selected"';} 
-			     } else {
-					 if ( isset($value['std']) )
-						 if ($value['std'] == $option) { $selected = ' selected="selected"'; }
-				 }
-				 $output .= '<option'. $selected .'>';
-				 $output .= $option;
-				 $output .= '</option>';
-			 } 
-			 $output .= '</select>';
-		break;
-		
-		// Select Box with Option Values
-		case ($value['type'] == 'select_with_values'):
 			$output .= '<select class="of-input" name="'.$option_name.'['.$value['id'].']" id="'. $value['id'] .'">';
 			$select_value = $settings[($value['id'])];
 			

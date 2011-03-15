@@ -164,22 +164,18 @@ function optionsframework_setdefaults() {
 			$option_id = preg_replace("/\W/", "", strtolower($option['id']) );
 			
 			// wp_filter_post_kses for strings
-			if ( !is_array($option['std' ]) ) {
-				if (isset($option['std' ]) ) {
+			if (isset($option['std' ]) ) {
+				if ( !is_array($option['std' ]) ) {
 					$value = wp_filter_post_kses($option['std']);
 				} else {
-					$value = '';
+					foreach ($option['std' ] as $key => $value) {
+						$values[$option_id . '_' . $key] = wp_filter_post_kses($value);
+						$optionarray[$key] = wp_filter_post_kses($value);
+					}
+					$values[$option_id] = $optionarray;
 				}
-			$values[$option_id] = $value;
-			}
-			
-			// wp_filter_post_kses for array
-			if ( is_array($option['std' ]) ) {
-				foreach ($option['std' ] as $key => $value) {
-					$values[$option_id . '_' . $key] = wp_filter_post_kses($value);
-					$optionarray[$key] = wp_filter_post_kses($value);
-				}
-				$values[$option_id] = $optionarray;
+			} else {
+				$value = '';
 			}
 		}
 	}
@@ -390,7 +386,7 @@ function optionsframework_validate($input) {
 				
 				// If it's a select make sure it's in the array we supplied
 				case ($option['type'] == 'select') :
-					if ( ! in_array( $input[($option['id'])], $option['options'] ) )
+					if ( !array_key_exists( $input[($option['id'])], $option['options'] ) )
 						$input[($option['id'])] = null;
 				break;
 				
