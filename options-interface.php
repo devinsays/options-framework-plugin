@@ -129,15 +129,18 @@ function optionsframework_fields() {
 		$val = '';
 		
 		// Wrap all options
-		 if ( ($value['type'] != "heading") && ($value['type'] != "info") )
-		 {
+		if ( ($value['type'] != "heading") && ($value['type'] != "info") ) {
 		 	$class = ''; if(isset( $value['class'] )) { $class = $value['class']; }
 			$output .= '<div id="section-' . $value['id'] .'" class="section section-'.$value['type'].' '. $class .'">'."\n";
 			$output .= '<h3 class="heading">'. $value['name'] .'</h3>'."\n";
 			$output .= '<div class="option">'."\n" . '<div class="controls">'."\n";
 
 		 }
-		$select_value = '';                                   
+		 
+		$select_value = '';
+		
+ 
+		                                
 		switch ( $value['type'] ) {
 		
 		// Basic text input
@@ -167,19 +170,25 @@ function optionsframework_fields() {
 				}
 				
 			}
-				$std = $settings[($value['id'])];
-				if( $std != "") { $ta_value = stripslashes( $std ); }
-				$output .= '<textarea id="'. $value['id'] .'" class="of-input" name="'.$option_name.'['.$value['id'].']" cols="'. $cols .'" rows="8">'.$ta_value.'</textarea>';
+			
+			if (isset ( $settings[($value['id'])] ) ) {
+				$ta_value = stripslashes( $settings[($value['id'])] );
+			}
+			
+			$output .= '<textarea id="'. $value['id'] .'" class="of-input" name="'.$option_name.'['.$value['id'].']" cols="'. $cols .'" rows="8">'.$ta_value.'</textarea>';
 		break;
 		
 		// Select Box
 		case ($value['type'] == 'select'):
 			$output .= '<select class="of-input" name="'.$option_name.'['.$value['id'].']" id="'. $value['id'] .'">';
-			$select_value = $settings[($value['id'])];
+			
+			if (isset ($settings[($value['id'])] ) ) {
+				$select_value = $settings[($value['id'])];
+			}
 			
 			foreach ($value['options'] as $key => $option ) {
 				$selected = '';
-				 if($select_value != '') {
+				 if(isset ($select_value) ) {
 					 if ( $select_value == $key) { $selected = ' selected="selected"';} 
 			     } else {
 					 if ( isset($value['std']) )
@@ -195,10 +204,11 @@ function optionsframework_fields() {
 		
 		// Radio Box
 		case "radio":
-			 $select_value = $settings[($value['id'])];
+			if (isset ($settings[($value['id'])]) ) {
+			 	$select_value = $settings[($value['id'])];
+			 }
 				   
-			 foreach ($value['options'] as $key => $option) 
-			 {
+			 foreach ($value['options'] as $key => $option) {
 				 $checked = '';
 				   if($select_value != '') {
 						if ( $select_value == $key) { $checked = ' checked'; } 
@@ -255,7 +265,9 @@ function optionsframework_fields() {
 		// Color picker
 		case "color":
 			$val = $value['std'];
-			$stored  = $settings[($value['id'])];
+			if (isset ($settings[($value['id'])]) ) {
+				$stored  = $settings[($value['id'])];
+			}
 			if ( isset($stored) ) { $val = $stored; }
 			$output .= '<div id="' . $value['id'] . '_picker" class="colorSelector"><div style="background-color:'.$val.'"></div></div>';
 			$output .= '<input class="of-color" name="'.$option_name.'['.$value['id'].']" id="'. $value['id'] .'" type="text" value="'. $val .'" />';
@@ -264,15 +276,16 @@ function optionsframework_fields() {
 		// Uploader
 		case "upload":
 			$val = $value['std'];
-			$stored  = $settings[($value['id'])];
-			if ( $stored != "") { $val = $stored; }
+			if (isset ($settings[($value['id'])]) ) {
+				$val  = $settings[($value['id'])];
+			}
 			$output .= optionsframework_medialibrary_uploader( $value['id'], $val, null ); // New AJAX Uploader using Media Library	
 		break;
 		
 		// Typography
 		case 'typography':	
 		
-			//Set main option
+			// Set main option
 			$output .= '<input id="'. $value['id'] .'" type="hidden" name="'.$option_name.'['.$value['id'].']" />';
 			$typography_stored = $settings[($value['id'])];
 			
@@ -280,7 +293,7 @@ function optionsframework_fields() {
 				$typography_stored = $value['std'];
 			}
 			
-			/* Font Size */ 
+			// Font Size
 			$output .= '<select class="of-typography of-typography-size" name="'.$option_name.'['.$value['id'].'_size]" id="'. $value['id'].'_size">';
 			for ($i = 9; $i < 71; $i++) { 
 				$size = $i.'px';
@@ -289,7 +302,7 @@ function optionsframework_fields() {
 			}
 			$output .= '</select>';
 		
-			/* Font Face */
+			// Font Face
 			$output .= '<select class="of-typography of-typography-face" name="'.$option_name.'['.$value['id'].'_face]" id="'. $value['id'].'_face">';
 			$faces = array('arial'=>'Arial',
 							'verdana'=>'Verdana, Geneva',
@@ -305,7 +318,7 @@ function optionsframework_fields() {
 			}			
 			$output .= '</select>';	
 			
-			/* Font Weight */
+			// Font Weight
 			$output .= '<select class="of-typography of-typography-style" name="'.$option_name.'['.$value['id'].'_style]" id="'. $value['id'].'_style">';
 			$styles = array('normal'=>'Normal',
 							'italic'=>'Italic',
@@ -317,7 +330,7 @@ function optionsframework_fields() {
 			}
 			$output .= '</select>';
 			
-			/* Font Color */			
+			// Font Color		
 			$output .= '<div id="' . $value['id'] . '_color_picker" class="colorSelector"><div style="background-color:'.$typography_stored['color'].'"></div></div>';
 			$output .= '<input class="of-color of-typography of-typography-color" name="'.$option_name.'['.$value['id'].'_color]" id="'. $value['id'] .'_color" type="text" value="'. $typography_stored['color'] .'" />';
 			
@@ -380,7 +393,9 @@ function optionsframework_fields() {
 		// Image Selectors
 		case "images":
 			$i = 0;
-			$select_value = $settings[($value['id'])];
+			if (isset($settings[($value['id'])]) ) {
+				$select_value = $settings[($value['id'])];
+			}
 				   
 			foreach ($value['options'] as $key => $option) { 
 				$i++;

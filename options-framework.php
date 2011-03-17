@@ -240,7 +240,7 @@ function optionsframework_page() {
 	// Display message when options are reset/updated
 	$message = '';
 	
-	if ($optionsframework_settings['message']) {
+	if ( isset($optionsframework_settings['message']) ) {
 		$message = $optionsframework_settings['message'];
 	}
 	
