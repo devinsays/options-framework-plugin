@@ -302,13 +302,23 @@ function optionsframework_fields() {
 		
 			//Set main option
 			$output .= '<input id="'. $value['id'] .'" type="hidden" name="'.$option_name.'['.$value['id'].']" />';
+			
 			$background_stored = $val;
 			
 			// Background Color
+			if (!isset($background_stored['color'])) {
+				$background_stored['color'] = '';
+			}
+			
 			$output .= '<div id="' . $value['id'] . '_color_picker" class="colorSelector"><div style="background-color:'.$background_stored['color'].'"></div></div>';
 			$output .= '<input class="of-color of-background of-background-color" name="'.$option_name.'['.$value['id'].'_color]" id="'. $value['id'] .'_color" type="text" value="'. $background_stored['color'] .'" />';
 			
+			
 			// Background Image - New AJAX Uploader using Media Library
+			if (!isset($background_stored['image'])) {
+				$background_stored['image'] = '';
+			}
+			
 			$output .= optionsframework_medialibrary_uploader( $value['id'] . '_image', $background_stored['image'], null );
 			if ($background_stored['image']=='') {$hide = ' hide ';} else { $hide=''; }
 			$output .= '<div class="of-background-properties' . $hide . '">';
