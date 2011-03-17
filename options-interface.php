@@ -226,6 +226,11 @@ function optionsframework_fields() {
 			if ( isset( $settings[($value['id'])] ) ) {
 			 	$std = $settings[($value['id'])];
 			}
+			else {
+				if (isset($value['std']) ) {
+					$std = $value['std'];
+				}
+			}
 		   
 			if ( $std == 'true') {
 				$checked = 'checked="checked"';

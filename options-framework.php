@@ -332,94 +332,102 @@ function optionsframework_validate($input) {
 	if (!empty($_REQUEST['update'])) {
 	
 		$optionsframework_settings['message'] = 'update';
-		update_option('optionsframework', $optionsframework_settings); }
+		update_option('optionsframework', $optionsframework_settings);
 
-	// Get the options array we have defined in options.php
-	$options = optionsframework_options();
-	
-	foreach ($options as $option) {
+		// Get the options array we have defined in options.php
+		$options = optionsframework_options();
 		
-		// Verify that the option has an id
-		if ( isset ($option['id']) ) {
-			// Verify that there's a value in the $input
-			if (isset ($input[($option['id'])]) ) {
-		
-				switch ( $option['type'] ) {
+		foreach ($options as $option) {
+			
+			// Verify that the option has an id
+			if ( isset ($option['id']) ) {
+			
+				// Checkbox data isn't sent if it's unchecked, so we'll default it to false
+				if ( ($option['type'] == 'checkbox') && !isset($input[($option['id'])]) ) {
+					$input[($option['id'])] = 'false';
+				}
 				
-				// If it's a checkbox, make sure it's either null or checked
-				case ($option['type'] == 'checkbox'):
-					if ( ($input[($option['id'])]) != 'true' )
-						$input[($option['id'])] = 'false';
-				break;
-				
-				// If it's a multicheck
-				case ($option['type'] == 'multicheck'):
-					$i = 0;
-					foreach ($option['options'] as $key) {
-						// Make sure the key is lowercase and without spaces
-						$key = ereg_replace("[^A-Za-z0-9]", "", strtolower($key));
-						// Check that the option isn't null
-						if (!empty($input[($option['id']. '_' . $key)])) {
-							// If it's not null, make sure it's true, add it to an array
-							if ( $input[($option['id']. '_' . $key)] ) {
-								$input[($option['id']. '_' . $key)] = 'true';
-								$checkboxarray[$i] = $key;
-								$i++;
+				// Verify that there's a value in the $input
+				if (isset ($input[($option['id'])]) ) {
+			
+					switch ( $option['type'] ) {
+					
+					// If it's a checkbox, make sure it's either null or checked
+					case ($option['type'] == 'checkbox'):
+						if ( ($input[($option['id'])]) != 'true' )
+							$input[($option['id'])] = 'false';
+					break;
+					
+					// If it's a multicheck
+					case ($option['type'] == 'multicheck'):
+						$i = 0;
+						foreach ($option['options'] as $key) {
+							// Make sure the key is lowercase and without spaces
+							$key = ereg_replace("[^A-Za-z0-9]", "", strtolower($key));
+							// Check that the option isn't null
+							if (!empty($input[($option['id']. '_' . $key)])) {
+								// If it's not null, make sure it's true, add it to an array
+								if ( $input[($option['id']. '_' . $key)] ) {
+									$input[($option['id']. '_' . $key)] = 'true';
+									$checkboxarray[$i] = $key;
+									$i++;
+								}
 							}
 						}
+						// Take all the items that were checked, and set them as the main option
+						if (!empty($checkboxarray)) {
+							$input[($option['id'])] = $checkboxarray;
+						}
+					break;
+					
+					// If it's a typography option
+					case ($option['type'] == 'typography') :
+						$typography_id = $option['id'];
+						$input[$typography_id] = array(
+							'size' => $input[$typography_id .'_size'],
+							'face' => $input[$typography_id .'_face'],
+							'style' => $input[$typography_id .'_style'],
+							'color' => $input[$typography_id .'_color']);
+					break;
+					
+					// If it's a background option
+					case ($option['type'] == 'background') :
+						$background_id = $option['id'];
+						if ( empty($input[$background_id .'_color']) ) {
+							$input[$background_id .'_color'] = '';
+						}
+						if ( empty($input[$background_id .'_image']) ) {
+							$input[$background_id .'_image'] = '';
+						}
+						$input[$background_id] = array(
+							'color' => $input[$background_id .'_color'],
+							'image' => $input[$background_id .'_image'],
+							'repeat' => $input[$background_id .'_repeat'],
+							'position' => $input[$background_id .'_position'],
+							'attachment' => $input[$background_id .'_attachment']);
+					break;
+					
+					// If it's a select make sure it's in the array we supplied
+					case ($option['type'] == 'select') :
+						if ( !array_key_exists( $input[($option['id'])], $option['options'] ) )
+							$input[($option['id'])] = null;
+					break;
+					
+					// For the remaining options, strip any tags that aren't allowed in posts
+					default:
+						$input[($option['id'])] = wp_filter_post_kses( $input[($option['id'])] );
+					
 					}
-					// Take all the items that were checked, and set them as the main option
-					if (!empty($checkboxarray)) {
-						$input[($option['id'])] = $checkboxarray;
-					}
-				break;
-				
-				// If it's a typography option
-				case ($option['type'] == 'typography') :
-					$typography_id = $option['id'];
-					$input[$typography_id] = array(
-						'size' => $input[$typography_id .'_size'],
-						'face' => $input[$typography_id .'_face'],
-						'style' => $input[$typography_id .'_style'],
-						'color' => $input[$typography_id .'_color']);
-				break;
-				
-				// If it's a background option
-				case ($option['type'] == 'background') :
-					$background_id = $option['id'];
-					if ( empty($input[$background_id .'_color']) ) {
-						$input[$background_id .'_color'] = '';
-					}
-					if ( empty($input[$background_id .'_image']) ) {
-						$input[$background_id .'_image'] = '';
-					}
-					$input[$background_id] = array(
-						'color' => $input[$background_id .'_color'],
-						'image' => $input[$background_id .'_image'],
-						'repeat' => $input[$background_id .'_repeat'],
-						'position' => $input[$background_id .'_position'],
-						'attachment' => $input[$background_id .'_attachment']);
-				break;
-				
-				// If it's a select make sure it's in the array we supplied
-				case ($option['type'] == 'select') :
-					if ( !array_key_exists( $input[($option['id'])], $option['options'] ) )
-						$input[($option['id'])] = null;
-				break;
-				
-				// For the remaining options, strip any tags that aren't allowed in posts
-				default:
-					$input[($option['id'])] = wp_filter_post_kses( $input[($option['id'])] );
-				
 				}
 			}
+		
 		}
-	
-	}
-	
+		
 	}
 	
 	return $input; // Return validated input
+	
+	} // End $_REQUEST['update']
 	
 }
 }
