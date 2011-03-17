@@ -127,6 +127,7 @@ function optionsframework_fields() {
 	   
 		$counter++;
 		$val = '';
+		$select_value = '';
 		
 		// Wrap all options
 		if ( ($value['type'] != "heading") && ($value['type'] != "info") ) {
@@ -136,19 +137,23 @@ function optionsframework_fields() {
 			$output .= '<div class="option">'."\n" . '<div class="controls">'."\n";
 
 		 }
-		 
-		$select_value = ''; 
+		
+		// Set default value to $val
+		if ( isset($value['std']) ) {
+			$val = $value['std'];
+		}
+		
+		// If the option is already saved, ovveride $val
+		if ( ($value['type'] != 'heading') && ($value['type'] != 'info')) {
+			if ( isset($settings[($value['id'])]) ) {
+					$val = $settings[($value['id'])];
+			}
+		}
 		                                
 		switch ( $value['type'] ) {
 		
 		// Basic text input
 		case 'text':
-			if ( isset($settings[($value['id'])]) ) {
-				$val = $settings[($value['id'])];
-			}
-			else {
-				$val = $value['std'];
-			}
 			$output .= '<input id="'. $value['id'] .'" class="of-input" name="'.$option_name.'['.$value['id'].']" type="'. $value['type'] .'" value="'. $val .'" />';
 		break;
 		
@@ -157,41 +162,27 @@ function optionsframework_fields() {
 			$cols = '8';
 			$ta_value = '';
 			
-			if(isset($value['std'])) {
-				$ta_value = $value['std']; 
-				
-				if(isset($value['options'])){
-					$ta_options = $value['options'];
-					if(isset($ta_options['cols'])){
+			if(isset($value['options'])){
+				$ta_options = $value['options'];
+				if(isset($ta_options['cols'])){
 					$cols = $ta_options['cols'];
-					} else { $cols = '8'; }
-				}
-				
+				} else { $cols = '8'; }
 			}
 			
-			if (isset ( $settings[($value['id'])] ) ) {
-				$ta_value = stripslashes( $settings[($value['id'])] );
-			}
+			$val = stripslashes( $val );
 			
-			$output .= '<textarea id="'. $value['id'] .'" class="of-input" name="'.$option_name.'['.$value['id'].']" cols="'. $cols .'" rows="8">'.$ta_value.'</textarea>';
+			$output .= '<textarea id="'. $value['id'] .'" class="of-input" name="'.$option_name.'['.$value['id'].']" cols="'. $cols .'" rows="8">'.$val.'</textarea>';
 		break;
 		
 		// Select Box
 		case ($value['type'] == 'select'):
 			$output .= '<select class="of-input" name="'.$option_name.'['.$value['id'].']" id="'. $value['id'] .'">';
 			
-			if (isset ($settings[($value['id'])] ) ) {
-				$select_value = $settings[($value['id'])];
-			}
-			
 			foreach ($value['options'] as $key => $option ) {
 				$selected = '';
-				 if(isset ($select_value) ) {
-					 if ( $select_value == $key) { $selected = ' selected="selected"';} 
-			     } else {
-					 if ( isset($value['std']) )
-						 if ($value['std'] == $key) { $selected = ' selected="selected"'; }
-				 }
+				 if( $val != '' ) {
+					 if ( $val == $key) { $selected = ' selected="selected"';} 
+			     }
 				 $output .= '<option'. $selected .' value="' . $key . '">';
 				 $output .= $option;
 				 $output .= '</option>';
@@ -202,37 +193,21 @@ function optionsframework_fields() {
 		
 		// Radio Box
 		case "radio":
-			if (isset ($settings[($value['id'])]) ) {
-			 	$select_value = $settings[($value['id'])];
-			 }
-				   
-			 foreach ($value['options'] as $key => $option) {
-				 $checked = '';
-				   if($select_value != '') {
-						if ( $select_value == $key) { $checked = ' checked'; } 
-				   } else {
-					if ($value['std'] == $key) { $checked = ' checked'; }
-				   }
-				$output .= '<input class="of-input of-radio" type="radio" name="'.$option_name.'['.$value['id'].']" value="'. $key .'" '. $checked .' />' . $option .'<br />';
+			foreach ($value['options'] as $key => $option) {
+				$checked = '';
+				if($val != '') {
+					if ( $val == $key) { $checked = ' checked'; } 
+				} 
+			$output .= '<input class="of-input of-radio" type="radio" name="'.$option_name.'['.$value['id'].']" value="'. $key .'" '. $checked .' />' . $option .'<br />';
 			}
 		break;
 		
 		// Checkbox
-		case "checkbox":
-			
+		case "checkbox": 
+		
 			$checked = '';
-			$std = 'false';
-						
-			if ( isset( $settings[($value['id'])] ) ) {
-			 	$std = $settings[($value['id'])];
-			}
-			else {
-				if (isset($value['std']) ) {
-					$std = $value['std'];
-				}
-			}
 		   
-			if ( $std == 'true') {
+			if ( $val == 'true') {
 				$checked = 'checked="checked"';
 			}
 			
@@ -241,9 +216,9 @@ function optionsframework_fields() {
 		
 		// Multicheck
 		case "multicheck":
-			$std =  $value['std'];
 			$output .= '<input id="'. $value['id'] .'" type="hidden" name="'.$option_name.'['.$value['id'].']" />';	
-			foreach ($value['options'] as $key => $option) {						 
+			foreach ($value['options'] as $key => $option) {
+				$checked = '';						 
 				$of_key = $value['id'] . '_' . $key;
 				
 				if ( isset($settings[$of_key]) ) {
@@ -251,16 +226,11 @@ function optionsframework_fields() {
 					if ($saved_std == 'true') {
 						$checked = 'checked="checked"';
 					}
-					else {
-				   		$checked = '';
 				}
-			}
-			else {
-			   if ( $std == 'true') {
-			   		$checked = 'checked="checked"';
-				} else {
-					$checked = '';
-				}
+				else {
+			    	if ( $val == 'true') {
+			   			$checked = 'checked="checked"';
+					}
 			}
 			$output .= '<input id="'. $of_key .'" class="checkbox of-input" type="checkbox" name="' . $option_name . '[' . $of_key .']" value="true" '. $checked .' /><label for="'. $of_key .'">'. $option .'</label><br />';						
 			}
@@ -268,21 +238,12 @@ function optionsframework_fields() {
 		
 		// Color picker
 		case "color":
-			$val = $value['std'];
-			if (isset ($settings[($value['id'])]) ) {
-				$stored  = $settings[($value['id'])];
-			}
-			if ( isset($stored) ) { $val = $stored; }
 			$output .= '<div id="' . $value['id'] . '_picker" class="colorSelector"><div style="background-color:'.$val.'"></div></div>';
 			$output .= '<input class="of-color" name="'.$option_name.'['.$value['id'].']" id="'. $value['id'] .'" type="text" value="'. $val .'" />';
 		break; 
 		
 		// Uploader
 		case "upload":
-			$val = $value['std'];
-			if (isset ($settings[($value['id'])]) ) {
-				$val  = $settings[($value['id'])];
-			}
 			$output .= optionsframework_medialibrary_uploader( $value['id'], $val, null ); // New AJAX Uploader using Media Library	
 		break;
 		
@@ -291,11 +252,7 @@ function optionsframework_fields() {
 		
 			// Set main option
 			$output .= '<input id="'. $value['id'] .'" type="hidden" name="'.$option_name.'['.$value['id'].']" />';
-			$typography_stored = $settings[($value['id'])];
-			
-			if (empty($typography_stored)) {
-				$typography_stored = $value['std'];
-			}
+			$typography_stored = $val;
 			
 			// Font Size
 			$output .= '<select class="of-typography of-typography-size" name="'.$option_name.'['.$value['id'].'_size]" id="'. $value['id'].'_size">';
@@ -345,22 +302,13 @@ function optionsframework_fields() {
 		
 			//Set main option
 			$output .= '<input id="'. $value['id'] .'" type="hidden" name="'.$option_name.'['.$value['id'].']" />';
-			$background_stored = $settings[($value['id'])];
-			
-			if (empty($background_stored)) {
-				$background_stored = $value['std'];
-			}
+			$background_stored = $val;
 			
 			// Background Color
 			$output .= '<div id="' . $value['id'] . '_color_picker" class="colorSelector"><div style="background-color:'.$background_stored['color'].'"></div></div>';
 			$output .= '<input class="of-color of-background of-background-color" name="'.$option_name.'['.$value['id'].'_color]" id="'. $value['id'] .'_color" type="text" value="'. $background_stored['color'] .'" />';
 			
-			// Background Image
-			$val = $value['std'];
-			$stored = $settings[($value['id'])];
-			if ( $stored != "") { $val = $stored; }
-			
-			// New AJAX Uploader using Media Library
+			// Background Image - New AJAX Uploader using Media Library
 			$output .= optionsframework_medialibrary_uploader( $value['id'] . '_image', $background_stored['image'], null );
 			if ($background_stored['image']=='') {$hide = ' hide ';} else { $hide=''; }
 			$output .= '<div class="of-background-properties' . $hide . '">';
@@ -397,22 +345,14 @@ function optionsframework_fields() {
 		// Image Selectors
 		case "images":
 			$i = 0;
-			if (isset($settings[($value['id'])]) ) {
-				$select_value = $settings[($value['id'])];
-			}
 				   
 			foreach ($value['options'] as $key => $option) { 
 				$i++;
 				$checked = '';
 				$selected = '';
-				if ($select_value != '') {
-					if ( $select_value == $key) { $checked = ' checked'; $selected = 'of-radio-img-selected'; }
-				} else {
-					if ($value['std'] == $key) { $checked = ' checked'; $selected = 'of-radio-img-selected'; }
-					elseif ($i == 1  && !isset($select_value)) { $checked = ' checked'; $selected = 'of-radio-img-selected'; }
-					elseif ($i == 1  && $value['std'] == '') { $checked = ' checked'; $selected = 'of-radio-img-selected'; }
-					else { $checked = ''; }
-				}	
+				if ($val != '') {
+					if ( $val == $key) { $checked = ' checked'; $selected = 'of-radio-img-selected'; }
+				}
 				
 				$output .= '<span>';
 				$output .= '<input type="radio" id="of-radio-img-' . $value['id'] . $i . '" class="checkbox of-radio-img-radio" value="'.$key.'" name="'.$option_name.'['.$value['id'].']" '.$checked.' />';
