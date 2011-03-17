@@ -139,10 +139,8 @@ function optionsframework_setdefaults() {
 	 *
 	 */
 	 
-	 $knownoptions = 'false';
-	 $knownoptions =  $optionsframework_settings['knownoptions'];
-	 
-	if ( $knownoptions ) {
+	if ( isset($optionsframework_settings['knownoptions']) ) {
+		$knownoptions =  $optionsframework_settings['knownoptions'];
 		if ( !in_array($option_name, $knownoptions) ) {
 			array_push( $knownoptions, $option_name );
 			$optionsframework_settings['knownoptions'] = $knownoptions;
