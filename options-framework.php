@@ -338,6 +338,7 @@ function optionsframework_validate($input) {
 	$options = optionsframework_options();
 	
 	foreach ($options as $option) {
+		
 		// Verify that the option has an id
 		if ( isset ($option['id']) ) {
 			// Verify that there's a value in the $input
@@ -347,8 +348,8 @@ function optionsframework_validate($input) {
 				
 				// If it's a checkbox, make sure it's either null or checked
 				case ($option['type'] == 'checkbox'):
-					if ( !empty($input[($option['id'])]) )
-						$input[($option['id'])] = 'true';
+					if ( ($input[($option['id'])]) != 'true' )
+						$input[($option['id'])] = 'false';
 				break;
 				
 				// If it's a multicheck

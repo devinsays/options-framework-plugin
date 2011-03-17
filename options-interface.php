@@ -137,9 +137,7 @@ function optionsframework_fields() {
 
 		 }
 		 
-		$select_value = '';
-		
- 
+		$select_value = ''; 
 		                                
 		switch ( $value['type'] ) {
 		
@@ -220,18 +218,19 @@ function optionsframework_fields() {
 		break;
 		
 		// Checkbox
-		case "checkbox": 
-			$std = $value['std'];
-			if ( !empty( $settings[($value['id'])] ) ) {
-				$std = $settings[($value['id'])];
-			}
+		case "checkbox":
+			
 			$checked = '';
+			$std = 'false';
+						
+			if ( isset( $settings[($value['id'])] ) ) {
+			 	$std = $settings[($value['id'])];
+			}
 		   
 			if ( $std == 'true') {
 				$checked = 'checked="checked"';
-			} else {
-				$checked = '';
 			}
+			
 			$output .= '<input id="'. $value['id'] .'" class="checkbox of-input" type="checkbox" name="'.$option_name.'['.$value['id'].']" value="true" '. $checked .' />';
 		break;
 		
