@@ -422,6 +422,8 @@ function optionsframework_validate($input) {
 					
 					// For the remaining options, strip any tags that aren't allowed in posts
 					default:
+						// Strips double quotes, so be warned
+						// http://codex.wordpress.org/Function_Reference/wp_filter_post_kses
 						$input[($option['id'])] = wp_filter_post_kses( $input[($option['id'])] );
 					
 					}

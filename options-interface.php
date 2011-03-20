@@ -41,6 +41,10 @@ function optionsframework_fields() {
 		if ( ($value['type'] != 'heading') && ($value['type'] != 'info')) {
 			if ( isset($settings[($value['id'])]) ) {
 					$val = $settings[($value['id'])];
+					// Striping slashes of non-array options
+					if (!is_array($val)) {
+						$val = stripslashes($val);
+					}
 			}
 		}
 		                                
