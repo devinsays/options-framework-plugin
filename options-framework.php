@@ -214,6 +214,13 @@ function optionsframework_load_scripts() {
 	// Enqueued scripts
 	wp_enqueue_script('jquery-ui-core');
 	wp_enqueue_script('color-picker', OPTIONS_FRAMEWORK_URL.'js/colorpicker.js', array('jquery'));
+	wp_enqueue_script('options-custom', OPTIONS_FRAMEWORK_URL.'js/options-custom.js', array('jquery'));
+}
+
+function of_admin_head() {
+
+	// Hook to add custom scripts
+	do_action( 'optionsframework_custom_scripts' );
 }
 
 /* 
