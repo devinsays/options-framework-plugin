@@ -22,6 +22,11 @@ get_header(); ?>
             <h3>Basic Options</h3>
             
             <dl>
+            <dt>type: text (class mini)</dt>
+            <dd>of_get_option('example_text_mini'): <?php echo of_get_option('example_text_mini', 'no entry'); ?></dd>
+            </dl>
+            
+            <dl>
             <dt>type: text</dt>
             <dd>of_get_option('example_text'): <?php echo of_get_option('example_text', 'no entry'); ?></dd>
             </dl>

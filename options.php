@@ -50,11 +50,11 @@ function optionsframework_options() {
 							"desc" => "If you are seeing this, it means your theme isn't set up to use the Options Framework yet.",
 							"type" => "info");
 							
-		$options[] = array(  "desc" => "If this is a mistake, make sure that the file options.php is in your theme folder, and that you have the correct theme activated.",
+		$options[] = array(  "desc" => "If this is a mistake, make sure that the file options.php is in your theme folder and that you have the correct theme activated.",
 							"type" => "info");
 							
 		$options[] = array( "name" => "How to Set Up Options",
-							"desc" => "If you are trying to set up new options for a theme, visit the <a href=\"http://wptheming.com/options-framework-plugin\" />Options Framework plugin page</a>.  Or, just copy options.php from this plugin's directory into your theme and read the comments.",
+							"desc" => "If you are trying to set up new options for a theme, visit the <a href=\"http://wptheming.com/options-framework-plugin\" />Options Framework plugin page</a>.",
 							"type" => "info");
 							
 	/*
