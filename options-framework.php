@@ -39,6 +39,8 @@ if ( !function_exists( 'add_action' ) ) {
 
 /* If the user can't edit theme options, no use running this plugin */
 
+add_action('init', 'optionsframework_rolescheck' );
+
 function optionsframework_rolescheck () {
 	if ( current_user_can('edit_theme_options') ) {
 		// If the user can edit theme options, let the fun begin!
@@ -47,13 +49,14 @@ function optionsframework_rolescheck () {
 		add_action( 'admin_init', 'optionsframework_mlu_init' );
 	}
 }
-add_action('init', 'optionsframework_rolescheck' );
 
-/* Might add an activation message on install */
+/* Register plugin activation hooks */
 
-register_activation_hook(__FILE__,'optionsframework_activation_hook'); 
+register_activation_hook(__FILE__,'optionsframework_activation_hook');
+
 function optionsframework_activation_hook() {
-	// But for now, nothing
+	optionsframework_update_settings();
+	register_uninstall_hook( __FILE__, 'optionsframework_delete_options' );
 }
 
 /* When uninstalled, deletes options */
@@ -99,9 +102,6 @@ function optionsframework_init() {
 		require_once dirname( __FILE__ ) . '/options.php';
 	}
 	
-	// Updates the unique option id in the database if it has changed
-	optionsframework_option_name();
-	
 	$optionsframework_settings = get_option('optionsframework');
 	
 	// Gets the unique id, returning a default if it isn't defined
@@ -109,10 +109,23 @@ function optionsframework_init() {
 	
 	// Registers the settings fields and callback
 	register_setting('optionsframework', $option_name, 'optionsframework_validate' );
+}
+
+/* 
+ * Updates the settings on plugin activation or theme activation
+ *
+ */
+ 
+function optionsframework_update_settings() {
+	
+	// Updates the unique option id in the database if it has changed
+	optionsframework_option_name();
 	
 	// Adds the options and their defaults to the databse if they haven't been set
 	optionsframework_setdefaults();
 }
+
+add_action('switch_theme', 'optionsframework_update_settings');
 
 /* 
  * Adds default options to the database if they aren't already present.
@@ -338,7 +351,10 @@ function optionsframework_validate($input) {
 	
 	if (!empty($_REQUEST['update'])) {
 	
+		$clean = array();
+	
 		$optionsframework_settings['message'] = 'update';
+		
 		update_option('optionsframework', $optionsframework_settings);
 
 		// Get the options array we have defined in options.php
@@ -362,7 +378,7 @@ function optionsframework_validate($input) {
 					// If it's a checkbox, make sure it's either null or checked
 					case ($option['type'] == 'checkbox'):
 						if ( ($input[($option['id'])]) != 'true' )
-							$input[($option['id'])] = 'false';
+							$clean[($option['id'])] = 'false';
 					break;
 					
 					// If it's a multicheck
@@ -375,7 +391,7 @@ function optionsframework_validate($input) {
 							if (!empty($input[($option['id']. '_' . $key)])) {
 								// If it's not null, make sure it's true, add it to an array
 								if ( $input[($option['id']. '_' . $key)] ) {
-									$input[($option['id']. '_' . $key)] = 'true';
+									$clean[($option['id']. '_' . $key)] = 'true';
 									$checkboxarray[$i] = $key;
 									$i++;
 								}
@@ -383,14 +399,14 @@ function optionsframework_validate($input) {
 						}
 						// Take all the items that were checked, and set them as the main option
 						if (!empty($checkboxarray)) {
-							$input[($option['id'])] = $checkboxarray;
+							$clean[($option['id'])] = $checkboxarray;
 						}
 					break;
 					
 					// If it's a typography option
 					case ($option['type'] == 'typography') :
 						$typography_id = $option['id'];
-						$input[$typography_id] = array(
+						$clean[$typography_id] = array(
 							'size' => $input[$typography_id .'_size'],
 							'face' => $input[$typography_id .'_face'],
 							'style' => $input[$typography_id .'_style'],
@@ -401,12 +417,12 @@ function optionsframework_validate($input) {
 					case ($option['type'] == 'background') :
 						$background_id = $option['id'];
 						if ( empty($input[$background_id .'_color']) ) {
-							$input[$background_id .'_color'] = '';
+							$clean[$background_id .'_color'] = '';
 						}
 						if ( empty($input[$background_id .'_image']) ) {
-							$input[$background_id .'_image'] = '';
+							$clean[$background_id .'_image'] = '';
 						}
-						$input[$background_id] = array(
+						$clean[$background_id] = array(
 							'color' => $input[$background_id .'_color'],
 							'image' => $input[$background_id .'_image'],
 							'repeat' => $input[$background_id .'_repeat'],
@@ -417,14 +433,15 @@ function optionsframework_validate($input) {
 					// If it's a select make sure it's in the array we supplied
 					case ($option['type'] == 'select') :
 						if ( !array_key_exists( $input[($option['id'])], $option['options'] ) )
-							$input[($option['id'])] = null;
+							$clean[($option['id'])] = null;
 					break;
 					
 					// For the remaining options, strip any tags that aren't allowed in posts
 					default:
-						// Strips double quotes, so be warned
+						// Cleans html characters
+						$input[($option['id'])] = sanitize_text_field($input[($option['id'])]);
 						// http://codex.wordpress.org/Function_Reference/wp_filter_post_kses
-						$input[($option['id'])] = wp_filter_post_kses( $input[($option['id'])] );
+						$clean[($option['id'])] = wp_filter_post_kses( $input[($option['id'])] );
 					
 					}
 				}
@@ -434,7 +451,7 @@ function optionsframework_validate($input) {
 		
 	}
 	
-	return $input; // Return validated input
+	return $clean; // Return validated input
 	
 	} // End $_REQUEST['update']
 	
