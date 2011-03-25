@@ -55,7 +55,7 @@ function optionsframework_rolescheck () {
 register_activation_hook(__FILE__,'optionsframework_activation_hook');
 
 function optionsframework_activation_hook() {
-	optionsframework_update_settings();
+	optionsframework_setdefaults();
 	register_uninstall_hook( __FILE__, 'optionsframework_delete_options' );
 }
 
@@ -104,28 +104,18 @@ function optionsframework_init() {
 	
 	$optionsframework_settings = get_option('optionsframework');
 	
+	// Updates the unique option id in the database if it has changed
+	optionsframework_option_name();
+	
 	// Gets the unique id, returning a default if it isn't defined
 	$option_name = $optionsframework_settings['id'];
+	
+	// Set the option defaults in case they have changed
+	optionsframework_setdefaults();
 	
 	// Registers the settings fields and callback
 	register_setting('optionsframework', $option_name, 'optionsframework_validate' );
 }
-
-/* 
- * Updates the settings on plugin activation or theme activation
- *
- */
- 
-function optionsframework_update_settings() {
-	
-	// Updates the unique option id in the database if it has changed
-	optionsframework_option_name();
-	
-	// Adds the options and their defaults to the databse if they haven't been set
-	optionsframework_setdefaults();
-}
-
-add_action('switch_theme', 'optionsframework_update_settings');
 
 /* 
  * Adds default options to the database if they aren't already present.
@@ -384,17 +374,16 @@ function optionsframework_validate($input) {
 					// If it's a multicheck
 					case ($option['type'] == 'multicheck'):
 						$i = 0;
-						foreach ($option['options'] as $key) {
+						foreach ($option['options'] as $key ) {
 							// Make sure the key is lowercase and without spaces
 							$key = ereg_replace("[^A-Za-z0-9]", "", strtolower($key));
 							// Check that the option isn't null
 							if (!empty($input[($option['id']. '_' . $key)])) {
 								// If it's not null, make sure it's true, add it to an array
-								if ( $input[($option['id']. '_' . $key)] ) {
-									$clean[($option['id']. '_' . $key)] = 'true';
-									$checkboxarray[$i] = $key;
-									$i++;
-								}
+								$checkboxarray[$key] = 'true';
+							}
+							else {
+								$checkboxarray[$key] = 'false';
 							}
 						}
 						// Take all the items that were checked, and set them as the main option
@@ -442,18 +431,21 @@ function optionsframework_validate($input) {
 						$input[($option['id'])] = sanitize_text_field($input[($option['id'])]);
 						// http://codex.wordpress.org/Function_Reference/wp_filter_post_kses
 						$clean[($option['id'])] = wp_filter_post_kses( $input[($option['id'])] );
-					
 					}
-				}
-			}
+					
+				} // end switch
+				
+			} // end isset $input
+			
+		} // end isset $id
 		
-		}
-		
+	} // end foreach
+	
+	if ( isset($clean) ) {
+		return $clean; // Return validated input
 	}
 	
-	return $clean; // Return validated input
-	
-	} // End $_REQUEST['update']
+	} // end $_REQUEST['update']
 	
 }
 }

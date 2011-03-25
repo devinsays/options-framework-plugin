@@ -115,22 +115,26 @@ function optionsframework_fields() {
 		// Multicheck
 		case "multicheck":
 			$output .= '<input id="'. $value['id'] .'" type="hidden" name="'.$option_name.'['.$value['id'].']" />';	
-			foreach ($value['options'] as $key => $option) {
-				$checked = '';						 
-				$of_key = $value['id'] . '_' . $key;
+			foreach ($value['options'] as $option) {
+				$checkbox_name = $option;
+				$option = ereg_replace("[^A-Za-z0-9]", "", strtolower($option));
+				$checkbox_id = $option_name.'['.$value['id'].'_'. $option .']';
+				$checked = '';
 				
-				if ( isset($settings[$of_key]) ) {
-					$saved_std = $settings[$of_key];
+				if ( isset($settings[$option]) ) {
+					$saved_std = $settings[$option];
 					if ($saved_std == 'true') {
 						$checked = 'checked="checked"';
 					}
 				}
 				else {
-			    	if ( $val == 'true') {
+			    	if ( isset($val[$option]) ) {
+						if ( $val[$option] == 'true') {
 			   			$checked = 'checked="checked"';
+						}
 					}
 			}
-			$output .= '<input id="'. $of_key .'" class="checkbox of-input" type="checkbox" name="' . $option_name . '[' . $of_key .']" value="true" '. $checked .' /><label for="'. $of_key .'">'. $option .'</label><br />';						
+			$output .= '<input id="'. $checkbox_id .'" class="checkbox of-input" type="checkbox" name="'. $checkbox_id .'" value="true" '. $checked .' /><label for="'. $option .'">'. $checkbox_name .'</label><br />';						
 			}
 		break;
 		
