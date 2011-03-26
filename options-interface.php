@@ -9,7 +9,12 @@ function optionsframework_fields() {
 	$optionsframework_settings = get_option('optionsframework');
 
 	// Gets the unique option id
-	$option_name = $optionsframework_settings['id'];
+	if (isset($optionsframework_settings['id'])) {
+		$option_name = $optionsframework_settings['id'];
+	}
+	else {
+		$option_name = 'optionsframework';
+	};
 
 	$settings = get_option($option_name);
     $options = optionsframework_options();

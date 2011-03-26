@@ -55,7 +55,6 @@ function optionsframework_rolescheck () {
 register_activation_hook(__FILE__,'optionsframework_activation_hook');
 
 function optionsframework_activation_hook() {
-	optionsframework_setdefaults();
 	register_uninstall_hook( __FILE__, 'optionsframework_delete_options' );
 }
 

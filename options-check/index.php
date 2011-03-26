@@ -22,7 +22,7 @@ get_header(); ?>
             <h3>Basic Options</h3>
             
             <dl>
-            <dt>type: text (class mini)</dt>
+            <dt>type: text (mini)</dt>
             <dd>of_get_option('example_text_mini'): <?php echo of_get_option('example_text_mini', 'no entry'); ?></dd>
             </dl>
             
@@ -81,18 +81,30 @@ get_header(); ?>
             </dd>
             </dl>
             
-            <p>You can get all the items that were marked true:</p>
+            <p>You can get the value of all items in the checkbox array:</p>
             <ul>
             <?php
 			if ( is_array($multicheck) ) {
-				foreach ($multicheck as $mc) {
-					echo '<li>' . $mc . '</li>';
+				foreach ($multicheck as $key => $value) {
+					echo '<li>' . $key . ' = ' . $value . '</li>';
 				}
 			}
 			?>
             </ul>
             
-            <p>Or an individual checkbox in the group by using of_get_option('multicheck_$key') where $key is one of the items in the checkbox $options array.</p>
+            <p>You can also get an individual checkbox value if you know what you are looking for.  In this example, I'll check for "three", which is an item I sent in the array for checkboxes:</p>
+            
+            <p>The value of the multicheck box "three" of example_multicheck is: 
+            
+            <?php
+            if (isset($multicheck['one']) ) {
+				echo $multicheck['one'];
+			} else {
+				echo 'no entry';
+			}
+			?>
+            </p>
+            
             
             <dl>
             <dt>type: background</dt>
@@ -135,13 +147,13 @@ get_header(); ?>
             if ($typography !='false') {
 				echo '<span style="font:'.$typography['size'] . ' ' . $typography['face']. ' ' . $typography['style'] . '; color:'.$typography['color'].';">Some sample text in your style</span>';
 				echo '<ul>';
-				foreach ($typography as $i=>$param) {
-					echo '<li>'.$i . ' = ' . $param.'</li>';
+				foreach ($typography as $i=>$param){
+				echo '<li>'.$i . ' = ' . $param.'</li>';
 				}
 				echo '</ul>';
 				} else {
-					echo "no entry";
-            } ?>
+				echo "no entry";
+            }; ?>
             </span>
             </dd>
             </dl>

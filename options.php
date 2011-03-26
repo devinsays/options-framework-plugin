@@ -25,7 +25,7 @@ function optionsframework_options() {
 							"type" => "heading");
 		
 		$options[] = array( "name" => "No Options Are Loaded",
-							"desc" => "If you are seeing this, it means your theme isn't set up to use the Options Framework yet.",
+							"desc" => "Your theme doesn't appear to support the Options Framework yet.",
 							"type" => "info");
 							
 		$options[] = array(  "desc" => "If this is a mistake, make sure that the file options.php is in your theme folder and that you have the correct theme activated.",
