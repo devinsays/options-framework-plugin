@@ -69,7 +69,7 @@ function optionsframework_delete_options() {
 	// Each theme saves its data in a seperate option, which all gets deleted
 	$knownoptions = $optionsframework_settings['knownoptions'];
 	if ($knownoptions) {
-		foreach ($knownoption as $key) {
+		foreach ($knownoptions as $key) {
 			delete_option($key);
 		}
 	}
