@@ -364,10 +364,13 @@ function optionsframework_validate($input) {
 			
 					switch ( $option['type'] ) {
 					
-					// If it's a checkbox, make sure it's either null or checked
+					// If it's a checkbox, make sure it's either true or false
 					case ($option['type'] == 'checkbox'):
-						if ( ($input[($option['id'])]) != 'true' )
+						if ( ($input[($option['id'])]) == 'true' )
+							$clean[($option['id'])] = 'true';
+						else {
 							$clean[($option['id'])] = 'false';
+						}
 					break;
 					
 					// If it's a multicheck
