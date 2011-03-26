@@ -1,10 +1,10 @@
 <?php
 /**
-* A unique identifier is defined to store the options in the database and reference them from the theme.
-* By default it uses the theme name, in lowercase and without spaces, but this can be changed if needed.
-* If the identifier changes, it'll appear as if the options have been reset.
-*
-*/
+ * A unique identifier is defined to store the options in the database and reference them from the theme.
+ * By default it uses the theme name, in lowercase and without spaces, but this can be changed if needed.
+ * If the identifier changes, it'll appear as if the options have been reset.
+ * 
+ */
 
 function optionsframework_option_name() {
 
@@ -21,92 +21,91 @@ function optionsframework_option_name() {
 }
 
 /**
-* Defines an array of options that will be used to generate the settings page and be saved in the database.
-* When creating the "id" fields, make sure to use all lowercase and no spaces.
-*
-*/
+ * Defines an array of options that will be used to generate the settings page and be saved in the database.
+ * When creating the "id" fields, make sure to use all lowercase and no spaces.
+ *  
+ */
 
 function optionsframework_options() {
 	
 	// Test data
-	$options_select = array("One","Two","Three","Four","Five");
-	$options_radio = array("one" => "One","two" => "Two","three" => "Three","four" => "Four","five" => "Five");
+	$test_array = array("one" => "One","two" => "Two","three" => "Three","four" => "Four","five" => "Five");
 	
 	//Access the WordPress Categories via an Array
-	$options_categories = array();
+	$options_categories = array();  
 	$options_categories_obj = get_categories();
 	foreach ($options_categories_obj as $category) {
-		 $options_categories[$category->cat_ID] = $category->cat_name;
+    	$options_categories[$category->cat_ID] = $category->cat_name;
 	}
-	
+		
 	// If using image radio buttons, define a directory path
-	$imagepath = get_bloginfo('stylesheet_directory') . '/images/';
-	
+	$imagepath =  get_bloginfo('stylesheet_directory') . '/images/';
+		
 	$options = array();
-	
+		
 	$options[] = array( "name" => "Basic Settings",
 						"type" => "heading");
-	
+							
 	$options[] = array( "name" => "Input Text Mini",
 						"desc" => "A mini text input field.",
 						"id" => "example_text_mini",
 						"std" => "Default",
 						"class" => "mini",
 						"type" => "text");
-	
+								
 	$options[] = array( "name" => "Input Text",
 						"desc" => "A text input field.",
 						"id" => "example_text",
 						"std" => "Default Value",
 						"type" => "text");
-	
+							
 	$options[] = array( "name" => "Textarea",
 						"desc" => "Textarea description.",
 						"id" => "example_textarea",
 						"std" => "Default Text",
-						"type" => "textarea");
-	
+						"type" => "textarea"); 
+						
 	$options[] = array( "name" => "Input Select Small",
 						"desc" => "Small Select Box.",
 						"id" => "example_select",
 						"std" => "three",
 						"type" => "select",
 						"class" => "mini", //mini, tiny, small
-						"options" => $options_select);
-	
+						"options" => $test_array);			 
+						
 	$options[] = array( "name" => "Input Select Wide",
 						"desc" => "A wider select box.",
 						"id" => "example_select_wide",
 						"std" => "two",
 						"type" => "select",
-						"options" => $options_select);
-	
+						"options" => $test_array);
+						
 	$options[] = array( "name" => "Select Categories",
 						"desc" => "Passed an array of options to be sorted by key.",
 						"id" => "example_select_categories",
 						"type" => "select",
 						"options" => $options_categories);
-	
+						
 	$options[] = array( "name" => "Input Radio (one)",
 						"desc" => "Radio select with default options 'one'.",
 						"id" => "example_radio",
 						"std" => "one",
 						"type" => "radio",
-						"options" => $options_radio);
-	
+						"options" => $test_array);
+							
 	$options[] = array( "name" => "Example Info",
 						"desc" => "This is just some example information you can put in the panel.",
 						"type" => "info");
-						
+											
 	$options[] = array( "name" => "Input Checkbox",
 						"desc" => "Example checkbox, defaults to true.",
 						"id" => "example_checkbox",
 						"std" => "true",
 						"type" => "checkbox");
-	
+						
 	$options[] = array( "name" => "Advanced Settings",
 						"type" => "heading");
-	
+						
 	$options[] = array( "name" => "Check to Show a Hidden Text Input",
 						"desc" => "Click here and see what happens.",
 						"id" => "example_showhidden",
@@ -119,13 +118,12 @@ function optionsframework_options() {
 						"std" => "Hello",
 						"class" => "hidden",
 						"type" => "text");
-	
+						
 	$options[] = array( "name" => "Uploader Test",
 						"desc" => "This creates a full size uploader that previews the image.",
 						"id" => "example_uploader",
-						"std" => "",
 						"type" => "upload");
-	
+						
 	$options[] = array( "name" => "Example Image Selector",
 						"desc" => "Images for layout.",
 						"id" => "example_images",
@@ -137,32 +135,31 @@ function optionsframework_options() {
 							'2c-l-fixed' => $imagepath . '2cl.png',
 							'3c-fixed' => $imagepath . '3cm.png',
 							'3c-r-fixed' => $imagepath . '3cr.png')
-	);
-	
-	$options[] = array( "name" => "Example Background",
-					"desc" => "Change the background CSS.",
-					"id" => "example_background",
-					"std" => array('repeat' => 'repeat','position' => 'top center','attachment'=>'scroll'),
-					"type" => "background");
-	
+						);
+						
+	$options[] = array( "name" =>  "Example Background",
+						"desc" => "Change the background CSS.",
+						"id" => "example_background",
+						"std" => array('repeat' => 'repeat','position' => 'top center','attachment'=>'scroll'), 
+						"type" => "background");
+								
 	$options[] = array( "name" => "Multicheck",
 						"desc" => "Multicheck description.",
 						"id" => "example_multicheck",
 						"std" => "two",
 						"type" => "multicheck",
-						"options" => $options_radio);
-	
+						"options" => $test_array);
+							
 	$options[] = array( "name" => "Colorpicker",
 						"desc" => "No color selected by default.",
 						"id" => "example_colorpicker",
 						"std" => "",
 						"type" => "color");
-	
+						
 	$options[] = array( "name" => "Typography",
 						"desc" => "Example typography.",
 						"id" => "example_typography",
 						"std" => array('size' => '12px','face' => 'verdana','style' => 'bold italic','color' => '#123456'),
-						"type" => "typography");
-	
+						"type" => "typography");			
 	return $options;
 }

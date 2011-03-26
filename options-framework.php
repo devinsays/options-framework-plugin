@@ -420,8 +420,9 @@ function optionsframework_validate($input) {
 					
 					// If it's a select make sure it's in the array we supplied
 					case ($option['type'] == 'select') :
-						if ( !array_key_exists( $input[($option['id'])], $option['options'] ) )
-							$clean[($option['id'])] = null;
+						if ( array_key_exists( $input[($option['id'])], $option['options'] ) ) {
+							$clean[($option['id'])] = $input[($option['id'])];
+						}
 					break;
 					
 					// For the remaining options, strip any tags that aren't allowed in posts
