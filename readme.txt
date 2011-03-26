@@ -1,9 +1,11 @@
 === Options Framework ===
 Contributors: Devin Price
-Tags: theme options
+Tags: options, theme options
+Donate link: 
+https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=X238BDP4QGTV2
 Requires at least: 3.0
 Tested up to: 3.1
-Stable tag: 0.2
+Stable tag: 0.3
 License: GPLv2
 
 == Description ==
@@ -12,18 +14,54 @@ The Options Framework Plugin makes it easy to include an options panel in any Wo
 
 Please visit [http://wptheming.com/options-framework-plugin](http://wptheming.com/options-framework-plugin) for a full description of how to define and use the theme options.
 
-The code is heavily based on the [WooFramework](http://www.woothemes.com/2010/02/canvas/) and their option styles.
+The code is heavily based on the [WooFramework](http://www.woothemes.com/) and their option styles.
 
 == Installation ==
 
-Upload the Options Framework to your site.  If your theme already has options enabled, they will show up under the apperance menu.  If your theme doesn't have options, you can define them to options.php of your theme and they will instantly show up.  For more on how to do this, visit [http://wptheming.com/options-framework-plugin](http://wptheming.com/options-framework-plugin).
+If your theme already has options enabled, they will show up under the apperance menu.
+
+If your theme doesn't have options, you can define them to options.php of your theme and they will instantly show up.  For more on how to do this, visit [http://wptheming.com/options-framework-plugin](http://wptheming.com/options-framework-plugin).
+
+== Frequently Asked Questions ==
+
+= How do I build options for my own theme? =
+
+Download the development version from GitHub [https://github.com/devinsays/options-framework-plugin](https://github.com/devinsays/options-framework-plugin) and copy the "options-check" folder into your themes directory.
+
+The "Options Check" theme is a blueprint for how to work with options.  It includes an example of every option available in the panel and sample output in the theme.
+
+You can also watch the video screencast I have at [http://wptheming.com/options-framework-plugin](http://wptheming.com/options-framework-plugin).
+
+= What options are available to use? =
+
+text
+textarea
+checkbox
+select
+radio
+upload (an image uploader)
+images (use images instead of radio buttons)
+background (a set of options to define a background)
+multicheck
+color (a jquery color picker)
+typography (a set of options to define typography)
+
+== Screenshots ==
+
+1. An example of the "Advanced Options" tag in the "Options Check" theme using this plugin.
 
 == Changelog ==
 
-= 0.1 =
+= 0.3 =
 
-* Initial release
+* White listed options for increased security
+* Fixed errors with checkbox and select boxes
+* Improved the multicheck option and changed format
 
 = 0.2 =
 
 * Uploaded to the WordPress repository
+
+= 0.1 =
+
+* Initial release
