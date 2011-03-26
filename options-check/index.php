@@ -94,7 +94,7 @@ get_header(); ?>
             
             <p>You can also get an individual checkbox value if you know what you are looking for.  In this example, I'll check for "three", which is an item I sent in the array for checkboxes:</p>
             
-            <p>The value of the multicheck box "three" of example_multicheck is: 
+            <p>The value of the multicheck box "one" of example_multicheck is: 
             
             <?php
             if (isset($multicheck['one']) ) {
