@@ -37,6 +37,11 @@ function optionsframework_options() {
 	// Multicheck Defaults
 	$multicheck_defaults = array("one" => "true","five" => "true");
 	
+	// Background Defaults
+	
+	$background_defaults = array('color' => '', 'image' => '', 'repeat' => 'repeat','position' => 'top center','attachment'=>'scroll');
+	
+	
 	//Access the WordPress Categories via an Array
 	$options_categories = array();  
 	$options_categories_obj = get_categories();
@@ -146,7 +151,7 @@ function optionsframework_options() {
 	$options[] = array( "name" =>  "Example Background",
 						"desc" => "Change the background CSS.",
 						"id" => "example_background",
-						"std" => array('repeat' => 'repeat','position' => 'top center','attachment'=>'scroll'), 
+						"std" => $background_defaults, 
 						"type" => "background");
 								
 	$options[] = array( "name" => "Multicheck",

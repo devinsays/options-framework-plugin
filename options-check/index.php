@@ -56,7 +56,7 @@ get_header(); ?>
             <dd>of_get_option('example_checkbox'): <?php echo of_get_option('example_checkbox', 'no entry' ); ?></dd>
             </dl>
             
-             <hr/>
+            <hr/>
             
             <h3>Advanced Options</h3>
             
@@ -76,8 +76,7 @@ get_header(); ?>
             <dl>
             <dt>type: multicheck</dt>
             <dd>of_get_option('multicheck'):
-            <?php
-			$multicheck = of_get_option('example_multicheck', 'false' ); ?>
+            <?php $multicheck = of_get_option('example_multicheck', 'none' ); ?>
 			<?php print_r($multicheck); ?>
             </dd>
             </dl>
@@ -169,10 +168,10 @@ get_header(); ?>
 				} else {
 				echo "no entry";
             }; ?>
-            </span>
             </dd>
             </dl>
             
+            </div>
             </div>
 			
 			</div><!-- #content -->
