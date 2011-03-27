@@ -376,7 +376,7 @@ function optionsframework_validate($input) {
 					// If it's a multicheck
 					case ($option['type'] == 'multicheck'):
 						$i = 0;
-						foreach ($option['options'] as $key ) {
+						foreach ($option['options'] as $key => $option_name ) {
 							// Make sure the key is lowercase and without spaces
 							$key = ereg_replace("[^A-Za-z0-9]", "", strtolower($key));
 							// Check that the option isn't null

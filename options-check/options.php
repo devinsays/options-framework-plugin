@@ -31,6 +31,12 @@ function optionsframework_options() {
 	// Test data
 	$test_array = array("one" => "One","two" => "Two","three" => "Three","four" => "Four","five" => "Five");
 	
+	// Multicheck Array
+	$multicheck_array = array("one" => "French Toast", "two" => "Pancake", "three" => "Omelette", "four" => "Crepe", "five" => "Waffle");
+	
+	// Multicheck Defaults
+	$multicheck_defaults = array("one" => "true","five" => "true");
+	
 	//Access the WordPress Categories via an Array
 	$options_categories = array();  
 	$options_categories_obj = get_categories();
@@ -146,9 +152,9 @@ function optionsframework_options() {
 	$options[] = array( "name" => "Multicheck",
 						"desc" => "Multicheck description.",
 						"id" => "example_multicheck",
-						"std" => "two",
+						"std" => $multicheck_defaults, // These items get checked by default
 						"type" => "multicheck",
-						"options" => $test_array);
+						"options" => $multicheck_array);
 							
 	$options[] = array( "name" => "Colorpicker",
 						"desc" => "No color selected by default.",

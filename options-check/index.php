@@ -77,25 +77,35 @@ get_header(); ?>
             <dt>type: multicheck</dt>
             <dd>of_get_option('multicheck'):
             <?php $multicheck = of_get_option('example_multicheck', 'none' ); ?>
-			<?php echo $multicheck; ?>
+			<?php print_r($multicheck); ?>
             </dd>
             </dl>
+            
+            <p>The array sent in the options panel was defined as:<br>
+            <?php
+			$test_array_jr = array("one" => "French Toast","two" => "Pancake","three" => "Omelette","four" => "Crepe","five" => "Waffle"); 
+			print_r($test_array_jr);
+			?>
+            </p>
             
             <p>You can get the value of all items in the checkbox array:</p>
             <ul>
             <?php
 			if ( is_array($multicheck) ) {
 				foreach ($multicheck as $key => $value) {
-					echo '<li>' . $key . ' = ' . $value . '</li>';
+					// If you need the option's name rather than the key you can get that
+					$name = $test_array_jr[$key];
+					// Prints out each of the values
+					echo '<li>' . $key . ' (' . $name . ') = ' . $value . '</li>';
 				}
 			}
 			?>
             </ul>
             
-            <p>You can also get an individual checkbox value if you know what you are looking for.  In this example, I'll check for "three", which is an item I sent in the array for checkboxes:</p>
+            <p>You can also get an individual checkbox value if you know what you are looking for.  In this example, I'll check for the key "one", which is an item I sent in the array for checkboxes:</p>
             
             <p>The value of the multicheck box "one" of example_multicheck is: 
-            
+            <b>
             <?php
             if (isset($multicheck['one']) ) {
 				echo $multicheck['one'];
@@ -103,6 +113,7 @@ get_header(); ?>
 				echo 'no entry';
 			}
 			?>
+            </b>
             </p>
             
             
