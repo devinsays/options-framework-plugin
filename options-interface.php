@@ -123,7 +123,7 @@ function optionsframework_fields() {
 			$output .= '<input id="'. $value['id'] .'" type="hidden" name="'.$option_name.'['.$value['id'].']" />';	
 			foreach ($value['options'] as $key => $option) {
 				$checkbox_name = $option;
-				$option = ereg_replace("[^A-Za-z0-9]", "", strtolower($key));
+				$option = preg_replace("[^A-Za-z0-9_]", "", strtolower($key));
 				$checkbox_id = $option_name.'['.$value['id'].'_'. $option .']';
 				$checked = '';
 				
