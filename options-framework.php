@@ -173,6 +173,7 @@ function optionsframework_setdefaults() {
 						$optionarray[$key] = wp_filter_post_kses($value);
 					}
 					$values[$option_id] = $optionarray;
+					unset($optionarray);
 				}
 			} else {
 				$value = '';

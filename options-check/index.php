@@ -76,7 +76,8 @@ get_header(); ?>
             <dl>
             <dt>type: multicheck</dt>
             <dd>of_get_option('multicheck'):
-            <?php $multicheck = of_get_option('example_multicheck', 'none' ); ?>
+            <?php
+			$multicheck = of_get_option('example_multicheck', 'false' ); ?>
 			<?php print_r($multicheck); ?>
             </dd>
             </dl>
@@ -98,6 +99,9 @@ get_header(); ?>
 					// Prints out each of the values
 					echo '<li>' . $key . ' (' . $name . ') = ' . $value . '</li>';
 				}
+			}
+			else {
+				echo '<li>There are no saved values yet.</li>';
 			}
 			?>
             </ul>
