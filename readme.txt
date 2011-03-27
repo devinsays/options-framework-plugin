@@ -5,7 +5,7 @@ Donate link:
 https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=X238BDP4QGTV2
 Requires at least: 3.0
 Tested up to: 3.1
-Stable tag: 0.3
+Stable tag: 0.4
 License: GPLv2
 
 == Description ==
