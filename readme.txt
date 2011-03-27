@@ -34,23 +34,28 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 = What options are available to use? =
 
-text
-textarea
-checkbox
-select
-radio
-upload (an image uploader)
-images (use images instead of radio buttons)
-background (a set of options to define a background)
-multicheck
-color (a jquery color picker)
-typography (a set of options to define typography)
+* text
+* textarea
+* checkbox
+* select
+* radio
+* upload (an image uploader)
+* images (use images instead of radio buttons)
+* background (a set of options to define a background)
+* multicheck
+* color (a jquery color picker)
+* typography (a set of options to define typography)
 
 == Screenshots ==
 
 1. An example of the "Advanced Options" tag in the "Options Check" theme using this plugin.
 
 == Changelog ==
+
+= 0.4 =
+
+* Updated multicheck option to save keys rather than values
+* Unset default array options after each output in optionsframework_setdefaults
 
 = 0.3 =
 
