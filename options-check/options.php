@@ -51,7 +51,8 @@ function optionsframework_options() {
 	
 	// Pull all the pages into an array
 	$options_pages = array();  
-	$options_pages_obj = get_pages();
+	$options_pages_obj = get_pages('sort_column=post_parent,menu_order');
+	$options_pages['false'] = 'Select a page:';
 	foreach ($options_pages_obj as $page) {
     	$options_pages[$page->ID] = $page->post_title;
 	}
