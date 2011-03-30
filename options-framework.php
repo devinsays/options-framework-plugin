@@ -321,6 +321,8 @@ function optionsframework_page() {
 if ( !function_exists( 'optionsframework_validate' ) ) {
 function optionsframework_validate($input) {
 
+	global $validate;
+
 	$optionsframework_settings = get_option('optionsframework');
 	
 	// Gets the unique option id
@@ -429,18 +431,10 @@ function optionsframework_validate($input) {
 						}
 					break;
 					
-					// For the remaining options, strip any tags that aren't allowed in posts
+					// For the remaining options, strip any tags depending on validate parameter
 					default:
-						//only allow html when requested by validate parameter
-						if($option['validate'] == 'html'){
-							// http://codex.wordpress.org/Function_Reference/wp_filter_post_kses
-							$clean[($option['id'])] = wp_filter_post_kses( $input[($option['id'])] );
-						} elseif ($option['validate'] == 'none'){
-							$clean[($option['id'])] = $input[($option['id'])];
-						} else {
-							// Cleans html characters
-							$clean[($option['id'])] = sanitize_text_field($input[($option['id'])]);
-						}	
+						if ( isset ($option['validate']) ) { $validate = $option['validate'];} else {$validate='';}
+						$clean[($option['id'])] = of_validate_text( $input[($option['id'])] , $validate );
 					}
 					
 				} // end switch
@@ -460,6 +454,29 @@ function optionsframework_validate($input) {
 }
 }
 
+/*
+ * Helper Function to Validate text and textareas in different ways
+ */
+ 
+if ( !function_exists( 'of_validate_text' ) ) {
+function of_validate_text($input , $validate = '') { 
+	global $validate;
+	
+	//only allow html when requested by validate parameter
+	if($validate == 'html'){
+		// http://codex.wordpress.org/Function_Reference/wp_filter_post_kses
+		$clean = wp_filter_post_kses( $input );
+	} elseif ($validate == 'none') {
+		// allows anything- be careful
+		$clean = $input;
+	} else {
+		// Cleans all html characters
+		$clean = sanitize_text_field($input);
+	}	
+	return apply_filters( 'of_validate_text', $clean);
+	//return "val = " . $validate;
+}
+}
 
 /* 
  * Helper function to return the theme option value. If no value has been saved, it returns $default.
