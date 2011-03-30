@@ -47,6 +47,16 @@ get_header(); ?>
             </dl>
             
             <dl>
+            <dt>type: select</dt>
+            <dd>of_get_option('example_select_categories'): category id = <?php echo of_get_option('example_select_categories', 'no entry' ); ?></dd>
+            </dl>
+            
+            <dl>
+            <dt>type: select</dt>
+            <dd>of_get_option('example_select_pages'): page id = <?php echo of_get_option('example_select_pages', 'no entry' ); ?></dd>
+            </dl>
+            
+            <dl>
             <dt>type: radio</dt>
             <dd>of_get_option('example_radio'): <?php echo of_get_option('example_radio', 'no entry' ); ?></dd>
             </dl>
@@ -158,16 +168,17 @@ get_header(); ?>
             <dt>type: typography</dt>
             <dd>of_get_option('typography'):
             <?php $typography = of_get_option('example_typography', false );
-            if ($typography !='false') {
+            if ($typography != 'false') {
 				echo '<span style="font:'.$typography['size'] . ' ' . $typography['face']. ' ' . $typography['style'] . '; color:'.$typography['color'].';">Some sample text in your style</span>';
+				
 				echo '<ul>';
-				foreach ($typography as $i=>$param){
-				echo '<li>'.$i . ' = ' . $param.'</li>';
+				foreach ($typography as $i=>$param) {
+					echo '<li>'.$i . ' = ' . $param.'</li>';
 				}
-				echo '</ul>';
-				} else {
+					echo '</ul>';
+			} else {
 				echo "no entry";
-            }; ?>
+			} ?>
             </dd>
             </dl>
             

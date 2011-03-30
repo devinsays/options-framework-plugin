@@ -42,11 +42,18 @@ function optionsframework_options() {
 	$background_defaults = array('color' => '', 'image' => '', 'repeat' => 'repeat','position' => 'top center','attachment'=>'scroll');
 	
 	
-	//Access the WordPress Categories via an Array
+	// Pull all the categories into an array
 	$options_categories = array();  
 	$options_categories_obj = get_categories();
 	foreach ($options_categories_obj as $category) {
     	$options_categories[$category->cat_ID] = $category->cat_name;
+	}
+	
+	// Pull all the pages into an array
+	$options_pages = array();  
+	$options_pages_obj = get_pages();
+	foreach ($options_pages_obj as $page) {
+    	$options_pages[$page->ID] = $page->post_title;
 	}
 		
 	// If using image radio buttons, define a directory path
@@ -91,11 +98,17 @@ function optionsframework_options() {
 						"type" => "select",
 						"options" => $test_array);
 						
-	$options[] = array( "name" => "Select Categories",
-						"desc" => "Passed an array of options to be sorted by key.",
+	$options[] = array( "name" => "Select a Category",
+						"desc" => "Passed an array of categories with cat_ID and cat_name",
 						"id" => "example_select_categories",
 						"type" => "select",
 						"options" => $options_categories);
+						
+	$options[] = array( "name" => "Select a Page",
+						"desc" => "Passed an pages with ID and post_title",
+						"id" => "example_select_pages",
+						"type" => "select",
+						"options" => $options_pages);
 						
 	$options[] = array( "name" => "Input Radio (one)",
 						"desc" => "Radio select with default options 'one'.",
