@@ -376,6 +376,7 @@ function optionsframework_validate($input) {
 					
 					// If it's a multicheck
 					case ($option['type'] == 'multicheck'):
+						unset($checkboxarray);
 						foreach ($option['options'] as $key => $option_name ) {
 							// Make sure the key is lowercase and without spaces
 							$key = preg_replace("[^A-Za-z0-9_]", "", strtolower($key));

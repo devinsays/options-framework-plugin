@@ -120,7 +120,7 @@ function optionsframework_fields() {
 		
 		// Multicheck
 		case "multicheck":
-			$output .= '<input id="'. $value['id'] .'" type="hidden" name="'.$option_name.'['.$value['id'].']" />';	
+			$output .= '<input id="'. $value['id'] .'" type="hidden" name="'.$option_name.'['.$value['id'].']" />';
 			foreach ($value['options'] as $key => $option) {
 				$checkbox_name = $option;
 				$option = preg_replace("[^A-Za-z0-9_]", "", strtolower($key));
