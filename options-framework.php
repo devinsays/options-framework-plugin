@@ -431,10 +431,14 @@ function optionsframework_validate($input) {
 					
 					// For the remaining options, strip any tags that aren't allowed in posts
 					default:
-						// Cleans html characters
-						$input[($option['id'])] = sanitize_text_field($input[($option['id'])]);
-						// http://codex.wordpress.org/Function_Reference/wp_filter_post_kses
-						$clean[($option['id'])] = wp_filter_post_kses( $input[($option['id'])] );
+						//only allow html when requested by validate parameter
+						if($option['validate'] == 'html'){
+							// http://codex.wordpress.org/Function_Reference/wp_filter_post_kses
+							$clean[($option['id'])] = wp_filter_post_kses( $input[($option['id'])] );
+						} else {
+							// Cleans html characters
+							$clean[($option['id'])] = sanitize_text_field($input[($option['id'])]);
+						}	
 					}
 					
 				} // end switch
