@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Options Framework
+Plugin Name: Options Framework -Mod
 Plugin URI: http://www.wptheming.com
 Description: A framework for building theme options.
 Version: 0.4
