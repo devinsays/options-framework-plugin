@@ -479,3 +479,23 @@ function of_get_option($name, $default = 'false') {
 	}
 }
 }
+
+
+
+/**
+ * Add Theme Options menu item to Admin Bar.
+ */
+ 
+add_action( 'wp_before_admin_bar_render', 'optionsframework_adminbar' );
+
+function optionsframework_adminbar() {
+	
+	global $wp_admin_bar;
+	
+	$wp_admin_bar->add_menu( array(
+		'parent' => 'appearance',
+		'id' => 'of_theme_options',
+		'title' => __( 'Theme Options' ),
+		'href' => admin_url( 'themes.php?page=options-framework' )
+  ));
+}
