@@ -435,6 +435,8 @@ function optionsframework_validate($input) {
 						if($option['validate'] == 'html'){
 							// http://codex.wordpress.org/Function_Reference/wp_filter_post_kses
 							$clean[($option['id'])] = wp_filter_post_kses( $input[($option['id'])] );
+						} elseif ($option['validate'] == 'none'){
+							$clean[($option['id'])] = $input[($option['id'])];
 						} else {
 							// Cleans html characters
 							$clean[($option['id'])] = sanitize_text_field($input[($option['id'])]);
