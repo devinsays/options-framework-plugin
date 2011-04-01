@@ -166,10 +166,9 @@ function optionsframework_setdefaults() {
 			// wp_filter_post_kses for strings
 			if (isset($option['std' ]) ) {
 				if ( !is_array($option['std' ]) ) {
-					$value = wp_filter_post_kses($option['std']);
+					$values[$option_id] = wp_filter_post_kses($option['std']);
 				} else {
 					foreach ($option['std' ] as $key => $value) {
-						$values[$option_id . '_' . $key] = wp_filter_post_kses($value);
 						$optionarray[$key] = wp_filter_post_kses($value);
 					}
 					$values[$option_id] = $optionarray;
@@ -182,6 +181,8 @@ function optionsframework_setdefaults() {
 	}
 	
 	if ( isset($values) ) {
+		echo $option_name;
+		var_dump($values);
 		add_option($option_name, $values);
 	}
 }
@@ -483,8 +484,6 @@ function of_get_option($name, $default = 'false') {
 	}
 }
 }
-
-
 
 /**
  * Add Theme Options menu item to Admin Bar.
