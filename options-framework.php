@@ -181,8 +181,6 @@ function optionsframework_setdefaults() {
 	}
 	
 	if ( isset($values) ) {
-		echo $option_name;
-		var_dump($values);
 		add_option($option_name, $values);
 	}
 }
