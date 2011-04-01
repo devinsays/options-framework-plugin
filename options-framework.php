@@ -161,7 +161,7 @@ function optionsframework_setdefaults() {
 	foreach ($options as $option) {
 	
 		if ( ($option['type'] != 'heading') && ($option['type'] != 'info') ) {
-			$option_id = preg_replace("/\W/", "", strtolower($option['id']) );
+			$option_id = preg_replace('/\W/', '', strtolower($option['id']) );
 			
 			// wp_filter_post_kses for strings
 			if (isset($option['std' ]) ) {
@@ -355,6 +355,9 @@ function optionsframework_validate($input) {
 			// Verify that the option has an id
 			if ( isset ($option['id']) ) {
 			
+				// Keep all ids lowercase with no spaces
+				$option['id'] = preg_replace('/\W/', '', strtolower($option['id']) );
+			
 				// Checkbox data isn't sent if it's unchecked, so we'll default it to false
 				if ( ($option['type'] == 'checkbox') && !isset($input[($option['id'])]) ) {
 					$input[($option['id'])] = 'false';
@@ -379,7 +382,7 @@ function optionsframework_validate($input) {
 						unset($checkboxarray);
 						foreach ($option['options'] as $key => $option_name ) {
 							// Make sure the key is lowercase and without spaces
-							$key = preg_replace("[^A-Za-z0-9_]", "", strtolower($key));
+							$key = preg_replace('/\W/', '', strtolower($key));
 							// Check that the option isn't null
 							if (!empty($input[($option['id']. '_' . $key)])) {
 								// If it's not null, make sure it's true, add it to an array
