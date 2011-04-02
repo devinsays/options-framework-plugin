@@ -57,6 +57,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * Fixed errors when more than one multicheck options is used
 * Updated optionsframework_setdefaults so defaults actually save on first run
 * Require that all options have lowercase alphanumeric ids
+* Added link to options from the WordPress admin bar
 
 = 0.4 =
 
