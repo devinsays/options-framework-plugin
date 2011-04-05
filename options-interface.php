@@ -138,7 +138,7 @@ function optionsframework_fields() {
 					}
 				}
 				
-			$output .= '<input id="'. $checkbox_id .'" class="checkbox of-input" type="checkbox" name="'. $checkbox_id .'" value="true" '. $checked .' /><label for="'. $option .'">'. $checkbox_name .'</label><br />';						
+			$output .= '<input id="'. $checkbox_id .'" class="checkbox of-input" type="checkbox" name="'. $checkbox_id .'" value="true" '. $checked .' /><label for="'. $checkbox_id .'">'. $checkbox_name .'</label><br />';						
 			}
 		break;
 		
