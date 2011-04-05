@@ -105,7 +105,9 @@ function optionsframework_fields() {
 				if($val != '') {
 					if ( $val == $key) { $checked = ' checked'; } 
 				} 
-			$output .= '<input class="of-input of-radio" type="radio" name="'.$option_name.'['.$value['id'].']" value="'. $key .'" '. $checked .' />' . $option .'<br />';
+				$name = $option_name .'['. $value['id'] .']';
+				$id = $name .'-'. $key;
+				$output .= '<input class="of-input of-radio" type="radio" name="'. $name .'" id="'. $id .'" value="'. $key .'" '. $checked .' /><label for="'. $id .'">'. $option .'</label><br />';
 			}
 		break;
 		
