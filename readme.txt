@@ -52,6 +52,10 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 == Changelog ==
 
+= 0.6 =
+
+* Updates to labels in the options-interface.php
+
 = 0.5 =
 
 * Fixed errors when more than one multicheck options is used

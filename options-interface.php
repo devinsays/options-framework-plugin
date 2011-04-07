@@ -103,7 +103,7 @@ function optionsframework_fields() {
 			foreach ($value['options'] as $key => $option) {
 				$checked = '';
 				if($val != '') {
-					if ( $val == $key) { $checked = ' checked'; } 
+					if ( $val == $key) { $checked = 'checked="checked"'; } 
 				} 
 				$name = $option_name .'['. $value['id'] .']';
 				$id = $name .'-'. $key;
