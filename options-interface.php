@@ -31,11 +31,14 @@ function optionsframework_fields() {
 		
 		// Wrap all options
 		if ( ($value['type'] != "heading") && ($value['type'] != "info") ) {
+		
+			// Keep all ids lowercase with no spaces
+			$value['id'] = preg_replace('/\W/', '', strtolower($value['id']) );
+			
 		 	$class = ''; if(isset( $value['class'] )) { $class = $value['class']; }
 			$output .= '<div id="section-' . $value['id'] .'" class="section section-'.$value['type'].' '. $class .'">'."\n";
 			$output .= '<h3 class="heading">'. $value['name'] .'</h3>'."\n";
 			$output .= '<div class="option">'."\n" . '<div class="controls">'."\n";
-
 		 }
 		
 		// Set default value to $val
@@ -123,7 +126,7 @@ function optionsframework_fields() {
 			$output .= '<input id="'. $value['id'] .'" type="hidden" name="'.$option_name.'['.$value['id'].']" />';
 			foreach ($value['options'] as $key => $option) {
 				$checkbox_name = $option;
-				$option = preg_replace("[^A-Za-z0-9_]", "", strtolower($key));
+				$option = preg_replace('/\W/', '', strtolower($key));
 				$checkbox_id = $option_name.'['.$value['id'].'_'. $option .']';
 				$checked = '';
 				
@@ -290,7 +293,7 @@ function optionsframework_fields() {
 			if($counter >= 2){
 			   $output .= '</div>'."\n";
 			}
-			$jquery_click_hook = ereg_replace("[^A-Za-z0-9]", "", strtolower($value['name']) );
+			$jquery_click_hook = preg_replace('/\W/', '', strtolower($value['name']) );
 			$jquery_click_hook = "of-option-" . $jquery_click_hook;
 			$menu .= '<li><a title="'.  $value['name'] .'" href="#'.  $jquery_click_hook  .'">'.  $value['name'] .'</a></li>';
 			$output .= '<div class="group" id="'. $jquery_click_hook  .'"><h2>'.$value['name'].'</h2>'."\n";

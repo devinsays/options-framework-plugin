@@ -66,11 +66,15 @@
 	
       var formfield,
           formID,
-          btnContent = true;
+          btnContent = true,
+		  tbframe_interval;
       // On Click
       $('input.upload_button').live("click", function () {
         formfield = $(this).prev('input').attr('id');
         formID = $(this).attr('rel');
+		
+		//change "insert into post" to "Use this Button"
+		tbframe_interval = setInterval(function() {jQuery('#TB_iframeContent').contents().find('.savesend .button').val('Use This Image');}, 2000);
         
         // Display a custom title for each Thickbox popup.
         var woo_title = '';
@@ -86,6 +90,9 @@
         
         if (formfield) {
         	
+		  //clear interval for "Use this Button" so button text resets
+		  clearInterval(tbframe_interval);
+		  
           // itemurl = $(html).attr('href'); // Use the URL to the main image.
           
           if ( $(html).html(html).find('img').length > 0 ) {

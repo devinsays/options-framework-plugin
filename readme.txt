@@ -5,7 +5,7 @@ Donate link:
 https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=X238BDP4QGTV2
 Requires at least: 3.0
 Tested up to: 3.1
-Stable tag: 0.4
+Stable tag: 0.5
 License: GPLv2
 
 == Description ==
@@ -51,6 +51,13 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 1. An example of the "Advanced Options" tag in the "Options Check" theme using this plugin.
 
 == Changelog ==
+
+= 0.5 =
+
+* Fixed errors when more than one multicheck options is used
+* Updated optionsframework_setdefaults so defaults actually save on first run
+* Require that all options have lowercase alphanumeric ids
+* Added link to options from the WordPress admin bar
 
 = 0.4 =
 
