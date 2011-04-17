@@ -133,8 +133,8 @@ get_header(); ?>
             <dl>
             <dt>type: background</dt>
             <dd>of_get_option('background'):
-            <?php $background = of_get_option('example_background', false );
-            if ($background != 'false') {
+            <?php $background = of_get_option('example_background');
+            if ($background) {
 				if ($background['image']) {
 					echo '<span style="display: block; height: 200px; width: 200px; background:url('.$background['image']. ') "></span>';
 					echo '<ul>';
@@ -167,7 +167,7 @@ get_header(); ?>
             <dl>
             <dt>type: typography</dt>
             <dd>of_get_option('typography'):
-            <?php $typography = of_get_option('example_typography', false );
+            <?php $typography = of_get_option('example_typography');
             if ($typography != 'false') {
 				echo '<span style="font:'.$typography['size'] . ' ' . $typography['face']. ' ' . $typography['style'] . '; color:'.$typography['color'].';">Some sample text in your style</span>';
 				
