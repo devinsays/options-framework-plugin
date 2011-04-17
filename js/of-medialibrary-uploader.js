@@ -64,29 +64,36 @@
 	
 	$( 'input.upload_button' ).removeAttr('style');
 	
-      var formfield,
-          formID,
-          btnContent = true;
-      // On Click
-      $('input.upload_button').live("click", function () {
+	var formfield,
+		formID,
+		btnContent = true,
+		tbframe_interval;
+		// On Click
+		$('input.upload_button').live("click", function () {
         formfield = $(this).prev('input').attr('id');
         formID = $(this).attr('rel');
+		
+		//Change "insert into post" to "Use this Button"
+		tbframe_interval = setInterval(function() {jQuery('#TB_iframeContent').contents().find('.savesend .button').val('Use This Image');}, 2000);
         
         // Display a custom title for each Thickbox popup.
         var woo_title = '';
         
-       if ( $(this).parents('.section').find('.heading') ) { woo_title = $(this).parents('.section').find('.heading').text(); } // End IF Statement
+		if ( $(this).parents('.section').find('.heading') ) { woo_title = $(this).parents('.section').find('.heading').text(); } // End IF Statement
         
-        tb_show( woo_title, 'media-upload.php?post_id='+formID+'&TB_iframe=1' );
-        return false;
-      });
+		tb_show( woo_title, 'media-upload.php?post_id='+formID+'&TB_iframe=1' );
+		return false;
+	});
             
-      window.original_send_to_editor = window.send_to_editor;
-      window.send_to_editor = function(html) {
+	window.original_send_to_editor = window.send_to_editor;
+	window.send_to_editor = function(html) {
         
-        if (formfield) {
+		if (formfield) {
+			
+			//clear interval for "Use this Button" so button text resets
+			clearInterval(tbframe_interval);
         	
-          // itemurl = $(html).attr('href'); // Use the URL to the main image.
+			// itemurl = $(html).attr('href'); // Use the URL to the main image.
           
           if ( $(html).html(html).find('img').length > 0 ) {
           
@@ -96,9 +103,8 @@
           
           // It's not an image. Get the URL to the file instead.
           	
-          	var htmlBits = html.split("'"); // jQuery seems to strip out XHTML when assigning the string to an object. Use alternate method.
-          
-          	itemurl = htmlBits[1]; // Use the URL to the file.
+		  var htmlBits = html.split("'"); // jQuery seems to strip out XHTML when assigning the string to an object. Use alternate method.
+          itemurl = htmlBits[1]; // Use the URL to the file.
           	
           	var itemtitle = htmlBits[2];
           	
