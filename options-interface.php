@@ -116,7 +116,7 @@ function optionsframework_fields() {
 		
 			$checked = '';
 		   
-			if ( $val == true) {
+			if ( $val ) {
 				$checked = 'checked="checked"';
 			}
 			

@@ -35,7 +35,7 @@ function optionsframework_options() {
 	$multicheck_array = array("one" => "French Toast", "two" => "Pancake", "three" => "Omelette", "four" => "Crepe", "five" => "Waffle");
 	
 	// Multicheck Defaults
-	$multicheck_defaults = array("one" => "true","five" => "true");
+	$multicheck_defaults = array("one" => true,"five" => true);
 	
 	// Background Defaults
 	
@@ -125,7 +125,7 @@ function optionsframework_options() {
 	$options[] = array( "name" => "Input Checkbox",
 						"desc" => "Example checkbox, defaults to true.",
 						"id" => "example_checkbox",
-						"std" => "true",
+						"std" => true,
 						"type" => "checkbox");
 						
 	$options[] = array( "name" => "Advanced Settings",
@@ -134,7 +134,6 @@ function optionsframework_options() {
 	$options[] = array( "name" => "Check to Show a Hidden Text Input",
 						"desc" => "Click here and see what happens.",
 						"id" => "example_showhidden",
-						"std" => "false",
 						"type" => "checkbox");
 	
 	$options[] = array( "name" => "Hidden Text Input",

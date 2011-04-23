@@ -359,7 +359,7 @@ function optionsframework_validate($input) {
 			
 				// Checkbox data isn't sent if it's unchecked, so we'll default it to false
 				if ( ($option['type'] == 'checkbox') && !isset($input[($option['id'])]) ) {
-					$input[($option['id'])] = 'false';
+					$input[($option['id'])] = false;
 				}
 				
 				// Verify that there's a value in the $input
@@ -369,7 +369,7 @@ function optionsframework_validate($input) {
 					
 					// If it's a checkbox, make sure it's either true or false
 					case ($option['type'] == 'checkbox'):
-						if ( ($input[($option['id'])]) == true )
+						if ( $input[($option['id'])] == 'true' )
 							$clean[($option['id'])] = true;
 						else {
 							$clean[($option['id'])] = false;
