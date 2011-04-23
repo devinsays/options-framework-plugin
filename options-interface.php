@@ -116,7 +116,7 @@ function optionsframework_fields() {
 		
 			$checked = '';
 		   
-			if ( $val == 'true') {
+			if ( $val == true) {
 				$checked = 'checked="checked"';
 			}
 			
@@ -133,7 +133,7 @@ function optionsframework_fields() {
 				$checked = '';
 				
 			    if ( isset($val[$option]) ) {
-					if ( $val[$option] == 'true') {
+					if ( $val[$option] == true) {
 			   			$checked = 'checked="checked"';
 					}
 				}

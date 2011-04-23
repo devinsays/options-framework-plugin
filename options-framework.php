@@ -369,10 +369,10 @@ function optionsframework_validate($input) {
 					
 					// If it's a checkbox, make sure it's either true or false
 					case ($option['type'] == 'checkbox'):
-						if ( ($input[($option['id'])]) == 'true' )
-							$clean[($option['id'])] = 'true';
+						if ( ($input[($option['id'])]) == true )
+							$clean[($option['id'])] = true;
 						else {
-							$clean[($option['id'])] = 'false';
+							$clean[($option['id'])] = false;
 						}
 					break;
 					
@@ -385,10 +385,10 @@ function optionsframework_validate($input) {
 							// Check that the option isn't null
 							if (!empty($input[($option['id']. '_' . $key)])) {
 								// If it's not null, make sure it's true, add it to an array
-								$checkboxarray[$key] = 'true';
+								$checkboxarray[$key] = true;
 							}
 							else {
-								$checkboxarray[$key] = 'false';
+								$checkboxarray[$key] = false;
 							}
 						}
 						// Take all the items that were checked, and set them as the main option
