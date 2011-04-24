@@ -108,11 +108,11 @@ function optionsframework_fields() {
 		case "radio":
 			foreach ($value['options'] as $key => $option) {
 				$checked = '';
-				if($val != '') {
+				if ( $val != '' ) {
 					if ( $val == $key) { $checked = 'checked="checked"'; } 
-				} 
+				}
+				$id = $option_name . '-' . $value['id'] .'-'. $key;
 				$name = $option_name .'['. $value['id'] .']';
-				$id = $name .'-'. $key;
 				$output .= '<input class="of-input of-radio" type="radio" name="' . esc_attr( $name ) . '" id="' . esc_attr( $id ) . '" value="'. esc_attr( $key ) . '" ' . $checked .' /><label for="' . esc_attr( $id ) . '">' . esc_html( $option ) . '</label><br />';
 			}
 		break;
@@ -133,9 +133,12 @@ function optionsframework_fields() {
 		case "multicheck":
 			$output .= '<input id="' . esc_attr( $value['id'] ) . '" type="hidden" name="' . esc_attr( $option_name . '[' . $value['id'] . ']' ) . '" />';
 			foreach ($value['options'] as $key => $option) {
-				$checkbox_name = $option;
+				$label = $option;
 				$option = preg_replace('/\W/', '', strtolower($key));
-				$checkbox_id = $option_name.'['.$value['id'].'_'. $option .']';
+
+				$id = $option_name . '-' . $value['id'] . '-'. $option;
+				$name = $option_name . '[' . $value['id'] . '_' . $option .']';
+
 				$checked = '';
 
 			    if ( isset($val[$option]) ) {
@@ -144,7 +147,7 @@ function optionsframework_fields() {
 					}
 				}
 
-				$output .= '<input id="' . esc_attr( $checkbox_id ) . '" class="checkbox of-input" type="checkbox" name="' . esc_attr( $checkbox_id ) . '" value="true" ' . $checked . ' /><label for="' . esc_attr( $checkbox_id ) . '">' . esc_html( $checkbox_name ) . '</label><br />';
+				$output .= '<input id="' . esc_attr( $id ) . '" class="checkbox of-input" type="checkbox" name="' . esc_attr( $name ) . '" value="true" ' . $checked . ' /><label for="' . esc_attr( $id ) . '">' . esc_html( $label ) . '</label><br />';
 			}
 		break;
 		
