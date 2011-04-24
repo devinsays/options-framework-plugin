@@ -96,9 +96,7 @@ function optionsframework_fields() {
 				 if( $val != '' ) {
 					 if ( $val == $key) { $selected = ' selected="selected"';} 
 			     }
-				 $output .= '<option'. $selected .' value="' . esc_attr( $key ) . '">';
-				 $output .= $option;
-				 $output .= '</option>';
+				 $output .= '<option'. $selected .' value="' . esc_attr( $key ) . '">' . esc_html( $option ) . '</option>';
 			 } 
 			 $output .= '</select>';
 		break;
@@ -189,7 +187,7 @@ function optionsframework_fields() {
 							'helvetica'=>'Helvetica*' );
 
 			foreach ($faces as $key => $face) {
-				$output .= '<option value="' . esc_attr( $key ) . '" ' . selected( $typography_stored['face'], $key, false ) . '>' . $face . '</option>';
+				$output .= '<option value="' . esc_attr( $key ) . '" ' . selected( $typography_stored['face'], $key, false ) . '>' . esc_html( $face ) . '</option>';
 			}			
 			$output .= '</select>';	
 
@@ -202,7 +200,7 @@ function optionsframework_fields() {
 							'bold italic'=>'Bold Italic');
 
 			foreach ($styles as $key => $style) {
-				$output .= '<option value="' . esc_attr( $key ) . '" ' . selected( $typography_stored['style'], $key, false ) . '>'. $style .'</option>';
+				$output .= '<option value="' . esc_attr( $key ) . '" ' . selected( $typography_stored['style'], $key, false ) . '>'. esc_html( $style ) .'</option>';
 			}
 			$output .= '</select>';
 
