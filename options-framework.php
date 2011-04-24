@@ -400,8 +400,8 @@ function optionsframework_validate($input) {
 					case ($option['type'] == 'typography') :
 						$typography_id = $option['id'];
 						$clean[$typography_id] = array(
-							'size' => $input[$typography_id .'_size'],
-							'face' => $input[$typography_id .'_face'],
+							'size'  => $input[$typography_id .'_size'],
+							'face'  => $input[$typography_id .'_face'],
 							'style' => $input[$typography_id .'_style'],
 							'color' => $input[$typography_id .'_color']);
 					break;
@@ -416,10 +416,10 @@ function optionsframework_validate($input) {
 							$clean[$background_id .'_image'] = '';
 						}
 						$clean[$background_id] = array(
-							'color' => $input[$background_id .'_color'],
-							'image' => $input[$background_id .'_image'],
-							'repeat' => $input[$background_id .'_repeat'],
-							'position' => $input[$background_id .'_position'],
+							'color'      => $input[$background_id .'_color'],
+							'image'      => $input[$background_id .'_image'],
+							'repeat'     => $input[$background_id .'_repeat'],
+							'position'   => $input[$background_id .'_position'],
 							'attachment' => $input[$background_id .'_attachment']);
 					break;
 					
