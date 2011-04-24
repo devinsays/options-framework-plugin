@@ -285,7 +285,7 @@ function optionsframework_fields() {
 				}
 				
 				$output .= '<span>';
-				$output .= '<input type="radio" id="' . esc_attr( 'of-radio-img-' . $value['id'] . $i ) . '" class="checkbox of-radio-img-radio" value="' . esc_attr( $key ) . '" name="' . esc_attr( $option_name . '[' . $value['id'] . ']"' ) . ' ' . $checked . ' />';
+				$output .= '<input type="radio" id="' . esc_attr( 'of-radio-img-' . $value['id'] . $i ) . '" class="checkbox of-radio-img-radio" value="' . esc_attr( $key ) . '" name="' . esc_attr( $option_name . '[' . $value['id'] . ']' ) . '" ' . $checked . ' />';
 				$output .= '<div class="of-radio-img-label">' . esc_html( $key ) . '</div>';
 				$output .= '<img src="' . esc_url( $option ) . '" alt="" class="of-radio-img-img ' . $selected . '" onClick="document.getElementById(\'of-radio-img-'. $value['id'] . $i.'\').checked = true;" />';
 				$output .= '</span>';
