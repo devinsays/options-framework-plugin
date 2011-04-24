@@ -267,10 +267,10 @@ function optionsframework_page() {
     
 	<div class="wrap">
     <?php screen_icon( 'themes' ); ?>
-	<h2><?php _e('Theme Options'); ?></h2>
+	<h2><?php esc_html_e( 'Theme Options' ); ?></h2>
     
-    <?php if ($message) { ?>
-    	<div id="message" class="updated fade"><p><strong><?php echo $message; ?></strong></p></div>
+    <?php if ( $message ) { ?>
+		<div id="message" class="updated fade"><p><strong><?php esc_html_e( $message ); ?></strong></p></div>
     <?php } ?>
     
     <div id="of_container">
@@ -279,7 +279,7 @@ function optionsframework_page() {
 
         <div id="header">
           <div class="logo">
-            <h2><?php echo $themename; ?></h2>
+            <h2><?php esc_html_e( $themename ); ?></h2>
           </div>
           <div class="clear"></div>
         </div>
@@ -296,8 +296,8 @@ function optionsframework_page() {
           <div class="clear"></div>
         </div>
         <div class="of_admin_bar">
-			<input type="submit" class="button-primary" name="update" value="<?php _e( 'Save Options' ); ?>" />
-            <input type="submit" class="reset-button button-secondary" name="reset" value="<?php _e('Restore Defaults')?>" onclick="return confirm('Click OK to reset. Any theme settings will be lost!');"/>
+			<input type="submit" class="button-primary" name="update" value="<?php esc_attr_e( 'Save Options' ); ?>" />
+            <input type="submit" class="reset-button button-secondary" name="reset" value="<?php esc_attr_e( 'Restore Defaults' ); ?>" onclick="return confirm( '<?php print esc_js( __( 'Click OK to reset. Any theme settings will be lost!' ) ); ?>' );" />
 		</div>
 <div class="clear"></div>
 	</form>
