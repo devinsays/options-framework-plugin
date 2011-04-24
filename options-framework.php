@@ -297,11 +297,10 @@ function optionsframework_page() {
         </div>
         <div class="of_admin_bar">
 			<input type="submit" class="button-primary" name="update" value="<?php _e( 'Save Options' ); ?>" />
-            </form>
-            
             <input type="submit" class="reset-button button-secondary" name="reset" value="<?php _e('Restore Defaults')?>" onclick="return confirm('Click OK to reset. Any theme settings will be lost!');"/>
 		</div>
 <div class="clear"></div>
+	</form>
 </div> <!-- / #container -->  
 </div> <!-- / .wrap -->
 
