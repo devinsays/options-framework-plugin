@@ -267,10 +267,10 @@ function optionsframework_page() {
     
 	<div class="wrap">
     <?php screen_icon( 'themes' ); ?>
-	<h2><?php _e('Theme Options'); ?></h2>
+	<h2><?php esc_html_e( 'Theme Options' ); ?></h2>
     
-    <?php if ($message) { ?>
-    	<div id="message" class="updated fade"><p><strong><?php echo $message; ?></strong></p></div>
+    <?php if ( $message ) { ?>
+		<div id="message" class="updated fade"><p><strong><?php esc_html_e( $message ); ?></strong></p></div>
     <?php } ?>
     
     <div id="of_container">
@@ -279,7 +279,7 @@ function optionsframework_page() {
 
         <div id="header">
           <div class="logo">
-            <h2><?php echo $themename; ?></h2>
+            <h2><?php esc_html_e( $themename ); ?></h2>
           </div>
           <div class="clear"></div>
         </div>
@@ -296,12 +296,11 @@ function optionsframework_page() {
           <div class="clear"></div>
         </div>
         <div class="of_admin_bar">
-			<input type="submit" class="button-primary" name="update" value="<?php _e( 'Save Options' ); ?>" />
-            </form>
-            
-            <input type="submit" class="reset-button button-secondary" name="reset" value="<?php _e('Restore Defaults')?>" onclick="return confirm('Click OK to reset. Any theme settings will be lost!');"/>
+			<input type="submit" class="button-primary" name="update" value="<?php esc_attr_e( 'Save Options' ); ?>" />
+            <input type="submit" class="reset-button button-secondary" name="reset" value="<?php esc_attr_e( 'Restore Defaults' ); ?>" onclick="return confirm( '<?php print esc_js( __( 'Click OK to reset. Any theme settings will be lost!' ) ); ?>' );" />
 		</div>
 <div class="clear"></div>
+	</form>
 </div> <!-- / #container -->  
 </div> <!-- / .wrap -->
 
@@ -359,7 +358,7 @@ function optionsframework_validate($input) {
 			
 				// Checkbox data isn't sent if it's unchecked, so we'll default it to false
 				if ( ($option['type'] == 'checkbox') && !isset($input[($option['id'])]) ) {
-					$input[($option['id'])] = 'false';
+					$input[($option['id'])] = false;
 				}
 				
 				// Verify that there's a value in the $input
@@ -369,10 +368,10 @@ function optionsframework_validate($input) {
 					
 					// If it's a checkbox, make sure it's either true or false
 					case ($option['type'] == 'checkbox'):
-						if ( ($input[($option['id'])]) == 'true' )
-							$clean[($option['id'])] = 'true';
+						if ( $input[($option['id'])] == 'true' )
+							$clean[($option['id'])] = true;
 						else {
-							$clean[($option['id'])] = 'false';
+							$clean[($option['id'])] = false;
 						}
 					break;
 					
@@ -385,10 +384,10 @@ function optionsframework_validate($input) {
 							// Check that the option isn't null
 							if (!empty($input[($option['id']. '_' . $key)])) {
 								// If it's not null, make sure it's true, add it to an array
-								$checkboxarray[$key] = 'true';
+								$checkboxarray[$key] = true;
 							}
 							else {
-								$checkboxarray[$key] = 'false';
+								$checkboxarray[$key] = false;
 							}
 						}
 						// Take all the items that were checked, and set them as the main option
@@ -401,8 +400,8 @@ function optionsframework_validate($input) {
 					case ($option['type'] == 'typography') :
 						$typography_id = $option['id'];
 						$clean[$typography_id] = array(
-							'size' => $input[$typography_id .'_size'],
-							'face' => $input[$typography_id .'_face'],
+							'size'  => $input[$typography_id .'_size'],
+							'face'  => $input[$typography_id .'_face'],
 							'style' => $input[$typography_id .'_style'],
 							'color' => $input[$typography_id .'_color']);
 					break;
@@ -417,10 +416,10 @@ function optionsframework_validate($input) {
 							$clean[$background_id .'_image'] = '';
 						}
 						$clean[$background_id] = array(
-							'color' => $input[$background_id .'_color'],
-							'image' => $input[$background_id .'_image'],
-							'repeat' => $input[$background_id .'_repeat'],
-							'position' => $input[$background_id .'_position'],
+							'color'      => $input[$background_id .'_color'],
+							'image'      => $input[$background_id .'_image'],
+							'repeat'     => $input[$background_id .'_repeat'],
+							'position'   => $input[$background_id .'_position'],
 							'attachment' => $input[$background_id .'_attachment']);
 					break;
 					
