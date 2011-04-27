@@ -37,7 +37,10 @@ function optionsframework_fields() {
 
 			$id = 'section-' . $value['id'];
 
-			$class = 'section ' . $id;
+			$class = 'section ';
+			if ( isset( $value['type'] ) ) {
+				$class .= ' section-' . $value['type'];
+			}
 			if ( isset( $value['class'] ) ) {
 				$class .= ' ' . $value['class'];
 			}
@@ -328,11 +331,11 @@ function optionsframework_fields() {
 				$output .= '<br/>';
 			}
 			$explain_value = '';
-			if ( ! isset( $value['desc'] ) ) {
+			if ( isset( $value['desc'] ) ) {
 				$explain_value = $value['desc'];
 			}
 			$output .= '</div><div class="explain">' . esc_html( $explain_value ) . '</div>'."\n";
-			$output .= '<div class="clear"> </div></div></div>'."\n";
+			$output .= '<div class="clear"></div></div></div>'."\n";
 		}
 	}
     $output .= '</div>';

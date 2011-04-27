@@ -168,7 +168,7 @@ get_header(); ?>
             <dt>type: typography</dt>
             <dd>of_get_option('typography'):
             <?php $typography = of_get_option('example_typography');
-            if ($typography != 'false') {
+            if ($typography) {
 				echo '<span style="font:'.$typography['size'] . ' ' . $typography['face']. ' ' . $typography['style'] . '; color:'.$typography['color'].';">Some sample text in your style</span>';
 				
 				echo '<ul>';
