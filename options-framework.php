@@ -329,7 +329,7 @@ function optionsframework_validate($input) {
 		delete_option($option_name);
 		$optionsframework_settings['message'] = 'reset';
 		update_option('optionsframework', $optionsframework_settings);
-		header('Location: themes.php?page=options-framework');
+		wp_safe_redirect(wp_get_referer());
 		exit;
 	}
 	
