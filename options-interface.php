@@ -28,6 +28,7 @@ function optionsframework_fields() {
 		$counter++;
 		$val = '';
 		$select_value = '';
+		$checked = '';
 		
 		// Wrap all options
 		if ( ($value['type'] != "heading") && ($value['type'] != "info") ) {
@@ -108,26 +109,15 @@ function optionsframework_fields() {
 		// Radio Box
 		case "radio":
 			foreach ($value['options'] as $key => $option) {
-				$checked = '';
-				if ( $val != '' ) {
-					if ( $val == $key) { $checked = 'checked="checked"'; } 
-				}
 				$id = $option_name . '-' . $value['id'] .'-'. $key;
 				$name = $option_name .'['. $value['id'] .']';
-				$output .= '<input class="of-input of-radio" type="radio" name="' . esc_attr( $name ) . '" id="' . esc_attr( $id ) . '" value="'. esc_attr( $key ) . '" ' . $checked .' /><label for="' . esc_attr( $id ) . '">' . esc_html( $option ) . '</label><br />';
+				$output .= '<input class="of-input of-radio" type="radio" name="' . esc_attr( $name ) . '" id="' . esc_attr( $id ) . '" value="'. esc_attr( $key ) . '" '. checked( $val, $key, false) .' /><label for="' . esc_attr( $id ) . '">' . esc_html( $option ) . '</label><br />';
 			}
 		break;
 		
 		// Checkbox
 		case "checkbox": 
-		
-			$checked = '';
-		   
-			if ( $val ) {
-				$checked = 'checked="checked"';
-			}
-			
-			$output .= '<input id="' . esc_attr( $value['id'] ) . '" class="checkbox of-input" type="checkbox" name="' . esc_attr( $option_name . '[' . $value['id'] . ']' ) . '" value="true" '. $checked . ' />';
+			$output .= '<input id="' . esc_attr( $value['id'] ) . '" class="checkbox of-input" type="checkbox" name="' . esc_attr( $option_name . '[' . $value['id'] . ']' ) . '" value="true" '. checked( $val, 1, false) .' />';
 		break;
 		
 		// Multicheck
@@ -140,12 +130,8 @@ function optionsframework_fields() {
 				$id = $option_name . '-' . $value['id'] . '-'. $option;
 				$name = $option_name . '[' . $value['id'] . '_' . $option .']';
 
-				$checked = '';
-
 			    if ( isset($val[$option]) ) {
-					if ( $val[$option] == true) {
-			   			$checked = 'checked="checked"';
-					}
+					$checked = checked($val[$option], 1, false);
 				}
 
 				$output .= '<input id="' . esc_attr( $id ) . '" class="checkbox of-input" type="checkbox" name="' . esc_attr( $name ) . '" value="true" ' . $checked . ' /><label for="' . esc_attr( $id ) . '">' . esc_html( $label ) . '</label><br />';
@@ -279,7 +265,6 @@ function optionsframework_fields() {
 				   
 			foreach ($value['options'] as $key => $option) { 
 				$i++;
-				$checked = '';
 				$selected = '';
 				if ($val != '') {
 					if ( $val == $key ) {
