@@ -325,7 +325,7 @@ function optionsframework_validate($input) {
 	$option_name = $optionsframework_settings['id'];
 	
 	// If the reset button was clicked
-	if (!empty($_REQUEST['reset'])) {
+	if (!empty($_POST['reset'])) {
 		delete_option($option_name);
 		$optionsframework_settings['message'] = 'reset';
 		update_option('optionsframework', $optionsframework_settings);
@@ -337,7 +337,7 @@ function optionsframework_validate($input) {
 	
 	{
 	
-	if (!empty($_REQUEST['update'])) {
+	if (!empty($_POST['update'])) {
 	
 		$clean = array();
 	
@@ -367,7 +367,7 @@ function optionsframework_validate($input) {
 					switch ( $option['type'] ) {
 					
 					// If it's a checkbox, make sure it's either true or false
-					case ($option['type'] == 'checkbox'):
+					case 'checkbox':
 						if ( $input[($option['id'])] == 'true' )
 							$clean[($option['id'])] = true;
 						else {
@@ -376,7 +376,7 @@ function optionsframework_validate($input) {
 					break;
 					
 					// If it's a multicheck
-					case ($option['type'] == 'multicheck'):
+					case 'multicheck':
 						unset($checkboxarray);
 						foreach ($option['options'] as $key => $option_name ) {
 							// Make sure the key is lowercase and without spaces
@@ -397,7 +397,7 @@ function optionsframework_validate($input) {
 					break;
 					
 					// If it's a typography option
-					case ($option['type'] == 'typography') :
+					case 'typography':
 						$typography_id = $option['id'];
 						$clean[$typography_id] = array(
 							'size'  => $input[$typography_id .'_size'],
@@ -407,7 +407,7 @@ function optionsframework_validate($input) {
 					break;
 					
 					// If it's a background option
-					case ($option['type'] == 'background') :
+					case 'background':
 						$background_id = $option['id'];
 						if ( empty($input[$background_id .'_color']) ) {
 							$clean[$background_id .'_color'] = '';
@@ -424,7 +424,7 @@ function optionsframework_validate($input) {
 					break;
 					
 					// If it's a select make sure it's in the array we supplied
-					case ($option['type'] == 'select') :
+					case 'select':
 						if ( array_key_exists( $input[($option['id'])], $option['options'] ) ) {
 							$clean[($option['id'])] = $input[($option['id'])];
 						}
@@ -450,7 +450,7 @@ function optionsframework_validate($input) {
 		return $clean; // Return validated input
 	}
 	
-	} // end $_REQUEST['update']
+	} // end $_POST['update']
 	
 }
 }
