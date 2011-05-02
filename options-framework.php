@@ -3,7 +3,7 @@
 Plugin Name: Options Framework
 Plugin URI: http://www.wptheming.com
 Description: A framework for building theme options.
-Version: 0.5
+Version: 0.6
 Author: Devin Price
 Author URI: http://www.wptheming.com
 License: GPLv2
@@ -27,7 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 /* Basic plugin definitions */
 
-define('OPTIONS_FRAMEWORK_VERSION', '0.4');
+define('OPTIONS_FRAMEWORK_VERSION', '0.6');
 define('OPTIONS_FRAMEWORK_URL', plugin_dir_url( __FILE__ ));
 
 /* Make sure we don't expose any info if called directly */
@@ -90,6 +90,7 @@ function optionsframework_delete_options() {
 function optionsframework_init() {
 
 	// Include the required files
+	require_once dirname( __FILE__ ) . '/options-sanitize.php';
 	require_once dirname( __FILE__ ) . '/options-interface.php';
 	require_once dirname( __FILE__ ) . '/options-medialibrary-uploader.php';
 	
@@ -354,89 +355,17 @@ function optionsframework_validate($input) {
 			if ( isset ($option['id']) ) {
 			
 				// Keep all ids lowercase with no spaces
-				$option['id'] = preg_replace('/\W/', '', strtolower($option['id']) );
+				$id = preg_replace( '/\W/', '', strtolower( $option['id'] ) );
 			
-				// Checkbox data isn't sent if it's unchecked, so we'll default it to false
-				if ( ($option['type'] == 'checkbox') && !isset($input[($option['id'])]) ) {
-					$input[($option['id'])] = false;
+				// Set checkbox to false if it wasn't sent in the $_POST
+				if ( 'checkbox' == $option['type'] && ! isset( $input[$id] ) ) {
+					$input[$id] = "0";
 				}
 				
-				// Verify that there's a value in the $input
-				if (isset ($input[($option['id'])]) ) {
-			
-					switch ( $option['type'] ) {
-					
-					// If it's a checkbox, make sure it's either true or false
-					case 'checkbox':
-						if ( $input[($option['id'])] == 'true' )
-							$clean[($option['id'])] = true;
-						else {
-							$clean[($option['id'])] = false;
-						}
-					break;
-					
-					// If it's a multicheck
-					case 'multicheck':
-						unset($checkboxarray);
-						foreach ($option['options'] as $key => $option_name ) {
-							// Make sure the key is lowercase and without spaces
-							$key = preg_replace('/\W/', '', strtolower($key));
-							// Check that the option isn't null
-							if (!empty($input[($option['id']. '_' . $key)])) {
-								// If it's not null, make sure it's true, add it to an array
-								$checkboxarray[$key] = true;
-							}
-							else {
-								$checkboxarray[$key] = false;
-							}
-						}
-						// Take all the items that were checked, and set them as the main option
-						if (!empty($checkboxarray)) {
-							$clean[($option['id'])] = $checkboxarray;
-						}
-					break;
-					
-					// If it's a typography option
-					case 'typography':
-						$typography_id = $option['id'];
-						$clean[$typography_id] = array(
-							'size'  => $input[$typography_id .'_size'],
-							'face'  => $input[$typography_id .'_face'],
-							'style' => $input[$typography_id .'_style'],
-							'color' => $input[$typography_id .'_color']);
-					break;
-					
-					// If it's a background option
-					case 'background':
-						$background_id = $option['id'];
-						if ( empty($input[$background_id .'_color']) ) {
-							$clean[$background_id .'_color'] = '';
-						}
-						if ( empty($input[$background_id .'_image']) ) {
-							$clean[$background_id .'_image'] = '';
-						}
-						$clean[$background_id] = array(
-							'color'      => $input[$background_id .'_color'],
-							'image'      => $input[$background_id .'_image'],
-							'repeat'     => $input[$background_id .'_repeat'],
-							'position'   => $input[$background_id .'_position'],
-							'attachment' => $input[$background_id .'_attachment']);
-					break;
-					
-					// If it's a select make sure it's in the array we supplied
-					case 'select':
-						if ( array_key_exists( $input[($option['id'])], $option['options'] ) ) {
-							$clean[($option['id'])] = $input[($option['id'])];
-						}
-					break;
-					
-					// For the remaining options, strip any tags that aren't allowed in posts
-					default:
-						// Cleans html characters
-						$clean[($option['id'])] = wp_filter_post_kses( $input[($option['id'])] );
-					}
-					
-				} // end switch
+				// For a value to be submitted to database it must pass through a sanitization filter
+				if ( isset ( $input[$id] ) && has_filter('of_sanitize_' . $option['type']) ) {
+					$clean[$id] = apply_filters( 'of_sanitize_' . $option['type'], $input[$id], $option );
+				}
 				
 			} // end isset $input
 			

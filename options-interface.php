@@ -108,33 +108,52 @@ function optionsframework_fields() {
 		
 		// Radio Box
 		case "radio":
+			$name = $option_name .'['. $value['id'] .']';
 			foreach ($value['options'] as $key => $option) {
 				$id = $option_name . '-' . $value['id'] .'-'. $key;
-				$name = $option_name .'['. $value['id'] .']';
 				$output .= '<input class="of-input of-radio" type="radio" name="' . esc_attr( $name ) . '" id="' . esc_attr( $id ) . '" value="'. esc_attr( $key ) . '" '. checked( $val, $key, false) .' /><label for="' . esc_attr( $id ) . '">' . esc_html( $option ) . '</label><br />';
 			}
 		break;
 		
+		// Image Selectors
+		case "images":
+			$name = $option_name .'['. $value['id'] .']';
+			foreach ( $value['options'] as $key => $option ) {
+				$selected = '';
+				$checked = '';
+				if ( $val != '' ) {
+					if ( $val == $key ) {
+						$selected = ' of-radio-img-selected';
+						$checked = ' checked="checked"';
+					}
+				}
+				$output .= '<input type="radio" id="' . esc_attr( $value['id'] .'_'. $key) . '" class="of-radio-img-radio" value="' . esc_attr( $key ) . '" name="' . esc_attr( $name ) . '" '. $checked .' />';
+				$output .= '<div class="of-radio-img-label">' . esc_html( $key ) . '</div>';
+				$output .= '<img src="' . esc_url( $option ) . '" alt="' . $option .'" class="of-radio-img-img' . $selected .'" onclick="document.getElementById(\''. esc_attr($value['id'] .'_'. $key) .'\').checked=true;" />';
+			}
+		break;
+		
 		// Checkbox
-		case "checkbox": 
-			$output .= '<input id="' . esc_attr( $value['id'] ) . '" class="checkbox of-input" type="checkbox" name="' . esc_attr( $option_name . '[' . $value['id'] . ']' ) . '" value="true" '. checked( $val, 1, false) .' />';
+		case "checkbox":
+			$output .= '<input id="' . esc_attr( $value['id'] ) . '" class="checkbox of-input" type="checkbox" name="' . esc_attr( $option_name . '[' . $value['id'] . ']' ) . '" '. checked( $val, 1, false) .' />';
 		break;
 		
 		// Multicheck
 		case "multicheck":
 			$output .= '<input id="' . esc_attr( $value['id'] ) . '" type="hidden" name="' . esc_attr( $option_name . '[' . $value['id'] . ']' ) . '" />';
 			foreach ($value['options'] as $key => $option) {
+				$checked = '';
 				$label = $option;
 				$option = preg_replace('/\W/', '', strtolower($key));
 
 				$id = $option_name . '-' . $value['id'] . '-'. $option;
-				$name = $option_name . '[' . $value['id'] . '_' . $option .']';
+				$name = $option_name . '[' . $value['id'] . '][' . $option .']';
 
 			    if ( isset($val[$option]) ) {
 					$checked = checked($val[$option], 1, false);
 				}
 
-				$output .= '<input id="' . esc_attr( $id ) . '" class="checkbox of-input" type="checkbox" name="' . esc_attr( $name ) . '" value="true" ' . $checked . ' /><label for="' . esc_attr( $id ) . '">' . esc_html( $label ) . '</label><br />';
+				$output .= '<input id="' . esc_attr( $id ) . '" class="checkbox of-input" type="checkbox" name="' . esc_attr( $name ) . '" ' . $checked . ' /><label for="' . esc_attr( $label ) . '">' . esc_html( $label ) . '</label><br />';
 			}
 		break;
 		
@@ -157,7 +176,7 @@ function optionsframework_fields() {
 			$typography_stored = $val;
 			
 			// Font Size
-			$output .= '<select class="of-typography of-typography-size" name="' . esc_attr( $option_name . '[' . $value['id'] . '_size]' ) . '" id="' . esc_attr( $value['id'] . '_size' ) . '">';
+			$output .= '<select class="of-typography of-typography-size" name="' . esc_attr( $option_name . '[' . $value['id'] . '][size]' ) . '" id="' . esc_attr( $value['id'] . '_size' ) . '">';
 			for ($i = 9; $i < 71; $i++) { 
 				$size = $i . 'px';
 				$output .= '<option value="' . esc_attr( $size ) . '" ' . selected( $typography_stored['size'], $size, false ) . '>' . esc_html( $size ) . '</option>';
@@ -165,23 +184,17 @@ function optionsframework_fields() {
 			$output .= '</select>';
 		
 			// Font Face
-			$output .= '<select class="of-typography of-typography-face" name="' . esc_attr( $option_name . '[' . $value['id'] . '_face]' ) . '" id="' . esc_attr( $value['id'] . '_face' ) . '">';
-			$faces = array('arial'=>'Arial',
-							'verdana'=>'Verdana, Geneva',
-							'trebuchet'=>'Trebuchet',
-							'georgia' =>'Georgia',
-							'times'=>'Times New Roman',
-							'tahoma'=>'Tahoma, Geneva',
-							'palatino'=>'Palatino',
-							'helvetica'=>'Helvetica*' );
-
-			foreach ($faces as $key => $face) {
+			$output .= '<select class="of-typography of-typography-face" name="' . esc_attr( $option_name . '[' . $value['id'] . '][face]' ) . '" id="' . esc_attr( $value['id'] . '_face' ) . '">';
+			
+			$faces = of_recognized_font_faces();
+			foreach ( $faces as $key => $face ) {
 				$output .= '<option value="' . esc_attr( $key ) . '" ' . selected( $typography_stored['face'], $key, false ) . '>' . esc_html( $face ) . '</option>';
 			}			
+			
 			$output .= '</select>';	
 
 			// Font Weight
-			$output .= '<select class="of-typography of-typography-style" name="'.$option_name.'['.$value['id'].'_style]" id="'. $value['id'].'_style">';
+			$output .= '<select class="of-typography of-typography-style" name="'.$option_name.'['.$value['id'].'][style]" id="'. $value['id'].'_style">';
 
 			$styles = array('normal'=>'Normal',
 							'italic'=>'Italic',
@@ -189,13 +202,13 @@ function optionsframework_fields() {
 							'bold italic'=>'Bold Italic');
 
 			foreach ($styles as $key => $style) {
-				$output .= '<option value="' . esc_attr( $key ) . '" ' . selected( $typography_stored['style'], $key, false ) . '>'. esc_html( $style ) .'</option>';
+				$output .= '<option value="' . esc_attr( $key ) . '" ' . selected( $typography_stored['style'], $key, false ) . '>'. $style .'</option>';
 			}
 			$output .= '</select>';
 
 			// Font Color		
 			$output .= '<div id="' . esc_attr( $value['id'] ) . '_color_picker" class="colorSelector"><div style="' . esc_attr( 'background-color:' . $typography_stored['color'] ) . '"></div></div>';
-			$output .= '<input class="of-color of-typography of-typography-color" name="' . esc_attr( $option_name . '[' . $value['id'] . '_color]' ) . '" id="' . esc_attr( $value['id'] . '_color' ) . '" type="text" value="' . esc_attr( $typography_stored['color'] ) . '" />';
+			$output .= '<input class="of-color of-typography of-typography-color" name="' . esc_attr( $option_name . '[' . $value['id'] . '][color]' ) . '" id="' . esc_attr( $value['id'] . '_color' ) . '" type="text" value="' . esc_attr( $typography_stored['color'] ) . '" />';
 
 		break;
 		
@@ -207,15 +220,9 @@ function optionsframework_fields() {
 			
 			$background = $val;
 			
-			// Background Color
-			if (!isset($background['color'])) {
-				$background['color'] = '';
-			}
-			
-			$output .= '<div id="' . esc_attr( $value['id'] . '_color_picker' ) . '" class="colorSelector"><div style="' . esc_attr( 'background-color:' . $background['color'] ) . '"></div></div>';
-			
-			$output .= '<input class="of-color of-background of-background-color" name="' . esc_attr( $option_name . '[' . $value['id'] . '_color]' ) . '" id="' . esc_attr( $value['id'] . '_color' ) . '" type="text" value="' . esc_attr( $background['color'] ) . '" />';
-			
+			// Background Color		
+			$output .= '<div id="' . esc_attr( $value['id'] ) . '_color_picker" class="colorSelector"><div style="' . esc_attr( 'background-color:' . $background['color'] ) . '"></div></div>';
+			$output .= '<input class="of-color of-background of-background-color" name="' . esc_attr( $option_name . '[' . $value['id'] . '][color]' ) . '" id="' . esc_attr( $value['id'] . '_color' ) . '" type="text" value="' . esc_attr( $background['color'] ) . '" />';
 			
 			// Background Image - New AJAX Uploader using Media Library
 			if (!isset($background['image'])) {
@@ -257,27 +264,7 @@ function optionsframework_fields() {
 			$output .= '</select>';
 			$output .= '</div>';
 		
-		break; 
-		
-		// Image Selectors
-		case "images":
-			$i = 0;
-				   
-			foreach ($value['options'] as $key => $option) { 
-				$i++;
-				$selected = '';
-				if ($val != '') {
-					if ( $val == $key ) {
-						$checked = ' checked="checked"';
-						$selected = 'of-radio-img-selected';
-					}
-				}
-
-				$output .= '<input type="radio" id="' . esc_attr( 'of-radio-img-' . $value['id'] . $i ) . '" class="checkbox of-radio-img-radio" value="' . esc_attr( $key ) . '" name="' . esc_attr( $option_name . '[' . $value['id'] . ']' ) . '" ' . $checked . ' />';
-				$output .= '<div class="of-radio-img-label">' . esc_html( $key ) . '</div>';
-				$output .= '<img src="' . esc_url( $option ) . '" alt="" class="of-radio-img-img ' . $selected . '" onclick="document.getElementById(\'of-radio-img-'. $value['id'] . $i.'\').checked = true;" />';
-			}
-		break;   
+		break;  
 		
 		// Info
 		case "info":
