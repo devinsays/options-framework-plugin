@@ -3,7 +3,7 @@
 /* Text */
 
 function of_sanitize_text( $input ) {
-	$output = wp_filter_post_kses( $input );
+	$output = sanitize_text_field( $input );
 	return $output;
 }
 add_filter( 'of_sanitize_text', 'of_sanitize_text' );
@@ -11,7 +11,7 @@ add_filter( 'of_sanitize_text', 'of_sanitize_text' );
 /* Textarea */
 
 function of_sanitize_textarea( $input ) {
-	$output = wp_filter_post_kses( $input );
+	$output = esc_textarea( $input );
 	return $output;
 }
 add_filter( 'of_sanitize_textarea', 'of_sanitize_textarea' );

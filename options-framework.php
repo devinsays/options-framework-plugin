@@ -245,34 +245,12 @@ function optionsframework_page() {
 	$themename = get_theme_data(STYLESHEETPATH . '/style.css');
 	$themename = $themename['Name'];
 	
-	$optionsframework_settings = get_option('optionsframework');
-	
-	// Display message when options are reset/updated
-	$message = '';
-	
-	if ( isset($optionsframework_settings['message']) ) {
-		$message = $optionsframework_settings['message'];
-	}
-	
-	if ( $message == 'reset' ) {
-		$message = __( 'Options reset.' );
-	}
-	if ( $message == 'update' ) {
-		$message = __( 'Options updated.' );
-	}
-	
-	// Sets the option back to null, so the message doesn't display on refresh
-	$optionsframework_settings['message'] = '';
-	update_option('optionsframework',$optionsframework_settings)
+	settings_errors();
 	?>
     
 	<div class="wrap">
     <?php screen_icon( 'themes' ); ?>
 	<h2><?php esc_html_e( 'Theme Options' ); ?></h2>
-    
-    <?php if ( $message ) { ?>
-		<div id="message" class="updated fade"><p><strong><?php esc_html_e( $message ); ?></strong></p></div>
-    <?php } ?>
     
     <div id="of_container">
        <form action="options.php" method="post">
@@ -317,7 +295,6 @@ function optionsframework_page() {
  *
  */
 
-if ( !function_exists( 'optionsframework_validate' ) ) {
 function optionsframework_validate($input) {
 
 	$optionsframework_settings = get_option('optionsframework');
@@ -327,11 +304,10 @@ function optionsframework_validate($input) {
 	
 	// If the reset button was clicked
 	if (!empty($_POST['reset'])) {
-		delete_option($option_name);
-		$optionsframework_settings['message'] = 'reset';
-		update_option('optionsframework', $optionsframework_settings);
-		wp_safe_redirect(wp_get_referer());
-		exit;
+		// If options are deleted sucessfully update the error message
+		if (delete_option($option_name) ) {
+			add_settings_error('options-framework', 'restore_defaults', __('Options reset.'), 'updated fade');
+		}
 	}
 	
 	else
@@ -341,10 +317,6 @@ function optionsframework_validate($input) {
 	if (!empty($_POST['update'])) {
 	
 		$clean = array();
-	
-		$optionsframework_settings['message'] = 'update';
-		
-		update_option('optionsframework', $optionsframework_settings);
 
 		// Get the options array we have defined in options.php
 		$options = optionsframework_options();
@@ -374,12 +346,12 @@ function optionsframework_validate($input) {
 	} // end foreach
 	
 	if ( isset($clean) ) {
+		add_settings_error('options-framework', 'save_options', __('Options saved.'), 'updated fade');
 		return $clean; // Return validated input
 	}
 	
 	} // end $_POST['update']
 	
-}
 }
 
 

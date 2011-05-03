@@ -6,7 +6,7 @@
 jQuery(document).ready(function($) {
 	
 	// Fade out the save message
-	$('#message').delay(1000).fadeOut(1000);
+	$('.fade').delay(1000).fadeOut(1000);
 	
 	// Color Picker
 	$('.colorSelector').each(function(){
