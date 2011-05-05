@@ -2,52 +2,23 @@
 
 /* Text */
 
-function of_sanitize_text( $input ) {
-	$output = sanitize_text_field( $input );
-	return $output;
-}
-add_filter( 'of_sanitize_text', 'of_sanitize_text' );
+add_filter( 'of_sanitize_text', 'sanitize_text_field' );
 
 /* Textarea */
 
-function of_sanitize_textarea( $input ) {
-	$output = esc_textarea( $input );
-	return $output;
-}
-add_filter( 'of_sanitize_textarea', 'of_sanitize_textarea' );
+add_filter( 'of_sanitize_textarea', 'esc_textarea' );
 
 /* Select */
 
-function of_sanitize_select( $input, $option ) {
-	$output = '';
-	if ( array_key_exists( $input, $option['options'] ) ) {
-		$output = $input;
-	}
-	return $output;
-}
-add_filter( 'of_sanitize_select', 'of_sanitize_select', 10, 2);
+add_filter( 'of_sanitize_select', 'of_sanitize_enum', 10, 2);
 
 /* Radio */
 
-function of_sanitize_radio( $input, $option ) {
-	$output = '';
-	if ( array_key_exists( $input, $option['options'] ) ) {
-		$output = $input;
-	}
-	return $output;
-}
-add_filter( 'of_sanitize_radio', 'of_sanitize_radio', 10, 2);
+add_filter( 'of_sanitize_radio', 'of_sanitize_enum', 10, 2);
 
 /* Images */
 
-function of_sanitize_images( $input, $option ) {
-	$output = '';
-	if ( array_key_exists( $input, $option['options'] ) ) {
-		$output = $input;
-	}
-	return $output;
-}
-add_filter( 'of_sanitize_images', 'of_sanitize_images', 10, 2);
+add_filter( 'of_sanitize_images', 'of_sanitize_enum', 10, 2);
 
 /* Checkbox */
 
@@ -78,11 +49,7 @@ add_filter( 'of_sanitize_multicheck', 'of_sanitize_multicheck', 10, 2 );
 
 /* Color Picker */
 
-function of_sanitize_color( $input ) {
-	$output = apply_filters( 'of_color', $input );
-	return $output;
-}
-add_filter( 'of_sanitize_color', 'of_sanitize_color' );
+add_filter( 'of_sanitize_color', 'of_sanitize_hex' );
 
 /* Uploader */
 
@@ -96,19 +63,29 @@ function of_sanitize_upload( $input ) {
 }
 add_filter( 'of_sanitize_upload', 'of_sanitize_upload' );
 
+/* Check that the key value sent is valid */
+
+function of_sanitize_enum( $input, $option ) {
+	$output = '';
+	if ( array_key_exists( $input, $option['options'] ) ) {
+		$output = $input;
+	}
+	return $output;
+}
+
 /* Background */
 
 function of_sanitize_background( $input ) {
 	$output = wp_parse_args( $input, array(
 		'color' => '',
-		'image'  => '', // Not Quite Finished
+		'image'  => '',
 		'repeat'  => 'repeat',
 		'position' => 'top center', // Not Quite Finished
 		'attachment' => 'scroll' // Not Quite Finished
 	) );
 
-	$output['color'] = apply_filters( 'of_color', $output['color'] );
-	$output['image'] = apply_filters( 'of_background_image', $output['image'] );
+	$output['color'] = apply_filters( 'of_sanitize_hex', $output['color'] );
+	$output['image'] = apply_filters( 'of_sanitize_upload', $output['image'] );
 	$output['repeat'] = apply_filters( 'of_background_repeat', $output['repeat'] );
 
 	return $output;
@@ -207,7 +184,6 @@ function of_sanitize_hex( $hex, $default = '' ) {
 	}
 	return $default;
 }
-add_filter( 'of_color', 'of_sanitize_hex' );
 
 /**
  * Get recognized font sizes.

@@ -306,7 +306,7 @@ function optionsframework_validate($input) {
 	if (!empty($_POST['reset'])) {
 		// If options are deleted sucessfully update the error message
 		if (delete_option($option_name) ) {
-			add_settings_error('options-framework', 'restore_defaults', __('Options reset.'), 'updated fade');
+			add_settings_error('options-framework', 'restore_defaults', __('Default options restored.'), 'updated fade');
 		}
 	}
 	
