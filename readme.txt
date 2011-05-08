@@ -5,7 +5,7 @@ Donate link:
 https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=X238BDP4QGTV2
 Requires at least: 3.0
 Tested up to: 3.1
-Stable tag: 0.5
+Stable tag: 0.6
 License: GPLv2
 
 == Description ==
@@ -54,7 +54,10 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 = 0.6 =
 
+* Introduces validation filters
+* Better data sanitization and escaping
 * Updates to labels in the options-interface.php
+* Changes how checkboxes saved in database ("0" or "1")
 
 = 0.5 =
 

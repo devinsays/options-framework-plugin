@@ -6,6 +6,7 @@
 
 function optionsframework_fields() {
 
+	global $allowedtags;
 	$optionsframework_settings = get_option('optionsframework');
 
 	// Gets the unique option id
@@ -281,7 +282,7 @@ function optionsframework_fields() {
 				$output .= '<h3 class="heading">' . esc_html( $value['name'] ) . '</h3>' . "\n";
 			}
 			if ( $value['desc'] ) {
-				$output .= '<p>'. esc_html( $value['desc'] ) . '</p>' . "\n";
+				$output .= '<p>'. wp_kses( $value['desc'], $allowedtags) . '</p>' . "\n";
 			}
 			$output .= '<div class="clear"></div></div>' . "\n";
 		break;                       
@@ -306,7 +307,7 @@ function optionsframework_fields() {
 			if ( isset( $value['desc'] ) ) {
 				$explain_value = $value['desc'];
 			}
-			$output .= '</div><div class="explain">' . esc_html( $explain_value ) . '</div>'."\n";
+			$output .= '</div><div class="explain">' . wp_kses( $explain_value, $allowedtags) . '</div>'."\n";
 			$output .= '<div class="clear"></div></div></div>'."\n";
 		}
 	}
