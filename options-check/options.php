@@ -35,7 +35,7 @@ function optionsframework_options() {
 	$multicheck_array = array("one" => "French Toast", "two" => "Pancake", "three" => "Omelette", "four" => "Crepe", "five" => "Waffle");
 	
 	// Multicheck Defaults
-	$multicheck_defaults = array("one" => true,"five" => true);
+	$multicheck_defaults = array("one" => "1","five" => "1");
 	
 	// Background Defaults
 	
@@ -52,7 +52,7 @@ function optionsframework_options() {
 	// Pull all the pages into an array
 	$options_pages = array();  
 	$options_pages_obj = get_pages('sort_column=post_parent,menu_order');
-	$options_pages['false'] = 'Select a page:';
+	$options_pages[''] = 'Select a page:';
 	foreach ($options_pages_obj as $page) {
     	$options_pages[$page->ID] = $page->post_title;
 	}
@@ -125,7 +125,7 @@ function optionsframework_options() {
 	$options[] = array( "name" => "Input Checkbox",
 						"desc" => "Example checkbox, defaults to true.",
 						"id" => "example_checkbox",
-						"std" => true,
+						"std" => "1",
 						"type" => "checkbox");
 						
 	$options[] = array( "name" => "Advanced Settings",

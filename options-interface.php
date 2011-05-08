@@ -141,7 +141,6 @@ function optionsframework_fields() {
 		
 		// Multicheck
 		case "multicheck":
-			$output .= '<input id="' . esc_attr( $value['id'] ) . '" type="hidden" name="' . esc_attr( $option_name . '[' . $value['id'] . ']' ) . '" />';
 			foreach ($value['options'] as $key => $option) {
 				$checked = '';
 				$label = $option;
@@ -172,8 +171,6 @@ function optionsframework_fields() {
 		// Typography
 		case 'typography':	
 		
-			// Set main option
-			$output .= '<input id="' . esc_attr( $value['id'] ) . '" type="hidden" name="' . esc_attr( $option_name . '[' . $value['id'] . ']' ) . '" />';
 			$typography_stored = $val;
 			
 			// Font Size
