@@ -215,9 +215,6 @@ function optionsframework_fields() {
 		
 		// Background
 		case 'background':
-		
-			//Set main option
-			$output .= '<input id="' . esc_attr( $value['id'] ) . '" type="hidden" name="' . esc_attr( $option_name . '[' . $value['id'] . ']' ) . '" />';
 			
 			$background = $val;
 			
@@ -230,7 +227,7 @@ function optionsframework_fields() {
 				$background['image'] = '';
 			}
 			
-			$output .= optionsframework_medialibrary_uploader( $value['id'] . '_image', $background['image'], null );
+			$output .= optionsframework_medialibrary_uploader( $value['id'], $background['image'], null, '',0,'image');
 			$class = 'of-background-properties';
 			if ( '' == $background['image'] ) {
 				$class .= ' hide';
@@ -238,8 +235,8 @@ function optionsframework_fields() {
 			$output .= '<div class="' . esc_attr( $class ) . '">';
 			
 			// Background Repeat
-			$output .= '<select class="of-background of-background-repeat" name="' . esc_attr( $option_name . '[' . $value['id'] . '_repeat]' ) . '" id="' . esc_attr( $value['id'] . '_repeat' ) . '">';
-			$repeats = array("no-repeat"=>"No Repeat","repeat-x"=>"Repeat Horizontally","repeat-y"=>"Repeat Vertically","repeat"=>"Repeat All");
+			$output .= '<select class="of-background of-background-repeat" name="' . esc_attr( $option_name . '[' . $value['id'] . '][repeat]'  ) . '" id="' . esc_attr( $value['id'] . '_repeat' ) . '">';
+			$repeats = of_recognized_background_repeat();
 			
 			foreach ($repeats as $key => $repeat) {
 				$output .= '<option value="' . esc_attr( $key ) . '" ' . selected( $background['repeat'], $key, false ) . '>'. esc_html( $repeat ) . '</option>';
@@ -247,8 +244,8 @@ function optionsframework_fields() {
 			$output .= '</select>';
 			
 			// Background Position
-			$output .= '<select class="of-background of-background-position" name="' . esc_attr( $option_name . '[' . $value['id'] . '_position]' ) . '" id="' . esc_attr( $value['id'] . '_position' ) . '">';
-			$positions = array("top left"=>"Top Left","top center"=>"Top Center","top right"=>"Top Right","center left"=>"Middle Left","center center"=>"Middle Center","center right"=>"Middle Right","bottom left"=>"Bottom Left","bottom center"=>"Bottom Center","bottom right"=>"Bottom Right");
+			$output .= '<select class="of-background of-background-position" name="' . esc_attr( $option_name . '[' . $value['id'] . '][position]' ) . '" id="' . esc_attr( $value['id'] . '_position' ) . '">';
+			$positions = of_recognized_background_position();
 			
 			foreach ($positions as $key=>$position) {
 				$output .= '<option value="' . esc_attr( $key ) . '" ' . selected( $background['position'], $key, false ) . '>'. esc_html( $position ) . '</option>';
@@ -256,8 +253,8 @@ function optionsframework_fields() {
 			$output .= '</select>';
 			
 			// Background Attachment
-			$output .= '<select class="of-background of-background-attachment" name="' . esc_attr( $option_name . '[' . $value['id'] . '_attachment]' ) . '" id="' . esc_attr( $value['id'] . '_attachment' ) . '">';
-			$attachments = array("scroll"=>"Scroll Normally","fixed"=>"Fixed in Place");
+			$output .= '<select class="of-background of-background-attachment" name="' . esc_attr( $option_name . '[' . $value['id'] . '][attachment]' ) . '" id="' . esc_attr( $value['id'] . '_attachment' ) . '">';
+			$attachments = of_recognized_background_attachment();
 			
 			foreach ($attachments as $key => $attachment) {
 				$output .= '<option value="' . esc_attr( $key ) . '" ' . selected( $background['attachment'], $key, false ) . '>' . esc_html( $attachment ) . '</option>';

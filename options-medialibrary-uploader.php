@@ -93,7 +93,7 @@ if ( ! function_exists( 'optionsframework_mlu_js' ) ) {
 
 if ( ! function_exists( 'optionsframework_medialibrary_uploader' ) ) {
 
-	function optionsframework_medialibrary_uploader( $_id, $_value, $_mode = 'full', $_desc = '', $_postid = 0 ) {
+	function optionsframework_medialibrary_uploader( $_id, $_value, $_mode = 'full', $_desc = '', $_postid = 0, $_name = '') {
 	
 		$optionsframework_settings = get_option('optionsframework');
 		
@@ -105,6 +105,7 @@ if ( ! function_exists( 'optionsframework_medialibrary_uploader' ) ) {
 		$class = '';
 		$int = '';
 		$value = '';
+		$name = '';
 		
 		$id = strip_tags( strtolower( $_id ) );
 		// Change for each field, using a "silent" post. If no post is present, one will be created.
@@ -115,8 +116,15 @@ if ( ! function_exists( 'optionsframework_medialibrary_uploader' ) ) {
 			$value = $_value;
 		}
 		
+		if ($_name != '') {
+			$name = $option_name.'['.$id.']['.$_name.']';
+		}
+		else {
+			$name = $option_name.'['.$id.']';
+		}
+		
 		if ( $value ) { $class = ' has-file'; }
-		$output .= '<input id="' . $id . '" class="upload' . $class . '" type="text" name="'.$option_name.'['.$id.']" value="' . $value . '" />' . "\n";
+		$output .= '<input id="' . $id . '" class="upload' . $class . '" type="text" name="'.$name.'" value="' . $value . '" />' . "\n";
 		$output .= '<input id="upload_' . $id . '" class="upload_button button" type="button" value="' . __( 'Upload' ) . '" rel="' . $int . '" />' . "\n";
 		
 		if ( $_desc != '' ) {

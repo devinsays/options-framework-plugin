@@ -80,13 +80,15 @@ function of_sanitize_background( $input ) {
 		'color' => '',
 		'image'  => '',
 		'repeat'  => 'repeat',
-		'position' => 'top center', // Not Quite Finished
-		'attachment' => 'scroll' // Not Quite Finished
+		'position' => 'top center',
+		'attachment' => 'scroll'
 	) );
 
-	$output['color'] = apply_filters( 'of_sanitize_hex', $output['color'] );
-	$output['image'] = apply_filters( 'of_sanitize_upload', $output['image'] );
-	$output['repeat'] = apply_filters( 'of_background_repeat', $output['repeat'] );
+	$output['color'] = apply_filters( 'of_sanitize_hex', $input['color'] );
+	$output['image'] = apply_filters( 'of_sanitize_upload', $input['image'] );
+	$output['repeat'] = apply_filters( 'of_background_repeat', $input['repeat'] );
+	$output['position'] = apply_filters( 'of_background_position', $input['position'] );
+	$output['attachment'] = apply_filters( 'of_background_attachment', $input['attachment'] );
 
 	return $output;
 }
@@ -94,12 +96,31 @@ add_filter( 'of_sanitize_background', 'of_sanitize_background' );
 
 function of_sanitize_background_repeat( $value ) {
 	$recognized = of_recognized_background_repeat();
-	if ( in_array( (int) $value, $recognized ) ) {
-		return (int) $value;
+	if ( array_key_exists( $value, $recognized ) ) {
+		return $value;
 	}
-	return (int) apply_filters( 'of_default_background_repeat', $recognized );
+	return apply_filters( 'of_default_background_repeat', current( $recognized ) );
 }
 add_filter( 'of_background_repeat', 'of_sanitize_background_repeat' );
+
+function of_sanitize_background_position( $value ) {
+	$recognized = of_recognized_background_position();
+	if ( array_key_exists( $value, $recognized ) ) {
+		return $value;
+	}
+	return apply_filters( 'of_default_background_position', current( $recognized ) );
+}
+add_filter( 'of_background_position', 'of_sanitize_background_position' );
+
+function of_sanitize_background_attachment( $value ) {
+	$recognized = of_recognized_background_attachment();
+	if ( array_key_exists( $value, $recognized ) ) {
+		return $value;
+	}
+	return apply_filters( 'of_default_background_attachment', current( $recognized ) );
+}
+add_filter( 'of_background_attachment', 'of_sanitize_background_attachment' );
+
 
 /* Typography */
 
@@ -153,10 +174,6 @@ add_filter( 'of_font_face', 'of_sanitize_font_face' );
 /**
  * Get recognized background repeat settings
  *
- * Returns an array of all recognized font faces.
- * Keys are intended to be stored in the database
- * while values are ready for display in in html.
- *
  * @return   array
  *
  */
@@ -166,6 +183,39 @@ function of_recognized_background_repeat() {
 		'repeat-x' => 'Repeat Horizontally',
 		'repeat-y' => 'Repeat Vertically',
 		'repeat'   => 'Repeat All',
+		);
+}
+
+/**
+ * Get recognized background positions
+ *
+ * @return   array
+ *
+ */
+function of_recognized_background_position() {
+	return array(
+		'top left' => 'Top Left',
+		'top center' => 'Top Center',
+		'top right' => 'Top Right',
+		'center left' => 'Middle Left',
+		'center center' => 'Middle Center',
+		'center right' => 'Middle Right',
+		'bottom left' => 'Bottom Left',
+		'bottom center' => 'Bottom Center',
+		'bottom right' => 'Bottom Right'
+		);
+}
+
+/**
+ * Get recognized background attachment
+ *
+ * @return   array
+ *
+ */
+function of_recognized_background_attachment() {
+	return array(
+		'scroll' => 'Scroll Normally',
+		'fixed' => 'Fixed in Place'
 		);
 }
 
