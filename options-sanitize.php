@@ -6,7 +6,13 @@ add_filter( 'of_sanitize_text', 'sanitize_text_field' );
 
 /* Textarea */
 
-add_filter( 'of_sanitize_textarea', 'esc_textarea' );
+function of_sanitize_textarea($input) {
+	global $allowedtags;
+	$output = wp_kses( $input, $allowedtags);
+	return $output;
+}
+
+add_filter( 'of_sanitize_textarea', 'of_sanitize_textarea' );
 
 /* Select */
 

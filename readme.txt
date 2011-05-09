@@ -1,8 +1,7 @@
 === Options Framework ===
 Contributors: Devin Price
 Tags: options, theme options
-Donate link: 
-https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=X238BDP4QGTV2
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=X238BDP4QGTV2
 Requires at least: 3.0
 Tested up to: 3.1
 Stable tag: 0.6
@@ -56,8 +55,9 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 * Introduces validation filters
 * Better data sanitization and escaping
-* Updates to labels in the options-interface.php
+* Updates labels in options-interface.php
 * Changes how checkboxes saved in database ("0" or "1")
+* Stores typography, backgrounds and multichecks directly as arrays
 
 = 0.5 =
 

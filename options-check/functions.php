@@ -52,3 +52,25 @@ jQuery(document).ready(function() {
  
 <?php
 }
+
+/* 
+ * This is an example of how to override a default filter
+ * for 'text' sanitization and use a different one.
+ */
+
+/*
+
+add_action('admin_init','optionscheck_change_santiziation', 100);
+
+function optionscheck_change_santiziation() {
+	remove_filter( 'of_sanitize_text', 'sanitize_text_field' );
+	add_filter( 'of_sanitize_text', 'of_sanitize_text_field' );
+}
+
+function of_sanitize_text_field($input) {
+	global $allowedtags;
+	$output = wp_kses( $input, $allowedtags);
+	return $output;
+}
+
+*/
