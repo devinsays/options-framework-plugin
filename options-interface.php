@@ -53,7 +53,7 @@ function optionsframework_fields() {
 		 }
 		
 		// Set default value to $val
-		if ( isset($value['std']) ) {
+		if ( isset( $value['std']) ) {
 			$val = $value['std'];
 		}
 		
@@ -153,7 +153,7 @@ function optionsframework_fields() {
 					$checked = checked($val[$option], 1, false);
 				}
 
-				$output .= '<input id="' . esc_attr( $id ) . '" class="checkbox of-input" type="checkbox" name="' . esc_attr( $name ) . '" ' . $checked . ' /><label for="' . esc_attr( $label ) . '">' . esc_html( $label ) . '</label><br />';
+				$output .= '<input id="' . esc_attr( $id ) . '" class="checkbox of-input" type="checkbox" name="' . esc_attr( $name ) . '" ' . $checked . ' /><label for="' . esc_attr( $id ) . '">' . esc_html( $label ) . '</label><br />';
 			}
 		break;
 		

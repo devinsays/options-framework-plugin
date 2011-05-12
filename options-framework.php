@@ -334,6 +334,13 @@ function optionsframework_validate($input) {
 					$input[$id] = "0";
 				}
 				
+				// Set each item in the multicheck to false if it wasn't sent in the $_POST
+				if ( 'multicheck' == $option['type'] && ! isset( $input[$id] ) ) {
+					foreach ( $option['options'] as $key => $value ) {
+						$input[$id][$key] = "0";
+					} 
+				}
+				
 				// For a value to be submitted to database it must pass through a sanitization filter
 				if ( isset ( $input[$id] ) && has_filter('of_sanitize_' . $option['type']) ) {
 					$clean[$id] = apply_filters( 'of_sanitize_' . $option['type'], $input[$id], $option );
