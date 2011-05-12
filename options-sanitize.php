@@ -43,12 +43,12 @@ add_filter( 'of_sanitize_checkbox', 'of_sanitize_checkbox' );
 function of_sanitize_multicheck( $input, $option ) {
 	$output = '';
 	if ( is_array( $input ) ) {
+		foreach( $option['options'] as $key => $value ) {
+			$output[$key] = "0";
+		}
 		foreach( $input as $key => $value ) {
-			if ( array_key_exists( $key, $option['options'] ) ) {
-				if ($value)
-					$output[$key] = "1"; 
-				else
-					$output[$key] = "0";
+			if ( array_key_exists( $key, $option['options'] ) && $value ) {
+				$output[$key] = "1"; 
 			}
 		}
 	}
