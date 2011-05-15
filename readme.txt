@@ -58,6 +58,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * Updates labels in options-interface.php
 * Changes how checkboxes saved in database ("0" or "1")
 * Stores typography, backgrounds and multichecks directly as arrays
+* For full description, see: http://wptheming.com/2011/05/options-framework-0-6/
 
 = 0.5 =
 
