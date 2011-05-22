@@ -204,15 +204,15 @@ function of_recognized_background_repeat() {
  */
 function of_recognized_background_position() {
 	$default = array(
-		'top left' => 'Top Left',
-		'top center' => 'Top Center',
-		'top right' => 'Top Right',
-		'center left' => 'Middle Left',
+		'top left'      => 'Top Left',
+		'top center'    => 'Top Center',
+		'top right'     => 'Top Right',
+		'center left'   => 'Middle Left',
 		'center center' => 'Middle Center',
-		'center right' => 'Middle Right',
-		'bottom left' => 'Bottom Left',
+		'center right'  => 'Middle Right',
+		'bottom left'   => 'Bottom Left',
 		'bottom center' => 'Bottom Center',
-		'bottom right' => 'Bottom Right'
+		'bottom right'  => 'Bottom Right'
 		);
 	return apply_filters( 'of_recognized_background_position', $default );
 }
@@ -226,7 +226,7 @@ function of_recognized_background_position() {
 function of_recognized_background_attachment() {
 	$default = array(
 		'scroll' => 'Scroll Normally',
-		'fixed' => 'Fixed in Place'
+		'fixed'  => 'Fixed in Place'
 		);
 	return apply_filters( 'of_recognized_background_attachment', $default );
 }
