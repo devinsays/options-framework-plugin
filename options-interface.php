@@ -194,12 +194,9 @@ function optionsframework_fields() {
 			// Font Weight
 			$output .= '<select class="of-typography of-typography-style" name="'.$option_name.'['.$value['id'].'][style]" id="'. $value['id'].'_style">';
 
-			$styles = array('normal'=>'Normal',
-							'italic'=>'Italic',
-							'bold'=>'Bold',
-							'bold italic'=>'Bold Italic');
-
-			foreach ($styles as $key => $style) {
+			/* Font Style */
+			$styles = of_recognized_font_styles();
+			foreach ( $styles as $key => $style ) {
 				$output .= '<option value="' . esc_attr( $key ) . '" ' . selected( $typography_stored['style'], $key, false ) . '>'. $style .'</option>';
 			}
 			$output .= '</select>';
