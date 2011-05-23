@@ -51,6 +51,10 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 == Changelog ==
 
+= 0.7 =
+
+* Added filtering for recognized arrays (like Font Face)
+
 = 0.6 =
 
 * Introduces validation filters

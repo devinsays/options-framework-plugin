@@ -188,10 +188,10 @@ add_filter( 'of_font_face', 'of_sanitize_font_face' );
  */
 function of_recognized_background_repeat() {
 	$default = array(
-		'none'     => 'No Repeat',
-		'repeat-x' => 'Repeat Horizontally',
-		'repeat-y' => 'Repeat Vertically',
-		'repeat'   => 'Repeat All',
+		'no-repeat' => 'No Repeat',
+		'repeat-x'  => 'Repeat Horizontally',
+		'repeat-y'  => 'Repeat Vertically',
+		'repeat'    => 'Repeat All',
 		);
 	return apply_filters( 'of_recognized_background_repeat', $default );
 }
