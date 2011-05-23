@@ -19,7 +19,7 @@ function of_get_option($name, $default = false) {
 		$options = get_option($option_name);
 	}
 		
-	if ( !empty($options[$name]) ) {
+	if ( isset($options[$name]) ) {
 		return $options[$name];
 	} else {
 		return $default;

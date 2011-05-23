@@ -54,6 +54,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 = 0.7 =
 
 * Added filtering for recognized arrays (like Font Face)
+* Using isset rather than !empty to return of_get_option
 
 = 0.6 =
 
