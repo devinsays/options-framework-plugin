@@ -273,7 +273,7 @@ function optionsframework_fields() {
 				$output .= '<h3 class="heading">' . esc_html( $value['name'] ) . '</h3>' . "\n";
 			}
 			if ( $value['desc'] ) {
-				$output .= '<p>'. wp_kses( $value['desc'], $allowedtags) . '</p>' . "\n";
+				$output .= wpautop( wp_kses( $value['desc'], $allowedtags) ) . "\n";
 			}
 			$output .= '<div class="clear"></div></div>' . "\n";
 		break;                       
