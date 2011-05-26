@@ -3,7 +3,7 @@
 Plugin Name: Options Framework
 Plugin URI: http://www.wptheming.com
 Description: A framework for building theme options.
-Version: 0.6.1
+Version: 0.6.2
 Author: Devin Price
 Author URI: http://www.wptheming.com
 License: GPLv2
@@ -27,7 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 /* Basic plugin definitions */
 
-define('OPTIONS_FRAMEWORK_VERSION', '0.6.1');
+define('OPTIONS_FRAMEWORK_VERSION', '0.6.2');
 define('OPTIONS_FRAMEWORK_URL', plugin_dir_url( __FILE__ ));
 
 /* Make sure we don't expose any info if called directly */
@@ -55,8 +55,14 @@ function optionsframework_rolescheck () {
 register_activation_hook(__FILE__,'optionsframework_activation_hook');
 
 function optionsframework_activation_hook() {
+	// Set default options if they are defined
+	optionsframework_setdefaults();
 	register_uninstall_hook( __FILE__, 'optionsframework_delete_options' );
 }
+
+/* If the theme changes set new defauts */
+
+add_action('switch_theme', 'optionsframework_setdefaults');
 
 /* When uninstalled, deletes options */
 
@@ -110,9 +116,6 @@ function optionsframework_init() {
 	// Gets the unique id, returning a default if it isn't defined
 	$option_name = $optionsframework_settings['id'];
 	
-	// Set the option defaults in case they have changed
-	optionsframework_setdefaults();
-	
 	// Registers the settings fields and callback
 	register_setting('optionsframework', $option_name, 'optionsframework_validate' );
 }
@@ -141,7 +144,7 @@ function optionsframework_setdefaults() {
 	 * its associated data.  No need to clutter the database.  
 	 *
 	 */
-	 
+	
 	if ( isset($optionsframework_settings['knownoptions']) ) {
 		$knownoptions =  $optionsframework_settings['knownoptions'];
 		if ( !in_array($option_name, $knownoptions) ) {
@@ -157,32 +160,39 @@ function optionsframework_setdefaults() {
 	
 	// Gets the default options data from the array in options.php
 	$options = optionsframework_options();
-		
+	
 	// If the options haven't been added to the database yet, they are added now
 	foreach ($options as $option) {
-	
-		if ( ($option['type'] != 'heading') && ($option['type'] != 'info') ) {
-			$option_id = preg_replace('/\W/', '', strtolower($option['id']) );
 			
-			// wp_filter_post_kses for strings
-			if (isset($option['std' ]) ) {
-				if ( !is_array($option['std' ]) ) {
-					$values[$option_id] = wp_filter_post_kses($option['std']);
-				} else {
-					foreach ($option['std' ] as $key => $value) {
-						$optionarray[$key] = wp_filter_post_kses($value);
-					}
-					$values[$option_id] = $optionarray;
-					unset($optionarray);
-				}
-			} else {
-				$value = '';
+		// Verify that the option has an id
+		if ( isset ($option['id']) && ($option['type'] != 'heading') && ($option['type'] != 'info') ) {
+			
+			// Keep all ids lowercase with no spaces
+			$id = preg_replace( '/\W/', '', strtolower( $option['id'] ) );
+				
+			// Set checkbox to false if it wasn't sent in the $_POST
+			if ( 'checkbox' == $option['type'] && ! isset( $option['std'] ) ) {
+				$values[$id] = "0";
 			}
-		}
-	}
+					
+			// Set each item in the multicheck to false if it wasn't sent in the $_POST
+			if ( 'multicheck' == $option['type'] && ! isset( $option['std'] ) ) {
+				foreach ( $option['options'] as $key => $value ) {
+					$values[$id][$key] = "0";
+				} 
+			}
+					
+			// For a value to be submitted to database it must pass through a sanitization filter
+			if ( isset ( $option['std'] ) && has_filter('of_sanitize_' . $option['type']) ) {
+				$values[$id] = apply_filters( 'of_sanitize_' . $option['type'], $option['std'], $option );
+			}
+				
+		} // end isset $input
+		
+	} // end foreach
 	
 	if ( isset($values) ) {
-		add_option($option_name, $values);
+		add_option( $option_name, $values ); // Add option with default settings
 	}
 }
 
@@ -305,7 +315,8 @@ function optionsframework_validate($input) {
 	// If the reset button was clicked
 	if (!empty($_POST['reset'])) {
 		// If options are deleted sucessfully update the error message
-		if (delete_option($option_name) ) {
+		if ( delete_option($option_name) ) {
+			optionsframework_setdefaults();
 			add_settings_error('options-framework', 'restore_defaults', __('Default options restored.'), 'updated fade');
 		}
 	}

@@ -55,6 +55,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 * Added filtering for recognized arrays (like Font Face)
 * Using isset rather than !empty to return of_get_option
+* Fix so defaults save on restore
 
 = 0.6 =
 
