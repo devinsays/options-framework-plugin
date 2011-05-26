@@ -153,6 +153,7 @@ add_filter( 'of_sanitize_typography', 'of_sanitize_typography' );
 
 function of_sanitize_font_size( $value ) {
 	$recognized = of_recognized_font_sizes();
+	$value = preg_replace('/px/','', $value);
 	if ( in_array( (int) $value, $recognized ) ) {
 		return (int) $value;
 	}
