@@ -108,7 +108,7 @@ function optionsframework_init() {
 		require_once dirname( __FILE__ ) . '/options.php';
 	}
 	
-	$optionsframework_settings = get_option('optionsframework');
+	$optionsframework_settings = get_option('optionsframework' );
 	
 	// Updates the unique option id in the database if it has changed
 	optionsframework_option_name();
@@ -117,7 +117,7 @@ function optionsframework_init() {
 	$option_name = $optionsframework_settings['id'];
 	
 	// Registers the settings fields and callback
-	register_setting('optionsframework', $option_name, 'optionsframework_validate' );
+	register_setting( 'optionsframework', $option_name, 'optionsframework_validate' );
 }
 
 /* 
@@ -297,79 +297,75 @@ function optionsframework_page() {
 }
 }
 
-/* 
- * Data sanitization!
+/** 
+ * Validate Options.
  *
  * This runs after the submit/reset button has been clicked and
  * validates the inputs.
  *
+ * @uses $_POST['reset']
+ * @uses $_POST['update']
  */
+function optionsframework_validate( $input ) {
 
-function optionsframework_validate($input) {
-
-	$optionsframework_settings = get_option('optionsframework');
-	
-	// Gets the unique option id
-	$option_name = $optionsframework_settings['id'];
-	
-	// If the reset button was clicked
-	if (!empty($_POST['reset'])) {
-		// If options are deleted sucessfully update the error message
-		if ( delete_option($option_name) ) {
-			optionsframework_setdefaults();
-			add_settings_error('options-framework', 'restore_defaults', __('Default options restored.'), 'updated fade');
-		}
+	/*
+	 * Restore Defaults.
+	 *
+	 * In the event that the user clicked the "Restore Defaults"
+	 * button, the options defined in the theme's options.php
+	 * file will be added to the option for the active theme.
+	 */
+	if ( isset( $_POST['reset'] ) ) {
+		add_settings_error( 'options-framework', 'restore_defaults', __( 'Default options restored.', 'optionsframework' ), 'updated fade' );
+		return optionsframework_options();
 	}
-	
-	else
-	
-	{
-	
-	if (!empty($_POST['update'])) {
-	
+
+	/*
+	 * Udpdate Settings.
+	 */
+	if ( isset( $_POST['update'] ) ) {
 		$clean = array();
-
-		// Get the options array we have defined in options.php
 		$options = optionsframework_options();
-		
-		foreach ($options as $option) {
-			
-			// Verify that the option has an id
-			if ( isset ($option['id']) ) {
-			
-				// Keep all ids lowercase with no spaces
-				$id = preg_replace( '/\W/', '', strtolower( $option['id'] ) );
-			
-				// Set checkbox to false if it wasn't sent in the $_POST
-				if ( 'checkbox' == $option['type'] && ! isset( $input[$id] ) ) {
-					$input[$id] = "0";
+		foreach ( $options as $option ) {
+
+			if ( ! isset( $option['id'] ) ) {
+				continue;
+			}
+
+			if ( ! isset( $option['type'] ) ) {
+				continue;
+			}
+
+			$id = preg_replace( '/\W/', '', strtolower( $option['id'] ) );
+
+			// Set checkbox to false if it wasn't sent in the $_POST
+			if ( 'checkbox' == $option['type'] && ! isset( $input[$id] ) ) {
+				$input[$id] = '0';
+			}
+
+			// Set each item in the multicheck to false if it wasn't sent in the $_POST
+			if ( 'multicheck' == $option['type'] && ! isset( $input[$id] ) ) {
+				foreach ( $option['options'] as $key => $value ) {
+					$input[$id][$key] = '0';
 				}
-				
-				// Set each item in the multicheck to false if it wasn't sent in the $_POST
-				if ( 'multicheck' == $option['type'] && ! isset( $input[$id] ) ) {
-					foreach ( $option['options'] as $key => $value ) {
-						$input[$id][$key] = "0";
-					} 
-				}
-				
-				// For a value to be submitted to database it must pass through a sanitization filter
-				if ( isset ( $input[$id] ) && has_filter('of_sanitize_' . $option['type']) ) {
-					$clean[$id] = apply_filters( 'of_sanitize_' . $option['type'], $input[$id], $option );
-				}
-				
-			} // end isset $input
-			
-		} // end isset $id
-		
-	} // end foreach
-	
-	if ( isset($clean) ) {
-		add_settings_error('options-framework', 'save_options', __('Options saved.'), 'updated fade');
-		return $clean; // Return validated input
+			}
+
+			// For a value to be submitted to database it must pass through a sanitization filter
+			if ( has_filter( 'of_sanitize_' . $option['type'] ) ) {
+				$clean[$id] = apply_filters( 'of_sanitize_' . $option['type'], $input[$id], $option );
+			}
+		}
+
+		add_settings_error( 'options-framework', 'save_options', __( 'Options saved.', 'optionsframework' ), 'updated fade' );
+		return $clean;
 	}
-	
-	} // end $_POST['update']
-	
+
+	/*
+	 * Request Not Recognized.
+	 */
+	if ( isset( $_POST['reset'] ) ) {
+		return optionsframework_options();
+	}
 }
 
 
