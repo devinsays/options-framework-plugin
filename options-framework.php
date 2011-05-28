@@ -317,7 +317,7 @@ function optionsframework_validate( $input ) {
 	 */
 	if ( isset( $_POST['reset'] ) ) {
 		add_settings_error( 'options-framework', 'restore_defaults', __( 'Default options restored.', 'optionsframework' ), 'updated fade' );
-		return optionsframework_options();
+		return of_get_default_values();
 	}
 
 	/*
@@ -363,36 +363,32 @@ function optionsframework_validate( $input ) {
 	/*
 	 * Request Not Recognized.
 	 */
-	if ( isset( $_POST['reset'] ) ) {
-		return optionsframework_options();
-	}
+	return of_get_default_values();
 }
 
+if ( ! function_exists( 'of_get_option' ) ) {
+	/**
+	 * Get Option.
+	 *
+	 * Helper function to return the theme option value.
+	 * If no value has been saved, it returns $default.
+	 * Needed because options are saved as serialized strings.
+	 */
+	function of_get_option( $name, $default = false ) {
+		$config = get_option( 'optionsframework' );
 
-/* 
- * Helper function to return the theme option value. If no value has been saved, it returns $default.
- * Needed because options are saved as serialized strings.
- *
- */
-	
-if ( !function_exists( 'of_get_option' ) ) {
-function of_get_option($name, $default = false) {
-	
-	$optionsframework_settings = get_option('optionsframework');
-	
-	// Gets the unique option id
-	$option_name = $optionsframework_settings['id'];
+		if ( ! isset( $config['id'] ) ) {
+			return $default;
+		}
 
-	if ( get_option($option_name) ) {
-		$options = get_option($option_name);
-	}
-	
-	if ( isset($options[$name]) ) {
-		return $options[$name];
-	} else {
+		$options = get_option( $config['id'] );
+
+		if ( isset( $options[$name] ) ) {
+			return $options[$name];
+		}
+
 		return $default;
 	}
-}
 }
 
 /**
@@ -411,4 +407,33 @@ function optionsframework_adminbar() {
 		'title' => __( 'Theme Options' ),
 		'href' => admin_url( 'themes.php?page=options-framework' )
   ));
+}
+
+
+/**
+ * Format Configuration Array.
+ *
+ * Get an array of all default values as set in
+ * options.php. Both the 'id' and 'std' keys need
+ * to be defined in the configuration array. In the
+ * event that these keys are not present the option
+ * will not be included in this function's output.
+ *
+ * @return    array     Rey-keyed options configuration array.
+ *
+ * @access    private
+ */
+function of_get_default_values() {
+	$output = array();
+	$config = optionsframework_options();
+	foreach ( (array) $config as $option ) {
+		if ( ! isset( $option['id'] ) ) {
+			continue;
+		}
+		if ( ! isset( $option['std'] ) ) {
+			continue;
+		}
+		$output[$option['id']] = $option['std'];
+	}
+	return $output;
 }
