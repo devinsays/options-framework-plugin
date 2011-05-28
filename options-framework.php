@@ -42,10 +42,10 @@ if ( !function_exists( 'add_action' ) ) {
 add_action('init', 'optionsframework_rolescheck' );
 
 function optionsframework_rolescheck () {
-	if ( current_user_can('edit_theme_options') ) {
+	if ( current_user_can( 'edit_theme_options' ) ) {
 		// If the user can edit theme options, let the fun begin!
-		add_action('admin_menu', 'optionsframework_add_page');
-		add_action('admin_init', 'optionsframework_init' );
+		add_action( 'admin_menu', 'optionsframework_add_page');
+		add_action( 'admin_init', 'optionsframework_init' );
 		add_action( 'admin_init', 'optionsframework_mlu_init' );
 	}
 }
@@ -55,14 +55,8 @@ function optionsframework_rolescheck () {
 register_activation_hook(__FILE__,'optionsframework_activation_hook');
 
 function optionsframework_activation_hook() {
-	// Set default options if they are defined
-	optionsframework_setdefaults();
 	register_uninstall_hook( __FILE__, 'optionsframework_delete_options' );
 }
-
-/* If the theme changes set new defauts */
-
-add_action('switch_theme', 'optionsframework_setdefaults');
 
 /* When uninstalled, deletes options */
 
@@ -85,8 +79,7 @@ function optionsframework_delete_options() {
 /* 
  * Creates the settings in the database by looping through the array
  * we supplied in options.php.  This is a neat way to do it since
- * we won't have to save settings for headers, descriptions, or arguments-
- * and it makes it a little easier to change and set up in my opinion.
+ * we won't have to save settings for headers, descriptions, or arguments.
  *
  * Read more about the Settings API in the WordPress codex:
  * http://codex.wordpress.org/Settings_API
@@ -116,6 +109,14 @@ function optionsframework_init() {
 	// Gets the unique id, returning a default if it isn't defined
 	$option_name = $optionsframework_settings['id'];
 	
+	// Set default options if a new theme is loaded
+	add_action('switch_theme', 'optionsframework_setdefaults');
+	
+	// If the option has no saved data, load the defaults
+	if ( ! get_option($option_name) ) {
+		optionsframework_setdefaults();
+	}
+	
 	// Registers the settings fields and callback
 	register_setting( 'optionsframework', $option_name, 'optionsframework_validate' );
 }
@@ -131,7 +132,7 @@ function optionsframework_init() {
  */
 
 function optionsframework_setdefaults() {
-
+	
 	$optionsframework_settings = get_option('optionsframework');
 
 	// Gets the unique option id
@@ -162,34 +163,7 @@ function optionsframework_setdefaults() {
 	$options = optionsframework_options();
 	
 	// If the options haven't been added to the database yet, they are added now
-	foreach ($options as $option) {
-			
-		// Verify that the option has an id
-		if ( isset ($option['id']) && ($option['type'] != 'heading') && ($option['type'] != 'info') ) {
-			
-			// Keep all ids lowercase with no spaces
-			$id = preg_replace( '/\W/', '', strtolower( $option['id'] ) );
-				
-			// Set checkbox to false if it wasn't sent in the $_POST
-			if ( 'checkbox' == $option['type'] && ! isset( $option['std'] ) ) {
-				$values[$id] = "0";
-			}
-					
-			// Set each item in the multicheck to false if it wasn't sent in the $_POST
-			if ( 'multicheck' == $option['type'] && ! isset( $option['std'] ) ) {
-				foreach ( $option['options'] as $key => $value ) {
-					$values[$id][$key] = "0";
-				} 
-			}
-					
-			// For a value to be submitted to database it must pass through a sanitization filter
-			if ( isset ( $option['std'] ) && has_filter('of_sanitize_' . $option['type']) ) {
-				$values[$id] = apply_filters( 'of_sanitize_' . $option['type'], $option['std'], $option );
-			}
-				
-		} // end isset $input
-		
-	} // end foreach
+	$values = of_get_default_values();
 	
 	if ( isset($values) ) {
 		add_option( $option_name, $values ); // Add option with default settings
@@ -315,6 +289,7 @@ function optionsframework_validate( $input ) {
 	 * button, the options defined in the theme's options.php
 	 * file will be added to the option for the active theme.
 	 */
+	 
 	if ( isset( $_POST['reset'] ) ) {
 		add_settings_error( 'options-framework', 'restore_defaults', __( 'Default options restored.', 'optionsframework' ), 'updated fade' );
 		return of_get_default_values();
@@ -323,6 +298,7 @@ function optionsframework_validate( $input ) {
 	/*
 	 * Udpdate Settings.
 	 */
+	 
 	if ( isset( $_POST['update'] ) ) {
 		$clean = array();
 		$options = optionsframework_options();
@@ -363,32 +339,42 @@ function optionsframework_validate( $input ) {
 	/*
 	 * Request Not Recognized.
 	 */
+	
 	return of_get_default_values();
 }
 
-if ( ! function_exists( 'of_get_option' ) ) {
-	/**
-	 * Get Option.
-	 *
-	 * Helper function to return the theme option value.
-	 * If no value has been saved, it returns $default.
-	 * Needed because options are saved as serialized strings.
-	 */
-	function of_get_option( $name, $default = false ) {
-		$config = get_option( 'optionsframework' );
-
-		if ( ! isset( $config['id'] ) ) {
-			return $default;
+/**
+ * Format Configuration Array.
+ *
+ * Get an array of all default values as set in
+ * options.php. The 'id','std' and 'type' keys need
+ * to be defined in the configuration array. In the
+ * event that these keys are not present the option
+ * will not be included in this function's output.
+ *
+ * @return    array     Rey-keyed options configuration array.
+ *
+ * @access    private
+ */
+ 
+function of_get_default_values() {
+	$output = array();
+	$config = optionsframework_options();
+	foreach ( (array) $config as $option ) {
+		if ( ! isset( $option['id'] ) ) {
+			continue;
 		}
-
-		$options = get_option( $config['id'] );
-
-		if ( isset( $options[$name] ) ) {
-			return $options[$name];
+		if ( ! isset( $option['std'] ) ) {
+			continue;
 		}
-
-		return $default;
+		if ( ! isset( $option['type'] ) ) {
+			continue;
+		}
+		if ( has_filter( 'of_sanitize_' . $option['type'] ) ) {
+			$output[$option['id']] = apply_filters( 'of_sanitize_' . $option['type'], $option['std'], $option );
+		}
 	}
+	return $output;
 }
 
 /**
@@ -409,31 +395,29 @@ function optionsframework_adminbar() {
   ));
 }
 
+if ( ! function_exists( 'of_get_option' ) ) {
 
-/**
- * Format Configuration Array.
- *
- * Get an array of all default values as set in
- * options.php. Both the 'id' and 'std' keys need
- * to be defined in the configuration array. In the
- * event that these keys are not present the option
- * will not be included in this function's output.
- *
- * @return    array     Rey-keyed options configuration array.
- *
- * @access    private
- */
-function of_get_default_values() {
-	$output = array();
-	$config = optionsframework_options();
-	foreach ( (array) $config as $option ) {
-		if ( ! isset( $option['id'] ) ) {
-			continue;
+	/**
+	 * Get Option.
+	 *
+	 * Helper function to return the theme option value.
+	 * If no value has been saved, it returns $default.
+	 * Needed because options are saved as serialized strings.
+	 */
+	 
+	function of_get_option( $name, $default = false ) {
+		$config = get_option( 'optionsframework' );
+
+		if ( ! isset( $config['id'] ) ) {
+			return $default;
 		}
-		if ( ! isset( $option['std'] ) ) {
-			continue;
+
+		$options = get_option( $config['id'] );
+
+		if ( isset( $options[$name] ) ) {
+			return $options[$name];
 		}
-		$output[$option['id']] = $option['std'];
+
+		return $default;
 	}
-	return $output;
 }
