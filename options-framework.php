@@ -107,10 +107,12 @@ function optionsframework_init() {
 	optionsframework_option_name();
 	
 	// Gets the unique id, returning a default if it isn't defined
-	$option_name = $optionsframework_settings['id'];
-	
-	// Set default options if a new theme is loaded
-	add_action('switch_theme', 'optionsframework_setdefaults');
+	if ( isset($optionsframework_settings['id']) ) {
+		$option_name = $optionsframework_settings['id'];
+	}
+	else {
+		$option_name = 'optionsframework';
+	}
 	
 	// If the option has no saved data, load the defaults
 	if ( ! get_option($option_name) ) {
