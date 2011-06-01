@@ -4,7 +4,7 @@ Tags: options, theme options
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=X238BDP4QGTV2
 Requires at least: 3.0
 Tested up to: 3.1
-Stable tag: 0.6
+Stable tag: 0.7
 License: GPLv2
 
 == Description ==
@@ -55,7 +55,8 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 * Added filtering for recognized arrays (like Font Face)
 * Using isset rather than !empty to return of_get_option
-* Fix so defaults save on restore
+* Significant updates for setting and restoring defaults
+* Background option outputs no-repeat rather than none
 
 = 0.6 =
 
