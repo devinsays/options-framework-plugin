@@ -51,6 +51,10 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 == Changelog ==
 
+= 0.x =
+
+* The Options Panel now keeps track of tab states
+
 = 0.7 =
 
 * Added filtering for recognized arrays (like Font Face)
