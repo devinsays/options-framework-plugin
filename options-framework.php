@@ -333,6 +333,10 @@ function optionsframework_validate( $input ) {
 				$clean[$id] = apply_filters( 'of_sanitize_' . $option['type'], $input[$id], $option );
 			}
 		}
+		
+		if ($input['active-tab']) {
+			$clean['active-tab'] = apply_filters( 'of_sanitize_text', $input['active-tab']);
+		}
 
 		add_settings_error( 'options-framework', 'save_options', __( 'Options saved.', 'optionsframework' ), 'updated fade' );
 		return $clean;

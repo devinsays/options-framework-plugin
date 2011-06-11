@@ -285,7 +285,7 @@ function optionsframework_fields() {
 			}
 			$jquery_click_hook = preg_replace('/\W/', '', strtolower($value['name']) );
 			$jquery_click_hook = "of-option-" . $jquery_click_hook;
-			$menu .= '<li><a title="' . esc_attr( $value['name'] ) . '" href="' . esc_attr( '#'.  $jquery_click_hook ) . '">' . esc_html( $value['name'] ) . '</a></li>';
+			$menu .= '<li><a id="'.  esc_attr( $jquery_click_hook ) . '-tab" title="' . esc_attr( $value['name'] ) . '" href="' . esc_attr( '#'.  $jquery_click_hook ) . '">' . esc_html( $value['name'] ) . '</a></li>';
 			$output .= '<div class="group" id="' . esc_attr( $jquery_click_hook ) . '"><h2>' . esc_html( $value['name'] ) . '</h2>' . "\n";
 			break;
 		}
@@ -302,6 +302,8 @@ function optionsframework_fields() {
 			$output .= '<div class="clear"></div></div></div>'."\n";
 		}
 	}
+	$activetab = of_get_option('active-tab','');
+	$output .= '<input type="hidden" id="active-tab" name="' . esc_attr( $option_name . '[active-tab]' ) . '" value="' . $activetab . '" />';
     $output .= '</div>';
     return array($output,$menu);
 }
