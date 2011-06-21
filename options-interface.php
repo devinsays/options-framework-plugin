@@ -302,8 +302,6 @@ function optionsframework_fields() {
 			$output .= '<div class="clear"></div></div></div>'."\n";
 		}
 	}
-	$activetab = of_get_option('active-tab','');
-	$output .= '<input type="hidden" id="active-tab" name="' . esc_attr( $option_name . '[active-tab]' ) . '" value="' . $activetab . '" />';
     $output .= '</div>';
     return array($output,$menu);
 }

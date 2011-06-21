@@ -15,12 +15,12 @@
 	height: 60px;
 	background:#dfdfdf url("../../../../wp-admin/images/gray-grad.png") repeat-x left top;
 	border: 1px solid #ccc;
-	border-top-left-radius: 6px;
-	-moz-border-radius-topleft: 6px;
-	-webkit-border-top-left-radius: 6px;
-	-webkit-border-top-right-radius: 6px;
-	border-top-right-radius: 6px;
-	-moz-border-radius-topright: 6px;
+	border-top-left-radius: 3px;
+	-moz-border-radius-topleft: 3px;
+	-webkit-border-top-left-radius: 3px;
+	-webkit-border-top-right-radius: 3px;
+	border-top-right-radius: 3px;
+	-moz-border-radius-topright: 3px;
 }
 #of_container #header .logo {
 	float: left;
@@ -307,10 +307,10 @@
 	padding: 10px 20px 0px 20px;
 	height: 35px;
 	text-align: right;
-	-moz-border-radius-bottomright: 6px;
-	-moz-border-radius-bottomleft: 6px;
-	-webkit-border-bottom-right-radius: 6px;
-	-webkit-border-bottom-left-radius: 6px;
-	border-bottom-right-radius: 6px;
-	border-bottom-left-radius: 6px;
+	-moz-border-radius-bottomright: 3px;
+	-moz-border-radius-bottomleft: 3px;
+	-webkit-border-bottom-right-radius: 3px;
+	-webkit-border-bottom-left-radius: 3px;
+	border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;
 }

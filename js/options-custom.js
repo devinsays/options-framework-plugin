@@ -31,7 +31,10 @@ jQuery(document).ready(function($) {
 	
 	// Switches option sections
 	$('.group').hide();
-	var activetab = $('#active-tab').attr('value');
+	var activetab = '';
+	if (typeof(localStorage) != 'undefined' ) {
+		activetab = localStorage.getItem("activetab");
+	}
 	if (activetab != '' && $(activetab).length ) {
 		$(activetab).fadeIn();
 	} else {
@@ -58,7 +61,9 @@ jQuery(document).ready(function($) {
 		$('#of-nav li').removeClass('current');
 		$(this).parent().addClass('current');
 		var clicked_group = $(this).attr('href');
-		$('#active-tab').attr('value', $(this).attr('href'));
+		if (typeof(localStorage) != 'undefined' ) {
+			localStorage.setItem("activetab", $(this).attr('href'));
+		}
 		$('.group').hide();
 		$(clicked_group).fadeIn();
 		evt.preventDefault();
