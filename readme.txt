@@ -3,8 +3,8 @@ Contributors: Devin Price
 Tags: options, theme options
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=X238BDP4QGTV2
 Requires at least: 3.0
-Tested up to: 3.1
-Stable tag: 0.7
+Tested up to: 3.2
+Stable tag: 0.8
 License: GPLv2
 
 == Description ==
@@ -51,9 +51,10 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 == Changelog ==
 
-= 0.x =
+= 0.8 =
 
-* The Options Panel now keeps track of tab states
+* Saves tab states using local storage
+* Minor style updates for WordPress 3.2 release
 
 = 0.7 =
 
