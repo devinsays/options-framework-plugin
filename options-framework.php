@@ -230,13 +230,15 @@ function optionsframework_page() {
 	// Get the theme name so we can display it up top
 	$themename = get_theme_data(STYLESHEETPATH . '/style.css');
 	$themename = $themename['Name'];
-	
+	$return = optionsframework_fields();
 	settings_errors();
 	?>
     
 	<div class="wrap">
     <?php screen_icon( 'themes' ); ?>
-	<h2><?php esc_html_e( 'Theme Options' ); ?></h2>
+    <h2 class="nav-tab-wrapper">
+        <?php echo $return[1]; ?>
+    </h2>
     
     <div id="of_container">
        <form action="options.php" method="post">
@@ -249,10 +251,9 @@ function optionsframework_page() {
           <div class="clear"></div>
         </div>
         <div id="main">
-        <?php $return = optionsframework_fields(); ?>
           <div id="of-nav">
             <ul>
-              <?php echo $return[1]; ?>
+              
             </ul>
           </div>
           <div id="content">

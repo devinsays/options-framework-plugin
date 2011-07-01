@@ -52,14 +52,14 @@ jQuery(document).ready(function($) {
 	});
 	
 	if (activetab != '' && $(activetab + '-tab').length ) {
-		$(activetab + '-tab').parent('li').addClass('current');
+		$(activetab + '-tab').addClass('nav-tab-active');
 	}
 	else {
-		$('#of-nav li:first').addClass('current');
+		$('.nav-tab-wrapper a:first').addClass('nav-tab-active');
 	}
-	$('#of-nav li a').click(function(evt) {
-		$('#of-nav li').removeClass('current');
-		$(this).parent().addClass('current');
+	$('.nav-tab-wrapper a').click(function(evt) {
+		$('.nav-tab-wrapper a').removeClass('nav-tab-active');
+		$(this).addClass('nav-tab-active').blur();
 		var clicked_group = $(this).attr('href');
 		if (typeof(localStorage) != 'undefined' ) {
 			localStorage.setItem("activetab", $(this).attr('href'));
