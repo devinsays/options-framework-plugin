@@ -226,10 +226,6 @@ function of_admin_head() {
 
 if ( !function_exists( 'optionsframework_page' ) ) {
 function optionsframework_page() {
-
-	// Get the theme name so we can display it up top
-	$themename = get_theme_data(STYLESHEETPATH . '/style.css');
-	$themename = $themename['Name'];
 	$return = optionsframework_fields();
 	settings_errors();
 	?>
@@ -240,34 +236,21 @@ function optionsframework_page() {
         <?php echo $return[1]; ?>
     </h2>
     
-    <div id="of_container">
-       <form action="options.php" method="post">
-	  <?php settings_fields('optionsframework'); ?>
+    <div class="metabox-holder">
+    <div id="optionsframework" class="postbox">
+		<form action="options.php" method="post">
+		<?php settings_fields('optionsframework'); ?>
 
-        <div id="header">
-          <div class="logo">
-            <h2><?php esc_html_e( $themename ); ?></h2>
-          </div>
-          <div class="clear"></div>
-        </div>
-        <div id="main">
-          <div id="of-nav">
-            <ul>
-              
-            </ul>
-          </div>
-          <div id="content">
-            <?php echo $return[0]; /* Settings */ ?>
-          </div>
-          <div class="clear"></div>
-        </div>
-        <div class="of_admin_bar">
+		<?php echo $return[0]; /* Settings */ ?>
+        
+        <div id="optionsframework-submit">
 			<input type="submit" class="button-primary" name="update" value="<?php esc_attr_e( 'Save Options' ); ?>" />
             <input type="submit" class="reset-button button-secondary" name="reset" value="<?php esc_attr_e( 'Restore Defaults' ); ?>" onclick="return confirm( '<?php print esc_js( __( 'Click OK to reset. Any theme settings will be lost!' ) ); ?>' );" />
+            <div class="clear"></div>
 		</div>
-<div class="clear"></div>
 	</form>
-</div> <!-- / #container -->  
+</div> <!-- / #container -->
+</div>
 </div> <!-- / .wrap -->
 
 <?php

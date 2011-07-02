@@ -8,6 +8,10 @@ function optionsframework_fields() {
 
 	global $allowedtags;
 	$optionsframework_settings = get_option('optionsframework');
+	
+	// Get the theme name so we can display it up top
+	$themename = get_theme_data(STYLESHEETPATH . '/style.css');
+	$themename = $themename['Name'];
 
 	// Gets the unique option id
 	if (isset($optionsframework_settings['id'])) {
@@ -48,7 +52,7 @@ function optionsframework_fields() {
 			}
 
 			$output .= '<div id="' . esc_attr( $id ) .'" class="' . esc_attr( $class ) . '">'."\n";
-			$output .= '<h3 class="heading">' . esc_html( $value['name'] ) . '</h3>' . "\n";
+			$output .= '<h4 class="heading">' . esc_html( $value['name'] ) . '</h4>' . "\n";
 			$output .= '<div class="option">' . "\n" . '<div class="controls">' . "\n";
 		 }
 		
@@ -270,7 +274,7 @@ function optionsframework_fields() {
 
 			$output .= '<div class="' . esc_attr( $class ) . '">' . "\n";
 			if ( isset($value['name']) ) {
-				$output .= '<h3 class="heading">' . esc_html( $value['name'] ) . '</h3>' . "\n";
+				$output .= '<h4 class="heading">' . esc_html( $value['name'] ) . '</h4>' . "\n";
 			}
 			if ( $value['desc'] ) {
 				$output .= wpautop( wp_kses( $value['desc'], $allowedtags) ) . "\n";
@@ -286,7 +290,8 @@ function optionsframework_fields() {
 			$jquery_click_hook = preg_replace('/\W/', '', strtolower($value['name']) );
 			$jquery_click_hook = "of-option-" . $jquery_click_hook;
 			$menu .= '<a id="'.  esc_attr( $jquery_click_hook ) . '-tab" class="nav-tab" title="' . esc_attr( $value['name'] ) . '" href="' . esc_attr( '#'.  $jquery_click_hook ) . '">' . esc_html( $value['name'] ) . '</a>';
-			$output .= '<div class="group" id="' . esc_attr( $jquery_click_hook ) . '"><h2>' . esc_html( $value['name'] ) . '</h2>' . "\n";
+			$output .= '<div class="group" id="' . esc_attr( $jquery_click_hook ) . '">';
+			$output .= '<h3>' . esc_html( $value['name'] ) . '</h3>' . "\n";
 			break;
 		}
 
