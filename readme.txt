@@ -13,7 +13,7 @@ The Options Framework Plugin makes it easy to include an options panel in any Wo
 
 Please visit [http://wptheming.com/options-framework-plugin](http://wptheming.com/options-framework-plugin) for a full description of how to define and use the theme options.
 
-The code is heavily based on the [WooFramework](http://www.woothemes.com/) and their option styles.
+The code was originally based on the [WooFramework](http://www.woothemes.com/) and their option styles.
 
 == Installation ==
 

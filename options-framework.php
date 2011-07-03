@@ -76,7 +76,7 @@ function optionsframework_delete_options() {
 	delete_option('optionsframework');
 }
 
-/* Loads the file for santizing options */
+/* Loads the file for option sanitization */
 
 add_action('init', 'optionsframework_load_sanitization' );
 
