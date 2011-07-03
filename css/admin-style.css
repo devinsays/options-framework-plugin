@@ -91,18 +91,22 @@
 	float:left
 }
 #optionsframework .of-background-properties {
+	clear:both;
 	margin-top: 18px;	
 }
 #optionsframework .controls .of-background-repeat {
-	width:160px;
+	width:125px;
+	margin-right:5px;
 	float:left
 }
 #optionsframework .controls .of-background-position {
 	width:125px;
+	margin-right:5px;
 	float:left
 }
 #optionsframework .controls .of-background-attachment {
 	width:125px;
+	margin-right:5px;
 	float:left
 }
 #optionsframework div.section-background .controls input.upload {
@@ -170,9 +174,6 @@
 	margin-top:3px;
 }
 #optionsframework .screenshot img {
-	-moz-border-radius:4px;
-	-webkit-border-radius:4px;
-	-border-radius:4px;
 	background:#FAFAFA;
 	border-color:#ccc #eee #eee #ccc;
 	border-style:solid;
@@ -180,11 +181,12 @@
 	float:left;
 	max-width:334px;
 	padding:4px;
+	margin-bottom:10px;
 }
 #optionsframework .screenshot .mlu_remove {
 	background:url("../images/ico-delete.png") no-repeat;
 	border:medium none;
-	bottom:-4px;
+	bottom:4px;
 	display:block;
 	float:left;
 	height:16px;

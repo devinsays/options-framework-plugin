@@ -76,6 +76,14 @@ function optionsframework_delete_options() {
 	delete_option('optionsframework');
 }
 
+/* Loads the file for santizing options */
+
+add_action('init', 'optionsframework_load_sanitization' );
+
+function optionsframework_load_sanitization() {
+	require_once dirname( __FILE__ ) . '/options-sanitize.php';
+}
+
 /* 
  * Creates the settings in the database by looping through the array
  * we supplied in options.php.  This is a neat way to do it since
@@ -89,7 +97,6 @@ function optionsframework_delete_options() {
 function optionsframework_init() {
 
 	// Include the required files
-	require_once dirname( __FILE__ ) . '/options-sanitize.php';
 	require_once dirname( __FILE__ ) . '/options-interface.php';
 	require_once dirname( __FILE__ ) . '/options-medialibrary-uploader.php';
 	
