@@ -55,11 +55,13 @@
 	margin-bottom: 10px;
 	width:100%;
 }
-#optionsframework input.checkbox {
-	width: 30px;
+#optionsframework .section-radio label, #optionsframework .section-multicheck label {
+	float:left;
 }
-#optionsframework input.of-radio {
+#optionsframework input.checkbox, #optionsframework input.of-radio {
 	width: 30px;
+	float:left;
+	clear:both;
 }
 #optionsframework .controls .of-color {
 	float:left;
@@ -107,7 +109,7 @@
 	width:47%;
 }
 #optionsframework .controls .of-radio-img-img {
-	border:3px solid #fff;
+	border:3px solid #f9f9f9;
 	margin:0 5px 10px 0;
 	display:none;
 	cursor:pointer;

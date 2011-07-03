@@ -155,10 +155,8 @@ function optionsframework_options() {
 						"type" => "images",
 						"options" => array(
 							'1col-fixed' => $imagepath . '1col.png',
-							'2c-r-fixed' => $imagepath . '2cr.png',
 							'2c-l-fixed' => $imagepath . '2cl.png',
-							'3c-fixed' => $imagepath . '3cm.png',
-							'3c-r-fixed' => $imagepath . '3cr.png')
+							'2c-r-fixed' => $imagepath . '2cr.png')
 						);
 						
 	$options[] = array( "name" =>  "Example Background",
