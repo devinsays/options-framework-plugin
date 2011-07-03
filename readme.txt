@@ -54,7 +54,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 = 0.8 =
 
 * Saves tab states using local storage
-* Minor style updates for WordPress 3.2 release
+* Style updates WordPress 3.2 release
 
 = 0.7 =
 
