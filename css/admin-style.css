@@ -25,45 +25,35 @@
 #optionsframework .section .heading {
 	padding:10px 0px;
 	margin:0 0 15px;
-	border-bottom: 1px solid #e7e7e7;
+	border-bottom: 1px solid #dfdfdf;
 }
 #optionsframework .section .controls {
 	float: left;
-	width: 400px;
-	margin: 0 15px 0 0;
+	min-width:350px;
+	width: 54%;
+	padding-right:2%;
 }
 #optionsframework .section .explain {
+	max-width:38%;
 	float: left;
-	width: 225px;
-	padding: 0 10px 0 0;
 	font-size: 12px;
-	line-height:15px;
+	line-height:16px;
 	color: #777;
 }
 #optionsframework .section-checkbox .controls {
+	min-width:25px;
 	width:25px
 }
 #optionsframework .section-checkbox .explain {
-	width:540px
+	max-width:93%;
 }
 #optionsframework .section-color .controls {
+	min-width:125px;
 	width:125px
-}
-#optionsframework .section-color .explain {
-	width:440px
 }
 #optionsframework .controls input, #optionsframework .controls select, #optionsframework .controls textarea {
 	margin-bottom: 10px;
-	width: 340px;
-}
-#optionsframework .controls select {
-	width: 340px
-}
-#optionsframework.controls textarea {
-	width: 345px;
-}
-#optionsframeworkinput[type=text] {
-	width: 340px;
+	width:100%;
 }
 #optionsframework input.checkbox {
 	width: 30px;
@@ -75,34 +65,28 @@
 	float:left;
 	width: 80px;
 	margin-left:5px;
-}
-#optionsframework .section-typography .controls {
-	width:425px
-}
-#optionsframework .section-typography .explain {
-	width:140px
+	margin-right:5px;
 }
 #optionsframework .controls .of-typography-size {
 	width:80px;
+	margin-left:5px;
 	float:left
 }
 #optionsframework .controls .of-typography-unit {
 	width:50px;
+	margin-left:5px;
 	float:left
 }
 #optionsframework .controls .of-typography-face {
 	width:100px;
+	margin-left:5px;
 	float:left
 }
 #optionsframework .controls .of-typography-style {
 	width:80px;
+	margin-left:5px;
+	margin-right:5px;
 	float:left
-}
-#optionsframework .section-background .controls {
-	width:425px
-}
-#optionsframework .section-background .explain {
-	width:140px
 }
 #optionsframework .of-background-properties {
 	margin-top: 18px;	
@@ -120,7 +104,7 @@
 	float:left
 }
 #optionsframework div.section-background .controls input.upload {
-    width: 240px;
+	width:47%;
 }
 #optionsframework .controls .of-radio-img-img {
 	border:3px solid #fff;
@@ -151,19 +135,19 @@
 	margin:3px 0 18px 0;
 }
 #optionsframework .mini .controls select, #optionsframework .section .mini .controls {
-	width: 70px;
+	width: 140px;
 }
 #optionsframework .mini .controls input, #optionsframework .mini .controls {
-	width: 70px;
+	min-width:140px;
+	width: 140px;
 }
 #optionsframework .mini .explain {
-	width:500px;
+	max-width:74%;
 }
-
 /* Image Uploader */
 
 #optionsframework .controls input.upload {
-	width:300px;
+	width:80%;
 }
 #optionsframework .controls input.upload_button {
 	float:right;
