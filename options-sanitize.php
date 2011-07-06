@@ -16,7 +16,13 @@ add_filter( 'of_sanitize_textarea', 'of_sanitize_textarea' );
 
 /* Info */
 
-add_filter( 'of_sanitize_info', 'of_sanitize_textarea' );
+function of_sanitize_allowedtags($input) {
+	global $allowedtags;
+	$output = wp_kses( $input, $allowedtags);
+	return $output;
+}
+
+add_filter( 'of_sanitize_info', 'of_sanitize_allowedtags' );
 
 /* Select */
 
