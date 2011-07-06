@@ -14,6 +14,10 @@ function of_sanitize_textarea($input) {
 
 add_filter( 'of_sanitize_textarea', 'of_sanitize_textarea' );
 
+/* Info */
+
+add_filter( 'of_sanitize_info', 'of_sanitize_textarea' );
+
 /* Select */
 
 add_filter( 'of_sanitize_select', 'of_sanitize_enum', 10, 2);
