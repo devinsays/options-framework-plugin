@@ -277,7 +277,7 @@ function optionsframework_fields() {
 				$output .= '<h4 class="heading">' . esc_html( $value['name'] ) . '</h4>' . "\n";
 			}
 			if ( $value['desc'] ) {
-				$output .= apply_filters('of_sanitize_info', $value['desc'] ) . "\n";
+				$output .= wpautop( apply_filters( 'of_sanitize_info', $value['desc'] ) ) . "\n";
 			}
 			$output .= '<div class="clear"></div></div>' . "\n";
 		break;                       
