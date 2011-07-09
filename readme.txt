@@ -55,6 +55,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 * Saves tab states using local storage
 * Style updates WordPress 3.2 release
+* Added sanitization filter for info (of_sanitize_allowedtags)
 
 = 0.7 =
 
