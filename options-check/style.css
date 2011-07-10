@@ -4,10 +4,10 @@ Theme URI: http://wptheming.com
 Description: A example/test theme to make sure all the options work in the Options Framework plugin.
 Author: Devin Price
 Author URI: http://wptheming.com
-Version: 0.3
-Template: twentyten
+Version: 0.8
+Template: twentyeleven
 */
 
-@import url('../twentyten/style.css');
+@import url('../twentyeleven/style.css');
 
-#header img {display:none;}
+#branding hgroup, #searchform, #branding img, #access {display:none;}
