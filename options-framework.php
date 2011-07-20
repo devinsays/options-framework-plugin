@@ -42,7 +42,7 @@ if ( !function_exists( 'add_action' ) ) {
 add_action('init', 'optionsframework_rolescheck' );
 
 function optionsframework_rolescheck () {
-	if ( current_user_can( 'edit_theme_options' ) ) {
+	if ( current_user_can( 'edit_theme_options' ) && current_theme_supports('options-framework') ) {
 		// If the user can edit theme options, let the fun begin!
 		add_action( 'admin_menu', 'optionsframework_add_page');
 		add_action( 'admin_init', 'optionsframework_init' );
