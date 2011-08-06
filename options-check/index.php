@@ -171,7 +171,7 @@ get_header(); ?>
                         <dd>of_get_option('typography'):
                         <?php $typography = of_get_option('example_typography');
                         if ($typography) {
-                            echo '<span style="font:'.$typography['size'] . ' ' . $typography['face']. ' ' . $typography['style'] . '; color:'.$typography['color'].';">Some sample text in your style</span>';
+                        	echo '<span style="font-family: ' . $typography['face']. '; font:'.$typography['size'] . $typography['style'] . '; color:'.$typography['color'].';">Some sample text in your style</span>';
                             
                             echo '<ul>';
                             foreach ($typography as $i=>$param) {
