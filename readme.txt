@@ -54,6 +54,8 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 = 0.9 =
 
 * Load thickbox using site_url() to allow for https (props @samargulies)
+* Change santization to use $allowedposttags for textarea and info
+* Display notice if theme doesn't support the Options Framework
 
 = 0.8 =
 

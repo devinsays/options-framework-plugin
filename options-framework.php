@@ -43,10 +43,39 @@ add_action('init', 'optionsframework_rolescheck' );
 
 function optionsframework_rolescheck () {
 	if ( current_user_can( 'edit_theme_options' ) ) {
-		// If the user can edit theme options, let the fun begin!
-		add_action( 'admin_menu', 'optionsframework_add_page');
-		add_action( 'admin_init', 'optionsframework_init' );
-		add_action( 'admin_init', 'optionsframework_mlu_init' );
+		$optionsfile = locate_template( array('options.php') );
+		if ($optionsfile) {
+			// If the user can edit theme options, let the fun begin!
+			add_action( 'admin_menu', 'optionsframework_add_page');
+			add_action( 'admin_init', 'optionsframework_init' );
+			add_action( 'admin_init', 'optionsframework_mlu_init' );
+		}
+		else {
+			// Display a notice if options.php isn't present in the theme
+			add_action('admin_notices', 'optionsframework_admin_notice');
+			add_action('admin_init', 'optionsframework_nag_ignore');
+		}
+	}
+}
+
+function optionsframework_admin_notice() {
+	global $pagenow;
+	if ( !is_multisite() && ( $pagenow == 'plugins.php' ||  $pagenow == 'themes.php') ) {
+		global $current_user ;
+		$user_id = $current_user->ID;
+		if ( ! get_user_meta($user_id, 'optionsframework_ignore_notice') ) {
+			echo '<div class="updated optionsframework_setup_nag"><p>'; 
+			printf(__('Your current theme does not have support for the Options Framework plugin.  <a href="%1$s" target="_blank">Learn More</a> | <a href="%2$s">Hide Notice</a>'), 'http://wptheming.com/options-framework-plugin', '?optionsframework_nag_ignore=0'); 
+			echo "</p></div>";
+		}
+	}
+}
+
+function optionsframework_nag_ignore() {
+	global $current_user;
+    $user_id = $current_user->ID;
+    if ( isset($_GET['optionsframework_nag_ignore']) && '0' == $_GET['optionsframework_nag_ignore'] ) {
+        add_user_meta($user_id, 'optionsframework_ignore_notice', 'true', true);
 	}
 }
 
@@ -74,6 +103,7 @@ function optionsframework_delete_options() {
 		}
 	}
 	delete_option('optionsframework');
+	delete_user_meta($user_id, 'optionsframework_ignore_notice', 'true');
 }
 
 /* Loads the file for option sanitization */
@@ -101,12 +131,8 @@ function optionsframework_init() {
 	require_once dirname( __FILE__ ) . '/options-medialibrary-uploader.php';
 	
 	// Loads the options array from the theme
-	if ( $optionsfile = locate_template( array('options.php') ) ) {
-		require_once($optionsfile);
-	}
-	else if (file_exists( dirname( __FILE__ ) . '/options.php' ) ) {
-		require_once dirname( __FILE__ ) . '/options.php';
-	}
+	$optionsfile = locate_template( array('options.php') );
+	require_once($optionsfile);
 	
 	$optionsframework_settings = get_option('optionsframework' );
 	
