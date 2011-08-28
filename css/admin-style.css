@@ -40,10 +40,6 @@
 	line-height:16px;
 	color: #777;
 }
-#optionsframework .section-checkbox .controls {
-	min-width:25px;
-	width:25px
-}
 #optionsframework .section-checkbox .explain {
 	max-width:93%;
 }

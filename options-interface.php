@@ -71,6 +71,12 @@ function optionsframework_fields() {
 					}
 			}
 		}
+		
+		// If there is a description save it for labels
+		$explain_value = '';
+		if ( isset( $value['desc'] ) ) {
+			$explain_value = $value['desc'];
+		}
 		                                
 		switch ( $value['type'] ) {
 		
@@ -141,6 +147,7 @@ function optionsframework_fields() {
 		// Checkbox
 		case "checkbox":
 			$output .= '<input id="' . esc_attr( $value['id'] ) . '" class="checkbox of-input" type="checkbox" name="' . esc_attr( $option_name . '[' . $value['id'] . ']' ) . '" '. checked( $val, 1, false) .' />';
+			$output .= '<label class="explain" for="' . esc_attr( $value['id'] ) . '">' . wp_kses( $explain_value, $allowedtags) . '</label>';
 		break;
 		
 		// Multicheck
@@ -284,9 +291,10 @@ function optionsframework_fields() {
 		
 		// Heading for Navigation
 		case "heading":
-			if($counter >= 2){
+			if ($counter >= 2) {
 			   $output .= '</div>'."\n";
 			}
+			echo $value['name'];
 			$jquery_click_hook = preg_replace('/\W/', '', strtolower($value['name']) );
 			$jquery_click_hook = "of-option-" . $jquery_click_hook;
 			$menu .= '<a id="'.  esc_attr( $jquery_click_hook ) . '-tab" class="nav-tab" title="' . esc_attr( $value['name'] ) . '" href="' . esc_attr( '#'.  $jquery_click_hook ) . '">' . esc_html( $value['name'] ) . '</a>';
@@ -299,11 +307,10 @@ function optionsframework_fields() {
 			if ( $value['type'] != "checkbox" ) {
 				$output .= '<br/>';
 			}
-			$explain_value = '';
-			if ( isset( $value['desc'] ) ) {
-				$explain_value = $value['desc'];
+			$output .= '</div>';
+			if ( $value['type'] != "checkbox" ) {
+				$output .= '<div class="explain">' . wp_kses( $explain_value, $allowedtags) . '</div>'."\n";
 			}
-			$output .= '</div><div class="explain">' . wp_kses( $explain_value, $allowedtags) . '</div>'."\n";
 			$output .= '<div class="clear"></div></div></div>'."\n";
 		}
 	}
