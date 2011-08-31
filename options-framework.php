@@ -331,7 +331,7 @@ function optionsframework_validate( $input ) {
 				continue;
 			}
 
-			$id = preg_replace( '/\W/', '', strtolower( $option['id'] ) );
+			$id = preg_replace( '/\W_/', '', strtolower( $option['id'] ) );
 
 			// Set checkbox to false if it wasn't sent in the $_POST
 			if ( 'checkbox' == $option['type'] && ! isset( $input[$id] ) ) {
