@@ -39,7 +39,7 @@ function optionsframework_fields() {
 		if ( ($value['type'] != "heading") && ($value['type'] != "info") ) {
 
 			// Keep all ids lowercase with no spaces
-			$value['id'] = preg_replace('/\W_/', '', strtolower($value['id']) );
+			$value['id'] = preg_replace('/[^a-zA-Z0-9._\-]/', '', strtolower($value['id']) );
 
 			$id = 'section-' . $value['id'];
 
@@ -155,7 +155,7 @@ function optionsframework_fields() {
 			foreach ($value['options'] as $key => $option) {
 				$checked = '';
 				$label = $option;
-				$option = preg_replace('/\W_/', '', strtolower($key));
+				$option = preg_replace('/[^a-zA-Z0-9._\-]/', '', strtolower($key));
 
 				$id = $option_name . '-' . $value['id'] . '-'. $option;
 				$name = $option_name . '[' . $value['id'] . '][' . $option .']';
@@ -295,7 +295,7 @@ function optionsframework_fields() {
 			   $output .= '</div>'."\n";
 			}
 			echo $value['name'];
-			$jquery_click_hook = preg_replace('/\W_/', '', strtolower($value['name']) );
+			$jquery_click_hook = preg_replace('/[^a-zA-Z0-9._\-]/', '', strtolower($value['name']) );
 			$jquery_click_hook = "of-option-" . $jquery_click_hook;
 			$menu .= '<a id="'.  esc_attr( $jquery_click_hook ) . '-tab" class="nav-tab" title="' . esc_attr( $value['name'] ) . '" href="' . esc_attr( '#'.  $jquery_click_hook ) . '">' . esc_html( $value['name'] ) . '</a>';
 			$output .= '<div class="group" id="' . esc_attr( $jquery_click_hook ) . '">';
