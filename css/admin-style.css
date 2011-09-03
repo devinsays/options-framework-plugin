@@ -57,6 +57,11 @@
 #optionsframework .section-radio label, #optionsframework .section-multicheck label {
 	float:left;
 }
+#optionsframework .section-multicheck label {
+	max-width:90%;
+	line-height: 16px;
+	margin-bottom: 5px;
+}
 #optionsframework input.checkbox, #optionsframework input.of-radio {
 	width: 30px;
 	float:left;
