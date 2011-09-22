@@ -43,7 +43,8 @@ add_action('init', 'optionsframework_rolescheck' );
 
 function optionsframework_rolescheck () {
 	if ( current_user_can( 'edit_theme_options' ) ) {
-		$optionsfile = locate_template( array('options.php') );
+		$location = apply_filters( 'options_framework_location', array('options.php') );
+		$optionsfile = locate_template( $location );
 		if ($optionsfile) {
 			// If the user can edit theme options, let the fun begin!
 			add_action( 'admin_menu', 'optionsframework_add_page');
@@ -131,7 +132,8 @@ function optionsframework_init() {
 	require_once dirname( __FILE__ ) . '/options-medialibrary-uploader.php';
 	
 	// Loads the options array from the theme
-	$optionsfile = locate_template( array('options.php') );
+	$location = apply_filters( 'options_framework_location', array('options.php') );
+	$optionsfile = locate_template( $location );
 	require_once($optionsfile);
 	
 	$optionsframework_settings = get_option('optionsframework' );
