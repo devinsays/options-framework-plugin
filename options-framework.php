@@ -43,8 +43,8 @@ add_action('init', 'optionsframework_rolescheck' );
 
 function optionsframework_rolescheck () {
 	if ( current_user_can( 'edit_theme_options' ) ) {
-		$optionsfile = locate_template( array('options.php') );
-		if ($optionsfile) {
+		$options =& _optionsframework_options();
+		if ( !empty( $options ) ) {
 			// If the user can edit theme options, let the fun begin!
 			add_action( 'admin_menu', 'optionsframework_add_page');
 			add_action( 'admin_init', 'optionsframework_init' );
@@ -195,7 +195,7 @@ function optionsframework_setdefaults() {
 	}
 	
 	// Gets the default options data from the array in options.php
-	$options = optionsframework_options();
+	$options =& _optionsframework_options();
 	
 	// If the options haven't been added to the database yet, they are added now
 	$values = of_get_default_values();
@@ -320,7 +320,7 @@ function optionsframework_validate( $input ) {
 	 
 	if ( isset( $_POST['update'] ) ) {
 		$clean = array();
-		$options = optionsframework_options();
+		$options =& _optionsframework_options();
 		foreach ( $options as $option ) {
 
 			if ( ! isset( $option['id'] ) ) {
@@ -378,7 +378,7 @@ function optionsframework_validate( $input ) {
  
 function of_get_default_values() {
 	$output = array();
-	$config = optionsframework_options();
+	$config =& _optionsframework_options();
 	foreach ( (array) $config as $option ) {
 		if ( ! isset( $option['id'] ) ) {
 			continue;
@@ -439,4 +439,59 @@ if ( ! function_exists( 'of_get_option' ) ) {
 
 		return $default;
 	}
+}
+
+/**
+ * Wrapper for optionsframework_options()
+ * 
+ * Allows for manipulating or setting options via 'of_options' filter
+ * For example:
+ * 
+ * <code>
+ * add_filter('of_options', function($options) {
+ *     $options[] = array(
+ *         'name' => 'Input Text Mini',
+ *         'desc' => 'A mini text input field.',
+ *         'id' => 'example_text_mini',
+ *         'std' => 'Default',
+ *         'class' => 'mini',
+ *         'type' => 'text'
+ *     );
+ *     
+ *     return $options;
+ * });
+ * </code>
+ * 
+ * Also allows for setting options via a return statement in the 
+ * options.php file.  For example (in options.php):
+ * 
+ * <code>
+ * return array(...);
+ * </code>
+ * 
+ * @return array (by reference)
+ */
+function &_optionsframework_options()
+{
+	static $options = null;
+	
+	if (!$options) {
+		// Start w/ empty array
+		$options = array();
+		
+		// Load options from options.php file (if it exists)
+		if ( $optionsfile = locate_template( array('options.php') ) ) {
+			$maybe_options = require_once $optionsfile;
+			if (is_array($maybe_options)) {
+				$options = $maybe_options;
+			} else if (function_exists('optionsframework_options')) {
+				$options = optionsframework_options();
+			}
+		}
+		
+		// Allow setting/manipulating options via filters
+		$options = apply_filters('of_options', $options);
+	}
+	
+	return $options;
 }
