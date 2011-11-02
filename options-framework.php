@@ -144,7 +144,7 @@ function optionsframework_init() {
 	
 	// Set default name if none is set
 	if ( !isset( $optionsframework_settings['id'] ) ) {
-		$optionsframework_settings['id'] = 'optionsframework_' . get_option( 'stylesheet' );
+		$optionsframework_settings['id'] = 'optionsframework_global_options';
 		update_option( 'optionsframework', $optionsframework_settings );
 	}
 	
