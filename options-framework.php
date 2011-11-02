@@ -44,7 +44,7 @@ add_action('init', 'optionsframework_rolescheck' );
 function optionsframework_rolescheck () {
 	if ( current_user_can( 'edit_theme_options' ) ) {
 		$options =& _optionsframework_options();
-		if ( !empty( $options ) ) {
+		if ( $options ) {
 			// If the user can edit theme options, let the fun begin!
 			add_action( 'admin_menu', 'optionsframework_add_page');
 			add_action( 'admin_init', 'optionsframework_init' );
@@ -476,9 +476,6 @@ function &_optionsframework_options()
 	static $options = null;
 	
 	if (!$options) {
-		// Start w/ empty array
-		$options = array();
-		
 		// Load options from options.php file (if it exists)
 		if ( $optionsfile = locate_template( array('options.php') ) ) {
 			$maybe_options = require_once $optionsfile;
