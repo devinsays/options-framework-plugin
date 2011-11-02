@@ -130,14 +130,17 @@ function optionsframework_init() {
 	require_once dirname( __FILE__ ) . '/options-interface.php';
 	require_once dirname( __FILE__ ) . '/options-medialibrary-uploader.php';
 	
-	// Loads the options array from the theme
-	$optionsfile = locate_template( array('options.php') );
-	require_once($optionsfile);
-	
-	$optionsframework_settings = get_option('optionsframework' );
+	// Optionally Loads the options file from the theme
+	$optionsfile = locate_template( array('options.php'), true );
 	
 	// Updates the unique option id in the database if it has changed
-	optionsframework_option_name();
+	if (function_exists('optionsframework_option_name')) {
+		optionsframework_option_name();
+	}
+	do_action( 'optionsframework_option_name' );
+	
+	// Load settings
+	$optionsframework_settings = get_option('optionsframework' );
 	
 	// Gets the unique id, returning a default if it isn't defined
 	if ( isset($optionsframework_settings['id']) ) {
