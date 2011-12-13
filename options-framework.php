@@ -49,6 +49,7 @@ function optionsframework_rolescheck () {
 			add_action( 'admin_menu', 'optionsframework_add_page');
 			add_action( 'admin_init', 'optionsframework_init' );
 			add_action( 'admin_init', 'optionsframework_mlu_init' );
+			add_action( 'wp_before_admin_bar_render', 'optionsframework_adminbar' );
 		}
 		else {
 			// Display a notice if options.php isn't present in the theme
@@ -401,8 +402,6 @@ function of_get_default_values() {
  * Add Theme Options menu item to Admin Bar.
  */
  
-add_action( 'wp_before_admin_bar_render', 'optionsframework_adminbar' );
-
 function optionsframework_adminbar() {
 	
 	global $wp_admin_bar;
