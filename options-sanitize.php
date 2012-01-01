@@ -34,9 +34,9 @@ add_filter( 'of_sanitize_images', 'of_sanitize_enum', 10, 2);
 
 function of_sanitize_checkbox( $input ) {
 	if ( $input ) {
-		$output = "1";
+		$output = '1';
 	} else {
-		$output = "0";
+		$output = '0';
 	}
 	return $output;
 }
