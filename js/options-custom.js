@@ -8,6 +8,34 @@ jQuery(document).ready(function($) {
 	// Fade out the save message
 	$('.fade').delay(1000).fadeOut(1000);
 	
+	
+	// Slider
+	$('.slider').each(function(index,element){
+		var sl_min,sl_max,sl_step;
+		if($(this).attr('min'))
+		sl_min = $(this).attr('min');
+		else
+		sl_min = 0;
+		if($(this).attr('max'))
+		sl_max = $(this).attr('max');	
+		else
+		sl_max = 100;	
+		if($(this).attr('step'))
+		sl_step = $(this).attr('step');	
+		else
+		sl_step = 1;		
+		$(this).slider({
+        	min: parseInt(sl_min),  
+        	max: parseInt(sl_max),  
+			step:parseInt(sl_step),
+			value:parseInt($(this).next().find('input').val()),
+        	slide: function(e,ui){   
+			$(this).next().find('input').attr('value',ui.value);
+        	}  
+    	});
+	});
+		
+	
 	// Color Picker
 	$('.colorSelector').each(function(){
 		var Othis = this; //cache a copy of the this variable for use inside nested function
