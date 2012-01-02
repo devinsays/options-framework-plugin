@@ -3,7 +3,7 @@ Contributors: Devin Price
 Tags: options, theme options
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=X238BDP4QGTV2
 Requires at least: 3.0
-Tested up to: 3.2
+Tested up to: 3.3
 Stable tag: 0.9
 License: GPLv2
 
@@ -50,6 +50,11 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 1. An example of the "Advanced Options" tag in the "Options Check" theme using this plugin.
 
 == Changelog ==
+
+= 1.0 =
+
+* Added filters for entire options array (props @inxilpro)
+* Added a filter for options.php location (props @mattwiebe)
 
 = 0.9 =
 

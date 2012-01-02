@@ -76,6 +76,21 @@ function of_sanitize_text_field($input) {
 */
 
 /* 
+ * This is an example of how to override the default location and name of options.php
+ * In this example it has been renamed options-renamed.php and moved into the folder extensions
+ */
+
+/*
+
+add_filter('options_framework_location','options_framework_location_override');
+
+function options_framework_location_override() {
+	return array('/extensions/options-renamed.php');
+}
+
+*/
+
+/* 
  * Turns off the default options panel from Twenty Eleven
  */
  

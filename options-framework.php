@@ -132,7 +132,8 @@ function optionsframework_init() {
 	require_once dirname( __FILE__ ) . '/options-medialibrary-uploader.php';
 	
 	// Optionally Loads the options file from the theme
-	$optionsfile = locate_template( array('options.php'), true );
+	$location = apply_filters( 'options_framework_location', array('options.php') );
+	$optionsfile = locate_template( $location );
 	
 	// Updates the unique option id in the database if it has changed
 	if ( function_exists( 'optionsframework_option_name' ) ) {
@@ -477,7 +478,8 @@ function &_optionsframework_options()
 	
 	if (!$options) {
 		// Load options from options.php file (if it exists)
-		if ( $optionsfile = locate_template( array('options.php') ) ) {
+		$location = apply_filters( 'options_framework_location', array('options.php') );
+		if ( $optionsfile = locate_template( $location ) ) {
 			$maybe_options = require_once $optionsfile;
 			if (is_array($maybe_options)) {
 				$options = $maybe_options;
