@@ -3,7 +3,7 @@
 Plugin Name: Options Framework
 Plugin URI: http://www.wptheming.com
 Description: A framework for building theme options.
-Version: 0.9
+Version: 1.0 Beta
 Author: Devin Price
 Author URI: http://www.wptheming.com
 License: GPLv2
@@ -27,7 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 /* Basic plugin definitions */
 
-define('OPTIONS_FRAMEWORK_VERSION', '0.9');
+define('OPTIONS_FRAMEWORK_VERSION', '1.0');
 define('OPTIONS_FRAMEWORK_URL', plugin_dir_url( __FILE__ ));
 
 /* Make sure we don't expose any info if called directly */
@@ -116,12 +116,17 @@ function optionsframework_load_sanitization() {
 }
 
 /* 
- * Creates the settings in the database by looping through the array
- * we supplied in options.php.  This is a neat way to do it since
- * we won't have to save settings for headers, descriptions, or arguments.
+ * The optionsframework_init loads all the required files and registers the settings.
  *
  * Read more about the Settings API in the WordPress codex:
  * http://codex.wordpress.org/Settings_API
+ *
+ * The theme options are saved using a unique option id in the database.  Developers
+ * traditionally set the option id via in theme using the function
+ * optionsframework_option_name, but it can also be set using a hook of the same name. 
+ *
+ * If a theme developer doesn't explictly set the unique option id using one of those
+ * functions it will be set by default to: optionsframework_[the theme name]
  *
  */
 
@@ -135,19 +140,33 @@ function optionsframework_init() {
 	$location = apply_filters( 'options_framework_location', array('options.php') );
 	$optionsfile = locate_template( $location );
 	
+	// Load settings
+	$optionsframework_settings = get_option( 'optionsframework' );
+	
 	// Updates the unique option id in the database if it has changed
 	if ( function_exists( 'optionsframework_option_name' ) ) {
 		optionsframework_option_name();
 	}
-	do_action( 'optionsframework_option_name' );
-	
-	// Load settings
-	$optionsframework_settings = get_option( 'optionsframework' );
-	
-	// Set default name if none is set
-	if ( !isset( $optionsframework_settings['id'] ) ) {
-		$optionsframework_settings['id'] = 'optionsframework_global_options';
-		update_option( 'optionsframework', $optionsframework_settings );
+	elseif ( has_action( 'optionsframework_option_name' ) ) {
+		do_action( 'optionsframework_option_name' );
+	}
+	// If the developer hasn't explicitly set an option id, we'll use a default
+	else {
+		$default_themename = get_option( 'stylesheet' );
+		$default_themename = preg_replace("/\W/", "_", strtolower($default_themename) );
+		$default_themename = 'optionsframework_' . $default_themename;
+		if ( isset( $optionsframework_settings['id'] ) ) {
+			if ( $optionsframework_settings['id'] == $default_themename ) {
+				// All good, using default theme id
+			} else {
+				$optionsframework_settings['id'] = $default_themename;
+				update_option( 'optionsframework', $optionsframework_settings );
+			}
+		}
+		else {
+			$optionsframework_settings['id'] = $default_themename;
+			update_option( 'optionsframework', $optionsframework_settings );
+		}
 	}
 	
 	// If the option has no saved data, load the defaults
@@ -472,8 +491,7 @@ if ( ! function_exists( 'of_get_option' ) ) {
  * 
  * @return array (by reference)
  */
-function &_optionsframework_options()
-{
+function &_optionsframework_options() {
 	static $options = null;
 	
 	if (!$options) {
