@@ -42,6 +42,10 @@ if ( !function_exists( 'add_action' ) ) {
 add_action('init', 'optionsframework_rolescheck' );
 
 function optionsframework_rolescheck () {
+	// Because of settings API, users need the manage_options role in multisite
+	if ( is_multisite() && !current_user_can( 'manage_options' ) ) {
+		return;
+	}
 	if ( current_user_can( 'edit_theme_options' ) ) {
 		$options =& _optionsframework_options();
 		if ( $options ) {
@@ -52,7 +56,7 @@ function optionsframework_rolescheck () {
 			add_action( 'wp_before_admin_bar_render', 'optionsframework_adminbar' );
 		}
 		else {
-			// Display a notice if options.php isn't present in the theme
+			// Display a notice if options aren't present in the theme
 			add_action('admin_notices', 'optionsframework_admin_notice');
 			add_action('admin_init', 'optionsframework_nag_ignore');
 		}
