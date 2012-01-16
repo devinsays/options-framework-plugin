@@ -176,7 +176,24 @@ function optionsframework_init() {
 	
 	// Registers the settings fields and callback
 	register_setting( 'optionsframework', $optionsframework_settings['id'], 'optionsframework_validate' );
+	// Change the capability required to save the 'optionsframework' options group.
+	add_filter( 'option_page_capability_optionsframework', 'optionsframework_page_capability' );
+	
+	
 }
+
+/**
+ * Ensures that a user with the 'edit_theme_options' capability can actually set the options
+ * See: http://core.trac.wordpress.org/ticket/14365
+ *
+ * @param string $capability The capability used for the page, which is manage_options by default.
+ * @return string The capability to actually use.
+ */
+ 
+function optionsframework_page_capability( $capability ) {
+    return 'edit_theme_options';
+}
+
 
 /* 
  * Adds default options to the database if they aren't already present.
