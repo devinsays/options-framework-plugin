@@ -32,7 +32,7 @@ function optionsframework_options() {
 	
 	// Multicheck Array
 	$multicheck_array = array("one" => "French Toast", "two" => "Pancake", "three" => "Omelette", "four" => "Crepe", "five" => "Waffle");
-	
+
 	// Multicheck Defaults
 	$multicheck_defaults = array("one" => "1","five" => "1");
 	
@@ -40,7 +40,21 @@ function optionsframework_options() {
 	
 	$background_defaults = array('color' => '', 'image' => '', 'repeat' => 'repeat','position' => 'top center','attachment'=>'scroll');
 	
+	// Advanced jQuery selection example
 	
+		// Multicheck Example
+		$multicheck_show_array = array("one" => "Show box 1?", "two" => "Show box 2?");
+		$multicheck_show_defaults = array("one" => "0", "two" => "0");
+		$multicheck_show_data = array("one" => "section-box1", "two" => "section-box2");
+
+		// Radio Select Example
+		$first_radio_show_array = array("one" => "Reveal Input One","two" => "Reveal Input Two","three" => "Reveal Input Three",);
+		$first_radio_show_data = array("one" => "section-input1", "two" => "section-input2", "three" => "section-input3");
+
+		$second_radio_show_array = array("one" => "Reveal Textarea One","two" => "Reveal Textarea Two","three" => "Reveal Textarea Three",);
+		$second_radio_show_data = array("one" => "section-textarea-1", "two" => "section-textarea-2", "three" => "section-textarea-3");
+
+
 	// Pull all the categories into an array
 	$options_categories = array();  
 	$options_categories_obj = get_categories();
@@ -203,6 +217,109 @@ function optionsframework_options() {
 						"std" => array('size' => '12px','face' => 'verdana','style' => 'bold italic','color' => '#123456'),
 						"type" => "typography",
 					),			
+					
+				array( "name" => "Advanced jQuery Selection",
+						"type" => "heading",
+					),
+
+				array( "name" => "Multicheck Select Example",
+						"desc" => "Multicheck description.",
+						"id" => "example_multicheck_select",
+						"std" => $multicheck_show_defaults, // These items get checked by default
+						"type" => "multicheck",
+						"options" => $multicheck_show_array,
+						"data" => $multicheck_show_data,
+					),
+
+				array( "name" => "Box 1",
+						"desc" => "",
+						"id" => "box1",
+						"std" => "",
+						"type" => "textarea",
+					), 
+					
+				array( "name" => "Box 2",
+						"desc" => "",
+						"id" => "box2",
+						"std" => "",
+						"type" => "textarea",
+					), 
+					
+				array( "name" => "First Radio Select Example",
+						"desc" => "Radio select with default options 'one'.",
+						"id" => "first_example_radio_select",
+						"std" => "one",
+						"class" => "display",
+						"type" => "radio",
+						"options" => $first_radio_show_array,
+						"data" => $first_radio_show_data
+					),
+							
+				array( "name" => "Input 1",
+						"desc" => "",
+						"id" => "input1",
+						"std" => "",
+						"type" => "text",
+					), 
+
+				array( "name" => "Input 2",
+						"desc" => "",
+						"id" => "input2",
+						"std" => "",
+						"type" => "text",
+					), 
+					
+				array( "name" => "Input 3",
+						"desc" => "",
+						"id" => "input3",
+						"std" => "",
+						"type" => "text",
+					), 
+
+				array( "name" => "Second Radio Select Example",
+						"desc" => "Radio select with default options 'one'.",
+						"id" => "second_example_radio_select",
+						"std" => "one",
+						"class" => 'display',
+						"type" => "radio",
+						"options" => $second_radio_show_array,
+						"data" => $second_radio_show_data
+					),
+							
+				array( "name" => "Textarea 1",
+						"desc" => "",
+						"id" => "textarea-1",
+						"std" => "",
+						"type" => "textarea",
+					), 
+
+				array( "name" => "Textarea 2",
+						"desc" => "",
+						"id" => "textarea-2",
+						"std" => "",
+						"type" => "textarea",
+					), 
+					
+				array( "name" => "Textarea 3",
+						"desc" => "",
+						"id" => "textarea-3",
+						"std" => "",
+						"type" => "textarea",
+					), 
+											
+				array( "name" => "Input Checkbox",
+						"desc" => "Show information section?",
+						"id" => "example_show_checkbox",
+						"std" => "0",
+						"type" => "checkbox",
+						"data" => 'section-show_upload_example'
+					),
+
+				array( "name" => "Hurray!",
+						"desc" => "You revealed this information section! Now go and experiment yourself!",
+						"type" => "info",
+						"class" => '.hide-info'
+					),
 		);
 	return $options;
 }
