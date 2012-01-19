@@ -307,14 +307,6 @@ function optionsframework_options() {
 						"type" => "textarea",
 					), 
 											
-				array( "name" => "Input Checkbox",
-						"desc" => "Show information section?",
-						"id" => "example_show_checkbox",
-						"std" => "0",
-						"type" => "checkbox",
-						"data" => 'section-show_upload_example'
-					),
-
 				array( "name" => "Hurray!",
 						"desc" => "You revealed this information section! Now go and experiment yourself!",
 						"type" => "info",
