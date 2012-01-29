@@ -69,6 +69,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 * Added filters for entire options array (props @inxilpro)
 * Added a filter for options.php location (props @mattwiebe)
+* Option header (h4) will not display in panel if name !isset (props @alepee)
 
 = 0.9 =
 
