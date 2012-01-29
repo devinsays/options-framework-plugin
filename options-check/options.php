@@ -32,7 +32,7 @@ function optionsframework_options() {
 	
 	// Multicheck Array
 	$multicheck_array = array("one" => "French Toast", "two" => "Pancake", "three" => "Omelette", "four" => "Crepe", "five" => "Waffle");
-	
+
 	// Multicheck Defaults
 	$multicheck_defaults = array("one" => "1","five" => "1");
 	
@@ -40,7 +40,21 @@ function optionsframework_options() {
 	
 	$background_defaults = array('color' => '', 'image' => '', 'repeat' => 'repeat','position' => 'top center','attachment'=>'scroll');
 	
+	// Advanced jQuery selection example
 	
+		// Multicheck Example
+		$multicheck_show_array = array("one" => "Show box 1?", "two" => "Show box 2?");
+		$multicheck_show_defaults = array("one" => "0", "two" => "0");
+		$multicheck_show_data = array("one" => "section-box1", "two" => "section-box2");
+
+		// Radio Select Example
+		$first_radio_show_array = array("one" => "Reveal Input One","two" => "Reveal Input Two","three" => "Reveal Input Three",);
+		$first_radio_show_data = array("one" => "section-input1", "two" => "section-input2", "three" => "section-input3");
+
+		$second_radio_show_array = array("one" => "Reveal Textarea One","two" => "Reveal Textarea Two","three" => "Reveal Textarea Three",);
+		$second_radio_show_data = array("one" => "section-textarea-1", "two" => "section-textarea-2", "three" => "section-textarea-3");
+
+
 	// Pull all the categories into an array
 	$options_categories = array();  
 	$options_categories_obj = get_categories();
@@ -61,93 +75,110 @@ function optionsframework_options() {
 		
 	$options = array();
 		
-	$options[] = array( "name" => "Basic Settings",
-						"type" => "heading");
+	$options = array(
+	
+				array( "name" => "Basic Settings",
+						"type" => "heading"
+					),
 							
-	$options[] = array( "name" => "Input Text Mini",
+				array( "name" => "Input Text Mini",
 						"desc" => "A mini text input field.",
 						"id" => "example_text_mini",
 						"std" => "Default",
 						"class" => "mini",
-						"type" => "text");
-								
-	$options[] = array( "name" => "Input Text",
+						"type" => "text"
+					),
+				
+				array( "name" => "Input Text",
 						"desc" => "A text input field.",
 						"id" => "example_text",
 						"std" => "Default Value",
-						"type" => "text");
+						"type" => "text",
+					),
 							
-	$options[] = array( "name" => "Textarea",
+				array( "name" => "Textarea",
 						"desc" => "Textarea description.",
 						"id" => "example_textarea",
 						"std" => "Default Text",
-						"type" => "textarea"); 
+						"type" => "textarea",
+					), 
 						
-	$options[] = array( "name" => "Input Select Small",
+				array( "name" => "Input Select Small",
 						"desc" => "Small Select Box.",
 						"id" => "example_select",
 						"std" => "three",
 						"type" => "select",
 						"class" => "mini", //mini, tiny, small
-						"options" => $test_array);			 
+						"options" => $test_array,
+					),
 						
-	$options[] = array( "name" => "Input Select Wide",
+				array( "name" => "Input Select Wide",
 						"desc" => "A wider select box.",
 						"id" => "example_select_wide",
 						"std" => "two",
 						"type" => "select",
-						"options" => $test_array);
+						"options" => $test_array,
+					),
 						
-	$options[] = array( "name" => "Select a Category",
+				array( "name" => "Select a Category",
 						"desc" => "Passed an array of categories with cat_ID and cat_name",
 						"id" => "example_select_categories",
 						"type" => "select",
-						"options" => $options_categories);
+						"options" => $options_categories,
+					),
 						
-	$options[] = array( "name" => "Select a Page",
+				array( "name" => "Select a Page",
 						"desc" => "Passed an pages with ID and post_title",
 						"id" => "example_select_pages",
 						"type" => "select",
-						"options" => $options_pages);
+						"options" => $options_pages,
+					),
 						
-	$options[] = array( "name" => "Input Radio (one)",
+				array( "name" => "Input Radio (one)",
 						"desc" => "Radio select with default options 'one'.",
 						"id" => "example_radio",
 						"std" => "one",
 						"type" => "radio",
-						"options" => $test_array);
+						"options" => $test_array,
+					),
 							
-	$options[] = array( "name" => "Example Info",
+				array( "name" => "Example Info",
 						"desc" => "This is just some example information you can put in the panel.",
-						"type" => "info");
+						"type" => "info",
+					),
 											
-	$options[] = array( "name" => "Input Checkbox",
+				array( "name" => "Input Checkbox",
 						"desc" => "Example checkbox, defaults to true.",
 						"id" => "example_checkbox",
 						"std" => "1",
-						"type" => "checkbox");
+						"type" => "checkbox",
+					),
 						
-	$options[] = array( "name" => "Advanced Settings",
-						"type" => "heading");
+				array( "name" => "Advanced Settings",
+						"type" => "heading",
+					),
 						
-	$options[] = array( "name" => "Check to Show a Hidden Text Input",
+				array( "name" => "Check to Show a Hidden Text Input",
 						"desc" => "Click here and see what happens.",
 						"id" => "example_showhidden",
-						"type" => "checkbox");
-	
-	$options[] = array( "name" => "Hidden Text Input",
+						"type" => "checkbox",
+					),
+			
+				array( "name" => "Hidden Text Input",
 						"desc" => "This option is hidden unless activated by a checkbox click.",
 						"id" => "example_text_hidden",
 						"std" => "Hello",
 						"class" => "hidden",
-						"type" => "text");
+						"type" => "text",
+					),
 						
-	$options[] = array( "name" => "Uploader Test",
+				array( "name" => "Uploader Test",
 						"desc" => "This creates a full size uploader that previews the image.",
 						"id" => "example_uploader",
-						"type" => "upload");
+						"type" => "upload",
+					),
 						
-	$options[] = array( "name" => "Example Image Selector",
+				array( "name" => "Example Image Selector",
 						"desc" => "Images for layout.",
 						"id" => "example_images",
 						"std" => "2c-l-fixed",
@@ -156,31 +187,131 @@ function optionsframework_options() {
 							'1col-fixed' => $imagepath . '1col.png',
 							'2c-l-fixed' => $imagepath . '2cl.png',
 							'2c-r-fixed' => $imagepath . '2cr.png')
-						);
+					),
 						
-	$options[] = array( "name" =>  "Example Background",
+				array( "name" =>  "Example Background",
 						"desc" => "Change the background CSS.",
 						"id" => "example_background",
 						"std" => $background_defaults, 
-						"type" => "background");
+						"type" => "background",
+					),
 								
-	$options[] = array( "name" => "Multicheck",
+				array( "name" => "Multicheck",
 						"desc" => "Multicheck description.",
 						"id" => "example_multicheck",
 						"std" => $multicheck_defaults, // These items get checked by default
 						"type" => "multicheck",
-						"options" => $multicheck_array);
+						"options" => $multicheck_array,
+					),
 							
-	$options[] = array( "name" => "Colorpicker",
+				array( "name" => "Colorpicker",
 						"desc" => "No color selected by default.",
 						"id" => "example_colorpicker",
 						"std" => "",
-						"type" => "color");
+						"type" => "color",
+					),
 						
-	$options[] = array( "name" => "Typography",
+				array( "name" => "Typography",
 						"desc" => "Example typography.",
 						"id" => "example_typography",
 						"std" => array('size' => '12px','face' => 'verdana','style' => 'bold italic','color' => '#123456'),
-						"type" => "typography");			
+						"type" => "typography",
+					),			
+					
+				array( "name" => "Advanced jQuery Selection",
+						"type" => "heading",
+					),
+
+				array( "name" => "Multicheck Select Example",
+						"desc" => "Multicheck description.",
+						"id" => "example_multicheck_select",
+						"std" => $multicheck_show_defaults, // These items get checked by default
+						"type" => "multicheck",
+						"options" => $multicheck_show_array,
+						"data" => $multicheck_show_data,
+					),
+
+				array( "name" => "Box 1",
+						"desc" => "",
+						"id" => "box1",
+						"std" => "",
+						"type" => "textarea",
+					), 
+					
+				array( "name" => "Box 2",
+						"desc" => "",
+						"id" => "box2",
+						"std" => "",
+						"type" => "textarea",
+					), 
+					
+				array( "name" => "First Radio Select Example",
+						"desc" => "Radio select with default options 'one'.",
+						"id" => "first_example_radio_select",
+						"std" => "one",
+						"class" => "display",
+						"type" => "radio",
+						"options" => $first_radio_show_array,
+						"data" => $first_radio_show_data
+					),
+							
+				array( "name" => "Input 1",
+						"desc" => "",
+						"id" => "input1",
+						"std" => "",
+						"type" => "text",
+					), 
+
+				array( "name" => "Input 2",
+						"desc" => "",
+						"id" => "input2",
+						"std" => "",
+						"type" => "text",
+					), 
+					
+				array( "name" => "Input 3",
+						"desc" => "",
+						"id" => "input3",
+						"std" => "",
+						"type" => "text",
+					), 
+
+				array( "name" => "Second Radio Select Example",
+						"desc" => "Radio select with default options 'one'.",
+						"id" => "second_example_radio_select",
+						"std" => "one",
+						"class" => 'display',
+						"type" => "radio",
+						"options" => $second_radio_show_array,
+						"data" => $second_radio_show_data
+					),
+							
+				array( "name" => "Textarea 1",
+						"desc" => "",
+						"id" => "textarea-1",
+						"std" => "",
+						"type" => "textarea",
+					), 
+
+				array( "name" => "Textarea 2",
+						"desc" => "",
+						"id" => "textarea-2",
+						"std" => "",
+						"type" => "textarea",
+					), 
+					
+				array( "name" => "Textarea 3",
+						"desc" => "",
+						"id" => "textarea-3",
+						"std" => "",
+						"type" => "textarea",
+					), 
+											
+				array( "name" => "Hurray!",
+						"desc" => "You revealed this information section! Now go and experiment yourself!",
+						"type" => "info",
+						"class" => '.hide-info'
+					),
+		);
 	return $options;
 }

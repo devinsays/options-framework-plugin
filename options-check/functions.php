@@ -54,6 +54,71 @@ jQuery(document).ready(function() {
 }
 
 /* 
+ * This is an example showing how to do some advanced jQuery selection.
+ * This one shows/hides different inputs based on the data-attr value.
+ */
+
+add_action('optionsframework_custom_scripts', 'optionsframework_advanced_jquery');
+
+function optionsframework_advanced_jquery() { ?>
+
+<script type="text/javascript">
+jQuery(document).ready(function() {
+	
+	var check = jQuery('input[type=checkbox]');
+	var radio = jQuery('input[type=radio]');
+	var dataElements = jQuery('[data-attr]');
+	var dataAttr = dataElements.data('attr');
+	var $dataAttr = '#'+dataAttr;
+
+	//Cycles through the page finding the radio and checkbox elements, 
+	//retrieves their data-attr value, then hides the elements with the id of 
+	//that value.
+	dataElements.each(function(){
+		var $this = jQuery(this);
+		var dataAttr = '#'+$this.data('attr');
+		var $dataAttr = jQuery(dataAttr);
+
+		$dataAttr.stop().hide();	
+
+		if ($this.is(':checked')){
+			$dataAttr.stop().show();
+
+			if($this.is(radio)){
+				$this.addClass('selected');
+				
+			}
+		}
+
+	});
+
+	//For checkboxes, toggles the display of the element it's selected to hide. 
+	//For Radio buttons, finds the closest element with class .selected, grabs 
+	//its data-attr, hides that element, then shows the element it's selected.	
+	dataElements.click(function(){
+		var $this = jQuery(this);
+		var dataAttr = '#'+$this.data('attr');
+		var $dataAttr = jQuery(dataAttr);
+
+		if ($this.is(check)){
+			$dataAttr.toggle();
+		}
+		else if($this.is(radio)){
+				var selected = $this.siblings('.selected');	
+				var itemToHide = jQuery('#'+selected.data('attr'));
+				itemToHide.stop().hide();
+				$dataAttr.stop().show();
+				selected.removeClass('selected');
+				$this.addClass('selected');
+		}
+	});
+
+});
+</script>
+ 
+<?php
+}
+/* 
  * This is an example of how to override a default filter
  * for 'text' sanitization and use a different one.
  */
