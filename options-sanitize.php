@@ -14,10 +14,6 @@ function of_sanitize_textarea($input) {
 
 add_filter( 'of_sanitize_textarea', 'of_sanitize_textarea' );
 
-/* Info */
-
-
-
 /* Select */
 
 add_filter( 'of_sanitize_select', 'of_sanitize_enum', 10, 2);
@@ -75,6 +71,14 @@ function of_sanitize_upload( $input ) {
 	return $output;
 }
 add_filter( 'of_sanitize_upload', 'of_sanitize_upload' );
+
+/* Editor */
+
+/*
+function of_sanitize_editor() {
+}
+add_filter( 'of_sanitize_editor',  'of_sanitize_editor');
+*/
 
 /* Allowed Tags */
 

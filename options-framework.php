@@ -3,7 +3,7 @@
 Plugin Name: Options Framework
 Plugin URI: http://www.wptheming.com
 Description: A framework for building theme options.
-Version: 1.0
+Version: 1.1 Development
 Author: Devin Price
 Author URI: http://www.wptheming.com
 License: GPLv2
@@ -298,14 +298,13 @@ function of_admin_head() {
 
 if ( !function_exists( 'optionsframework_page' ) ) {
 function optionsframework_page() {
-	$return = optionsframework_fields();
 	settings_errors();
 	?>
     
 	<div class="wrap">
     <?php screen_icon( 'themes' ); ?>
     <h2 class="nav-tab-wrapper">
-        <?php echo $return[1]; ?>
+        <?php echo optionsframework_tabs(); ?>
     </h2>
     
     <div class="metabox-holder">
@@ -313,7 +312,7 @@ function optionsframework_page() {
 		<form action="options.php" method="post">
 		<?php settings_fields('optionsframework'); ?>
 
-		<?php echo $return[0]; /* Settings */ ?>
+		<?php optionsframework_fields(); /* Settings */ ?>
         
         <div id="optionsframework-submit">
 			<input type="submit" class="button-primary" name="update" value="<?php esc_attr_e( 'Save Options' ); ?>" />

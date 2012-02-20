@@ -1,6 +1,28 @@
 <?php
 
 /**
+ * Generates the tabs that are used in the options menu
+ */
+ 
+function optionsframework_tabs() {
+
+	$optionsframework_settings = get_option('optionsframework');
+    $options =& _optionsframework_options();
+	$menu = '';
+
+	foreach ($options as $value) {
+		// Heading for Navigation
+		if ($value['type'] == "heading") {
+			$jquery_click_hook = preg_replace('/[^a-zA-Z0-9._\-]/', '', strtolower($value['name']) );
+			$jquery_click_hook = "of-option-" . $jquery_click_hook;
+			$menu .= '<a id="'.  esc_attr( $jquery_click_hook ) . '-tab" class="nav-tab" title="' . esc_attr( $value['name'] ) . '" href="' . esc_attr( '#'.  $jquery_click_hook ) . '">' . esc_html( $value['name'] ) . '</a>';
+		}
+	}
+	
+	return $menu;
+}
+
+/**
  * Generates the options fields that are used in the form.
  */
 
@@ -8,10 +30,6 @@ function optionsframework_fields() {
 
 	global $allowedtags;
 	$optionsframework_settings = get_option('optionsframework');
-	
-	// Get the theme name so we can display it up top
-	$themename = get_theme_data(STYLESHEETPATH . '/style.css');
-	$themename = $themename['Name'];
 
 	// Gets the unique option id
 	if (isset($optionsframework_settings['id'])) {
@@ -26,7 +44,6 @@ function optionsframework_fields() {
         
     $counter = 0;
 	$menu = '';
-	$output = '';
 	
 	foreach ($options as $value) {
 	   
@@ -34,6 +51,7 @@ function optionsframework_fields() {
 		$val = '';
 		$select_value = '';
 		$checked = '';
+		$output = '';
 		
 		// Wrap all options
 		if ( ($value['type'] != "heading") && ($value['type'] != "info") ) {
@@ -55,7 +73,12 @@ function optionsframework_fields() {
 			if ( isset( $value['name'] ) ) {
 				$output .= '<h4 class="heading">' . esc_html( $value['name'] ) . '</h4>' . "\n";
 			}
-			$output .= '<div class="option">' . "\n" . '<div class="controls">' . "\n";
+			if ( $value['type'] != 'editor' ) {
+				$output .= '<div class="option">' . "\n" . '<div class="controls">' . "\n";
+			}
+			else {
+				$output .= '<div class="option">' . "\n" . '<div>' . "\n";
+			}
 		 }
 		
 		// Set default value to $val
@@ -92,11 +115,11 @@ function optionsframework_fields() {
 			$cols = '8';
 			$ta_value = '';
 			
-			if(isset($value['options'])){
+			if (isset( $value['options'] ) ){
 				$ta_options = $value['options'];
-				if(isset($ta_options['cols'])){
+				if ( isset($ta_options['cols']) ){
 					$cols = $ta_options['cols'];
-				} else { $cols = '8'; }
+				}
 			}
 			
 			$val = stripslashes( $val );
@@ -269,7 +292,15 @@ function optionsframework_fields() {
 			$output .= '</select>';
 			$output .= '</div>';
 		
-		break;  
+		break;
+		
+		// Editor
+		case 'editor':
+			$output .= '<div class="explain">' . wp_kses( $explain_value, $allowedtags) . '</div>'."\n";
+			echo $output;
+			wp_editor($val,$value['id']);
+			$output = '';
+		break;
 		
 		// Info
 		case "info":
@@ -309,12 +340,13 @@ function optionsframework_fields() {
 				$output .= '<br/>';
 			}
 			$output .= '</div>';
-			if ( $value['type'] != "checkbox" ) {
+			if ( ( $value['type'] != "checkbox" ) && ( $value['type'] != "editor" ) ) {
 				$output .= '<div class="explain">' . wp_kses( $explain_value, $allowedtags) . '</div>'."\n";
 			}
 			$output .= '<div class="clear"></div></div></div>'."\n";
 		}
+		
+		echo $output;
 	}
-    $output .= '</div>';
-    return array($output,$menu);
+    echo '</div>';
 }

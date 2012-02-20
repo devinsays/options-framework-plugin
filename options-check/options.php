@@ -181,6 +181,15 @@ function optionsframework_options() {
 						"desc" => "Example typography.",
 						"id" => "example_typography",
 						"std" => array('size' => '12px','face' => 'verdana','style' => 'bold italic','color' => '#123456'),
-						"type" => "typography");			
+						"type" => "typography");
+
+	$options[] = array( "name" => "Text Editor",
+						"type" => "heading");
+						
+	$options[] = array( "name" => "Example Text Editor",
+						"desc" => "Here is the description.",
+						"id" => "example_editor",
+						"type" => "editor");
+								
 	return $options;
 }
