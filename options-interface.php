@@ -112,19 +112,17 @@ function optionsframework_fields() {
 		
 		// Textarea
 		case 'textarea':
-			$cols = '8';
-			$ta_value = '';
+			$rows = '8';
 			
-			if (isset( $value['options'] ) ){
-				$ta_options = $value['options'];
-				if ( isset($ta_options['cols']) ){
-					$cols = $ta_options['cols'];
+			if ( isset( $value['settings']['rows'] ) ) {
+				$custom_rows = $value['settings']['rows'];
+				if ( is_numeric( $custom_rows ) ) {
+					$rows = $custom_rows;
 				}
 			}
 			
 			$val = stripslashes( $val );
-			
-			$output .= '<textarea id="' . esc_attr( $value['id'] ) . '" class="of-input" name="' . esc_attr( $option_name . '[' . $value['id'] . ']' ) . '" cols="'. esc_attr( $cols ) . '" rows="8">' . esc_textarea( $val ) . '</textarea>';
+			$output .= '<textarea id="' . esc_attr( $value['id'] ) . '" class="of-input" name="' . esc_attr( $option_name . '[' . $value['id'] . ']' ) . '" rows="' . $rows . '">' . esc_textarea( $val ) . '</textarea>';
 		break;
 		
 		// Select Box
