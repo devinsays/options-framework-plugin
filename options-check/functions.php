@@ -4,7 +4,6 @@
  * Helper function to return the theme option value. If no value has been saved, it returns $default.
  * Needed because options are saved as serialized strings.
  *
- * This code allows the theme to work without errors if the Options Framework plugin has been disabled.
  */
 
 if ( !function_exists( 'of_get_option' ) ) {
@@ -89,13 +88,3 @@ function options_framework_location_override() {
 }
 
 */
-
-/* 
- * Turns off the default options panel from Twenty Eleven
- */
- 
-add_action('after_setup_theme','remove_twentyeleven_options', 100);
-
-function remove_twentyeleven_options() {
-	remove_action( 'admin_menu', 'twentyeleven_theme_options_add_page' );
-}

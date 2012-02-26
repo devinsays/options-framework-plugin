@@ -5,9 +5,40 @@ Description: A example/test theme to make sure all the options work in the Optio
 Author: Devin Price
 Author URI: http://wptheming.com
 Version: 1.0
-Template: twentyeleven
 */
 
-@import url('../twentyeleven/style.css');
+body {
+	background:#eee;
+}
 
-#branding hgroup, #searchform, #branding img, #access {display:none;}
+body, input, textarea {
+	color: #373737;
+	font: 15px "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: 300;
+	line-height: 1.625;
+}
+
+p {
+	margin:0 0 10px 0;
+}
+
+h1, h2, h3 {
+	margin:0 0 10px 0;
+}
+
+#page {
+	background:#fff;
+	min-width:440px;
+	max-width:740px;
+	width:60%;
+	margin:20px auto;
+}
+
+header {
+	background:#dedede;
+	padding:30px 40px;
+}
+
+.entry-content {
+	padding:20px 40px;
+}
