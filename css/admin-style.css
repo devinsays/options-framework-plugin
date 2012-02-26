@@ -228,3 +228,13 @@
 #optionsframework .button-primary {
 	float:right;
 }
+
+/* Bottom Section */
+
+#optionsframework .section:before, #optionsframework .section:after {
+	content: "";
+	display: table;
+}
+#optionsframework .section:after {
+	clear: both;
+}

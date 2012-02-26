@@ -228,7 +228,7 @@ function optionsframework_fields() {
 			// Font Weight
 			$output .= '<select class="of-typography of-typography-style" name="'.$option_name.'['.$value['id'].'][style]" id="'. $value['id'].'_style">';
 
-			/* Font Style */
+			// Font Style
 			$styles = of_recognized_font_styles();
 			foreach ( $styles as $key => $style ) {
 				$output .= '<option value="' . esc_attr( $key ) . '" ' . selected( $typography_stored['style'], $key, false ) . '>'. $style .'</option>';
@@ -318,7 +318,7 @@ function optionsframework_fields() {
 			if ( $value['desc'] ) {
 				$output .= apply_filters('of_sanitize_info', $value['desc'] ) . "\n";
 			}
-			$output .= '<div class="clear"></div></div>' . "\n";
+			$output .= '</div>' . "\n";
 		break;                       
 		
 		// Heading for Navigation
@@ -342,7 +342,7 @@ function optionsframework_fields() {
 			if ( ( $value['type'] != "checkbox" ) && ( $value['type'] != "editor" ) ) {
 				$output .= '<div class="explain">' . wp_kses( $explain_value, $allowedtags) . '</div>'."\n";
 			}
-			$output .= '<div class="clear"></div></div></div>'."\n";
+			$output .= '</div></div>'."\n";
 		}
 		
 		echo $output;
