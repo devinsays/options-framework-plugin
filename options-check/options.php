@@ -77,6 +77,36 @@ function optionsframework_options() {
 						"std" => "Default Value",
 						"type" => "text");
 							
+							
+	//slider 						
+	$options[] = array( "name" => "Slider",
+						"desc" => "min=0,max=100,step=1",
+						"id" => "example_slider",
+						"std" => "1",
+						"type" => "slider",
+						"options" => array(
+							'min' => '0',
+							'max' => '100',
+							'step' => '1')
+							);	
+
+
+	//slider 						
+	$options[] = array( "name" => "Slider",
+						"desc" => "min=480,max=680,step=10",
+						"id" => "example_slider2",
+						"std" => "580",
+						"type" => "slider",
+						"options" => array(
+									'min' => '480',
+									'max' => '680',
+									'step' => '10')
+						);							
+							
+							
+							
+							
+							
 	$options[] = array( "name" => "Textarea",
 						"desc" => "Textarea description.",
 						"id" => "example_textarea",

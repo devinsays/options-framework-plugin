@@ -196,6 +196,22 @@ function optionsframework_fields() {
 			$output .= '<div id="' . esc_attr( $value['id'] . '_picker' ) . '" class="colorSelector"><div style="' . esc_attr( 'background-color:' . $val ) . '"></div></div>';
 			$output .= '<input class="of-color" name="' . esc_attr( $option_name . '[' . $value['id'] . ']' ) . '" id="' . esc_attr( $value['id'] ) . '" type="text" value="' . esc_attr( $val ) . '" />';
 		break; 
+
+		// Slider
+		case "slider":
+			if (isset($value['options'])){
+			if (isset($value['options']['min']))
+			$min = $value['options']['min'];
+			if (isset($value['options']['max']))
+			$max = $value['options']['max'];
+			if (isset($value['options']['step']))
+			$step = $value['options']['step'];
+			}
+			$output .= '<div class="slider" min="'.$min.'" max="'.$max.'" step="'.$step.'"></div>';
+			$output .= '<div class="sliderValue"><input id="' . esc_attr( $value['id'] ) . '" name="' . esc_attr( $option_name . '[' . $value['id'] . ']' ) . '" type="text" value="' . esc_attr( $val ) . '" /></div>';
+
+		break;
+
 		
 		// Uploader
 		case "upload":
