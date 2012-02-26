@@ -298,7 +298,8 @@ function optionsframework_fields() {
 		case 'editor':
 			$output .= '<div class="explain">' . wp_kses( $explain_value, $allowedtags) . '</div>'."\n";
 			echo $output;
-			wp_editor($val,$value['id']);
+			$textarea_name = esc_attr( $option_name . '[' . $value['id'] . ']' );
+			wp_editor( $val, $value['id'], array( 'textarea_name' => $textarea_name) );
 			$output = '';
 		break;
 		

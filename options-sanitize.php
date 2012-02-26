@@ -74,11 +74,7 @@ add_filter( 'of_sanitize_upload', 'of_sanitize_upload' );
 
 /* Editor */
 
-/*
-function of_sanitize_editor() {
-}
-add_filter( 'of_sanitize_editor',  'of_sanitize_editor');
-*/
+add_filter( 'of_sanitize_editor', 'of_sanitize_allowedposttags' );
 
 /* Allowed Tags */
 

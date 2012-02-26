@@ -357,6 +357,7 @@ function optionsframework_validate( $input ) {
 	 */
 	 
 	if ( isset( $_POST['update'] ) ) {
+	
 		$clean = array();
 		$options =& _optionsframework_options();
 		foreach ( $options as $option ) {
