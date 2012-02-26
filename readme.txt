@@ -68,7 +68,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 = 1.1 =
 
 * Added support for wp_editor
-* Updated textarea settings to allow rows paramter
+* Updated textarea settings to allow rows parameter
 
 = 1.0 =
 
