@@ -12,6 +12,9 @@
 	max-width:780px;
 	background:#fff;
 }
+#optionsframework h3 {
+	cursor: default;
+}
 #optionsframework p {
 	margin-bottom:0;
 	padding-bottom:10px;
