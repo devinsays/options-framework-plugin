@@ -292,25 +292,6 @@ function optionsframework_fields() {
 
 			break;
 
-		// Editor
-		case 'editor':
-			$output .= '<div class="explain">' . wp_kses( $explain_value, $allowedtags) . '</div>'."\n";
-			echo $output;
-			$textarea_name = esc_attr( $option_name . '[' . $value['id'] . ']' );
-			$default_editor_settings = array(
-				'textarea_name' => $textarea_name,
-				'media_buttons' => false,
-				'tinymce' => array( 'plugins' => 'wordpress' )
-			);
-			$editor_settings = array();
-			if ( isset( $value['settings'] ) ) {
-				$editor_settings = $value['settings'];
-			}
-			$editor_settings = array_merge($editor_settings, $default_editor_settings);
-			wp_editor( $val, $value['id'], $editor_settings );
-			$output = '';
-			break;
-
 		// Info
 		case "info":
 			$class = 'section';
