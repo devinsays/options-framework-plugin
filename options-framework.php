@@ -247,15 +247,15 @@ function optionsframework_setdefaults() {
 /* Add a subpage called "Theme Options" to the appearance menu. */
 
 if ( !function_exists( 'optionsframework_add_page' ) ) {
+
 	function optionsframework_add_page() {
-
 		$of_page = add_theme_page('Theme Options', 'Theme Options', 'edit_theme_options', 'options-framework','optionsframework_page');
-
-		// Adds actions to hook in the required css and javascript
-		add_action("admin_print_styles-$of_page",'optionsframework_load_styles');
-		add_action("admin_print_scripts-$of_page", 'optionsframework_load_scripts');
-
+		
+		// Load the required CSS and javscript
+		add_action('admin_enqueue_scripts', 'optionsframework_load_scripts');
+		add_action( 'admin_print_styles-' . $of_page, 'optionsframework_load_styles' );
 	}
+	
 }
 
 /* Loads the CSS */
@@ -267,15 +267,18 @@ function optionsframework_load_styles() {
 
 /* Loads the javascript */
 
-function optionsframework_load_scripts() {
+function optionsframework_load_scripts($hook) {
 
-	// Inline scripts from options-interface.php
-	add_action('admin_head', 'of_admin_head');
-
+	if ( 'appearance_page_options-framework' != $hook )
+        return;
+	
 	// Enqueued scripts
 	wp_enqueue_script('jquery-ui-core');
-	wp_enqueue_script('color-picker', OPTIONS_FRAMEWORK_URL.'js/colorpicker.js', array('jquery'));
-	wp_enqueue_script('options-custom', OPTIONS_FRAMEWORK_URL.'js/options-custom.js', array('jquery'));
+	wp_enqueue_script('color-picker', OPTIONS_FRAMEWORK_URL .'js/colorpicker.js', array('jquery'));
+	wp_enqueue_script('options-custom', OPTIONS_FRAMEWORK_URL .'js/options-custom.js', array('jquery'));
+	
+	// Inline scripts from options-interface.php
+	add_action('admin_head', 'of_admin_head');
 }
 
 function of_admin_head() {
