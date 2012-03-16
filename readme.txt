@@ -2,18 +2,32 @@
 Contributors: Devin Price
 Tags: options, theme options
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=X238BDP4QGTV2
-Requires at least: 3.0
-Tested up to: 3.2
-Stable tag: 0.9
+Requires at least: 3.3
+Tested up to: 3.3
+Stable tag: 1.0
 License: GPLv2
 
 == Description ==
 
-The Options Framework Plugin makes it easy to include an options panel in any WordPress theme.  It was built so that theme developers can concentrate on making the actual theme rather than spending a ton of time on creating an options panel from scratch.  It's free to use in both commercial and personal projects, just like WordPress itself.
+The Options Framework Plugin makes it easy to include an options panel in any WordPress theme.  It was built so developers can concentrate on making the actual theme rather than spending time creating an options panel from scratch.  It's free to use in both commercial and personal projects, just like WordPress itself.
+
+= Options Include =
+
+* text input
+* textarea
+* checkbox
+* select
+* radio button
+* upload (image uploader)
+* images (use images instead of radio buttons)
+* background (a set of options to define a background)
+* multicheck
+* color (a jquery color picker)
+* typography (a set of options to define typography)
+
+= Learn More =
 
 Please visit [http://wptheming.com/options-framework-plugin](http://wptheming.com/options-framework-plugin) for a full description of how to define and use the theme options.
-
-The code was originally based on the [WooFramework](http://www.woothemes.com/) and their option styles.
 
 == Installation ==
 
@@ -33,12 +47,12 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 = What options are available to use? =
 
-* text
+* text input
 * textarea
 * checkbox
 * select
-* radio
-* upload (an image uploader)
+* radio button
+* upload (image uploader)
 * images (use images instead of radio buttons)
 * background (a set of options to define a background)
 * multicheck
@@ -50,6 +64,18 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 1. An example of the "Advanced Options" tag in the "Options Check" theme using this plugin.
 
 == Changelog ==
+
+= 1.1 =
+
+* Added support for wp_editor
+* Updated textarea settings to allow rows parameter
+* Updated cursor:default for h3 metabox, props @yurifedorov
+
+= 1.0 =
+
+* Added filters for entire options array (props @inxilpro)
+* Added a filter for options.php location (props @mattwiebe)
+* Option header (h4) will not display in panel if name !isset (props @alepee)
 
 = 0.9 =
 
