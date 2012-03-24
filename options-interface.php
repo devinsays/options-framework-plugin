@@ -242,7 +242,7 @@ function optionsframework_fields() {
 
 			// allow modification/injection of typography fields
 			$typography_fields = compact( 'font_size', 'font_face', 'font_style', 'font_color' );
-			$typography_fields = apply_filters( 'of_typography_fields', $typography_fields, $typography_stored, $value );
+			$typography_fields = apply_filters( 'of_typography_fields', $typography_fields, $typography_stored, $option_name, $value );
 			$output .= implode( '', $typography_fields );
 			break;
 
