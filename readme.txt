@@ -70,6 +70,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * Added support for wp_editor
 * Updated textarea settings to allow rows parameter
 * Updated cursor:default for h3 metabox, props @yurifedorov
+* Filtering of typography options (@mattwiebe)
 
 = 1.0 =
 
