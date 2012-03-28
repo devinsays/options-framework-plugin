@@ -1,10 +1,13 @@
 # Options Framework # 
+
 **Tags:** options, theme options  
-**Requires at least:**3.3  
+**Requires at least:** 3.3  
 **Tested up to:** 3.3  
 **Stable tag:** 1.0 
-**License:**GPLv2
-**Donate link:** https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=X238BDP4QGTV2
+**License:** GPLv2
+**Donate link:** http://bit.ly/options-donate
+
+![An example of the "Advanced Options" tag in the "Options Check" theme using this plugin.](https://github.com/devinsays/options-framework-plugin/raw/master/screenshot-1.png)
 
 ## Description ##
 
@@ -33,10 +36,6 @@ Please visit [http://wptheming.com/options-framework-plugin](http://wptheming.co
 If your theme already has options enabled, they will show up under the appearance menu.
 
 If your theme doesn't have options, you can define them to options.php of your theme and they will instantly show up.  For more on how to do this, visit [http://wptheming.com/options-framework-plugin](http://wptheming.com/options-framework-plugin).
-
-### Screenshot ###
-
-![An example of the "Advanced Options" tag in the "Options Check" theme using this plugin.](https://github.com/devinsays/options-framework-plugin/blob/master/screenshot-1.png)
 
 ## Frequently Asked Questions ##
 
