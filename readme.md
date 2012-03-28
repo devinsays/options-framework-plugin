@@ -2,10 +2,10 @@
 
 **Tags:** options, theme options  
 **Requires at least:** 3.3  
-**Tested up to:** 3.3  
-**Stable tag:** 1.0
-**License:** GPLv2
-**Donate link:** http://bit.ly/options-donate
+**Tested up to:** 3.3   
+**Stable tag:** 1.0  
+**License:** GPLv2  
+**Donate link:** http://bit.ly/options-donate  
 
 ## Screenshot ##
 
