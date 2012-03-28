@@ -1,11 +1,13 @@
-# Options Framework # 
+## Options Framework ##
 
 **Tags:** options, theme options  
 **Requires at least:** 3.3  
 **Tested up to:** 3.3  
-**Stable tag:** 1.0 
+**Stable tag:** 1.0
 **License:** GPLv2
 **Donate link:** http://bit.ly/options-donate
+
+## Screenshot ##
 
 ![An example of the "Advanced Options" tag in the "Options Check" theme using this plugin.](https://github.com/devinsays/options-framework-plugin/raw/master/screenshot-1.png)
 
@@ -47,7 +49,7 @@ The "Options Check" theme is a blueprint for how to work with options.  It inclu
 
 You can also watch the video screencast I have at [http://wptheming.com/options-framework-plugin](http://wptheming.com/options-framework-plugin).
 
-## Changelog ##
+## Change log ##
 
 #### 1.1 ####
 
