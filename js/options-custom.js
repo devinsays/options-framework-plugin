@@ -67,6 +67,15 @@ jQuery(document).ready(function($) {
 		$('.group').hide();
 		$(clicked_group).fadeIn();
 		evt.preventDefault();
+		
+		// Editor Height (needs improvement)
+		$('.wp-editor-wrap').each(function() {
+			var editor_iframe = $(this).find('iframe');
+			if ( editor_iframe.height() < 30 ) {
+				editor_iframe.css({'height':'auto'});
+			}
+		});
+	
 	});
            					
 	$('.group .collapsed input:checkbox').click(unhideHidden);
