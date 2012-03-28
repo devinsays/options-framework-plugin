@@ -190,13 +190,6 @@ get_header(); ?>
             <?php echo of_get_option('example_editor', 'no entry'); ?>
             </dd>
             </dl>
-            
-			<dl>
-            <dt>type: editor</dt>
-            <dd>of_get_option('custom_editor'):<br>
-            <?php echo of_get_option('custom_editor', 'no entry'); ?>
-            </dd>
-            </dl>
 
 		</div><!-- .entry-content -->
 	</article><!-- #post-0 -->

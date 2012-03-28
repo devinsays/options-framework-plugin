@@ -191,25 +191,5 @@ function optionsframework_options() {
 		"id" => "example_editor",
 		"type" => "editor");
 
-	/**
-	 * For $settings options see:
-	 * http://codex.wordpress.org/Function_Reference/wp_editor
-	 *
-	 * 'media_buttons' are not supported as there is no post to attach items to
-	 * 'textarea_name' is set by the 'id' you choose
-	 */
-
-	$wp_editor_settings = array(
-		'wpautop' => true, // Default
-		'textarea_rows' => 5,
-		'tinymce' => array( 'plugins' => 'wordpress' )
-	);
-
-	$options[] = array( "name" => "Customized Text Editor",
-		"desc" => "Here is the description.",
-		"id" => "custom_editor",
-		"type" => "editor",
-		"settings" => $wp_editor_settings );
-
 	return $options;
 }

@@ -348,9 +348,6 @@ function optionsframework_fields() {
 			$output .= '<h3>' . esc_html( $value['name'] ) . '</h3>' . "\n";
 			break;
 
-		// Extensible fields
-		default:
-			$output .= apply_filters( 'of_field_display_' . $value['type'], '', $val, $option_name, $value );
 		}
 
 		if ( ( $value['type'] != "heading" ) && ( $value['type'] != "info" ) ) {
