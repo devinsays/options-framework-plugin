@@ -202,7 +202,7 @@ function optionsframework_options() {
 	
 	$options[] = array( "name" => "Default Text Editor",
 		"desc" => "Here is the description.",
-		"id" => "example_editor",
+		"id" => "example_editor", // This ID must be lowercase
 		"type" => "editor",
 		"settings" => $wp_editor_settings );
 

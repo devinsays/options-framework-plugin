@@ -3,7 +3,7 @@
 Plugin Name: Options Framework
 Plugin URI: http://www.wptheming.com
 Description: A framework for building theme options.
-Version: 1.1 Development
+Version: 1.1
 Author: Devin Price
 Author URI: http://www.wptheming.com
 License: GPLv2
