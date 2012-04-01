@@ -206,10 +206,17 @@ function optionsframework_fields() {
 		case 'typography':
 
 			$typography_stored = $val;
+			if ( isset( $value['options'] ) ) {
+				$typography_options = $value['options'];
+			}
 
 			// Font Size
 			$font_size = '<select class="of-typography of-typography-size" name="' . esc_attr( $option_name . '[' . $value['id'] . '][size]' ) . '" id="' . esc_attr( $value['id'] . '_size' ) . '">';
-			$sizes = of_recognized_font_sizes();
+			if ( isset( $typography_options['sizes'] ) ) {
+				$sizes = $typography_options['sizes'];
+			} else {
+				$sizes = of_recognized_font_sizes();
+			}
 			foreach ( $sizes as $i ) {
 				$size = $i . 'px';
 				$font_size .= '<option value="' . esc_attr( $size ) . '" ' . selected( $typography_stored['size'], $size, false ) . '>' . esc_html( $size ) . '</option>';
@@ -218,19 +225,23 @@ function optionsframework_fields() {
 
 			// Font Face
 			$font_face = '<select class="of-typography of-typography-face" name="' . esc_attr( $option_name . '[' . $value['id'] . '][face]' ) . '" id="' . esc_attr( $value['id'] . '_face' ) . '">';
-
-			$faces = of_recognized_font_faces();
+			if ( isset( $typography_options['faces'] ) ) {
+				$faces = $typography_options['faces'];
+			} else {
+				$faces = of_recognized_font_faces();
+			}
 			foreach ( $faces as $key => $face ) {
 				$font_face .= '<option value="' . esc_attr( $key ) . '" ' . selected( $typography_stored['face'], $key, false ) . '>' . esc_html( $face ) . '</option>';
 			}
-
 			$font_face .= '</select>';
 
-			// Font Weight
+			// Font Styles
 			$font_style = '<select class="of-typography of-typography-style" name="'.$option_name.'['.$value['id'].'][style]" id="'. $value['id'].'_style">';
-
-			// Font Style
-			$styles = of_recognized_font_styles();
+			if ( isset( $typography_options['styles'] ) ) {
+				$styles = $typography_options['styles'];
+			} else {
+				$styles = of_recognized_font_styles();
+			}
 			foreach ( $styles as $key => $style ) {
 				$font_style .= '<option value="' . esc_attr( $key ) . '" ' . selected( $typography_stored['style'], $key, false ) . '>'. $style .'</option>';
 			}

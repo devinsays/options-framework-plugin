@@ -166,13 +166,18 @@ add_filter( 'of_background_attachment', 'of_sanitize_background_attachment' );
 
 /* Typography */
 
-function of_sanitize_typography( $input ) {
+function of_sanitize_typography( $input, $option ) {
+	
 	$output = wp_parse_args( $input, array(
 		'size'  => '',
 		'face'  => '',
 		'style' => '',
 		'color' => ''
 	) );
+	
+	if ( isset( $option['options']['faces'] ) ) {
+		add_filter( 'of_recognized_font_faces', 'of_return_var', 10, $option['options']['face'] );
+	}
 
 	$output['size']  = apply_filters( 'of_font_size', $output['size'] );
 	$output['face']  = apply_filters( 'of_font_face', $output['face'] );
@@ -181,8 +186,7 @@ function of_sanitize_typography( $input ) {
 
 	return $output;
 }
-add_filter( 'of_sanitize_typography', 'of_sanitize_typography' );
-
+add_filter( 'of_sanitize_typography', 'of_sanitize_typography', 10, 2 );
 
 function of_sanitize_font_size( $value ) {
 	$recognized = of_recognized_font_sizes();
@@ -366,4 +370,16 @@ function of_validate_hex( $hex ) {
 	else {
 		return true;
 	}
+}
+
+/**
+ * Returns a value for filters
+ *
+ * @param    mixed
+ * @return   mixed
+ *
+ */
+ 
+function of_return_var( $value ) {
+	return $value;
 }

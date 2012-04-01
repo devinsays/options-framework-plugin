@@ -28,18 +28,36 @@ function optionsframework_option_name() {
 function optionsframework_options() {
 
 	// Test data
-	$test_array = array("one" => "One","two" => "Two","three" => "Three","four" => "Four","five" => "Five");
+	$test_array = array( "one" => "One","two" => "Two","three" => "Three","four" => "Four","five" => "Five" );
 
 	// Multicheck Array
-	$multicheck_array = array("one" => "French Toast", "two" => "Pancake", "three" => "Omelette", "four" => "Crepe", "five" => "Waffle");
+	$multicheck_array = array( "one" => "French Toast", "two" => "Pancake", "three" => "Omelette", "four" => "Crepe", "five" => "Waffle" );
 
 	// Multicheck Defaults
-	$multicheck_defaults = array("one" => "1","five" => "1");
+	$multicheck_defaults = array( "one" => "1","five" => "1" );
 
 	// Background Defaults
+	$background_defaults = array(
+		'color' => '',
+		'image' => '',
+		'repeat' => 'repeat',
+		'position' => 'top center',
+		'attachment'=>'scroll' );
 
-	$background_defaults = array('color' => '', 'image' => '', 'repeat' => 'repeat','position' => 'top center','attachment'=>'scroll');
-
+	// Typography Defaults
+	$typography_defaults = array(
+		'size' => '15px',
+		'face' => 'georgia',
+		'style' => 'bold',
+		'color' => '#bada55' );
+		
+	// Typography Options
+	$typography_options = array(
+		'sizes' => array( '6','12','14','16','20' ),
+		'faces' => array( 'Helvetica Neue' => 'Helvetica Neue','Arial' => 'Arial' ),
+		'styles' => array( 'none' => 'Normal','bold' => 'Bold' ),
+		'color' => false
+	);
 
 	// Pull all the categories into an array
 	$options_categories = array();
@@ -62,26 +80,26 @@ function optionsframework_options() {
 	$options = array();
 
 	$options[] = array( "name" => "Basic Settings",
-		"type" => "heading");
+		"type" => "heading" );
 
 	$options[] = array( "name" => "Input Text Mini",
 		"desc" => "A mini text input field.",
 		"id" => "example_text_mini",
 		"std" => "Default",
 		"class" => "mini",
-		"type" => "text");
+		"type" => "text" );
 
 	$options[] = array( "name" => "Input Text",
 		"desc" => "A text input field.",
 		"id" => "example_text",
 		"std" => "Default Value",
-		"type" => "text");
+		"type" => "text" );
 
 	$options[] = array( "name" => "Textarea",
 		"desc" => "Textarea description.",
 		"id" => "example_textarea",
 		"std" => "Default Text",
-		"type" => "textarea");
+		"type" => "textarea" );
 
 	$options[] = array( "name" => "Input Select Small",
 		"desc" => "Small Select Box.",
@@ -89,63 +107,63 @@ function optionsframework_options() {
 		"std" => "three",
 		"type" => "select",
 		"class" => "mini", //mini, tiny, small
-		"options" => $test_array);
+		"options" => $test_array );
 
 	$options[] = array( "name" => "Input Select Wide",
 		"desc" => "A wider select box.",
 		"id" => "example_select_wide",
 		"std" => "two",
 		"type" => "select",
-		"options" => $test_array);
+		"options" => $test_array );
 
 	$options[] = array( "name" => "Select a Category",
 		"desc" => "Passed an array of categories with cat_ID and cat_name",
 		"id" => "example_select_categories",
 		"type" => "select",
-		"options" => $options_categories);
+		"options" => $options_categories );
 
 	$options[] = array( "name" => "Select a Page",
 		"desc" => "Passed an pages with ID and post_title",
 		"id" => "example_select_pages",
 		"type" => "select",
-		"options" => $options_pages);
+		"options" => $options_pages );
 
 	$options[] = array( "name" => "Input Radio (one)",
 		"desc" => "Radio select with default options 'one'.",
 		"id" => "example_radio",
 		"std" => "one",
 		"type" => "radio",
-		"options" => $test_array);
+		"options" => $test_array );
 
 	$options[] = array( "name" => "Example Info",
 		"desc" => "This is just some example information you can put in the panel.",
-		"type" => "info");
+		"type" => "info" );
 
 	$options[] = array( "name" => "Input Checkbox",
 		"desc" => "Example checkbox, defaults to true.",
 		"id" => "example_checkbox",
 		"std" => "1",
-		"type" => "checkbox");
+		"type" => "checkbox" );
 
 	$options[] = array( "name" => "Advanced Settings",
-		"type" => "heading");
+		"type" => "heading" );
 
 	$options[] = array( "name" => "Check to Show a Hidden Text Input",
 		"desc" => "Click here and see what happens.",
 		"id" => "example_showhidden",
-		"type" => "checkbox");
+		"type" => "checkbox" );
 
 	$options[] = array( "name" => "Hidden Text Input",
 		"desc" => "This option is hidden unless activated by a checkbox click.",
 		"id" => "example_text_hidden",
 		"std" => "Hello",
 		"class" => "hidden",
-		"type" => "text");
+		"type" => "text" );
 
 	$options[] = array( "name" => "Uploader Test",
 		"desc" => "This creates a full size uploader that previews the image.",
 		"id" => "example_uploader",
-		"type" => "upload");
+		"type" => "upload" );
 
 	$options[] = array( "name" => "Example Image Selector",
 		"desc" => "Images for layout.",
@@ -162,26 +180,33 @@ function optionsframework_options() {
 		"desc" => "Change the background CSS.",
 		"id" => "example_background",
 		"std" => $background_defaults,
-		"type" => "background");
+		"type" => "background" );
 
 	$options[] = array( "name" => "Multicheck",
 		"desc" => "Multicheck description.",
 		"id" => "example_multicheck",
 		"std" => $multicheck_defaults, // These items get checked by default
 		"type" => "multicheck",
-		"options" => $multicheck_array);
+		"options" => $multicheck_array );
 
 	$options[] = array( "name" => "Colorpicker",
 		"desc" => "No color selected by default.",
 		"id" => "example_colorpicker",
 		"std" => "",
-		"type" => "color");
+		"type" => "color" );
 
 	$options[] = array( "name" => "Typography",
 		"desc" => "Example typography.",
 		"id" => "example_typography",
-		"std" => array('size' => '12px','face' => 'verdana','style' => 'bold italic','color' => '#123456'),
-		"type" => "typography");
+		"std" => $typography_defaults,
+		"type" => "typography" );
+		
+	$options[] = array( "name" => "Custom Typography",
+		"desc" => "Custom typography options.",
+		"id" => "custom_typography",
+		"std" => $typography_defaults,
+		"type" => "typography",
+		"options" => $typography_options );
 
 	$options[] = array( "name" => "Text Editor",
 		"type" => "heading");
@@ -202,7 +227,7 @@ function optionsframework_options() {
 	
 	$options[] = array( "name" => "Default Text Editor",
 		"desc" => "Here is the description.",
-		"id" => "example_editor", // This ID must be lowercase
+		"id" => "example_editor",
 		"type" => "editor",
 		"settings" => $wp_editor_settings );
 
