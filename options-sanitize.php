@@ -176,7 +176,7 @@ function of_sanitize_typography( $input, $option ) {
 	) );
 	
 	if ( isset( $option['options']['faces'] ) ) {
-		add_filter( 'of_recognized_font_faces', 'of_return_var', 10, $option['options']['face'] );
+		add_filter( 'of_recognized_font_faces', 'of_return_var', 10, $option['options']['faces'] );
 	}
 
 	$output['size']  = apply_filters( 'of_font_size', $output['size'] );
