@@ -434,7 +434,7 @@ function of_get_default_values() {
 			continue;
 		}
 		if ( has_filter( 'of_sanitize_' . $option['type'] ) ) {
-			$output[$option['id']] = apply_filters( 'of_sanitize_' . $option['type'], $option['std'], $option, $option['std']);
+			$output[$option['id']] = apply_filters( 'of_sanitize_' . $option['type'], $option['std'], $option );
 		}
 	}
 	return $output;

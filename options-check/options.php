@@ -55,8 +55,7 @@ function optionsframework_options() {
 	$typography_options = array(
 		'sizes' => array( '6','12','14','16','20' ),
 		'faces' => array( 'Helvetica Neue' => 'Helvetica Neue','Arial' => 'Arial' ),
-		'styles' => array( 'none' => 'Normal','bold' => 'Bold' ),
-		'color' => false
+		'styles' => array( 'normal' => 'Normal','bold' => 'Bold' )
 	);
 
 	// Pull all the categories into an array

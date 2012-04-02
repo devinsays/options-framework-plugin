@@ -176,11 +176,15 @@ function of_sanitize_typography( $input, $option ) {
 	) );
 	
 	if ( isset( $option['options']['faces'] ) ) {
-		add_filter( 'of_recognized_font_faces', 'of_return_var', 10, $option['options']['faces'] );
+		if ( array_key_exists( $input['face'], $option['options']['faces'] ) ) {
+			$output['face'] = $input['face'];
+		}
+	}
+	else {
+		$output['face']  = apply_filters( 'of_font_face', $output['face'] );
 	}
 
 	$output['size']  = apply_filters( 'of_font_size', $output['size'] );
-	$output['face']  = apply_filters( 'of_font_face', $output['face'] );
 	$output['style'] = apply_filters( 'of_font_style', $output['style'] );
 	$output['color'] = apply_filters( 'of_color', $output['color'] );
 
@@ -196,7 +200,7 @@ function of_sanitize_font_size( $value ) {
 	}
 	return (int) apply_filters( 'of_default_font_size', $recognized );
 }
-add_filter( 'of_font_face', 'of_sanitize_font_face' );
+add_filter( 'of_font_face', 'of_sanitize_font_size' );
 
 
 function of_sanitize_font_style( $value ) {
@@ -370,16 +374,4 @@ function of_validate_hex( $hex ) {
 	else {
 		return true;
 	}
-}
-
-/**
- * Returns a value for filters
- *
- * @param    mixed
- * @return   mixed
- *
- */
- 
-function of_return_var( $value ) {
-	return $value;
 }
