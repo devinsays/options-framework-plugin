@@ -206,55 +206,71 @@ function optionsframework_fields() {
 		case 'typography':
 
 			$typography_stored = $val;
+			$typography_options = array(
+				'sizes' => true,
+				'faces' => true,
+				'styles' => true,
+				'color' => true
+			);
+			
 			if ( isset( $value['options'] ) ) {
-				$typography_options = $value['options'];
+				$typography_options = wp_parse_args( $value['options'], $typography_options );
 			}
 
 			// Font Size
-			$font_size = '<select class="of-typography of-typography-size" name="' . esc_attr( $option_name . '[' . $value['id'] . '][size]' ) . '" id="' . esc_attr( $value['id'] . '_size' ) . '">';
-			if ( isset( $typography_options['sizes'] ) ) {
-				$sizes = $typography_options['sizes'];
-			} else {
-				$sizes = of_recognized_font_sizes();
+			if ( $typography_options['sizes'] ) {
+				$font_size = '<select class="of-typography of-typography-size" name="' . esc_attr( $option_name . '[' . $value['id'] . '][size]' ) . '" id="' . esc_attr( $value['id'] . '_size' ) . '">';
+				if ( isset( $typography_options['sizes'] ) ) {
+					$sizes = $typography_options['sizes'];
+				} else {
+					$sizes = of_recognized_font_sizes();
+				}
+				foreach ( $sizes as $i ) {
+					$size = $i . 'px';
+					$font_size .= '<option value="' . esc_attr( $size ) . '" ' . selected( $typography_stored['size'], $size, false ) . '>' . esc_html( $size ) . '</option>';
+				}
+				$font_size .= '</select>';
 			}
-			foreach ( $sizes as $i ) {
-				$size = $i . 'px';
-				$font_size .= '<option value="' . esc_attr( $size ) . '" ' . selected( $typography_stored['size'], $size, false ) . '>' . esc_html( $size ) . '</option>';
-			}
-			$font_size .= '</select>';
 
 			// Font Face
-			$font_face = '<select class="of-typography of-typography-face" name="' . esc_attr( $option_name . '[' . $value['id'] . '][face]' ) . '" id="' . esc_attr( $value['id'] . '_face' ) . '">';
-			if ( isset( $typography_options['faces'] ) ) {
-				$faces = $typography_options['faces'];
-			} else {
-				$faces = of_recognized_font_faces();
+			if ( $typography_options['faces'] ) {
+				$font_face = '<select class="of-typography of-typography-face" name="' . esc_attr( $option_name . '[' . $value['id'] . '][face]' ) . '" id="' . esc_attr( $value['id'] . '_face' ) . '">';
+				if ( isset( $typography_options['faces'] ) ) {
+					$faces = $typography_options['faces'];
+				} else {
+					$faces = of_recognized_font_faces();
+				}
+				foreach ( $faces as $key => $face ) {
+					$font_face .= '<option value="' . esc_attr( $key ) . '" ' . selected( $typography_stored['face'], $key, false ) . '>' . esc_html( $face ) . '</option>';
+				}
+				$font_face .= '</select>';
 			}
-			foreach ( $faces as $key => $face ) {
-				$font_face .= '<option value="' . esc_attr( $key ) . '" ' . selected( $typography_stored['face'], $key, false ) . '>' . esc_html( $face ) . '</option>';
-			}
-			$font_face .= '</select>';
 
 			// Font Styles
-			$font_style = '<select class="of-typography of-typography-style" name="'.$option_name.'['.$value['id'].'][style]" id="'. $value['id'].'_style">';
-			if ( isset( $typography_options['styles'] ) ) {
-				$styles = $typography_options['styles'];
-			} else {
-				$styles = of_recognized_font_styles();
+			if ( $typography_options['styles'] ) {
+				$font_style = '<select class="of-typography of-typography-style" name="'.$option_name.'['.$value['id'].'][style]" id="'. $value['id'].'_style">';
+				if ( isset( $typography_options['styles'] ) ) {
+					$styles = $typography_options['styles'];
+				} else {
+					$styles = of_recognized_font_styles();
+				}
+				foreach ( $styles as $key => $style ) {
+					$font_style .= '<option value="' . esc_attr( $key ) . '" ' . selected( $typography_stored['style'], $key, false ) . '>'. $style .'</option>';
+				}
+				$font_style .= '</select>';
 			}
-			foreach ( $styles as $key => $style ) {
-				$font_style .= '<option value="' . esc_attr( $key ) . '" ' . selected( $typography_stored['style'], $key, false ) . '>'. $style .'</option>';
-			}
-			$font_style .= '</select>';
 
 			// Font Color
-			$font_color = '<div id="' . esc_attr( $value['id'] ) . '_color_picker" class="colorSelector"><div style="' . esc_attr( 'background-color:' . $typography_stored['color'] ) . '"></div></div>';
-			$font_color .= '<input class="of-color of-typography of-typography-color" name="' . esc_attr( $option_name . '[' . $value['id'] . '][color]' ) . '" id="' . esc_attr( $value['id'] . '_color' ) . '" type="text" value="' . esc_attr( $typography_stored['color'] ) . '" />';
-
+			if ( $typography_options['color'] ) {
+				$font_color = '<div id="' . esc_attr( $value['id'] ) . '_color_picker" class="colorSelector"><div style="' . esc_attr( 'background-color:' . $typography_stored['color'] ) . '"></div></div>';
+				$font_color .= '<input class="of-color of-typography of-typography-color" name="' . esc_attr( $option_name . '[' . $value['id'] . '][color]' ) . '" id="' . esc_attr( $value['id'] . '_color' ) . '" type="text" value="' . esc_attr( $typography_stored['color'] ) . '" />';
+			}
+	
 			// allow modification/injection of typography fields
 			$typography_fields = compact( 'font_size', 'font_face', 'font_style', 'font_color' );
 			$typography_fields = apply_filters( 'of_typography_fields', $typography_fields, $typography_stored, $option_name, $value );
 			$output .= implode( '', $typography_fields );
+			
 			break;
 
 		// Background
