@@ -175,7 +175,7 @@ function of_sanitize_typography( $input, $option ) {
 		'color' => ''
 	) );
 	
-	if ( isset( $option['options']['faces'] ) ) {
+	if ( isset( $option['options']['faces'] ) && isset( $input['face'] ) ) {
 		if ( array_key_exists( $input['face'], $option['options']['faces'] ) ) {
 			$output['face'] = $input['face'];
 		}
