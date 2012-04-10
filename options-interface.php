@@ -204,8 +204,16 @@ function optionsframework_fields() {
 
 		// Typography
 		case 'typography':
-
-			$typography_stored = $val;
+		
+			$typography_defaults = array(
+				'size' => '',
+				'face' => '',
+				'style' => '',
+				'color' => ''
+			);
+			
+			$typography_stored = wp_parse_args( $val, $typography_defaults );
+			
 			$typography_options = array(
 				'sizes' => of_recognized_font_sizes(),
 				'faces' => of_recognized_font_faces(),

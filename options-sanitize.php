@@ -176,8 +176,8 @@ function of_sanitize_typography( $input, $option ) {
 	) );
 	
 	if ( isset( $option['options']['faces'] ) && isset( $input['face'] ) ) {
-		if ( array_key_exists( $input['face'], $option['options']['faces'] ) ) {
-			$output['face'] = $input['face'];
+		if ( !( array_key_exists( $input['face'], $option['options']['faces'] ) ) ) {
+			$output['face'] = '';
 		}
 	}
 	else {
@@ -187,7 +187,6 @@ function of_sanitize_typography( $input, $option ) {
 	$output['size']  = apply_filters( 'of_font_size', $output['size'] );
 	$output['style'] = apply_filters( 'of_font_style', $output['style'] );
 	$output['color'] = apply_filters( 'of_color', $output['color'] );
-
 	return $output;
 }
 add_filter( 'of_sanitize_typography', 'of_sanitize_typography', 10, 2 );
