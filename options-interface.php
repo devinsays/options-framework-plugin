@@ -205,6 +205,8 @@ function optionsframework_fields() {
 		// Typography
 		case 'typography':
 		
+			unset( $font_size, $font_style, $font_face, $font_color );
+		
 			$typography_defaults = array(
 				'size' => '',
 				'face' => '',
