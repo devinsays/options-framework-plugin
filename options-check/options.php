@@ -55,7 +55,8 @@ function optionsframework_options() {
 	$typography_options = array(
 		'sizes' => array( '6','12','14','16','20' ),
 		'faces' => array( 'Helvetica Neue' => 'Helvetica Neue','Arial' => 'Arial' ),
-		'styles' => array( 'normal' => 'Normal','bold' => 'Bold' )
+		'styles' => array( 'normal' => 'Normal','bold' => 'Bold' ),
+		'color' => false
 	);
 
 	// Pull all the categories into an array
@@ -135,7 +136,7 @@ function optionsframework_options() {
 		"options" => $test_array );
 
 	$options[] = array( "name" => "Example Info",
-		"desc" => "This is just some example information you can put in the panel.",
+		"desc" => 'You can include info boxes like this one.  HTML tags can be included by default if is is an $allowedposttags.  <br><br>Otherwise you will need to change the filter for of_sanitize_info.',
 		"type" => "info" );
 
 	$options[] = array( "name" => "Input Checkbox",
@@ -225,7 +226,7 @@ function optionsframework_options() {
 	);
 	
 	$options[] = array( "name" => "Default Text Editor",
-		"desc" => "Here is the description.",
+		"desc" => "You can also pass settings to the editor.  Read more about wp_editor in <a href='http://codex.wordpress.org/Function_Reference/wp_editor'>the WordPress codex</a>.",
 		"id" => "example_editor",
 		"type" => "editor",
 		"settings" => $wp_editor_settings );

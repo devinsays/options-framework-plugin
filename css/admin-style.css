@@ -66,6 +66,7 @@
 }
 #optionsframework input.checkbox, #optionsframework input.of-radio {
 	width: 30px;
+	margin-top:2px;
 	float:left;
 	clear:both;
 }
@@ -160,6 +161,7 @@
 /* Editor */
 
 #optionsframework .section-editor .explain {
+	max-width: 98%;
 	float:none;
 	margin-bottom:5px;
 }
