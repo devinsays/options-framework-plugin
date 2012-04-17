@@ -27,7 +27,8 @@ The Options Framework Plugin makes it easy to include an options panel in any Wo
 * background (a set of options to define a background)
 * multicheck
 * color (a jquery color picker)
-* typography (a set of options to define typography) 
+* typography (a set of options to define typography)
+* editor
 
 ### Learn More ###
 
@@ -50,6 +51,10 @@ The "Options Check" theme is a blueprint for how to work with options.  It inclu
 You can also watch the video screencast I have at [http://wptheming.com/options-framework-plugin](http://wptheming.com/options-framework-plugin).
 
 ## Change log ##
+
+#### Dev ####
+
+* Fix for font_size santization
 
 #### 1.1 ####
 

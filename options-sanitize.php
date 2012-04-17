@@ -193,14 +193,13 @@ add_filter( 'of_sanitize_typography', 'of_sanitize_typography', 10, 2 );
 
 function of_sanitize_font_size( $value ) {
 	$recognized = of_recognized_font_sizes();
-	$value = preg_replace('/px/','', $value);
-	if ( in_array( (int) $value, $recognized ) ) {
-		return (int) $value;
+	$value_check = preg_replace('/px/','', $value);
+	if ( in_array( (int) $value_check, $recognized ) ) {
+		return $value;
 	}
-	return (int) apply_filters( 'of_default_font_size', $recognized );
+	return apply_filters( 'of_default_font_size', $recognized );
 }
-add_filter( 'of_font_face', 'of_sanitize_font_size' );
-
+add_filter( 'of_font_size', 'of_sanitize_font_size' );
 
 function of_sanitize_font_style( $value ) {
 	$recognized = of_recognized_font_styles();

@@ -24,6 +24,7 @@ The Options Framework Plugin makes it easy to include an options panel in any Wo
 * multicheck
 * color (a jquery color picker)
 * typography (a set of options to define typography)
+* editor
 
 = Learn More =
 
@@ -64,6 +65,10 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 1. An example of the "Advanced Options" tag in the "Options Check" theme using this plugin.
 
 == Changelog ==
+
+= Dev =
+
+* Fix for font_size santization
 
 = 1.1 =
 
