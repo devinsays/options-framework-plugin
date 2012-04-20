@@ -191,6 +191,30 @@ function optionsframework_fields() {
 			}
 			break;
 
+		// Sorter - Drag & Drop block manager
+		case 'sorter':
+			$sortlists = array();
+			$sortlists = $val;
+			$output .= '<div id="'.$value['id'].'" class="sorter">';
+			if ($sortlists) {
+				foreach ($sortlists as $group=>$sortlist) {
+					$output .= '<ul id="'.$value['id'].'_'.$group.'" class="sortlist_'.$value['id'].'">';
+					$output .= '<h3>'.$group.'</h3>';
+					foreach ($sortlist as $key => $list) {
+						$output .= '<input class="sorter-placebo" type="hidden" name="' . esc_attr( $option_name . '[' . $value['id'] . ']['.$group.'][placebo]]'  ) . '" value="placebo">';
+						if ($key != "placebo") {
+							$output .= '<li id="'.$key.'" class="sortee">';
+							$output .= '<input class="position ' . $option_name .'" name="' . esc_attr( $option_name.'['.$value['id'].']['.$group.']['.$key.']'.']').'" type="hidden" value="' . esc_attr( $list ) . '" />';
+							$output .= $list;
+							$output .= '</li>';
+						}
+					}
+					$output .= '</ul>';
+				}
+			}
+			$output .= '</div>';
+		break;
+
 		// Color picker
 		case "color":
 			$output .= '<div id="' . esc_attr( $value['id'] . '_picker' ) . '" class="colorSelector"><div style="' . esc_attr( 'background-color:' . $val ) . '"></div></div>';

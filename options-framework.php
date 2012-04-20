@@ -274,6 +274,7 @@ function optionsframework_load_scripts($hook) {
 
 	// Enqueued scripts
 	wp_enqueue_script('jquery-ui-core');
+	wp_enqueue_script('jquery-ui-sortable');
 	wp_enqueue_script('color-picker', OPTIONS_FRAMEWORK_URL .'js/colorpicker.js', array('jquery'));
 	wp_enqueue_script('options-custom', OPTIONS_FRAMEWORK_URL .'js/options-custom.js', array('jquery'));
 

@@ -14,6 +14,10 @@ function of_sanitize_textarea($input) {
 
 add_filter( 'of_sanitize_textarea', 'of_sanitize_textarea' );
 
+/* Sorter */
+
+add_filter( 'of_sanitize_sorter', 'of_sanitize_sorter', 10, 2);
+
 /* Select */
 
 add_filter( 'of_sanitize_select', 'of_sanitize_enum', 10, 2);
@@ -112,6 +116,14 @@ function of_sanitize_enum( $input, $option ) {
 	if ( array_key_exists( $input, $option['options'] ) ) {
 		$output = $input;
 	}
+	return $output;
+}
+
+/* Sorter */
+
+function of_sanitize_sorter( $input, $option ) {
+	$output = '';
+	$output = $input;
 	return $output;
 }
 
