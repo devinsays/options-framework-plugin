@@ -1,0 +1,58 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Options Framework Plugin\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2012-04-20 08:36-0300\n"
+"PO-Revision-Date: 2012-04-20 08:46-0300\n"
+"Last-Translator: Matt Varone <plugins@mattvarone.com>\n"
+"Language-Team: Matt Varone <contact@mattvarone.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;_e;_x;__\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-Language: Spanish\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: options-framework.php:71
+#, php-format
+msgid "Your current theme does not have support for the Options Framework plugin.  <a href=\"%1$s\" target=\"_blank\">Learn More</a> | <a href=\"%2$s\">Hide Notice</a>"
+msgstr "Su tema actual no tiene suporte para el Options Framework Plugin. <a href=\"%1$s\" target=\"_blank\">Mas informacion</a> | <a href=\"%2$s\">Esconder</a>"
+
+#: options-framework.php:254
+#: options-framework.php:456
+msgid "Theme Options"
+msgstr "Opciones del Tema"
+
+#: options-framework.php:324
+msgid "Click OK to reset. Any theme settings will be lost!"
+msgstr "Click OK para restablecer los ajustes iniciales. Se perderán los ajustes realizados!"
+
+#: options-framework.php:358
+msgid "Default options restored."
+msgstr "Opciones predeterminadas restauradas."
+
+#: options-framework.php:400
+msgid "Options saved."
+msgstr "Opciones Guardadas."
+
+#: options-medialibrary-uploader.php:26
+msgid "Options Framework Internal Container"
+msgstr "Contenedor Interno de Options Framework"
+
+#: options-medialibrary-uploader.php:128
+msgid "Upload"
+msgstr "Cargar"
+
+#: options-medialibrary-uploader.php:151
+msgid "View File"
+msgstr "Ver Archivo"
+
+#: options-medialibrary-uploader.php:288
+msgid "Gallery"
+msgstr "Galería"
+
+#: options-medialibrary-uploader.php:288
+msgid "Previously Uploaded"
+msgstr "Cargado Previamente"
+
