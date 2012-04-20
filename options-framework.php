@@ -30,7 +30,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 define('OPTIONS_FRAMEWORK_VERSION', '1.1');
 define('OPTIONS_FRAMEWORK_URL', plugin_dir_url( __FILE__ ));
 
-load_theme_textdomain('optionsframework', dirname( __FILE__ ) . '/lang');
+load_plugin_textdomain( 'optionsframework', false, dirname( plugin_basename( __FILE__ ) ) . '/lang/' );
 
 /* Make sure we don't expose any info if called directly */
 
