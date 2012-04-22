@@ -55,6 +55,9 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 #### Dev ####
 
 * Fix for font_size santization
+* Added internationalization support (@weslly)
+* Portuguese translations (@weslly)
+* Spanish translations (@sksmatt)
 
 #### 1.1 ####
 
