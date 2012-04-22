@@ -48,7 +48,7 @@ function of_sanitize_multicheck( $input, $option ) {
 		}
 		foreach( $input as $key => $value ) {
 			if ( array_key_exists( $key, $option['options'] ) && $value ) {
-				$output[$key] = "1"; 
+				$output[$key] = "1";
 			}
 		}
 	}
@@ -167,14 +167,14 @@ add_filter( 'of_background_attachment', 'of_sanitize_background_attachment' );
 /* Typography */
 
 function of_sanitize_typography( $input, $option ) {
-	
+
 	$output = wp_parse_args( $input, array(
 		'size'  => '',
 		'face'  => '',
 		'style' => '',
 		'color' => ''
 	) );
-	
+
 	if ( isset( $option['options']['faces'] ) && isset( $input['face'] ) ) {
 		if ( !( array_key_exists( $input['face'], $option['options']['faces'] ) ) ) {
 			$output['face'] = '';
@@ -200,6 +200,7 @@ function of_sanitize_font_size( $value ) {
 	return apply_filters( 'of_default_font_size', $recognized );
 }
 add_filter( 'of_font_size', 'of_sanitize_font_size' );
+
 
 function of_sanitize_font_style( $value ) {
 	$recognized = of_recognized_font_styles();
@@ -228,10 +229,10 @@ add_filter( 'of_font_face', 'of_sanitize_font_face' );
  */
 function of_recognized_background_repeat() {
 	$default = array(
-		'no-repeat' => 'No Repeat',
-		'repeat-x'  => 'Repeat Horizontally',
-		'repeat-y'  => 'Repeat Vertically',
-		'repeat'    => 'Repeat All',
+		'no-repeat' => __('No Repeat', 'optionsframework'),
+		'repeat-x'  => __('Repeat Horizontally', 'optionsframework'),
+		'repeat-y'  => __('Repeat Vertically', 'optionsframework'),
+		'repeat'    => __('Repeat All', 'optionsframework'),
 		);
 	return apply_filters( 'of_recognized_background_repeat', $default );
 }
@@ -244,15 +245,15 @@ function of_recognized_background_repeat() {
  */
 function of_recognized_background_position() {
 	$default = array(
-		'top left'      => 'Top Left',
-		'top center'    => 'Top Center',
-		'top right'     => 'Top Right',
-		'center left'   => 'Middle Left',
-		'center center' => 'Middle Center',
-		'center right'  => 'Middle Right',
-		'bottom left'   => 'Bottom Left',
-		'bottom center' => 'Bottom Center',
-		'bottom right'  => 'Bottom Right'
+		'top left'      => __('Top Left', 'optionsframework'),
+		'top center'    => __('Top Center', 'optionsframework'),
+		'top right'     => __('Top Right', 'optionsframework'),
+		'center left'   => __('Middle Left', 'optionsframework'),
+		'center center' => __('Middle Center', 'optionsframework'),
+		'center right'  => __('Middle Right', 'optionsframework'),
+		'bottom left'   => __('Bottom Left', 'optionsframework'),
+		'bottom center' => __('Bottom Center', 'optionsframework'),
+		'bottom right'  => __('Bottom Right', 'optionsframework')
 		);
 	return apply_filters( 'of_recognized_background_position', $default );
 }
@@ -265,8 +266,8 @@ function of_recognized_background_position() {
  */
 function of_recognized_background_attachment() {
 	$default = array(
-		'scroll' => 'Scroll Normally',
-		'fixed'  => 'Fixed in Place'
+		'scroll' => __('Scroll Normally', 'optionsframework'),
+		'fixed'  => __('Fixed in Place', 'optionsframework')
 		);
 	return apply_filters( 'of_recognized_background_attachment', $default );
 }
@@ -279,7 +280,7 @@ function of_recognized_background_attachment() {
  * @return   string
  *
  */
- 
+
 function of_sanitize_hex( $hex, $default = '' ) {
 	if ( of_validate_hex( $hex ) ) {
 		return $hex;
@@ -296,7 +297,7 @@ function of_sanitize_hex( $hex, $default = '' ) {
  *
  * @return   array
  */
- 
+
 function of_recognized_font_sizes() {
 	$sizes = range( 9, 71 );
 	$sizes = apply_filters( 'of_recognized_font_sizes', $sizes );
@@ -340,10 +341,10 @@ function of_recognized_font_faces() {
  */
 function of_recognized_font_styles() {
 	$default = array(
-		'normal'      => 'Normal',
-		'italic'      => 'Italic',
-		'bold'        => 'Bold',
-		'bold italic' => 'Bold Italic'
+		'normal'      => __('Normal', 'optionsframework'),
+		'italic'      => __('Italic', 'optionsframework'),
+		'bold'        => __('Bold', 'optionsframework'),
+		'bold italic' => __('Bold Italic', 'optionsframework')
 		);
 	return apply_filters( 'of_recognized_font_styles', $default );
 }
@@ -355,7 +356,7 @@ function of_recognized_font_styles() {
  * @return   bool
  *
  */
- 
+
 function of_validate_hex( $hex ) {
 	$hex = trim( $hex );
 	/* Strip recognized prefixes. */
