@@ -195,7 +195,7 @@ function optionsframework_fields() {
 		case 'sorter':
 			$sortlists = array();
 			$sortlists = $val;
-			$sortlists = apply_filters( 'of_array_sorter', $sortlists );
+			$sortlists = apply_filters( 'of_array_sorter', $sortlists, $sortlists );
 			$output .= '<div id="'.$value['id'].'" class="sorter">';
 			if ($sortlists) {
 				foreach ($sortlists as $group=>$sortlist) {
