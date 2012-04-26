@@ -25,7 +25,7 @@ jQuery(document).ready(function($) {
 					var optionID = $(this).parent().parent().parent().attr('id');
 					var nameTheme = $(this).attr('class');
 					nameTheme = nameTheme.replace('position ', '');
-					$(this).prop("name", nameTheme + '[' + optionID + '][' + parentID + '][' + listID + ']]');
+					$(this).prop("name", nameTheme + '[' + optionID + '][' + parentID + '][' + listID + ']');
 
 				});
 			}

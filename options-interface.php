@@ -202,10 +202,10 @@ function optionsframework_fields() {
 					$output .= '<ul id="'.$value['id'].'_'.$group.'" class="sortlist_'.$value['id'].' '.$group.' ">';
 					$output .= '<h3>'.$group.'</h3>';
 					foreach ($sortlist as $key => $list) {
-						$output .= '<input class="sorter-placebo" type="hidden" name="' . esc_attr( $option_name . '[' . $value['id'] . ']['.$group.'][placebo]]'  ) . '" value="placebo">';
+						$output .= '<input class="sorter-placebo" type="hidden" name="' . esc_attr( $option_name . '[' . $value['id'] . ']['.$group.'][placebo]'  ) . '" value="placebo">';
 						if ($key != "placebo") {
 							$output .= '<li id="'.$key.'" class="sortee">';
-							$output .= '<input class="position ' . $option_name .'" name="' . esc_attr( $option_name.'['.$value['id'].']['.$group.']['.$key.']'.']').'" type="hidden" value="' . esc_attr( $list ) . '" />';
+							$output .= '<input class="position ' . $option_name .'" name="' . esc_attr( $option_name.'['.$value['id'].']['.$group.']['.$key.']').'" type="hidden" value="' . esc_attr( $list ) . '" />';
 							$output .= $list;
 							$output .= '</li>';
 						}
