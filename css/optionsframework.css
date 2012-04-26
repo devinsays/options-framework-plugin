@@ -241,6 +241,9 @@
 	color: #777;
 	text-transform: capitalize;
 }
+#optionsframework  .disabled {
+	color: #aaa;
+}
 #optionsframework  .sorter ul li {
 	border: 1px solid #DFDFDF;
 	cursor: move;

@@ -199,7 +199,7 @@ function optionsframework_fields() {
 			$output .= '<div id="'.$value['id'].'" class="sorter">';
 			if ($sortlists) {
 				foreach ($sortlists as $group=>$sortlist) {
-					$output .= '<ul id="'.$value['id'].'_'.$group.'" class="sortlist_'.$value['id'].'">';
+					$output .= '<ul id="'.$value['id'].'_'.$group.'" class="sortlist_'.$value['id'].' '.$group.' ">';
 					$output .= '<h3>'.$group.'</h3>';
 					foreach ($sortlist as $key => $list) {
 						$output .= '<input class="sorter-placebo" type="hidden" name="' . esc_attr( $option_name . '[' . $value['id'] . ']['.$group.'][placebo]]'  ) . '" value="placebo">';
