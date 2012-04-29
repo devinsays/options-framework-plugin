@@ -23,7 +23,7 @@ if ( ! function_exists( 'optionsframework_mlu_init' ) ) {
 	function optionsframework_mlu_init () {
 		register_post_type( 'optionsframework', array(
 			'labels' => array(
-				'name' => __( 'Options Framework Internal Container' ),
+				'name' => __( 'Theme Options Media' ),
 			),
 			'public' => true,
 			'show_ui' => false,
@@ -33,7 +33,8 @@ if ( ! function_exists( 'optionsframework_mlu_init' ) ) {
 			'supports' => array( 'title', 'editor' ), 
 			'query_var' => false,
 			'can_export' => true,
-			'show_in_nav_menus' => false
+			'show_in_nav_menus' => false,
+			'public' => false
 		) );
 	}
 }

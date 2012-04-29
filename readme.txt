@@ -72,6 +72,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * Added internationalization support (@weslly)
 * Portuguese translations (@weslly)
 * Spanish translations (@sksmatt)
+* Make uploader post type non-public (@samargulies)
 
 = 1.1 =
 
