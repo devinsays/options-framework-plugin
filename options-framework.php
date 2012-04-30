@@ -68,7 +68,7 @@ function optionsframework_admin_notice() {
 		$user_id = $current_user->ID;
 		if ( ! get_user_meta($user_id, 'optionsframework_ignore_notice') ) {
 			echo '<div class="updated optionsframework_setup_nag"><p>';
-			printf(__('Your current theme does not have support for the Options Framework plugin.  <a href="%1$s" target="_blank">Learn More</a> | <a href="%2$s">Hide Notice</a>', 'optionsframework'), 'http://wptheming.com/options-framework-plugin', '?optionsframework_nag_ignore=0');
+			printf( __('Your current theme does not have support for the Options Framework plugin.  <a href="%1$s" target="_blank">Learn More</a> | <a href="%2$s">Hide Notice</a>', 'optionsframework'), 'http://wptheming.com/options-framework-plugin', '?optionsframework_nag_ignore=0');
 			echo "</p></div>";
 		}
 	}
