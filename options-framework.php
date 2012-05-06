@@ -180,8 +180,6 @@ function optionsframework_init() {
 	register_setting( 'optionsframework', $optionsframework_settings['id'], 'optionsframework_validate' );
 	// Change the capability required to save the 'optionsframework' options group.
 	add_filter( 'option_page_capability_optionsframework', 'optionsframework_page_capability' );
-
-
 }
 
 /**
@@ -343,8 +341,6 @@ if ( !function_exists( 'optionsframework_page' ) ) {
  * @uses $_POST['update']
  */
 function optionsframework_validate( $input ) {
-
-	//var_dump($input);
 
 	/*
 	 * Restore Defaults.

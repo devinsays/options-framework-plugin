@@ -182,7 +182,7 @@ get_header(); ?>
             
 			<hr>
             
-            <h3>Editors</h3>
+            <h3>Editor</h3>
             
 			<dl>
             <dt>type: editor</dt>
