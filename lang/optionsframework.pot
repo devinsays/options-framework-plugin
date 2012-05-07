@@ -2,15 +2,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-04-22 15:51-0300\n"
-"PO-Revision-Date: 2012-04-22 15:52-0300\n"
+"POT-Creation-Date: 2012-05-06 23:13-0300\n"
+"PO-Revision-Date: 2012-05-06 23:14-0300\n"
 "Last-Translator: Weslly Honorato <weslly.honorato@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e;esc_attr_e\n"
-"X-Poedit-Basepath: /Users/weslly/Desktop/options-framework-plugin\n"
+"X-Poedit-Basepath: ../\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: options-framework.php:71
@@ -18,48 +18,48 @@ msgstr ""
 msgid "Your current theme does not have support for the Options Framework plugin.  <a href=\"%1$s\" target=\"_blank\">Learn More</a> | <a href=\"%2$s\">Hide Notice</a>"
 msgstr ""
 
-#: options-framework.php:254
-#: options-framework.php:456
+#: options-framework.php:252
+#: options-framework.php:452
 msgid "Theme Options"
 msgstr ""
 
-#: options-framework.php:323
+#: options-framework.php:321
 msgid "Save Options"
 msgstr ""
 
-#: options-framework.php:324
+#: options-framework.php:322
 msgid "Restore Defaults"
 msgstr ""
 
-#: options-framework.php:324
+#: options-framework.php:322
 msgid "Click OK to reset. Any theme settings will be lost!"
 msgstr ""
 
-#: options-framework.php:358
+#: options-framework.php:354
 msgid "Default options restored."
 msgstr ""
 
-#: options-framework.php:400
+#: options-framework.php:396
 msgid "Options saved."
 msgstr ""
 
 #: options-medialibrary-uploader.php:26
-msgid "Options Framework Internal Container"
+msgid "Theme Options Media"
 msgstr ""
 
-#: options-medialibrary-uploader.php:128
+#: options-medialibrary-uploader.php:129
 msgid "Upload"
 msgstr ""
 
-#: options-medialibrary-uploader.php:151
+#: options-medialibrary-uploader.php:152
 msgid "View File"
 msgstr ""
 
-#: options-medialibrary-uploader.php:288
+#: options-medialibrary-uploader.php:289
 msgid "Gallery"
 msgstr ""
 
-#: options-medialibrary-uploader.php:288
+#: options-medialibrary-uploader.php:289
 msgid "Previously Uploaded"
 msgstr ""
 
@@ -137,5 +137,210 @@ msgstr ""
 
 #: options-sanitize.php:347
 msgid "Bold Italic"
+msgstr ""
+
+#: options-check/options.php:32
+msgid "One"
+msgstr ""
+
+#: options-check/options.php:33
+msgid "Two"
+msgstr ""
+
+#: options-check/options.php:34
+msgid "Three"
+msgstr ""
+
+#: options-check/options.php:35
+msgid "Four"
+msgstr ""
+
+#: options-check/options.php:36
+msgid "Five"
+msgstr ""
+
+#: options-check/options.php:41
+msgid "French Toast"
+msgstr ""
+
+#: options-check/options.php:42
+msgid "Pancake"
+msgstr ""
+
+#: options-check/options.php:43
+msgid "Omelette"
+msgstr ""
+
+#: options-check/options.php:44
+msgid "Crepe"
+msgstr ""
+
+#: options-check/options.php:45
+msgid "Waffle"
+msgstr ""
+
+#: options-check/options.php:98
+msgid "Basic Settings"
+msgstr ""
+
+#: options-check/options.php:102
+msgid "Input Text Mini"
+msgstr ""
+
+#: options-check/options.php:103
+msgid "A mini text input field."
+msgstr ""
+
+#: options-check/options.php:110
+msgid "Input Text"
+msgstr ""
+
+#: options-check/options.php:111
+msgid "A text input field."
+msgstr ""
+
+#: options-check/options.php:117
+msgid "Textarea"
+msgstr ""
+
+#: options-check/options.php:118
+msgid "Textarea description."
+msgstr ""
+
+#: options-check/options.php:124
+msgid "Input Select Small"
+msgstr ""
+
+#: options-check/options.php:125
+msgid "Small Select Box."
+msgstr ""
+
+#: options-check/options.php:133
+msgid "Input Select Wide"
+msgstr ""
+
+#: options-check/options.php:134
+msgid "A wider select box."
+msgstr ""
+
+#: options-check/options.php:141
+msgid "Select a Category"
+msgstr ""
+
+#: options-check/options.php:142
+msgid "Passed an array of categories with cat_ID and cat_name"
+msgstr ""
+
+#: options-check/options.php:148
+msgid "Select a Page"
+msgstr ""
+
+#: options-check/options.php:149
+msgid "Passed an pages with ID and post_title"
+msgstr ""
+
+#: options-check/options.php:155
+msgid "Input Radio (one)"
+msgstr ""
+
+#: options-check/options.php:156
+msgid "Radio select with default options \"one\"."
+msgstr ""
+
+#: options-check/options.php:163
+msgid "Example Info"
+msgstr ""
+
+#: options-check/options.php:164
+msgid "This is just some example information you can put in the panel."
+msgstr ""
+
+#: options-check/options.php:168
+msgid "Input Checkbox"
+msgstr ""
+
+#: options-check/options.php:169
+msgid "Example checkbox, defaults to true."
+msgstr ""
+
+#: options-check/options.php:175
+msgid "Advanced Settings"
+msgstr ""
+
+#: options-check/options.php:179
+msgid "Check to Show a Hidden Text Input"
+msgstr ""
+
+#: options-check/options.php:180
+msgid "Click here and see what happens."
+msgstr ""
+
+#: options-check/options.php:185
+msgid "Hidden Text Input"
+msgstr ""
+
+#: options-check/options.php:186
+msgid "This option is hidden unless activated by a checkbox click."
+msgstr ""
+
+#: options-check/options.php:193
+msgid "Uploader Test"
+msgstr ""
+
+#: options-check/options.php:194
+msgid "This creates a full size uploader that previews the image."
+msgstr ""
+
+#: options-check/options.php:211
+msgid "Example Background"
+msgstr ""
+
+#: options-check/options.php:212
+msgid "Change the background CSS."
+msgstr ""
+
+#: options-check/options.php:218
+msgid "Multicheck"
+msgstr ""
+
+#: options-check/options.php:219
+msgid "Multicheck description."
+msgstr ""
+
+#: options-check/options.php:226
+msgid "Colorpicker"
+msgstr ""
+
+#: options-check/options.php:227
+msgid "No color selected by default."
+msgstr ""
+
+#: options-check/options.php:232
+msgid "Typography"
+msgstr ""
+
+#: options-check/options.php:233
+msgid "Example typography."
+msgstr ""
+
+#: options-check/options.php:239
+msgid "Custom Typography"
+msgstr ""
+
+#: options-check/options.php:240
+msgid "Custom typography options."
+msgstr ""
+
+#: options-check/options.php:247
+msgid "Text Editor"
+msgstr ""
+
+#: options-check/options.php:265
+msgid "Default Text Editor"
+msgstr ""
+
+#: options-check/options.php:266
+#, php-format
+msgid "You can also pass settings to the editor.  Read more about wp_editor in <a href=\"%1$s\" target=\"_blank\">the WordPress codex</a>"
 msgstr ""
 
