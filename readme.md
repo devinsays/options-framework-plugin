@@ -2,8 +2,8 @@
 
 **Tags:** options, theme options  
 **Requires at least:** 3.3  
-**Tested up to:** 3.3   
-**Stable tag:** 1.0  
+**Tested up to:** 3.4   
+**Stable tag:** 1.2  
 **License:** GPLv2  
 **Donate link:** http://bit.ly/options-donate  
 
@@ -52,7 +52,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 ## Change log ##
 
-#### Dev ####
+#### 1.2 ####
 
 * Fix for font_size santization
 * Added internationalization support (@weslly)
