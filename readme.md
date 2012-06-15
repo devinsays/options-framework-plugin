@@ -59,7 +59,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * Portuguese translations (@weslly)
 * Spanish translations (@sksmatt)
 * Make uploader post type non-public (@samargulies)
-* Hungarian translations by KardiWeb.org
+* ID can now be passed on info option for styling purposes
 
 #### 1.1 ####
 

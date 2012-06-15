@@ -343,7 +343,11 @@ function optionsframework_fields() {
 
 		// Info
 		case "info":
+			$id = '';
 			$class = 'section';
+			if ( isset( $value['id'] ) ) {
+				$id = 'id="' . esc_attr( $value['id'] ) . '" ';
+			}
 			if ( isset( $value['type'] ) ) {
 				$class .= ' section-' . $value['type'];
 			}
@@ -351,7 +355,7 @@ function optionsframework_fields() {
 				$class .= ' ' . $value['class'];
 			}
 
-			$output .= '<div class="' . esc_attr( $class ) . '">' . "\n";
+			$output .= '<div ' . $id . 'class="' . esc_attr( $class ) . '">' . "\n";
 			if ( isset($value['name']) ) {
 				$output .= '<h4 class="heading">' . esc_html( $value['name'] ) . '</h4>' . "\n";
 			}
