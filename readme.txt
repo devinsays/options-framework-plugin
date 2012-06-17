@@ -67,6 +67,10 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 == Changelog ==
 
+= Dev =
+
+* Hungarian translations by kardiweb.org
+
 = 1.2 =
 
 * Fix for font_size santization
