@@ -173,7 +173,7 @@ get_header(); ?>
                     echo '<li>'.$i . ' = ' . $param.'</li>';
                 }
 				echo '</ul>';
-				echo '<span style="font-family: ' . $typography['face']. '; font:'.$typography['size'] . $typography['style'] . '; color:'.$typography['color'].';">Some sample text in your style</span>';
+				echo '<span style="font-family: ' . $typography['face']. '; font-size:'.$typography['size'] . '; font-style: ' . $typography['style'] . '; color:'.$typography['color'].';">Some sample text in your style</span>';
             } else {
                 echo "no entry";
             } ?>
