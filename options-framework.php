@@ -337,8 +337,7 @@ if ( !function_exists( 'optionsframework_page' ) ) {
  * This runs after the submit/reset button has been clicked and
  * validates the inputs.
  *
- * @uses $_POST['reset']
- * @uses $_POST['update']
+ * @uses $_POST['reset'] to restore default options
  */
 function optionsframework_validate( $input ) {
 
@@ -353,13 +352,14 @@ function optionsframework_validate( $input ) {
 	if ( isset( $_POST['reset'] ) ) {
 		add_settings_error( 'options-framework', 'restore_defaults', __( 'Default options restored.', 'optionsframework' ), 'updated fade' );
 		return of_get_default_values();
-	}
-
+	} else {
+	
 	/*
-	 * Udpdate Settings.
+	 * Update Settings
+	 *
+	 * This used to check for $_POST['update'], but has been updated
+	 * to be compatible with the theme customizer introduced in WordPress 3.4
 	 */
-
-	if ( isset( $_POST['update'] ) ) {
 
 		$clean = array();
 		$options =& _optionsframework_options();
@@ -397,11 +397,6 @@ function optionsframework_validate( $input ) {
 		return $clean;
 	}
 
-	/*
-	 * Request Not Recognized.
-	 */
-
-	return of_get_default_values();
 }
 
 /**
