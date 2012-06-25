@@ -53,11 +53,6 @@ get_header(); ?>
             
             <dl>
             <dt>type: select</dt>
-            <dd>of_get_option('example_select_tags'): term id = <?php echo of_get_option('example_select_tags', 'no entry' ); ?></dd>
-            </dl>
-            
-            <dl>
-            <dt>type: select</dt>
             <dd>of_get_option('example_select_pages'): page id = <?php echo of_get_option('example_select_pages', 'no entry' ); ?></dd>
             </dl>
             

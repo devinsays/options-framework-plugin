@@ -80,13 +80,6 @@ function optionsframework_options() {
 	foreach ($options_categories_obj as $category) {
 		$options_categories[$category->cat_ID] = $category->cat_name;
 	}
-	
-	// Pull all tags into an array
-	$options_tags = array();
-	$options_tags_obj = get_tags();
-	foreach ( $options_tags_obj as $tag ) {
-		$options_tags[$tag->term_id] = $tag->name;
-	}
 
 	// Pull all the pages into an array
 	$options_pages = array();
@@ -150,13 +143,6 @@ function optionsframework_options() {
 		'id' => 'example_select_categories',
 		'type' => 'select',
 		'options' => $options_categories);
-		
-	$options[] = array(
-		'name' => __('Select a Tag', 'options_check'),
-		'desc' => __('Passed an array of tags with term_id and term_name', 'options_check'),
-		'id' => 'example_select_tags',
-		'type' => 'select',
-		'options' => $options_tags);
 
 	$options[] = array(
 		'name' => __('Select a Page', 'options_check'),
