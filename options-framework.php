@@ -298,7 +298,7 @@ function optionsframework_validate( $input ) {
 	if ( isset( $_POST['reset'] ) ) {
 		add_settings_error( 'options-framework', 'restore_defaults', __( 'Default options restored.', 'optionsframework' ), 'updated fade' );
 		return of_get_default_values();
-	} else {
+	}
 	
 	/*
 	 * Update Settings
@@ -307,41 +307,41 @@ function optionsframework_validate( $input ) {
 	 * to be compatible with the theme customizer introduced in WordPress 3.4
 	 */
 
-		$clean = array();
-		$options =& _optionsframework_options();
-		foreach ( $options as $option ) {
+	$clean = array();
+	$options =& _optionsframework_options();
+	foreach ( $options as $option ) {
 
-			if ( ! isset( $option['id'] ) ) {
-				continue;
-			}
+		if ( ! isset( $option['id'] ) ) {
+			continue;
+		}
 
-			if ( ! isset( $option['type'] ) ) {
-				continue;
-			}
+		if ( ! isset( $option['type'] ) ) {
+			continue;
+		}
 
-			$id = preg_replace( '/[^a-zA-Z0-9._\-]/', '', strtolower( $option['id'] ) );
+		$id = preg_replace( '/[^a-zA-Z0-9._\-]/', '', strtolower( $option['id'] ) );
 
-			// Set checkbox to false if it wasn't sent in the $_POST
-			if ( 'checkbox' == $option['type'] && ! isset( $input[$id] ) ) {
-				$input[$id] = '0';
-			}
+		// Set checkbox to false if it wasn't sent in the $_POST
+		if ( 'checkbox' == $option['type'] && ! isset( $input[$id] ) ) {
+			$input[$id] = '0';
+		}
 
-			// Set each item in the multicheck to false if it wasn't sent in the $_POST
-			if ( 'multicheck' == $option['type'] && ! isset( $input[$id] ) ) {
-				foreach ( $option['options'] as $key => $value ) {
-					$input[$id][$key] = '0';
-				}
-			}
-
-			// For a value to be submitted to database it must pass through a sanitization filter
-			if ( has_filter( 'of_sanitize_' . $option['type'] ) ) {
-				$clean[$id] = apply_filters( 'of_sanitize_' . $option['type'], $input[$id], $option );
+		// Set each item in the multicheck to false if it wasn't sent in the $_POST
+		if ( 'multicheck' == $option['type'] && ! isset( $input[$id] ) ) {
+			foreach ( $option['options'] as $key => $value ) {
+				$input[$id][$key] = '0';
 			}
 		}
 
-		add_settings_error( 'options-framework', 'save_options', __( 'Options saved.', 'optionsframework' ), 'updated fade' );
-		return $clean;
+		// For a value to be submitted to database it must pass through a sanitization filter
+		if ( has_filter( 'of_sanitize_' . $option['type'] ) ) {
+			$clean[$id] = apply_filters( 'of_sanitize_' . $option['type'], $input[$id], $option );
+		}
 	}
+
+	add_settings_error( 'options-framework', 'save_options', __( 'Options saved.', 'optionsframework' ), 'updated fade' );
+	
+	return $clean;
 
 }
 
