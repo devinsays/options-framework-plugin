@@ -52,10 +52,11 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 ## Change log ##
 
-#### Dev ####
+#### 1.3 ####
 
-* Hungarian translations by kardiweb.org
 * Allow options to save when set by theme customizer
+* Added optionsframework_after hook
+* Hungarian translations by kardiweb.org
 
 #### 1.2 ####
 
