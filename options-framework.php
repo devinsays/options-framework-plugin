@@ -171,9 +171,13 @@ function optionsframework_init() {
 		}
 	}
 
+	// If the option has no saved data, load the defaults
+	if ( ! get_option( $optionsframework_settings['id'] ) ) {
+		optionsframework_setdefaults();
+	}
+
 	// Registers the settings fields and callback
 	register_setting( 'optionsframework', $optionsframework_settings['id'], 'optionsframework_validate' );
-	
 	// Change the capability required to save the 'optionsframework' options group.
 	add_filter( 'option_page_capability_optionsframework', 'optionsframework_page_capability' );
 }
@@ -188,6 +192,56 @@ function optionsframework_init() {
 
 function optionsframework_page_capability( $capability ) {
 	return 'edit_theme_options';
+}
+
+
+/*
+ * Adds default options to the database if they aren't already present.
+ * May update this later to load only on plugin activation, or theme
+ * activation since most people won't be editing the options.php
+ * on a regular basis.
+ *
+ * http://codex.wordpress.org/Function_Reference/add_option
+ *
+ */
+
+function optionsframework_setdefaults() {
+
+	$optionsframework_settings = get_option('optionsframework');
+
+	// Gets the unique option id
+	$option_name = $optionsframework_settings['id'];
+
+	/*
+	 * Each theme will hopefully have a unique id, and all of its options saved
+	 * as a separate option set.  We need to track all of these option sets so
+	 * it can be easily deleted if someone wishes to remove the plugin and
+	 * its associated data.  No need to clutter the database.
+	 *
+	 */
+
+	if ( isset($optionsframework_settings['knownoptions']) ) {
+		$knownoptions =  $optionsframework_settings['knownoptions'];
+		if ( !in_array($option_name, $knownoptions) ) {
+			array_push( $knownoptions, $option_name );
+			$optionsframework_settings['knownoptions'] = $knownoptions;
+			update_option('optionsframework', $optionsframework_settings);
+		}
+	} else {
+		$newoptionname = array($option_name);
+		$optionsframework_settings['knownoptions'] = $newoptionname;
+		update_option('optionsframework', $optionsframework_settings);
+	}
+
+	// Gets the default options data from the array in options.php
+	$options =& _optionsframework_options();
+
+	// If the options haven't been added to the database yet, they are added now
+	$values = of_get_default_values();
+
+	if ( isset($values) ) {
+		add_option( $option_name, $values ); // Add option with default settings
+	}
 }
 
 /* Add a subpage called "Theme Options" to the appearance menu. */

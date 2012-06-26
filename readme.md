@@ -56,7 +56,6 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 * Hungarian translations by kardiweb.org
 * Allow options to save when set by theme customizer
-* Don't set theme options by default (http://bit.ly/MK4dzG)
 
 #### 1.2 ####
 
