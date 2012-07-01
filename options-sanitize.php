@@ -32,7 +32,7 @@ function of_sanitize_checkbox( $input ) {
 	if ( $input ) {
 		$output = '1';
 	} else {
-		$output = '0';
+		$output = false;
 	}
 	return $output;
 }
@@ -44,7 +44,7 @@ function of_sanitize_multicheck( $input, $option ) {
 	$output = '';
 	if ( is_array( $input ) ) {
 		foreach( $option['options'] as $key => $value ) {
-			$output[$key] = "0";
+			$output[$key] = false;
 		}
 		foreach( $input as $key => $value ) {
 			if ( array_key_exists( $key, $option['options'] ) && $value ) {
