@@ -67,6 +67,10 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 == Changelog ==
 
+= Development =
+
+* Add missing sanitization to typography color (@weplantmedia)
+
 = 1.3 =
 
 * Allow options to save when set by theme customizer

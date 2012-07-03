@@ -186,7 +186,7 @@ function of_sanitize_typography( $input, $option ) {
 
 	$output['size']  = apply_filters( 'of_font_size', $output['size'] );
 	$output['style'] = apply_filters( 'of_font_style', $output['style'] );
-	$output['color'] = apply_filters( 'of_color', $output['color'] );
+	$output['color'] = apply_filters( 'of_sanitize_color', $output['color'] );
 	return $output;
 }
 add_filter( 'of_sanitize_typography', 'of_sanitize_typography', 10, 2 );
