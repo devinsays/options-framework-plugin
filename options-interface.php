@@ -229,7 +229,8 @@ function optionsframework_fields() {
 
 			// Font Size
 			if ( $typography_options['sizes'] ) {
-				$font_size = '<select class="of-typography of-typography-size" name="' . esc_attr( $option_name . '[' . $value['id'] . '][size]' ) . '" id="' . esc_attr( $value['id'] . '_size' ) . '">';
+				$font_size = '<select class="of-typography of-typography-size" name="' . esc_attr( $option_name . '[' . $value['id'] . '][size]' ) . '" id="' . esc_attr( $value['id'] . '_size' ) . '"
+                                                onchange="options_font_preview(\'' . esc_attr( $value['id'] . '_size' ) . '\', \'' . esc_attr($value['id']) . '_preview'. '\', \'font-size\');return true;">';
 				$sizes = $typography_options['sizes'];
 				foreach ( $sizes as $i ) {
 					$size = $i . 'px';
@@ -240,7 +241,8 @@ function optionsframework_fields() {
 
 			// Font Face
 			if ( $typography_options['faces'] ) {
-				$font_face = '<select class="of-typography of-typography-face" name="' . esc_attr( $option_name . '[' . $value['id'] . '][face]' ) . '" id="' . esc_attr( $value['id'] . '_face' ) . '">';
+				$font_face = '<select class="of-typography of-typography-face" name="' . esc_attr( $option_name . '[' . $value['id'] . '][face]' ) . '" id="' . esc_attr( $value['id'] . '_face' ) . '" 
+                                                onchange="options_font_preview(\'' . esc_attr( $value['id'] . '_face' ) . '\', \'' . esc_attr($value['id']) . '_preview'. '\', \'font-family\');return true;">';
 				$faces = $typography_options['faces'];
 				foreach ( $faces as $key => $face ) {
 					$font_face .= '<option value="' . esc_attr( $key ) . '" ' . selected( $typography_stored['face'], $key, false ) . '>' . esc_html( $face ) . '</option>';
@@ -250,7 +252,8 @@ function optionsframework_fields() {
 
 			// Font Styles
 			if ( $typography_options['styles'] ) {
-				$font_style = '<select class="of-typography of-typography-style" name="'.$option_name.'['.$value['id'].'][style]" id="'. $value['id'].'_style">';
+				$font_style = '<select class="of-typography of-typography-style" name="'.$option_name.'['.$value['id'].'][style]" id="'. $value['id'].'_style"
+                                                onchange="options_font_preview(\'' . esc_attr( $value['id'] . '_style' ) . '\', \'' . esc_attr($value['id']) . '_preview'. '\', \'font-style\');return true;">';
 				$styles = $typography_options['styles'];
 				foreach ( $styles as $key => $style ) {
 					$font_style .= '<option value="' . esc_attr( $key ) . '" ' . selected( $typography_stored['style'], $key, false ) . '>'. $style .'</option>';
@@ -262,13 +265,18 @@ function optionsframework_fields() {
 			if ( $typography_options['color'] ) {
 				$font_color = '<div id="' . esc_attr( $value['id'] ) . '_color_picker" class="colorSelector"><div style="' . esc_attr( 'background-color:' . $typography_stored['color'] ) . '"></div></div>';
 				$font_color .= '<input class="of-color of-typography of-typography-color" name="' . esc_attr( $option_name . '[' . $value['id'] . '][color]' ) . '" id="' . esc_attr( $value['id'] . '_color' ) . '" type="text" value="' . esc_attr( $typography_stored['color'] ) . '" />';
+                                                //onkeypress="options_face_preview(\'' . esc_attr( $value['id'] . '_size' ) . '\', \'' . esc_attr($value['id']) . '_color'. '\', \'color\');return true;"/>';
 			}
 	
 			// Allow modification/injection of typography fields
 			$typography_fields = compact( 'font_size', 'font_face', 'font_style', 'font_color' );
 			$typography_fields = apply_filters( 'of_typography_fields', $typography_fields, $typography_stored, $option_name, $value );
 			$output .= implode( '', $typography_fields );
-			
+                        
+                        
+                        $output .= '<p style="font-family: ' . $typography_stored['face'] . 'margin: 7px 0 10px 5px;display:block;width:200px; font-size: ' . $typography_stored['size'] . '" id="' . esc_attr($value['id']) . '_preview' . '">Font Preview</p>';
+
+                        
 			break;
 
 		// Background

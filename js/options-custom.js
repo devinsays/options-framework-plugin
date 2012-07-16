@@ -106,5 +106,13 @@ jQuery(document).ready(function($) {
 	$('.of-radio-img-label').hide();
 	$('.of-radio-img-img').show();
 	$('.of-radio-img-radio').hide();
+        
+          
 		 		
 });	
+
+function options_font_preview(select_id, example_id, style) {
+    var id = '#'+select_id;
+    var ex = '#'+example_id;
+    jQuery(ex).css( style, jQuery(id).val() );
+} 
