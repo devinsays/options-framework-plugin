@@ -106,5 +106,25 @@ jQuery(document).ready(function($) {
 	$('.of-radio-img-label').hide();
 	$('.of-radio-img-img').show();
 	$('.of-radio-img-radio').hide();
+        
+          
 		 		
 });	
+
+function options_font_preview(select_id, example_id, style) {
+    var id = '#'+select_id;
+    var ex = '#'+example_id;
+    // Extra conditions for setting the style to bold
+    // I hate this hack. Is there a better way?
+    if( jQuery(id).val() == 'bold' ) {
+        style = 'font-weight';
+        jQuery(ex).css('font-style', 'normal');
+        
+    } else if( jQuery(id).val() == 'bold italic' ) { 
+        jQuery(ex).css('font-weight', 'bold');
+        jQuery(id).val('italic');
+    } else {
+        jQuery(ex).css('font-weight', 'normal');
+    }
+    jQuery(ex).css( style, jQuery(id).val() );
+} 
