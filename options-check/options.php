@@ -51,6 +51,21 @@ function optionsframework_options() {
 		'five' => '1'
 	);
 
+	// Sorter
+	$sorter_array = array(
+		"disabled" => array (
+							"placebo"    => "placebo", //REQUIRED!
+							"block_four" => "Block Four",
+							"block_five" => "Block Five",
+							),
+		"enabled" => array (
+							"placebo"     => "placebo", //REQUIRED!
+							"block_one"   => "Block One",
+							"block_two"   => "Block Two",
+							"block_three" => "Block Three",
+							),
+		);
+
 	// Background Defaults
 	$background_defaults = array(
 		'color' => '',
@@ -208,6 +223,12 @@ function optionsframework_options() {
 		'desc' => __('This creates a full size uploader that previews the image.', 'options_check'),
 		'id' => 'example_uploader',
 		'type' => 'upload');
+
+	$options[] = array( "name" => "Homepage Layout Manager",
+		"desc" => "Organize how you want the layout to appear on the homepage",
+		"id" => "example_sorter",
+		"std" => $sorter_array,
+		"type" => "sorter" );
 
 	$options[] = array(
 		'name' => "Example Image Selector",

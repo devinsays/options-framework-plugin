@@ -7,6 +7,30 @@ jQuery(document).ready(function($) {
 	
 	// Fade out the save message
 	$('.fade').delay(1000).fadeOut(1000);
+
+	//	Sorter (Layout Manager) 
+	jQuery('.sorter').each( function() {
+		var id = jQuery(this).attr('id');
+		$('#'+ id).find('ul').sortable({
+			items: 'li',
+			placeholder: "placeholder",
+			connectWith: '.sortlist_' + id,
+			opacity: 0.6,
+			update: function() {
+				$(this).find('.position').each( function() {
+
+					var listID = $(this).parent().attr('id');
+					var parentID = $(this).parent().parent().attr('id');
+					parentID = parentID.replace(id + '_', '');
+					var optionID = $(this).parent().parent().parent().attr('id');
+					var nameTheme = $(this).attr('class');
+					nameTheme = nameTheme.replace('position ', '');
+					$(this).prop("name", nameTheme + '[' + optionID + '][' + parentID + '][' + listID + ']');
+
+				});
+			}
+		});	
+	});	
 	
 	// Color Picker
 	$('.colorSelector').each(function(){

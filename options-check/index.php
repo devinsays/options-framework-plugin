@@ -82,6 +82,63 @@ get_header(); ?>
             <img src="<?php echo of_get_option('example_uploader'); ?>" />
             <?php } ?>
             </dl>
+
+            <dl>
+            <dt>type: sorter</dt>
+            <dd>of_get_option('example_sorter'):
+            <?php $sorter = of_get_option('example_sorter' , 'none' ); ?>
+            <?php 
+            echo '<pre>';
+            print_r($sorter); 
+            echo '</pre>';
+            ?>
+            </dd>
+            <?php
+            $layout = of_get_option('example_sorter', 'none');
+            $layout = $layout['enabled'];
+
+            if ($layout):
+            foreach ($layout as $key=>$value) {
+                switch($key) {
+                    case 'block_one':
+                    ?>
+                    <strong>Block One</strong>
+                    <br />
+                    <?php
+                    break;
+
+                    case 'block_two':
+                    ?>
+                    <strong>Block Two</strong>
+                    <br />
+                    <?php
+                    break;
+
+                    case 'block_three':
+                    ?>
+                    <strong>Block Three</strong>
+                    <br />
+                    <?php
+                    break;
+
+                    case 'block_four':
+                    ?>
+                    <strong>Block Four</strong>
+                    <br />
+                    <?php
+                    break;
+
+                    case 'block_five':
+                    ?>
+                    <strong>Block Five</strong>
+                    <br />
+                    <?php
+                    break;
+                }
+            }
+            endif;
+            ?>
+            </dl>
             
             <dl>
             <dt>type: image</dt>
