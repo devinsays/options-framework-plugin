@@ -193,8 +193,13 @@ function optionsframework_fields() {
 
 		// Color picker
 		case "color":
-			$output .= '<div id="' . esc_attr( $value['id'] . '_picker' ) . '" class="colorSelector"><div style="' . esc_attr( 'background-color:' . $val ) . '"></div></div>';
-			$output .= '<input class="of-color" name="' . esc_attr( $option_name . '[' . $value['id'] . ']' ) . '" id="' . esc_attr( $value['id'] ) . '" type="text" value="' . esc_attr( $val ) . '" />';
+			$default_color = '';
+			if ( isset($value['std']) ) {
+				if ( $val !=  $value['std'] )
+					$default_color = ' data-default-color="' .$value['std'] . '" ';
+			}
+			$output .= '<input name="' . esc_attr( $option_name . '[' . $value['id'] . ']' ) . '" id="' . esc_attr( $value['id'] ) . '" class="of-color"  type="text" value="' . esc_attr( $val ) . '"' . $default_color .' />';
+ 	
 			break;
 
 		// Uploader
@@ -260,8 +265,12 @@ function optionsframework_fields() {
 
 			// Font Color
 			if ( $typography_options['color'] ) {
-				$font_color = '<div id="' . esc_attr( $value['id'] ) . '_color_picker" class="colorSelector"><div style="' . esc_attr( 'background-color:' . $typography_stored['color'] ) . '"></div></div>';
-				$font_color .= '<input class="of-color of-typography of-typography-color" name="' . esc_attr( $option_name . '[' . $value['id'] . '][color]' ) . '" id="' . esc_attr( $value['id'] . '_color' ) . '" type="text" value="' . esc_attr( $typography_stored['color'] ) . '" />';
+				$default_color = '';
+				if ( isset($value['std']['color']) ) {
+					if ( $val !=  $value['std']['color'] )
+						$default_color = ' data-default-color="' .$value['std']['color'] . '" ';
+				}
+				$font_color = '<input name="' . esc_attr( $option_name . '[' . $value['id'] . '][color]' ) . '" id="' . esc_attr( $value['id'] . '_color' ) . '" class="of-color of-typography-color  type="text" value="' . esc_attr( $typography_stored['color'] ) . '"' . $default_color .' />';
 			}
 	
 			// Allow modification/injection of typography fields
@@ -277,8 +286,12 @@ function optionsframework_fields() {
 			$background = $val;
 
 			// Background Color
-			$output .= '<div id="' . esc_attr( $value['id'] ) . '_color_picker" class="colorSelector"><div style="' . esc_attr( 'background-color:' . $background['color'] ) . '"></div></div>';
-			$output .= '<input class="of-color of-background of-background-color" name="' . esc_attr( $option_name . '[' . $value['id'] . '][color]' ) . '" id="' . esc_attr( $value['id'] . '_color' ) . '" type="text" value="' . esc_attr( $background['color'] ) . '" />';
+			$default_color = '';
+			if ( isset($value['std']['color']) ) {
+				if ( $val !=  $value['std']['color'] )
+					$default_color = ' data-default-color="' .$value['std']['color'] . '" ';
+			}
+			$output .= '<input name="' . esc_attr( $option_name . '[' . $value['id'] . '][color]' ) . '" id="' . esc_attr( $value['id'] . '_color' ) . '" class="of-color of-background-color"  type="text" value="' . esc_attr( $background['color'] ) . '"' . $default_color .' />';
 
 			// Background Image - New AJAX Uploader using Media Library
 			if (!isset($background['image'])) {

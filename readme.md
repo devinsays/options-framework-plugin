@@ -55,6 +55,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 #### Development ####
 
 * Add missing sanitization to typography color (@webplantmedia)
+* New colorpicker
 
 #### 1.3 ####
 

@@ -262,7 +262,10 @@ if ( !function_exists( 'optionsframework_add_page' ) ) {
 
 function optionsframework_load_styles() {
 	wp_enqueue_style('optionsframework', OPTIONS_FRAMEWORK_URL.'css/optionsframework.css');
-	wp_enqueue_style('color-picker', OPTIONS_FRAMEWORK_URL.'css/colorpicker.css');
+	if ( !wp_style_is( 'wp-color-picker','registered' ) ) {
+		wp_register_style('wp-color-picker', OPTIONS_FRAMEWORK_URL.'css/wp-color-picker.css');
+	}
+	wp_enqueue_style( 'wp-color-picker' );
 }
 
 /* Loads the javascript */
@@ -272,13 +275,25 @@ function optionsframework_load_scripts($hook) {
 	if ( 'appearance_page_options-framework' != $hook )
         return;
 
-	// Enqueued scripts
-	wp_enqueue_script('jquery-ui-core');
-	wp_enqueue_script('color-picker', OPTIONS_FRAMEWORK_URL .'js/colorpicker.js', array('jquery'));
-	wp_enqueue_script('options-custom', OPTIONS_FRAMEWORK_URL .'js/options-custom.js', array('jquery'));
+	// Enqueue colorpicker scripts
+	// These scripts are slated to be added in WordPress 3.5
+	
+	if ( !wp_script_is( 'wp-color-picker', 'registered' ) ) {
+		wp_register_script( 'iris', OPTIONS_FRAMEWORK_URL .'js/iris.min.js', array( 'jquery-ui-draggable', 'jquery-ui-slider' ) );
+		wp_register_script('wp-color-picker', OPTIONS_FRAMEWORK_URL .'js/wp-color-picker.js', array( 'jquery', 'iris' ) );
+		$colorpicker_l10n = array(
+			'clear' => __( 'Clear' ),
+			'defaultString' => __( 'Default' ),
+			'pick' => __( 'Select Color' )
+		);
+		wp_localize_script( 'wp-color-picker', 'wpColorPickerL10n', $colorpicker_l10n );
+	}
+	
+	// Enqueue custom option panel JS
+	wp_enqueue_script( 'options-custom', OPTIONS_FRAMEWORK_URL .'js/options-custom.js', array( 'jquery','wp-color-picker' ) );
 
 	// Inline scripts from options-interface.php
-	add_action('admin_head', 'of_admin_head');
+	add_action( 'admin_head', 'of_admin_head' );
 }
 
 function of_admin_head() {

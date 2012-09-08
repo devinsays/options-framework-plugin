@@ -70,6 +70,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 = Development =
 
 * Add missing sanitization to typography color (@weplantmedia)
+* New colorpicker
 
 = 1.3 =
 
