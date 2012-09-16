@@ -13,7 +13,8 @@ function optionsframework_tabs() {
 	foreach ($options as $value) {
 		// Heading for Navigation
 		if ($value['type'] == "heading") {
-			$jquery_click_hook = preg_replace('/[^a-zA-Z0-9._\-]/', '', strtolower($value['name']) );
+			$id = ! empty( $value['id'] ) ? $value['id'] : $value['name'];
+			$jquery_click_hook = preg_replace('/[^a-zA-Z0-9._\-]/', '', strtolower($id) );
 			$jquery_click_hook = "of-option-" . $jquery_click_hook;
 			$menu .= '<a id="'.  esc_attr( $jquery_click_hook ) . '-tab" class="nav-tab" title="' . esc_attr( $value['name'] ) . '" href="' . esc_attr( '#'.  $jquery_click_hook ) . '">' . esc_html( $value['name'] ) . '</a>';
 		}
