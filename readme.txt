@@ -71,6 +71,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 * Add missing sanitization to typography color (@weplantmedia)
 * New colorpicker
+* Farsi translations (@vahidd.com)
 
 = 1.3 =
 
