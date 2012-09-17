@@ -4,6 +4,10 @@
 
 add_filter( 'of_sanitize_text', 'sanitize_text_field' );
 
+/* Password */
+
+add_filter( 'of_sanitize_password', 'sanitize_text_field' );
+
 /* Textarea */
 
 function of_sanitize_textarea($input) {
