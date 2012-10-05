@@ -5,17 +5,18 @@
  */
 
 function optionsframework_tabs() {
-
+	$counter = 0;
 	$optionsframework_settings = get_option('optionsframework');
 	$options =& _optionsframework_options();
 	$menu = '';
 
 	foreach ($options as $value) {
+		$counter++;
 		// Heading for Navigation
 		if ($value['type'] == "heading") {
 			$id = ! empty( $value['id'] ) ? $value['id'] : $value['name'];
 			$jquery_click_hook = preg_replace('/[^a-zA-Z0-9._\-]/', '', strtolower($id) );
-			$jquery_click_hook = "of-option-" . $jquery_click_hook;
+			$jquery_click_hook = "of-option-" . $jquery_click_hook . $counter;
 			$menu .= '<a id="'.  esc_attr( $jquery_click_hook ) . '-tab" class="nav-tab" title="' . esc_attr( $value['name'] ) . '" href="' . esc_attr( '#'.  $jquery_click_hook ) . '">' . esc_html( $value['name'] ) . '</a>';
 		}
 	}
@@ -390,7 +391,7 @@ function optionsframework_fields() {
 				$output .= '</div>'."\n";
 			}
 			$jquery_click_hook = preg_replace('/[^a-zA-Z0-9._\-]/', '', strtolower($value['name']) );
-			$jquery_click_hook = "of-option-" . $jquery_click_hook;
+			$jquery_click_hook = "of-option-" . $jquery_click_hook . $counter;
 			$menu .= '<a id="'.  esc_attr( $jquery_click_hook ) . '-tab" class="nav-tab" title="' . esc_attr( $value['name'] ) . '" href="' . esc_attr( '#'.  $jquery_click_hook ) . '">' . esc_html( $value['name'] ) . '</a>';
 			$output .= '<div class="group" id="' . esc_attr( $jquery_click_hook ) . '">';
 			$output .= '<h3>' . esc_html( $value['name'] ) . '</h3>' . "\n";
