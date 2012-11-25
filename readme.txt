@@ -4,7 +4,7 @@ Contributors: Devin Price
 Tags: options, theme options
 Donate link: http://bit.ly/options-donate
 Requires at least: 3.3
-Tested up to: 3.4.1
+Tested up to: 3.5
 Stable tag: 1.3
 License: GPLv2
 
