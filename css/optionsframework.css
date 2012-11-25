@@ -1,6 +1,4 @@
-/*-------------------------------------------------------------------------------------------*/
 /* Options Framework Admin Styles */
-/*-------------------------------------------------------------------------------------------*/
 
 .updated {
 	max-width:764px;
@@ -229,10 +227,7 @@
 #optionsframework .button-primary {
 	float:right;
 }
-
-/* Bottom Section */
-
-#optionsframework .section:before, #optionsframework .section:after {
+#optionsframework .section:after {
 	content: "";
 	display: table;
 }

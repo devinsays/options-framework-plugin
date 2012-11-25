@@ -2,8 +2,8 @@
 
 **Tags:** options, theme options  
 **Requires at least:** 3.3  
-**Tested up to:** 3.4   
-**Stable tag:** 1.3  
+**Tested up to:** 3.5   
+**Stable tag:** 1.4  
 **License:** GPLv2  
 **Donate link:** http://bit.ly/options-donate  
 
@@ -52,9 +52,9 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 ## Change log ##
 
-#### Development ####
+#### 1.4 ####
 
-* Add missing sanitization to typography color (@webplantmedia)
+* Add missing sanitization to typography color (@weplantmedia)
 * New colorpicker
 * Farsi translations (@vahidd.com)
 * Added password option type (props @neojp)

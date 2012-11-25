@@ -5,7 +5,7 @@ Tags: options, theme options
 Donate link: http://bit.ly/options-donate
 Requires at least: 3.3
 Tested up to: 3.5
-Stable tag: 1.3
+Stable tag: 1.4
 License: GPLv2
 
 == Description ==
@@ -67,7 +67,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 == Changelog ==
 
-= Development =
+= 1.4 =
 
 * Add missing sanitization to typography color (@weplantmedia)
 * New colorpicker
