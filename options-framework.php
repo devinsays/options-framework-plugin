@@ -407,6 +407,8 @@ function optionsframework_validate( $input ) {
 		}
 	}
 
+	if ( function_exists( 'optionsframework_on_validate' ) ) optionsframework_on_validate($clean);
+
 	add_settings_error( 'options-framework', 'save_options', __( 'Options saved.', 'optionsframework' ), 'updated fade' );
 	
 	return $clean;
