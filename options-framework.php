@@ -411,6 +411,9 @@ function optionsframework_validate( $input ) {
 
 	add_settings_error( 'options-framework', 'save_options', __( 'Options saved.', 'optionsframework' ), 'updated fade' );
 	
+	// added to hook into after validation
+	do_action('optionsframework_after_validate');
+	
 	return $clean;
 
 }
