@@ -133,7 +133,7 @@ function optionsframework_fields() {
 			break;
 
 		// Select Box
-		case ($value['type'] == 'select'):
+		case 'select':
 			$output .= '<select class="of-input" name="' . esc_attr( $option_name . '[' . $value['id'] . ']' ) . '" id="' . esc_attr( $value['id'] ) . '">';
 
 			foreach ($value['options'] as $key => $option ) {
