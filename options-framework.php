@@ -194,7 +194,6 @@ function optionsframework_page_capability( $capability ) {
 	return 'edit_theme_options';
 }
 
-
 /*
  * Adds default options to the database if they aren't already present.
  * May update this later to load only on plugin activation, or theme
@@ -279,8 +278,8 @@ function optionsframework_load_scripts($hook) {
 	// for compatibility
 	
 	if ( !wp_script_is( 'wp-color-picker', 'registered' ) ) {
-		wp_register_script( 'iris', OPTIONS_FRAMEWORK_URL .'js/iris.min.js', array( 'jquery-ui-draggable', 'jquery-ui-slider', 'jquery-touch-punch' ), false, 1 );
-		wp_register_script( 'wp-color-picker', OPTIONS_FRAMEWORK_URL .'js/color-picker.min.js', array( 'jquery', 'iris' ) );
+		wp_register_script( 'iris', OPTIONS_FRAMEWORK_URL . 'js/iris.min.js', array( 'jquery-ui-draggable', 'jquery-ui-slider', 'jquery-touch-punch' ), false, 1 );
+		wp_register_script( 'wp-color-picker', OPTIONS_FRAMEWORK_URL . 'js/color-picker.min.js', array( 'jquery', 'iris' ) );
 		$colorpicker_l10n = array(
 			'clear' => __( 'Clear' ),
 			'defaultString' => __( 'Default' ),
@@ -290,14 +289,13 @@ function optionsframework_load_scripts($hook) {
 	}
 	
 	// Enqueue custom option panel JS
-	wp_enqueue_script( 'options-custom', OPTIONS_FRAMEWORK_URL .'js/options-custom.js', array( 'jquery','wp-color-picker' ) );
+	wp_enqueue_script( 'options-custom', OPTIONS_FRAMEWORK_URL . 'js/options-custom.js', array( 'jquery','wp-color-picker' ) );
 
 	// Inline scripts from options-interface.php
 	add_action( 'admin_head', 'of_admin_head' );
 }
 
 function of_admin_head() {
-
 	// Hook to add custom scripts
 	do_action( 'optionsframework_custom_scripts' );
 }
@@ -314,10 +312,9 @@ function of_admin_head() {
  *
  */
 
-if ( !function_exists( 'optionsframework_page' ) ) {
-	function optionsframework_page() {
-		settings_errors();
-?>
+if ( !function_exists( 'optionsframework_page' ) ) :
+function optionsframework_page() {
+	settings_errors(); ?>
 
 	<div id="optionsframework-wrap" class="wrap">
     <?php screen_icon( 'themes' ); ?>
@@ -342,8 +339,8 @@ if ( !function_exists( 'optionsframework_page' ) ) {
 	</div> <!-- / .wrap -->
 	
 <?php
-	}
 }
+endif;
 
 /**
  * Validate Options.
@@ -411,7 +408,6 @@ function optionsframework_validate( $input ) {
 	do_action( 'optionsframework_after_validate', $clean );
 	
 	return $clean;
-
 }
 
 /**
@@ -474,7 +470,7 @@ function optionsframework_adminbar() {
 		));
 }
 
-if ( ! function_exists( 'of_get_option' ) ) {
+if ( ! function_exists( 'of_get_option' ) ) :
 
 	/**
 	 * Get Option.
@@ -499,7 +495,7 @@ if ( ! function_exists( 'of_get_option' ) ) {
 
 		return $default;
 	}
-}
+endif;
 
 /**
  * Wrapper for optionsframework_options()
