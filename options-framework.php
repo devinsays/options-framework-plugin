@@ -406,17 +406,23 @@ function optionsframework_validate( $input ) {
 			$clean[$id] = apply_filters( 'of_sanitize_' . $option['type'], $input[$id], $option );
 		}
 	}
-
-	if ( function_exists( 'optionsframework_on_validate' ) ) optionsframework_on_validate($clean);
-
-	add_settings_error( 'options-framework', 'save_options', __( 'Options saved.', 'optionsframework' ), 'updated fade' );
 	
-	// added to hook into after validation
-	do_action('optionsframework_after_validate');
+	// Hook to run after validation
+	do_action( 'optionsframework_after_validate', $clean );
 	
 	return $clean;
 
 }
+
+/**
+ * Display message when options have been saved
+ */
+ 
+function optionsframework_save_options_notice() {
+	add_settings_error( 'options-framework', 'save_options', __( 'Options saved.', 'optionsframework' ), 'updated fade' );
+}
+
+add_action( 'optionsframework_after_validate', 'optionsframework_save_options_notice' );
 
 /**
  * Format Configuration Array.

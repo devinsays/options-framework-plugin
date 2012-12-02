@@ -70,10 +70,11 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 = 1.4 =
 
 * Add missing sanitization to typography color (@weplantmedia)
-* New colorpicker
+* New colorpicker (props @mattweibe for getting this in WordPress core)
 * Farsi translations (@vahidd.com)
 * Added password option type (props @neojp)
 * Allow ids to passed to tabs (props @themeblvd)
+* Added optionsframework_after_validate hook (h/t @vanpop and @pryley)
 
 = 1.3 =
 
