@@ -5,7 +5,7 @@
 **Tested up to:** 3.5   
 **Stable tag:** 1.4  
 **License:** GPLv2  
-**Donate link:** http://bit.ly/options-donate  
+**Donate link:** http://bit.ly/options-donate-2 
 
 ## Screenshot ##
 
