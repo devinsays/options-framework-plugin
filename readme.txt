@@ -67,6 +67,10 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 == Changelog ==
 
+= Development =
+
+* Italian translations (andreabersi.com)
+
 = 1.4 =
 
 * Add missing sanitization to typography color (@weplantmedia)
