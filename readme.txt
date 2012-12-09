@@ -70,6 +70,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 = Development =
 
 * Italian translations (andreabersi.com)
+* Russian translations (verha.net)
 
 = 1.4 =
 
