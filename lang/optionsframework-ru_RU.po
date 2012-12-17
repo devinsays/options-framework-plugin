@@ -59,7 +59,7 @@ msgstr "Просмотреть файл"
 
 #: options-medialibrary-uploader.php:288
 msgid "Gallery"
-msgstr "Галлерея"
+msgstr "Галерея"
 
 #: options-medialibrary-uploader.php:288
 msgid "Previously Uploaded"
