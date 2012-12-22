@@ -71,6 +71,8 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 * Italian translations (andreabersi.com)
 * Russian translations (verha.net)
+* Swedish translations (kjeell.se)
+* Updated width of text input
 
 = 1.4 =
 
