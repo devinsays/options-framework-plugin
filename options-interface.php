@@ -63,7 +63,7 @@ function optionsframework_fields() {
 
 			$id = 'section-' . $value['id'];
 
-			$class = 'section ';
+			$class = 'section';
 			if ( isset( $value['type'] ) ) {
 				$class .= ' section-' . $value['type'];
 			}
@@ -306,7 +306,7 @@ function optionsframework_fields() {
 				$background['image'] = '';
 			}
 			
-			$output .= optionsframework_uploader( $value['id'], $background['image'], null );
+			$output .= optionsframework_uploader( $value['id'], $background['image'], null, esc_attr( $option_name . '[' . $value['id'] . '][image]' ) );
 			
 			$class = 'of-background-properties';
 			if ( '' == $background['image'] ) {

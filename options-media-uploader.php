@@ -6,15 +6,13 @@
  * Parameters:
  * - string $_id - A token to identify this field (the name).
  * - string $_value - The value of the field, if present.
- * - string $_mode - The display mode of the field.
  * - string $_desc - An optional description of the field.
- * - int $_postid - An optional post id (used in the meta boxes).
  *
  */
 
-if ( ! function_exists( 'optionsframework_medialibrary_uploader' ) ) :
+if ( ! function_exists( 'optionsframework_uploader' ) ) :
 
-function optionsframework_uploader( $_id, $_value, $_mode = 'full', $_desc = '', $_postid = 0, $_name = '') {
+function optionsframework_uploader( $_id, $_value, $_desc = '', $_name = '') {
 
 	$optionsframework_settings = get_option('optionsframework');
 	
@@ -36,7 +34,7 @@ function optionsframework_uploader( $_id, $_value, $_mode = 'full', $_desc = '',
 	}
 	
 	if ($_name != '') {
-		$name = $option_name.'['.$id.']['.$_name.']';
+		$name = $_name;
 	}
 	else {
 		$name = $option_name.'['.$id.']';
@@ -47,9 +45,9 @@ function optionsframework_uploader( $_id, $_value, $_mode = 'full', $_desc = '',
 	}
 	$output .= '<input id="' . $id . '" class="upload' . $class . '" type="text" name="'.$name.'" value="' . $value . '" placeholder="' . __('No file chosen', 'optionsframework') .'" />' . "\n";
 	if ( $value == '' ) {
-		$output .= '<input id="upload-' . $id . '" class="upload-button button" type="button" value="' . __( 'Upload', 'optionsframework' ) . '" rel="' . $int . '" />' . "\n";
+		$output .= '<input id="upload-' . $id . '" class="upload-button button" type="button" value="' . __( 'Upload', 'optionsframework' ) . '" />' . "\n";
 	} else {
-		$output .= '<input id="remove-' . $id . '" class="remove-file button" type="button" value="' . __( 'Remove', 'optionsframework' ) . '" rel="' . $int . '" />' . "\n";
+		$output .= '<input id="remove-' . $id . '" class="remove-file button" type="button" value="' . __( 'Remove', 'optionsframework' ) . '" />' . "\n";
 	}
 	
 	if ( $_desc != '' ) {

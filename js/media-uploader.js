@@ -39,6 +39,7 @@
 					selector.find('.screenshot').empty().hide().append('<img src="' + attachment.attributes.url + '"><a class="remove-image">Remove</a>').slideDown('fast');
 				}
 				selector.find('.upload-button').unbind().addClass('remove-file').removeClass('upload-button').val('Remove');
+				selector.find('.of-background-properties').slideDown();
 				optionsframework_file_bindings();
 			});
 
@@ -49,8 +50,9 @@
 		function optionsframework_remove_file(selector) {
 			selector.find('.remove-image').hide();
 			selector.find('.upload').val('');
+			selector.find('.of-background-properties').hide();
 			selector.find('.screenshot').slideUp();
-			selector.find('.remove-file').addClass('upload-button').removeClass('remove-file').val('Upload');
+			selector.find('.remove-file').unbind().addClass('upload-button').removeClass('remove-file').val('Upload');
 			optionsframework_file_bindings();
 		}
 		
