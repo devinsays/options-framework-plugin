@@ -46,16 +46,20 @@ function optionsframework_uploader( $_id, $_value, $_mode = 'full', $_desc = '',
 		$class = ' has-file';
 	}
 	$output .= '<input id="' . $id . '" class="upload' . $class . '" type="text" name="'.$name.'" value="' . $value . '" placeholder="' . __('No file chosen', 'optionsframework') .'" />' . "\n";
-	$output .= '<input id="upload_' . $id . '" class="upload_button button" type="button" value="' . __( 'Upload', 'optionsframework' ) . '" rel="' . $int . '" />' . "\n";
-	
-	if ( $_desc != '' ) {
-		$output .= '<span class="of_metabox_desc">' . $_desc . '</span>' . "\n";
+	if ( $value == '' ) {
+		$output .= '<input id="upload-' . $id . '" class="upload-button button" type="button" value="' . __( 'Upload', 'optionsframework' ) . '" rel="' . $int . '" />' . "\n";
+	} else {
+		$output .= '<input id="remove-' . $id . '" class="remove-file button" type="button" value="' . __( 'Remove', 'optionsframework' ) . '" rel="' . $int . '" />' . "\n";
 	}
 	
-	$output .= '<div class="screenshot" id="' . $id . '_image">' . "\n";
+	if ( $_desc != '' ) {
+		$output .= '<span class="of-metabox-desc">' . $_desc . '</span>' . "\n";
+	}
+	
+	$output .= '<div class="screenshot" id="' . $id . '-image">' . "\n";
 	
 	if ( $value != '' ) { 
-		$remove = '<a class="remove-button">Remove</a>';
+		$remove = '<a class="remove-image">Remove</a>';
 		$image = preg_match( '/(^.*\.jpg|jpeg|png|gif|ico*)/i', $value );
 		if ( $image ) {
 			$output .= '<img src="' . $value . '" alt="" />'.$remove.'';

@@ -1,8 +1,9 @@
 (function($) {
 	$(document).ready(function() {
-		var upload = $(".uploaded-file"), frame;
 
-		$('.upload_button').click( function( event ) {
+		function optionsframework_add_file(event, selector) {
+		
+			var upload = $(".uploaded-file"), frame;
 			var $el = $(this);
 
 			event.preventDefault();
@@ -33,27 +34,37 @@
 				// Grab the selected attachment.
 				var attachment = frame.state().get('selection').first();
 				frame.close();
-				$('.upload').val(attachment.attributes.url);
+				selector.find('.upload').val(attachment.attributes.url);
 				if ( attachment.attributes.type == 'image' ) {
-					$('.screenshot').empty().hide().append('<img src="' + attachment.attributes.url + '"><a class="remove-button">Remove</a>').slideDown('fast');
-					remove_button_binding();
+					selector.find('.screenshot').empty().hide().append('<img src="' + attachment.attributes.url + '"><a class="remove-image">Remove</a>').slideDown('fast');
 				}
+				selector.find('.upload-button').unbind().addClass('remove-file').removeClass('upload-button').val('Remove');
+				optionsframework_file_bindings();
 			});
 
 			// Finally, open the modal.
 			frame.open();
-		});
+		}
+        
+		function optionsframework_remove_file(selector) {
+			selector.find('.remove-image').hide();
+			selector.find('.upload').val('');
+			selector.find('.screenshot').slideUp();
+			selector.find('.remove-file').addClass('upload-button').removeClass('remove-file').val('Upload');
+			optionsframework_file_bindings();
+		}
 		
-		function remove_button_binding() {
-			$('.remove-button').on('click', function() { 
-				$(this).hide();
-		        $(this).parents().parents().children('.upload').attr('value', '');
-		        $(this).parents('.screenshot').slideUp();
-		        $(this).parents('.screenshot').siblings('.of-background-properties').hide(); //remove background properties
-		        return false;
+		function optionsframework_file_bindings() {
+			$('.remove-image, .remove-file').on('click', function() {
+				optionsframework_remove_file( $(this).parents('.section') );
+	        });
+	        
+	        $('.upload-button').click( function( event ) {
+	        	optionsframework_add_file(event, $(this).parents('.section'));
 	        });
         }
-
+        
+        optionsframework_file_bindings();
     });
 	
 })(jQuery);
