@@ -38,7 +38,7 @@
 				if ( attachment.attributes.type == 'image' ) {
 					selector.find('.screenshot').empty().hide().append('<img src="' + attachment.attributes.url + '"><a class="remove-image">Remove</a>').slideDown('fast');
 				}
-				selector.find('.upload-button').unbind().addClass('remove-file').removeClass('upload-button').val('Remove');
+				selector.find('.upload-button').unbind().addClass('remove-file').removeClass('upload-button').val(optionsframework.remove);
 				selector.find('.of-background-properties').slideDown();
 				optionsframework_file_bindings();
 			});
@@ -52,7 +52,7 @@
 			selector.find('.upload').val('');
 			selector.find('.of-background-properties').hide();
 			selector.find('.screenshot').slideUp();
-			selector.find('.remove-file').unbind().addClass('upload-button').removeClass('remove-file').val('Upload');
+			selector.find('.remove-file').unbind().addClass('upload-button').removeClass('remove-file').val(optionsframework.upload);
 			optionsframework_file_bindings();
 		}
 		
