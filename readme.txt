@@ -3,9 +3,9 @@
 Contributors: Devin Price
 Tags: options, theme options
 Donate link: http://bit.ly/options-donate-2
-Requires at least: 3.3
+Requires at least: 3.5
 Tested up to: 3.5
-Stable tag: 1.4
+Stable tag: 1.5
 License: GPLv2
 
 == Description ==
@@ -69,10 +69,14 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 = Development =
 
+= 1.5 =
+
+* Updated width of text input
+* New media uploader
+* Dropped custom post types for file attachments
 * Italian translations (andreabersi.com)
 * Russian translations (verha.net)
 * Swedish translations (kjeell.se)
-* Updated width of text input
 
 = 1.4 =
 

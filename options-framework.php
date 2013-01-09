@@ -3,7 +3,7 @@
 Plugin Name: Options Framework
 Plugin URI: http://www.wptheming.com
 Description: A framework for building theme options.
-Version: 1.4
+Version: 1.5
 Author: Devin Price
 Author URI: http://www.wptheming.com
 License: GPLv2
@@ -27,7 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 /* Basic plugin definitions */
 
-define('OPTIONS_FRAMEWORK_VERSION', '1.4');
+define('OPTIONS_FRAMEWORK_VERSION', '1.5');
 define('OPTIONS_FRAMEWORK_URL', plugin_dir_url( __FILE__ ));
 
 load_plugin_textdomain( 'optionsframework', false, dirname( plugin_basename( __FILE__ ) ) . '/lang/' );
@@ -135,13 +135,7 @@ function optionsframework_init() {
 
 	// Include the required files
 	require_once dirname( __FILE__ ) . '/options-interface.php';
-	
-	// If older than WordPress 3.5, load the deprecated media library files
-	if ( function_exists( 'wp_get_mime_types' ) ) {
-		require_once dirname( __FILE__ ) . '/options-media-uploader.php';
-	} else {
-		require_once dirname( __FILE__ ) . '/deprecated/options-medialibrary-uploader.php';
-	}
+	require_once dirname( __FILE__ ) . '/options-media-uploader.php';
 
 	// Optionally Loads the options file from the theme
 	$location = apply_filters( 'options_framework_location', array('options.php') );
@@ -282,8 +276,8 @@ function optionsframework_load_scripts($hook) {
 
 	// Enqueue colorpicker scripts for versions below 3.5 for compatibility
 	if ( !wp_script_is( 'wp-color-picker', 'registered' ) ) {
-		wp_register_script( 'iris', OPTIONS_FRAMEWORK_URL . 'deprecated/iris.min.js', array( 'jquery-ui-draggable', 'jquery-ui-slider', 'jquery-touch-punch' ), false, 1 );
-		wp_register_script( 'wp-color-picker', OPTIONS_FRAMEWORK_URL . 'deprecated/color-picker.min.js', array( 'jquery', 'iris' ) );
+		wp_register_script( 'iris', OPTIONS_FRAMEWORK_URL . 'js/iris.min.js', array( 'jquery-ui-draggable', 'jquery-ui-slider', 'jquery-touch-punch' ), false, 1 );
+		wp_register_script( 'wp-color-picker', OPTIONS_FRAMEWORK_URL . 'js/color-picker.min.js', array( 'jquery', 'iris' ) );
 		$colorpicker_l10n = array(
 			'clear' => __( 'Clear' ),
 			'defaultString' => __( 'Default' ),
