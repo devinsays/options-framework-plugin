@@ -50,7 +50,6 @@ function optionsframework_rolescheck() {
 			// If the user can edit theme options, let the fun begin!
 			add_action( 'admin_menu', 'optionsframework_add_page');
 			add_action( 'admin_init', 'optionsframework_init' );
-			add_action( 'admin_init', 'optionsframework_mlu_init' );
 			add_action( 'wp_before_admin_bar_render', 'optionsframework_adminbar' );
 		}
 		else {
@@ -136,7 +135,13 @@ function optionsframework_init() {
 
 	// Include the required files
 	require_once dirname( __FILE__ ) . '/options-interface.php';
-	require_once dirname( __FILE__ ) . '/options-medialibrary-uploader.php';
+	
+	// If older than WordPress 3.5, load the deprecated media library files
+	if ( function_exists( 'wp_get_mime_types' ) ) {
+		require_once dirname( __FILE__ ) . '/options-media-uploader.php';
+	} else {
+		require_once dirname( __FILE__ ) . '/deprecated/options-medialibrary-uploader.php';
+	}
 
 	// Optionally Loads the options file from the theme
 	$location = apply_filters( 'options_framework_location', array('options.php') );
@@ -251,7 +256,8 @@ if ( !function_exists( 'optionsframework_add_page' ) ) {
 		$of_page = add_theme_page(__('Theme Options', 'optionsframework'), __('Theme Options', 'optionsframework'), 'edit_theme_options', 'options-framework','optionsframework_page');
 
 		// Load the required CSS and javscript
-		add_action('admin_enqueue_scripts', 'optionsframework_load_scripts');
+		add_action( 'admin_enqueue_scripts', 'optionsframework_load_scripts');
+		add_action( 'admin_enqueue_scripts', 'optionsframework_media_scripts');
 		add_action( 'admin_print_styles-' . $of_page, 'optionsframework_load_styles' );
 	}
 
@@ -274,12 +280,10 @@ function optionsframework_load_scripts($hook) {
 	if ( 'appearance_page_options-framework' != $hook )
         return;
 
-	// Enqueue colorpicker scripts for versions below 3.5
-	// for compatibility
-	
+	// Enqueue colorpicker scripts for versions below 3.5 for compatibility
 	if ( !wp_script_is( 'wp-color-picker', 'registered' ) ) {
-		wp_register_script( 'iris', OPTIONS_FRAMEWORK_URL . 'js/iris.min.js', array( 'jquery-ui-draggable', 'jquery-ui-slider', 'jquery-touch-punch' ), false, 1 );
-		wp_register_script( 'wp-color-picker', OPTIONS_FRAMEWORK_URL . 'js/color-picker.min.js', array( 'jquery', 'iris' ) );
+		wp_register_script( 'iris', OPTIONS_FRAMEWORK_URL . 'deprecated/iris.min.js', array( 'jquery-ui-draggable', 'jquery-ui-slider', 'jquery-touch-punch' ), false, 1 );
+		wp_register_script( 'wp-color-picker', OPTIONS_FRAMEWORK_URL . 'deprecated/color-picker.min.js', array( 'jquery', 'iris' ) );
 		$colorpicker_l10n = array(
 			'clear' => __( 'Clear' ),
 			'defaultString' => __( 'Default' ),
@@ -530,7 +534,7 @@ endif;
 function &_optionsframework_options() {
 	static $options = null;
 
-	if (!$options) {
+	if ( !$options ) {
 		// Load options from options.php file (if it exists)
 		$location = apply_filters( 'options_framework_location', array('options.php') );
 		if ( $optionsfile = locate_template( $location ) ) {

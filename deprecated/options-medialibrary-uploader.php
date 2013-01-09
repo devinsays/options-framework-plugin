@@ -284,3 +284,11 @@ function optionsframework_mlu_modify_tabs ( $tabs ) {
 }
 
 endif;
+
+if ( ! function_exists( 'optionsframework_media_scripts' ) ) :
+
+function optionsframework_media_scripts(){
+	//
+}
+
+endif;
