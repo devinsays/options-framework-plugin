@@ -131,7 +131,7 @@ function of_sanitize_background( $input ) {
 	) );
 
 	$output['color'] = apply_filters( 'of_sanitize_hex', $input['color'] );
-	//$output['image'] = apply_filters( 'of_sanitize_upload', $input['image'] );
+	$output['image'] = apply_filters( 'of_sanitize_upload', $input['image'] );
 	$output['repeat'] = apply_filters( 'of_background_repeat', $input['repeat'] );
 	$output['position'] = apply_filters( 'of_background_position', $input['position'] );
 	$output['attachment'] = apply_filters( 'of_background_attachment', $input['attachment'] );
