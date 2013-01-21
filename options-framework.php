@@ -468,15 +468,15 @@ function optionsframework_adminbar() {
 		));
 }
 
-if ( ! function_exists( 'of_get_option' ) ) :
+/**
+ * Get Option.
+ *
+ * Helper function to return the theme option value.
+ * If no value has been saved, it returns $default.
+ * Needed because options are saved as serialized strings.
+ */
 
-	/**
-	 * Get Option.
-	 *
-	 * Helper function to return the theme option value.
-	 * If no value has been saved, it returns $default.
-	 * Needed because options are saved as serialized strings.
-	 */
+if ( ! function_exists( 'of_get_option' ) ) :
 
 	function of_get_option( $name, $default = false ) {
 		$config = get_option( 'optionsframework' );
@@ -492,6 +492,63 @@ if ( ! function_exists( 'of_get_option' ) ) :
 		}
 
 		return $default;
+	}
+	
+endif;
+
+/**
+ * Gets the attachment ID for item uploaded through the panel
+ *
+ * Thanks: http://philipnewcomer.net/2012/11/get-the-attachment-id-from-an-image-url-in-wordpress/
+ */
+
+if ( ! function_exists( 'of_get_attachment_id' ) ) :
+
+	function of_get_attachment_id( $name, $default = false ) {
+	
+		$config = get_option( 'optionsframework' );
+	
+		if ( ! isset( $config['id'] ) )
+			return $default;
+	
+		$options = get_option( $config['id'] );
+		
+		// Check if the ID has been saved into the options and if so, return it
+		if ( isset( $options[$name . '_id'] ) ) {
+			echo 'True';
+			return $options[$name . '_id'];
+		}
+	
+		// The ID hasn't been saved already, so we'll find it by using the image URL
+		if ( isset( $options[$name] ) )
+			$attachment_url = $options[$name];
+	
+	    global $wpdb;
+	    $attachment_id = false;
+	
+	    // Get the upload directory paths
+	    $upload_dir_paths = wp_upload_dir();
+	
+	    // Make sure the upload path base directory exists in the attachment URL, to verify that we're working with a media library image
+	    if ( false !== strpos( $attachment_url, $upload_dir_paths['baseurl'] ) ) {
+	
+	        // If this is the URL of an auto-generated thumbnail, get the URL of the original image
+	        $attachment_url = preg_replace( '/-\d+x\d+(?=\.(jpg|jpeg|png|gif|ico)$)/i', '', $attachment_url );
+	
+	        // Remove the upload path base directory from the attachment URL
+	        $attachment_url = str_replace( $upload_dir_paths['baseurl'] . '/', '', $attachment_url );
+	
+	        // Run a custom database query to get the attachment ID from the modified attachment URL
+	        $attachment_id = $wpdb->get_var( $wpdb->prepare( "SELECT wposts.ID FROM $wpdb->posts wposts, $wpdb->postmeta wpostmeta WHERE wposts.ID = wpostmeta.post_id AND wpostmeta.meta_key = '_wp_attached_file' AND wpostmeta.meta_value = '%s' AND wposts.post_type = 'attachment'", $attachment_url ) );
+	
+	    }
+	    
+	    // We'll save the ID into the options so we don't have to look it up again
+	    $options[$name . '_id'] = $attachment_id;
+	    update_option( $config['id'], $options );
+	
+	    // Return the attachment ID we've looked up
+	    return $attachment_id;
 	}
 endif;
 
