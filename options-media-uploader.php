@@ -60,9 +60,7 @@ function optionsframework_uploader( $_id, $_value, $_desc = '', $_name = '') {
 		$remove = '<a class="remove-image">Remove</a>';
 		$image = preg_match( '/(^.*\.jpg|jpeg|png|gif|ico*)/i', $value );
 		if ( $image ) {
-			$attachment = of_get_attachment_id($id);
-			$image_url = wp_get_attachment_image_src( $attachment );
-			$output .= '<img src="' . $image_url[0] . '" alt="" />'.$remove.'';
+			$output .= '<img src="' . $value . '" alt="" />' . $remove;
 		} else {
 			$parts = explode( "/", $value );
 			for( $i = 0; $i < sizeof( $parts ); ++$i ) {
