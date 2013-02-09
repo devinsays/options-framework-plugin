@@ -41,7 +41,7 @@ if ( !function_exists( 'add_action' ) ) {
 
 /* If the user can't edit theme options, no use running this plugin */
 
-add_action('init', 'optionsframework_rolescheck' );
+add_action( 'init', 'optionsframework_rolescheck' );
 
 function optionsframework_rolescheck() {
 	if ( current_user_can( 'edit_theme_options' ) ) {
@@ -54,8 +54,8 @@ function optionsframework_rolescheck() {
 		}
 		else {
 			// Display a notice if options aren't present in the theme
-			add_action('admin_notices', 'optionsframework_admin_notice');
-			add_action('admin_init', 'optionsframework_nag_ignore');
+			add_action( 'admin_notices', 'optionsframework_admin_notice' );
+			add_action( 'admin_init', 'optionsframework_nag_ignore' );
 		}
 	}
 }
@@ -143,6 +143,11 @@ function optionsframework_init() {
 
 	// Load settings
 	$optionsframework_settings = get_option( 'optionsframework' );
+	
+	if ( $optionsframework_settings && !isset($optionsframework_settings['version']) ) {
+		require_once dirname( __FILE__ ) . '/upgrade.php';
+		optionsframework_upgrade_routine();
+	}
 
 	// Updates the unique option id in the database if it has changed
 	if ( function_exists( 'optionsframework_option_name' ) ) {
@@ -223,7 +228,7 @@ function optionsframework_setdefaults() {
 		if ( !in_array($option_name, $knownoptions) ) {
 			array_push( $knownoptions, $option_name );
 			$optionsframework_settings['knownoptions'] = $knownoptions;
-			update_option('optionsframework', $optionsframework_settings);
+			update_option( 'optionsframework', $optionsframework_settings);
 		}
 	} else {
 		$newoptionname = array($option_name);
