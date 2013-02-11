@@ -27,8 +27,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 /* Basic plugin definitions */
 
-define('OPTIONS_FRAMEWORK_VERSION', '1.5');
-define('OPTIONS_FRAMEWORK_URL', plugin_dir_url( __FILE__ ));
+define( 'OPTIONS_FRAMEWORK_VERSION', '1.5' );
+define( 'OPTIONS_FRAMEWORK_URL', plugin_dir_url( __FILE__ ) );
 
 load_plugin_textdomain( 'optionsframework', false, dirname( plugin_basename( __FILE__ ) ) . '/lang/' );
 
@@ -48,7 +48,7 @@ function optionsframework_rolescheck() {
 		$options =& _optionsframework_options();
 		if ( $options ) {
 			// If the user can edit theme options, let the fun begin!
-			add_action( 'admin_menu', 'optionsframework_add_page');
+			add_action( 'admin_menu', 'optionsframework_add_page' );
 			add_action( 'admin_init', 'optionsframework_init' );
 			add_action( 'wp_before_admin_bar_render', 'optionsframework_adminbar' );
 		}
@@ -62,7 +62,7 @@ function optionsframework_rolescheck() {
 
 function optionsframework_admin_notice() {
 	global $pagenow;
-	if ( !is_multisite() && ( $pagenow == 'plugins.php' ||  $pagenow == 'themes.php') ) {
+	if ( !is_multisite() && ( $pagenow == 'plugins.php' || $pagenow == 'themes.php' ) ) {
 		global $current_user ;
 		$user_id = $current_user->ID;
 		if ( ! get_user_meta($user_id, 'optionsframework_ignore_notice') ) {
@@ -76,14 +76,14 @@ function optionsframework_admin_notice() {
 function optionsframework_nag_ignore() {
 	global $current_user;
 	$user_id = $current_user->ID;
-	if ( isset($_GET['optionsframework_nag_ignore']) && '0' == $_GET['optionsframework_nag_ignore'] ) {
-		add_user_meta($user_id, 'optionsframework_ignore_notice', 'true', true);
+	if ( isset( $_GET['optionsframework_nag_ignore'] ) && '0' == $_GET['optionsframework_nag_ignore'] ) {
+		add_user_meta( $user_id, 'optionsframework_ignore_notice', 'true', true );
 	}
 }
 
 /* Register plugin activation hooks */
 
-register_activation_hook(__FILE__,'optionsframework_activation_hook');
+register_activation_hook( __FILE__,'optionsframework_activation_hook' );
 
 function optionsframework_activation_hook() {
 	register_uninstall_hook( __FILE__, 'optionsframework_delete_options' );
@@ -95,22 +95,22 @@ register_uninstall_hook( __FILE__, 'optionsframework_delete_options' );
 
 function optionsframework_delete_options() {
 
-	$optionsframework_settings = get_option('optionsframework');
+	$optionsframework_settings = get_option( 'optionsframework' );
 
 	// Each theme saves its data in a seperate option, which all gets deleted
 	$knownoptions = $optionsframework_settings['knownoptions'];
-	if ($knownoptions) {
-		foreach ($knownoptions as $key) {
-			delete_option($key);
+	if ( $knownoptions ) {
+		foreach ( $knownoptions as $key ) {
+			delete_option( $key );
 		}
 	}
-	delete_option('optionsframework');
-	delete_user_meta($user_id, 'optionsframework_ignore_notice', 'true');
+	delete_option( 'optionsframework' );
+	delete_user_meta( $user_id, 'optionsframework_ignore_notice', 'true' );
 }
 
 /* Loads the file for option sanitization */
 
-add_action('init', 'optionsframework_load_sanitization' );
+add_action( 'init', 'optionsframework_load_sanitization' );
 
 function optionsframework_load_sanitization() {
 	require_once dirname( __FILE__ ) . '/options-sanitize.php';
@@ -210,7 +210,7 @@ function optionsframework_page_capability( $capability ) {
 
 function optionsframework_setdefaults() {
 
-	$optionsframework_settings = get_option('optionsframework');
+	$optionsframework_settings = get_option( 'optionsframework' );
 
 	// Gets the unique option id
 	$option_name = $optionsframework_settings['id'];
@@ -223,7 +223,7 @@ function optionsframework_setdefaults() {
 	 *
 	 */
 
-	if ( isset($optionsframework_settings['knownoptions']) ) {
+	if ( isset( $optionsframework_settings['knownoptions'] ) ) {
 		$knownoptions =  $optionsframework_settings['knownoptions'];
 		if ( !in_array($option_name, $knownoptions) ) {
 			array_push( $knownoptions, $option_name );
@@ -252,7 +252,7 @@ function optionsframework_setdefaults() {
 if ( !function_exists( 'optionsframework_add_page' ) ) {
 
 	function optionsframework_add_page() {
-		$of_page = add_theme_page(__('Theme Options', 'optionsframework'), __('Theme Options', 'optionsframework'), 'edit_theme_options', 'options-framework','optionsframework_page');
+		$of_page = add_theme_page( __( 'Theme Options', 'optionsframework'), __('Theme Options', 'optionsframework'), 'edit_theme_options', 'options-framework','optionsframework_page' );
 
 		// Load the required CSS and javscript
 		add_action( 'admin_enqueue_scripts', 'optionsframework_load_scripts');
@@ -265,7 +265,7 @@ if ( !function_exists( 'optionsframework_add_page' ) ) {
 /* Loads the CSS */
 
 function optionsframework_load_styles() {
-	wp_enqueue_style('optionsframework', OPTIONS_FRAMEWORK_URL.'css/optionsframework.css');
+	wp_enqueue_style( 'optionsframework', OPTIONS_FRAMEWORK_URL.'css/optionsframework.css' );
 	if ( !wp_style_is( 'wp-color-picker','registered' ) ) {
 		wp_register_style('wp-color-picker', OPTIONS_FRAMEWORK_URL.'css/color-picker.min.css');
 	}
@@ -328,7 +328,7 @@ function optionsframework_page() {
     <div id="optionsframework-metabox" class="metabox-holder">
 	    <div id="optionsframework" class="postbox">
 			<form action="options.php" method="post">
-			<?php settings_fields('optionsframework'); ?>
+			<?php settings_fields( 'optionsframework' ); ?>
 			<?php optionsframework_fields(); /* Settings */ ?>
 			<div id="optionsframework-submit">
 				<input type="submit" class="button-primary" name="update" value="<?php esc_attr_e( 'Save Options', 'optionsframework' ); ?>" />
@@ -338,7 +338,7 @@ function optionsframework_page() {
 			</form>
 		</div> <!-- / #container -->
 	</div>
-	<?php do_action('optionsframework_after'); ?>
+	<?php do_action( 'optionsframework_after' ); ?>
 	</div> <!-- / .wrap -->
 	
 <?php
@@ -541,7 +541,7 @@ function &_optionsframework_options() {
 			$maybe_options = require_once $optionsfile;
 			if (is_array($maybe_options)) {
 				$options = $maybe_options;
-			} else if (function_exists('optionsframework_options')) {
+			} else if ( function_exists( 'optionsframework_options' ) ) {
 					$options = optionsframework_options();
 				}
 		}

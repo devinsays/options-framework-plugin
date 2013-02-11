@@ -3,7 +3,7 @@
 **Tags:** options, theme options  
 **Requires at least:** 3.3  
 **Tested up to:** 3.5   
-**Stable tag:** 1.4  
+**Stable tag:** 1.5
 **License:** GPLv2  
 **Donate link:** http://bit.ly/options-donate-2 
 
@@ -57,6 +57,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * Updated width of text input
 * New media uploader
 * Dropped custom post types for file attachments
+* Update routine to remove unused 'optionsframework' post types
 * Updated IDs for .tabs and .groups
 * Italian translations (andreabersi.com)
 * Russian translations (verha.net)

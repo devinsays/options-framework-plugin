@@ -345,10 +345,10 @@ function of_recognized_font_faces() {
  */
 function of_recognized_font_styles() {
 	$default = array(
-		'normal'      => __('Normal', 'optionsframework'),
-		'italic'      => __('Italic', 'optionsframework'),
-		'bold'        => __('Bold', 'optionsframework'),
-		'bold italic' => __('Bold Italic', 'optionsframework')
+		'normal'      => __( 'Normal', 'optionsframework' ),
+		'italic'      => __( 'Italic', 'optionsframework' ),
+		'bold'        => __( 'Bold', 'optionsframework' ),
+		'bold italic' => __( 'Bold Italic', 'optionsframework' )
 		);
 	return apply_filters( 'of_recognized_font_styles', $default );
 }

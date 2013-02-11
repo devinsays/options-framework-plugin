@@ -67,13 +67,12 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 == Changelog ==
 
-= Development =
-
 = 1.5 =
 
 * Updated width of text input
 * New media uploader
 * Dropped custom post types for file attachments
+* Update routine to remove unused 'optionsframework' post types
 * Updated IDs for .tabs and .groups
 * Italian translations (andreabersi.com)
 * Russian translations (verha.net)

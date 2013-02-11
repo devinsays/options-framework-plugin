@@ -9,13 +9,13 @@ function optionsframework_tabs() {
 	$options = optionsframework_options();
 	$menu = '';
 
-	foreach ($options as $value) {
+	foreach ( $options as $value ) {
 		// Heading for Navigation
-		if ($value['type'] == "heading") {
+		if ( $value['type'] == "heading" ) {
 			$counter++;
 			$class = '';
 			$class = ! empty( $value['id'] ) ? $value['id'] : $value['name'];
-			$class = preg_replace('/[^a-zA-Z0-9._\-]/', '', strtolower($class) ) . '-tab';
+			$class = preg_replace( '/[^a-zA-Z0-9._\-]/', '', strtolower($class) ) . '-tab';
 			$menu .= '<a id="options-group-'.  $counter . '-tab" class="nav-tab ' . $class .'" title="' . esc_attr( $value['name'] ) . '" href="' . esc_attr( '#options-group-'.  $counter ) . '">' . esc_html( $value['name'] ) . '</a>';
 		}
 	}
@@ -30,7 +30,7 @@ function optionsframework_tabs() {
 function optionsframework_fields() {
 
 	global $allowedtags;
-	$optionsframework_settings = get_option('optionsframework');
+	$optionsframework_settings = get_option( 'optionsframework' );
 
 	// Gets the unique option id
 	if ( isset( $optionsframework_settings['id'] ) ) {
@@ -293,14 +293,14 @@ function optionsframework_fields() {
 
 			// Background Color
 			$default_color = '';
-			if ( isset($value['std']['color']) ) {
+			if ( isset( $value['std']['color'] ) ) {
 				if ( $val !=  $value['std']['color'] )
 					$default_color = ' data-default-color="' .$value['std']['color'] . '" ';
 			}
 			$output .= '<input name="' . esc_attr( $option_name . '[' . $value['id'] . '][color]' ) . '" id="' . esc_attr( $value['id'] . '_color' ) . '" class="of-color of-background-color"  type="text" value="' . esc_attr( $background['color'] ) . '"' . $default_color .' />';
 
 			// Background Image
-			if (!isset($background['image'])) {
+			if ( !isset($background['image']) ) {
 				$background['image'] = '';
 			}
 			
@@ -388,7 +388,7 @@ function optionsframework_fields() {
 		// Heading for Navigation
 		case "heading":
 			$counter++;
-			if ($counter >= 2) {
+			if ( $counter >= 2 ) {
 				$output .= '</div>'."\n";
 			}
 			$class = '';
