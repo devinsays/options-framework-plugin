@@ -41,7 +41,7 @@ if ( !function_exists( 'add_action' ) ) {
 
 /* If the user can't edit theme options, no use running this plugin */
 
-add_action( 'init', 'optionsframework_rolescheck' );
+add_action( 'init', 'optionsframework_rolescheck', 20 );
 
 function optionsframework_rolescheck() {
 	if ( current_user_can( 'edit_theme_options' ) ) {
