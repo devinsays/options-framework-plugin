@@ -44,10 +44,14 @@ function optionsframework_uploader( $_id, $_value, $_desc = '', $_name = '' ) {
 		$class = ' has-file';
 	}
 	$output .= '<input id="' . $id . '" class="upload' . $class . '" type="text" name="'.$name.'" value="' . $value . '" placeholder="' . __('No file chosen', 'optionsframework') .'" />' . "\n";
-	if ( $value == '' ) {
-		$output .= '<input id="upload-' . $id . '" class="upload-button button" type="button" value="' . __( 'Upload', 'optionsframework' ) . '" />' . "\n";
+	if ( function_exists( 'wp_enqueue_media' ) ) {
+		if ( ( $value == '' ) ) {
+			$output .= '<input id="upload-' . $id . '" class="upload-button button" type="button" value="' . __( 'Upload', 'optionsframework' ) . '" />' . "\n";
+		} else {
+			$output .= '<input id="remove-' . $id . '" class="remove-file button" type="button" value="' . __( 'Remove', 'optionsframework' ) . '" />' . "\n";
+		}
 	} else {
-		$output .= '<input id="remove-' . $id . '" class="remove-file button" type="button" value="' . __( 'Remove', 'optionsframework' ) . '" />' . "\n";
+		$output .= '<p><i>' . __( 'Upgrade your version of WordPress for full media support.', 'optionsframework' ) . '</i></p>';
 	}
 	
 	if ( $_desc != '' ) {
@@ -87,8 +91,11 @@ endif;
  
 if ( ! function_exists( 'optionsframework_media_scripts' ) ) :
 
-function optionsframework_media_scripts(){
-	wp_enqueue_media();
+add_action( 'admin_menu', 'optionsframework_media_scripts' );
+
+function optionsframework_media_scripts() {
+	if ( function_exists( 'wp_enqueue_media' ) )
+		wp_enqueue_media();
 	wp_register_script( 'of-media-uploader', OPTIONS_FRAMEWORK_URL .'js/media-uploader.js', array( 'jquery' ) );
 	wp_enqueue_script( 'of-media-uploader' );
 	wp_localize_script( 'of-media-uploader', 'optionsframework_l10n', array(
