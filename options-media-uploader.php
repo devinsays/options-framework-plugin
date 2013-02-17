@@ -91,7 +91,7 @@ endif;
  
 if ( ! function_exists( 'optionsframework_media_scripts' ) ) :
 
-add_action( 'admin_menu', 'optionsframework_media_scripts' );
+add_action( 'admin_enqueue_scripts', 'optionsframework_media_scripts' );
 
 function optionsframework_media_scripts() {
 	if ( function_exists( 'wp_enqueue_media' ) )
