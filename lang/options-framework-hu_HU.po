@@ -1,0 +1,135 @@
+# Translation of Options Framework in Hungarian
+# This file is distributed under the same license as the Options Framework package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2012-06-17 03:04:08+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/0.1\n"
+"Project-Id-Version: Options Framework\n"
+
+#: options-sanitize.php:233
+msgid "Repeat Horizontally"
+msgstr "Vízszintes ismétlődés"
+
+#: options-sanitize.php:234
+msgid "Repeat Vertically"
+msgstr "Függőleges ismétlődés"
+
+#: options-sanitize.php:235
+msgid "Repeat All"
+msgstr "Mindegyik ismétlődjön"
+
+#: options-sanitize.php:248
+msgid "Top Left"
+msgstr "Bal felső"
+
+#: options-sanitize.php:249
+msgid "Top Center"
+msgstr "Középen fent"
+
+#: options-sanitize.php:250
+msgid "Top Right"
+msgstr "Jobb felső"
+
+#: options-sanitize.php:251
+msgid "Middle Left"
+msgstr "Közép bal"
+
+#: options-sanitize.php:252
+msgid "Middle Center"
+msgstr "Közép középen"
+
+#: options-sanitize.php:253
+msgid "Middle Right"
+msgstr "Közép jobb"
+
+#: options-sanitize.php:254
+msgid "Bottom Left"
+msgstr "Bal alsó"
+
+#: options-sanitize.php:255
+msgid "Bottom Center"
+msgstr "Középen alul"
+
+#: options-sanitize.php:256
+msgid "Bottom Right"
+msgstr "Jobb alsó"
+
+#: options-sanitize.php:269
+msgid "Scroll Normally"
+msgstr "Normál lapozás"
+
+#: options-sanitize.php:270
+msgid "Fixed in Place"
+msgstr "Hely javítása"
+
+#: options-sanitize.php:344
+msgid "Normal"
+msgstr "Normál"
+
+#: options-sanitize.php:345
+msgid "Italic"
+msgstr "Dőlt"
+
+#: options-sanitize.php:346
+msgid "Bold"
+msgstr "Félkövér"
+
+#: options-sanitize.php:347
+msgid "Bold Italic"
+msgstr "Félkövér dőlt"
+
+#: options-framework.php:71
+msgid "Your current theme does not have support for the Options Framework plugin.  <a href=\"%1$s\" target=\"_blank\">Learn More</a> | <a href=\"%2$s\">Hide Notice</a>"
+msgstr "A jelenlegi sablon nem támogatja az Options Framework bővítményt. <a href=\"%1$s\" target=\"_blank\">Bővebben</a> | <a href=\"%2$s\">Elrejtés</a>"
+
+#: options-framework.php:254 options-framework.php:456
+msgid "Theme Options"
+msgstr "Sablon beállítások"
+
+#: options-framework.php:323
+msgid "Save Options"
+msgstr "Beállítások mentése"
+
+#: options-framework.php:324
+msgid "Restore Defaults"
+msgstr "Alapértékek visszaállítása"
+
+#: options-framework.php:324
+msgid "Click OK to reset. Any theme settings will be lost!"
+msgstr "Kattintsunk az OK gombra az alapértékek visszaállításához. Minden jelenlegi beállítás elvész!"
+
+#: options-framework.php:358
+msgid "Default options restored."
+msgstr "Alapértékek visszaállítása."
+
+#: options-framework.php:400
+msgid "Options saved."
+msgstr "Sikeres mentés."
+
+#: options-medialibrary-uploader.php:26
+msgid "Options Framework Internal Container"
+msgstr "Options Framework belső tároló"
+
+#: options-medialibrary-uploader.php:128
+msgid "Upload"
+msgstr "Feltőltés"
+
+#: options-medialibrary-uploader.php:151
+msgid "View File"
+msgstr "Fájl megtekintése"
+
+#: options-medialibrary-uploader.php:288
+msgid "Gallery"
+msgstr "Galéria"
+
+#: options-medialibrary-uploader.php:288
+msgid "Previously Uploaded"
+msgstr "Elöző feltőltés"
+
+#: options-sanitize.php:232
+msgid "No Repeat"
+msgstr "Ne ismétlődjön"
