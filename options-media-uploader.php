@@ -87,7 +87,7 @@ endif;
  
 if ( ! function_exists( 'optionsframework_media_scripts' ) ) :
 
-function optionsframework_media_scripts(){
+function optionsframework_media_scripts() {
 	wp_enqueue_media();
 	wp_register_script( 'of-media-uploader', OPTIONS_FRAMEWORK_URL .'js/media-uploader.js', array( 'jquery' ) );
 	wp_enqueue_script( 'of-media-uploader' );
