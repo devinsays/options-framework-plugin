@@ -43,10 +43,8 @@ function optionsframework_update_to_version_1_5() {
 	) );
 	
 	while ( $query->have_posts() ) :
-	
 		$query->the_post();
 		$id = get_the_ID();
-		echo $id;
 		$attachments = get_children( array(
 			'post_parent' => $id,
 			'post_type' => 'attachment'

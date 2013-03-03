@@ -144,16 +144,11 @@ function optionsframework_init() {
 	// Load settings
 	$optionsframework_settings = get_option( 'optionsframework' );
 	
-	/* Temporarily commenting out upgrade routine since users
-	 * are reporting issues with it
-	 */
-	 
-	/*
-	if ( $optionsframework_settings && !isset($optionsframework_settings['version']) ) {
+	// Upgrade routine
+	if ( $optionsframework_settings && !isset( $optionsframework_settings['version'] ) ) {
 		require_once dirname( __FILE__ ) . '/upgrade.php';
 		optionsframework_upgrade_routine();
 	}
-	*/
 
 	// Updates the unique option id in the database if it has changed
 	if ( function_exists( 'optionsframework_option_name' ) ) {
