@@ -92,11 +92,6 @@ endif;
 if ( ! function_exists( 'optionsframework_media_scripts' ) ) :
 
 function optionsframework_media_scripts() {
-	wp_enqueue_media();
-}
-add_action( 'admin_enqueue_scripts', 'optionsframework_media_scripts' );
-
-function optionsframework_media_scripts() {
 	if ( function_exists( 'wp_enqueue_media' ) )
 		wp_enqueue_media();
 	wp_register_script( 'of-media-uploader', OPTIONS_FRAMEWORK_URL .'js/media-uploader.js', array( 'jquery' ) );
@@ -106,5 +101,7 @@ function optionsframework_media_scripts() {
 		'remove' => __( 'Remove', 'optionsframework' )
 	) );
 }
+
+add_action( 'admin_enqueue_scripts', 'optionsframework_media_scripts' );
 
 endif;

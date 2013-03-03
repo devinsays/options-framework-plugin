@@ -256,7 +256,6 @@ if ( !function_exists( 'optionsframework_add_page' ) ) {
 
 		// Load the required CSS and javscript
 		add_action( 'admin_enqueue_scripts', 'optionsframework_load_scripts');
-		add_action( 'admin_enqueue_scripts', 'optionsframework_media_scripts');
 		add_action( 'admin_print_styles-' . $of_page, 'optionsframework_load_styles' );
 	}
 
