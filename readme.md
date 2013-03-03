@@ -3,7 +3,7 @@
 **Tags:** options, theme options  
 **Requires at least:** 3.3  
 **Tested up to:** 3.5   
-**Stable tag:** 1.5
+**Stable tag:** 1.5.2
 **License:** GPLv2  
 **Donate link:** http://bit.ly/options-donate-2 
 
