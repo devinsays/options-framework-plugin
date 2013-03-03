@@ -52,6 +52,10 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 ## Change log ##
 
+#### 1.5.1 ####
+
+* Temporarily removed update routine
+
 #### 1.5 ####
 
 * Updated width of text input
