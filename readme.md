@@ -52,6 +52,10 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 ## Change log ##
 
+#### 1.5.2 ####
+
+* Removed update routine to remove "optionsframework" post type
+
 #### 1.5.1 ####
 
 * Temporarily removed update routine
