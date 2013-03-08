@@ -138,7 +138,7 @@ function optionsframework_init() {
 	require_once dirname( __FILE__ ) . '/options-media-uploader.php';
 
 	// Optionally Loads the options file from the theme
-	$location = apply_filters( 'options_framework_location', array('options.php') );
+	$location = apply_filters( 'options_framework_location', array( 'options.php' ) );
 	$optionsfile = locate_template( $location );
 
 	// Load settings
@@ -220,7 +220,7 @@ function optionsframework_setdefaults() {
 
 	if ( isset( $optionsframework_settings['knownoptions'] ) ) {
 		$knownoptions =  $optionsframework_settings['knownoptions'];
-		if ( !in_array($option_name, $knownoptions) ) {
+		if ( !in_array( $option_name, $knownoptions ) ) {
 			array_push( $knownoptions, $option_name );
 			$optionsframework_settings['knownoptions'] = $knownoptions;
 			update_option( 'optionsframework', $optionsframework_settings);
@@ -247,10 +247,11 @@ function optionsframework_setdefaults() {
 if ( !function_exists( 'optionsframework_add_page' ) ) {
 
 	function optionsframework_add_page() {
+		
 		$of_page = add_theme_page( __( 'Theme Options', 'optionsframework'), __('Theme Options', 'optionsframework'), 'edit_theme_options', 'options-framework','optionsframework_page' );
 
 		// Load the required CSS and javscript
-		add_action( 'admin_enqueue_scripts', 'optionsframework_load_scripts');
+		add_action( 'admin_enqueue_scripts', 'optionsframework_load_scripts' );
 		add_action( 'admin_print_styles-' . $of_page, 'optionsframework_load_styles' );
 	}
 
@@ -268,7 +269,7 @@ function optionsframework_load_styles() {
 
 /* Loads the javascript */
 
-function optionsframework_load_scripts($hook) {
+function optionsframework_load_scripts( $hook ) {
 
 	if ( 'appearance_page_options-framework' != $hook )
         return;

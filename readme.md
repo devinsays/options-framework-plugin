@@ -52,6 +52,10 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 ## Change log ##
 
+#### Development ####
+
+* JS/CSS should only load on options page
+
 #### 1.5.2 ####
 
 * Removed update routine to remove "optionsframework" post type
