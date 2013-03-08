@@ -6,7 +6,7 @@
 
 function optionsframework_tabs() {
 	$counter = 0;
-	$options = optionsframework_options();
+	$options =& _optionsframework_options();
 	$menu = '';
 
 	foreach ( $options as $value ) {
