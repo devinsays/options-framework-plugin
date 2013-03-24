@@ -242,19 +242,40 @@ function optionsframework_setdefaults() {
 	}
 }
 
+/* Define menu options (still limited to appearance section)
+ *
+ * Examples usage:
+ *
+ * add_filter( 'optionsframework_menu', function($menu) {
+ *     $menu['page_title'] = 'Hello Options';
+ *	   $menu['menu_title'] = 'Hello Options';
+ *     return $menu;
+ * });
+*/
+
+function optionsframework_menu_settings() {
+
+	$menu = array(
+		'page_title' => __( 'Theme Options', 'optionsframework'),
+		'menu_title' => __('Theme Options', 'optionsframework'),
+		'capability' => 'edit_theme_options',
+		'menu_slug' => 'options-framework',
+		'callback' => 'optionsframework_page'
+	);
+	
+	return apply_filters( 'optionsframework_menu', $menu );
+}
+
 /* Add a subpage called "Theme Options" to the appearance menu. */
 
-if ( !function_exists( 'optionsframework_add_page' ) ) {
+function optionsframework_add_page() {
+	
+	$menu = optionsframework_menu_settings();
+	$of_page = add_theme_page( $menu['page_title'], $menu['menu_title'], $menu['capability'], $menu['menu_slug'], $menu['callback'] );
 
-	function optionsframework_add_page() {
-		
-		$of_page = add_theme_page( __( 'Theme Options', 'optionsframework'), __('Theme Options', 'optionsframework'), 'edit_theme_options', 'options-framework','optionsframework_page' );
-
-		// Load the required CSS and javscript
-		add_action( 'admin_enqueue_scripts', 'optionsframework_load_scripts' );
-		add_action( 'admin_print_styles-' . $of_page, 'optionsframework_load_styles' );
-	}
-
+	// Load the required CSS and javscript
+	add_action( 'admin_enqueue_scripts', 'optionsframework_load_scripts' );
+	add_action( 'admin_print_styles-' . $of_page, 'optionsframework_load_styles' );
 }
 
 /* Loads the CSS */
@@ -271,7 +292,9 @@ function optionsframework_load_styles() {
 
 function optionsframework_load_scripts( $hook ) {
 
-	if ( 'appearance_page_options-framework' != $hook )
+	$menu = optionsframework_menu_settings();
+	
+	if ( 'appearance_page_' . $menu['menu_slug'] != $hook )
         return;
 
 	// Enqueue colorpicker scripts for versions below 3.5 for compatibility

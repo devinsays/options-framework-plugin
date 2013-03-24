@@ -56,6 +56,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 * JS/CSS should only load on options page
 * Menu tabs should be filterable
+* Menu settings filter
 
 #### 1.5.2 ####
 

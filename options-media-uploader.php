@@ -92,8 +92,10 @@ endif;
 if ( ! function_exists( 'optionsframework_media_scripts' ) ) :
 
 function optionsframework_media_scripts( $hook ) {
-
-	if ( 'appearance_page_options-framework' != $hook )
+	
+	$menu = optionsframework_menu_settings();
+	
+	if ( 'appearance_page_' . $menu['menu_slug'] != $hook )
         return;
         
 	if ( function_exists( 'wp_enqueue_media' ) )
