@@ -114,6 +114,7 @@ add_action( 'init', 'optionsframework_load_sanitization' );
 
 function optionsframework_load_sanitization() {
 	require_once dirname( __FILE__ ) . '/options-sanitize.php';
+	require_once dirname( __FILE__ ) . '/options-type.php';
 }
 
 /*

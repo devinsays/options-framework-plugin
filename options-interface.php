@@ -102,18 +102,13 @@ function optionsframework_fields() {
 		if ( isset( $value['desc'] ) ) {
 			$explain_value = $value['desc'];
 		}
+		
+		if ( has_filter( 'optionsframework_' . $value['type'] ) ) {
+			$output .= apply_filters( 'optionsframework_' . $value['type'], $option_name, $value, $val );
+		}
+
 
 		switch ( $value['type'] ) {
-
-		// Basic text input
-		case 'text':
-			$output .= '<input id="' . esc_attr( $value['id'] ) . '" class="of-input" name="' . esc_attr( $option_name . '[' . $value['id'] . ']' ) . '" type="text" value="' . esc_attr( $val ) . '" />';
-			break;
-
-		// Password input
-		case 'password':
-			$output .= '<input id="' . esc_attr( $value['id'] ) . '" class="of-input" name="' . esc_attr( $option_name . '[' . $value['id'] . ']' ) . '" type="password" value="' . esc_attr( $val ) . '" />';
-			break;
 
 		// Textarea
 		case 'textarea':
