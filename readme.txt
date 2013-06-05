@@ -5,7 +5,7 @@ Tags: options, theme options
 Donate link: http://bit.ly/options-donate-2
 Requires at least: 3.3
 Tested up to: 3.5
-Stable tag: 1.5.2
+Stable tag: 1.6
 License: GPLv2
 
 == Description ==
@@ -67,8 +67,9 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 == Changelog ==
 
-= Development =
+= 1.6 =
 
+* Allow media buttons in the editor option
 * JS/CSS should only load on options page
 * Menu tabs should be filterable
 * Menu settings filter

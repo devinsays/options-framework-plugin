@@ -88,3 +88,21 @@ function options_framework_location_override() {
 }
 
 */
+
+/* 
+ * Here is an example for how to change the menu title name and slug
+ */
+ 
+/*
+ 
+function optionscheck_options_menu_params( $menu ) {
+	
+	$menu['page_title'] = __( 'Hello Options', 'textdomain');
+	$menu['menu_title'] = __( 'Hello Options', 'textdomain');
+	$menu['menu_slug'] = 'hello-options';
+	return $menu;
+}
+
+add_filter( 'optionsframework_menu', 'optionscheck_options_menu_params' );
+
+*/

@@ -349,7 +349,7 @@ function optionsframework_fields() {
 			
 		// Editor
 		case 'editor':
-			$output .= '<div class="explain">' . wp_kses( $explain_value, $allowedtags) . '</div>'."\n";
+			$output .= '<div class="explain">' . wp_kses( $explain_value, $allowedtags ) . '</div>'."\n";
 			echo $output;
 			$textarea_name = esc_attr( $option_name . '[' . $value['id'] . ']' );
 			$default_editor_settings = array(
@@ -361,7 +361,7 @@ function optionsframework_fields() {
 			if ( isset( $value['settings'] ) ) {
 				$editor_settings = $value['settings'];
 			}
-			$editor_settings = array_merge($editor_settings, $default_editor_settings);
+			$editor_settings = array_merge( $default_editor_settings, $editor_settings );
 			wp_editor( $val, $value['id'], $editor_settings );
 			$output = '';
 			break;
