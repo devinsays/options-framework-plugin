@@ -1,0 +1,370 @@
+# Copyright (C) 2013 
+# This file is distributed under the same license as the  package.
+msgid ""
+msgstr ""
+"Project-Id-Version:  \n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/options-framework-plugin\n"
+"POT-Creation-Date: 2013-06-05 21:22:45+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2013-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: options-check/options.php:32
+msgid "One"
+msgstr ""
+
+#: options-check/options.php:33
+msgid "Two"
+msgstr ""
+
+#: options-check/options.php:34
+msgid "Three"
+msgstr ""
+
+#: options-check/options.php:35
+msgid "Four"
+msgstr ""
+
+#: options-check/options.php:36
+msgid "Five"
+msgstr ""
+
+#: options-check/options.php:41
+msgid "French Toast"
+msgstr ""
+
+#: options-check/options.php:42
+msgid "Pancake"
+msgstr ""
+
+#: options-check/options.php:43
+msgid "Omelette"
+msgstr ""
+
+#: options-check/options.php:44
+msgid "Crepe"
+msgstr ""
+
+#: options-check/options.php:45
+msgid "Waffle"
+msgstr ""
+
+#: options-check/options.php:105
+msgid "Basic Settings"
+msgstr ""
+
+#: options-check/options.php:109
+msgid "Input Text Mini"
+msgstr ""
+
+#: options-check/options.php:110
+msgid "A mini text input field."
+msgstr ""
+
+#: options-check/options.php:117
+msgid "Input Text"
+msgstr ""
+
+#: options-check/options.php:118
+msgid "A text input field."
+msgstr ""
+
+#: options-check/options.php:124
+msgid "Textarea"
+msgstr ""
+
+#: options-check/options.php:125
+msgid "Textarea description."
+msgstr ""
+
+#: options-check/options.php:131
+msgid "Input Select Small"
+msgstr ""
+
+#: options-check/options.php:132
+msgid "Small Select Box."
+msgstr ""
+
+#: options-check/options.php:140
+msgid "Input Select Wide"
+msgstr ""
+
+#: options-check/options.php:141
+msgid "A wider select box."
+msgstr ""
+
+#: options-check/options.php:148
+msgid "Select a Category"
+msgstr ""
+
+#: options-check/options.php:149
+msgid "Passed an array of categories with cat_ID and cat_name"
+msgstr ""
+
+#: options-check/options.php:155
+msgid "Select a Tag"
+msgstr ""
+
+#: options-check/options.php:156
+msgid "Passed an array of tags with term_id and term_name"
+msgstr ""
+
+#: options-check/options.php:162
+msgid "Select a Page"
+msgstr ""
+
+#: options-check/options.php:163
+msgid "Passed an pages with ID and post_title"
+msgstr ""
+
+#: options-check/options.php:169
+msgid "Input Radio (one)"
+msgstr ""
+
+#: options-check/options.php:170
+msgid "Radio select with default options \"one\"."
+msgstr ""
+
+#: options-check/options.php:177
+msgid "Example Info"
+msgstr ""
+
+#: options-check/options.php:178
+msgid "This is just some example information you can put in the panel."
+msgstr ""
+
+#: options-check/options.php:182
+msgid "Input Checkbox"
+msgstr ""
+
+#: options-check/options.php:183
+msgid "Example checkbox, defaults to true."
+msgstr ""
+
+#: options-check/options.php:189
+msgid "Advanced Settings"
+msgstr ""
+
+#: options-check/options.php:193
+msgid "Check to Show a Hidden Text Input"
+msgstr ""
+
+#: options-check/options.php:194
+msgid "Click here and see what happens."
+msgstr ""
+
+#: options-check/options.php:199
+msgid "Hidden Text Input"
+msgstr ""
+
+#: options-check/options.php:200
+msgid "This option is hidden unless activated by a checkbox click."
+msgstr ""
+
+#: options-check/options.php:207
+msgid "Uploader Test"
+msgstr ""
+
+#: options-check/options.php:208
+msgid "This creates a full size uploader that previews the image."
+msgstr ""
+
+#: options-check/options.php:225
+msgid "Example Background"
+msgstr ""
+
+#: options-check/options.php:226
+msgid "Change the background CSS."
+msgstr ""
+
+#: options-check/options.php:232
+msgid "Multicheck"
+msgstr ""
+
+#: options-check/options.php:233
+msgid "Multicheck description."
+msgstr ""
+
+#: options-check/options.php:240
+msgid "Colorpicker"
+msgstr ""
+
+#: options-check/options.php:241
+msgid "No color selected by default."
+msgstr ""
+
+#: options-check/options.php:246
+msgid "Typography"
+msgstr ""
+
+#: options-check/options.php:247
+msgid "Example typography."
+msgstr ""
+
+#: options-check/options.php:253
+msgid "Custom Typography"
+msgstr ""
+
+#: options-check/options.php:254
+msgid "Custom typography options."
+msgstr ""
+
+#: options-check/options.php:261
+msgid "Text Editor"
+msgstr ""
+
+#: options-check/options.php:279
+msgid "Default Text Editor"
+msgstr ""
+
+#: options-check/options.php:280
+msgid "You can also pass settings to the editor.  Read more about wp_editor in <a href=\"%1$s\" target=\"_blank\">the WordPress codex</a>"
+msgstr ""
+
+#: options-framework.php:70
+msgid "Your current theme does not have support for the Options Framework plugin.  <a href=\"%1$s\" target=\"_blank\">Learn More</a> | <a href=\"%2$s\">Hide Notice</a>"
+msgstr ""
+
+#: options-framework.php:259 options-framework.php:260
+#: options-framework.php:489
+msgid "Theme Options"
+msgstr ""
+
+#: options-framework.php:305
+msgid "Clear"
+msgstr ""
+
+#: options-framework.php:306
+msgid "Default"
+msgstr ""
+
+#: options-framework.php:307
+msgid "Select Color"
+msgstr ""
+
+#: options-framework.php:352
+msgid "Save Options"
+msgstr ""
+
+#: options-framework.php:353
+msgid "Restore Defaults"
+msgstr ""
+
+#: options-framework.php:353
+msgid "Click OK to reset. Any theme settings will be lost!"
+msgstr ""
+
+#: options-framework.php:385
+msgid "Default options restored."
+msgstr ""
+
+#: options-framework.php:439
+msgid "Options saved."
+msgstr ""
+
+#: options-media-uploader.php:46
+msgid "No file chosen"
+msgstr ""
+
+#: options-media-uploader.php:49 options-media-uploader.php:106
+msgid "Upload"
+msgstr ""
+
+#: options-media-uploader.php:51 options-media-uploader.php:107
+msgid "Remove"
+msgstr ""
+
+#: options-media-uploader.php:54
+msgid "Upgrade your version of WordPress for full media support."
+msgstr ""
+
+#: options-media-uploader.php:78
+msgid "View File"
+msgstr ""
+
+#: options-sanitize.php:236
+msgid "No Repeat"
+msgstr ""
+
+#: options-sanitize.php:237
+msgid "Repeat Horizontally"
+msgstr ""
+
+#: options-sanitize.php:238
+msgid "Repeat Vertically"
+msgstr ""
+
+#: options-sanitize.php:239
+msgid "Repeat All"
+msgstr ""
+
+#: options-sanitize.php:252
+msgid "Top Left"
+msgstr ""
+
+#: options-sanitize.php:253
+msgid "Top Center"
+msgstr ""
+
+#: options-sanitize.php:254
+msgid "Top Right"
+msgstr ""
+
+#: options-sanitize.php:255
+msgid "Middle Left"
+msgstr ""
+
+#: options-sanitize.php:256
+msgid "Middle Center"
+msgstr ""
+
+#: options-sanitize.php:257
+msgid "Middle Right"
+msgstr ""
+
+#: options-sanitize.php:258
+msgid "Bottom Left"
+msgstr ""
+
+#: options-sanitize.php:259
+msgid "Bottom Center"
+msgstr ""
+
+#: options-sanitize.php:260
+msgid "Bottom Right"
+msgstr ""
+
+#: options-sanitize.php:273
+msgid "Scroll Normally"
+msgstr ""
+
+#: options-sanitize.php:274
+msgid "Fixed in Place"
+msgstr ""
+
+#: options-sanitize.php:348
+msgid "Normal"
+msgstr ""
+
+#: options-sanitize.php:349
+msgid "Italic"
+msgstr ""
+
+#: options-sanitize.php:350
+msgid "Bold"
+msgstr ""
+
+#: options-sanitize.php:351
+msgid "Bold Italic"
+msgstr ""
+
+#: options-theme-customizer/options.php:101
+msgid "Basic"
+msgstr ""
+
+#: options-theme-customizer/options.php:158
+msgid "Extended"
+msgstr ""
