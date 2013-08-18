@@ -60,7 +60,7 @@
 			if ( $('.section-upload .upload-notice').length > 0 ) {
 				$('.upload-button').remove();
 			}
-			selector.find('.upload-button').on('click', function() {
+			selector.find('.upload-button').on('click', function(event) {
 				optionsframework_add_file(event, $(this).parents('.section'));
 			});
 		}
