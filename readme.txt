@@ -1,6 +1,6 @@
 === Options Framework ===
 
-Contributors: Devin Price
+Contributors: @downstairsdev
 Tags: options, theme options
 Donate link: http://bit.ly/options-donate-2
 Requires at least: 3.4
@@ -70,6 +70,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 = 1.6.1 =
 
 * Fix for update notice location
+* Use selected and checked functions more consistently
 
 = 1.6 =
 
