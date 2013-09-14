@@ -1,11 +1,11 @@
 ## Options Framework ##
 
-**Tags:** options, theme options  
-**Requires at least:** 3.3  
-**Tested up to:** 3.5   
+**Tags:** options, theme options
+**Requires at least:** 3.4
+**Tested up to:** 3.6
 **Stable tag:** 1.6
-**License:** GPLv2  
-**Donate link:** http://bit.ly/options-donate-2 
+**License:** GPLv2
+**Donate link:** http://bit.ly/options-donate-2
 
 ## Screenshot ##
 
@@ -13,7 +13,7 @@
 
 ## Description ##
 
-The Options Framework Plugin makes it easy to include an options panel in any WordPress theme.  It was built so developers can concentrate on making the actual theme rather than spending time creating an options panel from scratch.  It's free to use in both commercial and personal projects, just like WordPress itself. 
+The Options Framework Plugin makes it easy to include an options panel in any WordPress theme.  It was built so developers can concentrate on making the actual theme rather than spending time creating an options panel from scratch.  It's free to use in both commercial and personal projects, just like WordPress itself.
 
 ### Options Include: ###
 
@@ -51,6 +51,10 @@ The "Options Check" theme is a blueprint for how to work with options.  It inclu
 You can also watch the video screencast I have at [http://wptheming.com/options-framework-plugin](http://wptheming.com/options-framework-plugin).
 
 ## Change log ##
+
+#### 1.6.1 ####
+
+* Fix for update notice location
 
 #### 1.6 ####
 

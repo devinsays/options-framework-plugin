@@ -262,14 +262,14 @@ function optionsframework_menu_settings() {
 		'menu_slug' => 'options-framework',
 		'callback' => 'optionsframework_page'
 	);
-	
+
 	return apply_filters( 'optionsframework_menu', $menu );
 }
 
 /* Add a subpage called "Theme Options" to the appearance menu. */
 
 function optionsframework_add_page() {
-	
+
 	$menu = optionsframework_menu_settings();
 	$of_page = add_theme_page( $menu['page_title'], $menu['menu_title'], $menu['capability'], $menu['menu_slug'], $menu['callback'] );
 
@@ -293,7 +293,7 @@ function optionsframework_load_styles() {
 function optionsframework_load_scripts( $hook ) {
 
 	$menu = optionsframework_menu_settings();
-	
+
 	if ( 'appearance_page_' . $menu['menu_slug'] != $hook )
         return;
 
@@ -308,7 +308,7 @@ function optionsframework_load_scripts( $hook ) {
 		);
 		wp_localize_script( 'wp-color-picker', 'wpColorPickerL10n', $colorpicker_l10n );
 	}
-	
+
 	// Enqueue custom option panel JS
 	wp_enqueue_script( 'options-custom', OPTIONS_FRAMEWORK_URL . 'js/options-custom.js', array( 'jquery','wp-color-picker' ) );
 
@@ -334,14 +334,15 @@ function of_admin_head() {
  */
 
 if ( !function_exists( 'optionsframework_page' ) ) :
-function optionsframework_page() {
-	settings_errors(); ?>
+function optionsframework_page() { ?>
 
 	<div id="optionsframework-wrap" class="wrap">
     <?php screen_icon( 'themes' ); ?>
     <h2 class="nav-tab-wrapper">
         <?php echo optionsframework_tabs(); ?>
     </h2>
+
+    <?php settings_errors( 'options-framework' ); ?>
 
     <div id="optionsframework-metabox" class="metabox-holder">
 	    <div id="optionsframework" class="postbox">
@@ -358,7 +359,7 @@ function optionsframework_page() {
 	</div>
 	<?php do_action( 'optionsframework_after' ); ?>
 	</div> <!-- / .wrap -->
-	
+
 <?php
 }
 endif;
@@ -385,14 +386,14 @@ function optionsframework_validate( $input ) {
 		add_settings_error( 'options-framework', 'restore_defaults', __( 'Default options restored.', 'optionsframework' ), 'updated fade' );
 		return of_get_default_values();
 	}
-	
+
 	/*
 	 * Update Settings
 	 *
 	 * This used to check for $_POST['update'], but has been updated
 	 * to be compatible with the theme customizer introduced in WordPress 3.4
 	 */
-	 
+
 	$clean = array();
 	$options =& _optionsframework_options();
 	foreach ( $options as $option ) {
@@ -424,17 +425,17 @@ function optionsframework_validate( $input ) {
 			$clean[$id] = apply_filters( 'of_sanitize_' . $option['type'], $input[$id], $option );
 		}
 	}
-	
+
 	// Hook to run after validation
 	do_action( 'optionsframework_after_validate', $clean );
-	
+
 	return $clean;
 }
 
 /**
  * Display message when options have been saved
  */
- 
+
 function optionsframework_save_options_notice() {
 	add_settings_error( 'options-framework', 'save_options', __( 'Options saved.', 'optionsframework' ), 'updated fade' );
 }
@@ -516,7 +517,7 @@ if ( ! function_exists( 'of_get_option' ) ) :
 
 		return $default;
 	}
-	
+
 endif;
 
 /**
