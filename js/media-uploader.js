@@ -1,51 +1,55 @@
 jQuery(document).ready(function($){
 
+	var optionsframework_upload;
+	var optionsframework_selector;
+
 	function optionsframework_add_file(event, selector) {
 
 		var upload = $(".uploaded-file"), frame;
 		var $el = $(this);
+		optionsframework_selector = selector;
 
 		event.preventDefault();
 
 		// If the media frame already exists, reopen it.
-		if ( frame ) {
-			frame.open();
-			return;
+		if ( optionsframework_upload ) {
+			optionsframework_upload.open();
+		} else {
+			// Create the media frame.
+			optionsframework_upload = wp.media.frames.optionsframework_upload =  wp.media({
+				// Set the title of the modal.
+				title: $el.data('choose'),
+
+				// Customize the submit button.
+				button: {
+					// Set the text of the button.
+					text: $el.data('update'),
+					// Tell the button not to close the modal, since we're
+					// going to refresh the page when the image is selected.
+					close: false
+				}
+			});
+
+			// When an image is selected, run a callback.
+			optionsframework_upload.on( 'select', function() {
+				// Grab the selected attachment.
+				var attachment = optionsframework_upload.state().get('selection').first();
+				optionsframework_upload.close();
+				optionsframework_selector.find('.upload').val(attachment.attributes.url);
+				if ( attachment.attributes.type == 'image' ) {
+					optionsframework_selector.find('.screenshot').empty().hide().append('<img src="' + attachment.attributes.url + '"><a class="remove-image">Remove</a>').slideDown('fast');
+				}
+				optionsframework_selector.find('.upload-button').unbind().addClass('remove-file').removeClass('upload-button').val(optionsframework_l10n.remove);
+				optionsframework_selector.find('.of-background-properties').slideDown();
+				optionsframework_selector.find('.remove-image, .remove-file').on('click', function() {
+					optionsframework_remove_file( $(this).parents('.section') );
+				});
+			});
+
 		}
 
-		// Create the media frame.
-		frame = wp.media({
-			// Set the title of the modal.
-			title: $el.data('choose'),
-
-			// Customize the submit button.
-			button: {
-				// Set the text of the button.
-				text: $el.data('update'),
-				// Tell the button not to close the modal, since we're
-				// going to refresh the page when the image is selected.
-				close: false
-			}
-		});
-
-		// When an image is selected, run a callback.
-		frame.on( 'select', function() {
-			// Grab the selected attachment.
-			var attachment = frame.state().get('selection').first();
-			frame.close();
-			selector.find('.upload').val(attachment.attributes.url);
-			if ( attachment.attributes.type == 'image' ) {
-				selector.find('.screenshot').empty().hide().append('<img src="' + attachment.attributes.url + '"><a class="remove-image">Remove</a>').slideDown('fast');
-			}
-			selector.find('.upload-button').unbind().addClass('remove-file').removeClass('upload-button').val(optionsframework_l10n.remove);
-			selector.find('.of-background-properties').slideDown();
-			selector.find('.remove-image, .remove-file').on('click', function() {
-				optionsframework_remove_file( $(this).parents('.section') );
-			});
-		});
-
 		// Finally, open the modal.
-		frame.open();
+		optionsframework_upload.open();
 	}
 
 	function optionsframework_remove_file(selector) {

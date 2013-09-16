@@ -55,6 +55,8 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 #### 1.6.1 ####
 
 * Fix for update notice location
+* Use selected and checked functions more consistently
+* Reuse media modal for uploads
 
 #### 1.6 ####
 
