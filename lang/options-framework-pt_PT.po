@@ -2,229 +2,235 @@
 # This file is distributed under the same license as the  package.
 msgid ""
 msgstr ""
-"Project-Id-Version:  \n"
+"Project-Id-Version: Options Framework Plugin\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/options-framework-plugin\n"
 "POT-Creation-Date: 2013-10-23 13:35:37+00:00\n"
+"PO-Revision-Date: 2013-10-23 14:37-0000\n"
+"Last-Translator: Pedro Duarte <pedroduarte@djope.com>\n"
+"Language-Team: \n"
+"Language: pt_PT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2013-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"X-Generator: Poedit 1.5.7\n"
 
 #: options-check/options.php:32
 msgid "One"
-msgstr ""
+msgstr "Um"
 
 #: options-check/options.php:33
 msgid "Two"
-msgstr ""
+msgstr "Dois"
 
 #: options-check/options.php:34
 msgid "Three"
-msgstr ""
+msgstr "Três"
 
 #: options-check/options.php:35
 msgid "Four"
-msgstr ""
+msgstr "Quatro"
 
 #: options-check/options.php:36
 msgid "Five"
-msgstr ""
+msgstr "Cinco"
 
 #: options-check/options.php:41
 msgid "French Toast"
-msgstr ""
+msgstr "Tosta"
 
 #: options-check/options.php:42
 msgid "Pancake"
-msgstr ""
+msgstr "Panqueca"
 
 #: options-check/options.php:43
 msgid "Omelette"
-msgstr ""
+msgstr "Omolete"
 
 #: options-check/options.php:44
 msgid "Crepe"
-msgstr ""
+msgstr "Crepe"
 
 #: options-check/options.php:45
 msgid "Waffle"
-msgstr ""
+msgstr "Waffle"
 
 #: options-check/options.php:105
 msgid "Basic Settings"
-msgstr ""
+msgstr "Definições Básicas"
 
 #: options-check/options.php:109
 msgid "Input Text Mini"
-msgstr ""
+msgstr "Campo de Texto Mini"
 
 #: options-check/options.php:110
 msgid "A mini text input field."
-msgstr ""
+msgstr "Um campo de texto mini."
 
 #: options-check/options.php:117
 msgid "Input Text"
-msgstr ""
+msgstr "Campo de Texto"
 
 #: options-check/options.php:118
 msgid "A text input field."
-msgstr ""
+msgstr "Um campo de texto."
 
 #: options-check/options.php:124
 msgid "Textarea"
-msgstr ""
+msgstr "Área de Texto"
 
 #: options-check/options.php:125
 msgid "Textarea description."
-msgstr ""
+msgstr "Descrição da área de texto."
 
 #: options-check/options.php:131
 msgid "Input Select Small"
-msgstr ""
+msgstr "Campo de Selecção Pequeno"
 
 #: options-check/options.php:132
 msgid "Small Select Box."
-msgstr ""
+msgstr "Caixa de selecção pequena."
 
 #: options-check/options.php:140
 msgid "Input Select Wide"
-msgstr ""
+msgstr "Campo de Selecção Largo"
 
 #: options-check/options.php:141
 msgid "A wider select box."
-msgstr ""
+msgstr "Uma caixa de selecção mais larga."
 
 #: options-check/options.php:148
 msgid "Select a Category"
-msgstr ""
+msgstr "Seleccione uma Categoria"
 
 #: options-check/options.php:149
 msgid "Passed an array of categories with cat_ID and cat_name"
-msgstr ""
+msgstr "Passou uma série de categorias com cat_ID e cat_name"
 
 #: options-check/options.php:155
 msgid "Select a Tag"
-msgstr ""
+msgstr "Seleccionar uma Etiqueta"
 
 #: options-check/options.php:156
 msgid "Passed an array of tags with term_id and term_name"
-msgstr ""
+msgstr "Passou uma série de etiquetas com term_id e term_name"
 
 #: options-check/options.php:162
 msgid "Select a Page"
-msgstr ""
+msgstr "Seleccione uma Página"
 
 #: options-check/options.php:163
 msgid "Passed an array of pages with ID and post_title"
-msgstr ""
+msgstr "Passou uma série de categorias com cat_ID e cat_name"
 
 #: options-check/options.php:169
 msgid "Input Radio (one)"
-msgstr ""
+msgstr "Campo de Rádio (um)"
 
 #: options-check/options.php:170
 msgid "Radio select with default options \"one\"."
-msgstr ""
+msgstr "Selector rádio com opções por defeito \"um\""
 
 #: options-check/options.php:177
 msgid "Example Info"
-msgstr ""
+msgstr "Exemplo de Informação"
 
 #: options-check/options.php:178
 msgid "This is just some example information you can put in the panel."
-msgstr ""
+msgstr "Isto é apenas informação de exemplo que pode colocar no painel."
 
 #: options-check/options.php:182
 msgid "Input Checkbox"
-msgstr ""
+msgstr "Caixa de Verificação"
 
 #: options-check/options.php:183
 msgid "Example checkbox, defaults to true."
-msgstr ""
+msgstr "Caixa de verificação de exemplo, valor por defeito igual a \"true\"."
 
 #: options-check/options.php:189
 msgid "Advanced Settings"
-msgstr ""
+msgstr "Definições Avançadas"
 
 #: options-check/options.php:193
 msgid "Check to Show a Hidden Text Input"
-msgstr ""
+msgstr "Seleccionar para Mostrar um Campo de Texto Escondido"
 
 #: options-check/options.php:194
 msgid "Click here and see what happens."
-msgstr ""
+msgstr "Click aqui e veja o que acontece."
 
 #: options-check/options.php:199
 msgid "Hidden Text Input"
-msgstr ""
+msgstr "Campo de Texto Escondido"
 
 #: options-check/options.php:200
 msgid "This option is hidden unless activated by a checkbox click."
 msgstr ""
+"Esta opção encontra-se escondida a não ser que seja activada por uma caixa "
+"de verificação."
 
 #: options-check/options.php:207
 msgid "Uploader Test"
-msgstr ""
+msgstr "Texte de Upload"
 
 #: options-check/options.php:208
 msgid "This creates a full size uploader that previews the image."
-msgstr ""
+msgstr "Isto cria um campo de upload com pré-visualização da imagem."
 
 #: options-check/options.php:225
 msgid "Example Background"
-msgstr ""
+msgstr "Fundo de Exemplo"
 
 #: options-check/options.php:226
 msgid "Change the background CSS."
-msgstr ""
+msgstr "Alterar o fundo CSS."
 
 #: options-check/options.php:232
 msgid "Multicheck"
-msgstr ""
+msgstr "Multi-verificação"
 
 #: options-check/options.php:233
 msgid "Multicheck description."
-msgstr ""
+msgstr "Descrição da multi-verificação."
 
 #: options-check/options.php:240
 msgid "Colorpicker"
-msgstr ""
+msgstr "Selector de Cor"
 
 #: options-check/options.php:241
 msgid "No color selected by default."
-msgstr ""
+msgstr "Sem cor seleccionada por defeito."
 
 #: options-check/options.php:246
 msgid "Typography"
-msgstr ""
+msgstr "Tipografia"
 
 #: options-check/options.php:247
 msgid "Example typography."
-msgstr ""
+msgstr "Tipografia de exemplo."
 
 #: options-check/options.php:253
 msgid "Custom Typography"
-msgstr ""
+msgstr "Tipografia Customizada"
 
 #: options-check/options.php:254
 msgid "Custom typography options."
-msgstr ""
+msgstr "Opções de tipografia customizada."
 
 #: options-check/options.php:261
 msgid "Text Editor"
-msgstr ""
+msgstr "Editor de Texto"
 
 #: options-check/options.php:279
 msgid "Default Text Editor"
-msgstr ""
+msgstr "Editor de Texto Padrão"
 
 #: options-check/options.php:280
 msgid ""
 "You can also pass settings to the editor.  Read more about wp_editor in <a "
 "href=\"%1$s\" target=\"_blank\">the WordPress codex</a>"
 msgstr ""
+"Também é possível passer opções para o editor.  Ler mais sobre wp_editor no "
+"<a href=\"%1$s\" target=\"_blank\">codex do WordPress</a>"
 
 #: options-framework.php:70
 msgid ""
@@ -232,144 +238,146 @@ msgid ""
 "<a href=\"%1$s\" target=\"_blank\">Learn More</a> | <a href=\"%2$s\">Hide "
 "Notice</a>"
 msgstr ""
+"O set tema actual não ten support para o plugin Options Framework.  <a href="
+"\"%1$s\" target=\"_blank\">Saber Mais</a> | <a href=\"%2$s\">Esconder</a>"
 
 #: options-framework.php:259 options-framework.php:260
 #: options-framework.php:490
 msgid "Theme Options"
-msgstr ""
+msgstr "Opções do Tema"
 
 #: options-framework.php:305
 msgid "Clear"
-msgstr ""
+msgstr "Limpar"
 
 #: options-framework.php:306
 msgid "Default"
-msgstr ""
+msgstr "Padrão"
 
 #: options-framework.php:307
 msgid "Select Color"
-msgstr ""
+msgstr "Seleccionar Cor"
 
 #: options-framework.php:353
 msgid "Save Options"
-msgstr ""
+msgstr "Guardar Opções"
 
 #: options-framework.php:354
 msgid "Restore Defaults"
-msgstr ""
+msgstr "Restaurar Opções Padrão"
 
 #: options-framework.php:354
 msgid "Click OK to reset. Any theme settings will be lost!"
-msgstr ""
+msgstr "Click OK para restaurar. Todas as opções do tema serão perdidas."
 
 #: options-framework.php:386
 msgid "Default options restored."
-msgstr ""
+msgstr "Opções padrão restauradas."
 
 #: options-framework.php:440
 msgid "Options saved."
-msgstr ""
+msgstr "Opções guardadas."
 
 #: options-media-uploader.php:46
 msgid "No file chosen"
-msgstr ""
+msgstr "Nenhum ficheiro escolhido."
 
 #: options-media-uploader.php:49 options-media-uploader.php:106
 msgid "Upload"
-msgstr ""
+msgstr "Upload"
 
 #: options-media-uploader.php:51 options-media-uploader.php:107
 msgid "Remove"
-msgstr ""
+msgstr "Remover"
 
 #: options-media-uploader.php:54
 msgid "Upgrade your version of WordPress for full media support."
-msgstr ""
+msgstr "Actualize a sua versão do WordPress para total suporte media."
 
 #: options-media-uploader.php:78
 msgid "View File"
-msgstr ""
+msgstr "Ver Ficheiro"
 
 #: options-sanitize.php:236
 msgid "No Repeat"
-msgstr ""
+msgstr "Não Repetir"
 
 #: options-sanitize.php:237
 msgid "Repeat Horizontally"
-msgstr ""
+msgstr "Repetir Horizontalmente"
 
 #: options-sanitize.php:238
 msgid "Repeat Vertically"
-msgstr ""
+msgstr "Repetir Verticalmente"
 
 #: options-sanitize.php:239
 msgid "Repeat All"
-msgstr ""
+msgstr "Repetir Todos"
 
 #: options-sanitize.php:252
 msgid "Top Left"
-msgstr ""
+msgstr "Esquerda Topo"
 
 #: options-sanitize.php:253
 msgid "Top Center"
-msgstr ""
+msgstr "Centro Topo"
 
 #: options-sanitize.php:254
 msgid "Top Right"
-msgstr ""
+msgstr "Direita Topo"
 
 #: options-sanitize.php:255
 msgid "Middle Left"
-msgstr ""
+msgstr "Esquerda Meio"
 
 #: options-sanitize.php:256
 msgid "Middle Center"
-msgstr ""
+msgstr "Centro Meio"
 
 #: options-sanitize.php:257
 msgid "Middle Right"
-msgstr ""
+msgstr "Direita Meio"
 
 #: options-sanitize.php:258
 msgid "Bottom Left"
-msgstr ""
+msgstr "Esquerda Fundo"
 
 #: options-sanitize.php:259
 msgid "Bottom Center"
-msgstr ""
+msgstr "Centro Fundo"
 
 #: options-sanitize.php:260
 msgid "Bottom Right"
-msgstr ""
+msgstr "Direita Fundo"
 
 #: options-sanitize.php:273
 msgid "Scroll Normally"
-msgstr ""
+msgstr "Rolar Normalmente"
 
 #: options-sanitize.php:274
 msgid "Fixed in Place"
-msgstr ""
+msgstr "Fixo"
 
 #: options-sanitize.php:348
 msgid "Normal"
-msgstr ""
+msgstr "Normal"
 
 #: options-sanitize.php:349
 msgid "Italic"
-msgstr ""
+msgstr "Itálico"
 
 #: options-sanitize.php:350
 msgid "Bold"
-msgstr ""
+msgstr "Negrito"
 
 #: options-sanitize.php:351
 msgid "Bold Italic"
-msgstr ""
+msgstr "Itálico Negrito"
 
 #: options-theme-customizer/options.php:101
 msgid "Basic"
-msgstr ""
+msgstr "Básico"
 
 #: options-theme-customizer/options.php:158
 msgid "Extended"
-msgstr ""
+msgstr "Extended"
