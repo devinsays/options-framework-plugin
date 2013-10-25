@@ -72,6 +72,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * Fix for update notice location
 * Use selected and checked functions more consistently
 * Reuse media modal for uploads
+* Portuguese translations (props @xipasduarte)
 
 = 1.6 =
 
