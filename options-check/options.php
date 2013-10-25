@@ -160,7 +160,7 @@ function optionsframework_options() {
 
 	$options[] = array(
 		'name' => __('Select a Page', 'options_check'),
-		'desc' => __('Passed an pages with ID and post_title', 'options_check'),
+		'desc' => __('Passed an array of pages with ID and post_title', 'options_check'),
 		'id' => 'example_select_pages',
 		'type' => 'select',
 		'options' => $options_pages);
