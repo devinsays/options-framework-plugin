@@ -3,8 +3,8 @@
 Contributors: @downstairsdev
 Tags: options, theme options
 Donate link: http://bit.ly/options-donate-2
-Requires at least: 3.4
-Tested up to: 3.6
+Requires at least: 3.6
+Tested up to: 3.7
 Stable tag: 1.6
 License: GPLv2
 
@@ -63,9 +63,14 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 == Screenshots ==
 
-1. An example of the "Advanced Options" tag in the "Options Check" theme using this plugin.
+1. An example of the "Advanced Options" tab in the "Options Check" theme using this plugin.
 
 == Changelog ==
+
+= 1.7.0 =
+
+* Update to class based plugin (large code refactor)
+* Drop color picker support for older versions of WordPress
 
 = 1.6.1 =
 
