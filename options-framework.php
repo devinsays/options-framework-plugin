@@ -12,76 +12,80 @@
  * Plugin Name: Options Framework
  * Plugin URI:  http://wptheming.com
  * Description: A framework for building theme options.
- * Version:     1.6.0
+ * Version:     1.7.0
  * Author:      Devin Price
  * Author URI:  http://wptheming.com
  * License:     GPL-2.0+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain: optionsframework
- * Domain Path: /lang
+ * Domain Path: /languages
  */
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
-        die;
+	die;
 }
 
-// Load the Options Framework classes
-require plugin_dir_path( __FILE__ ) . 'includes/class-options-framework.php';
-require plugin_dir_path( __FILE__ ) . 'includes/class-options-framework-admin.php';
-require plugin_dir_path( __FILE__ ) . 'includes/class-options-interface.php';
-require plugin_dir_path( __FILE__ ) . 'includes/class-options-media-uploader.php';
-require plugin_dir_path( __FILE__ ) . 'includes/class-options-sanitize.php';
+function optionsframework_init() {
 
-// Instantiate the main plugin class
-$options_framework = new Options_Framework;
-$options_framework->init();
+	//  If user can't edit theme options, exit
+	if ( !current_user_can( 'edit_theme_options' ) )
+		return;
 
-// Instantiate the options page
-$options_framework_admin = new Options_Framework_Admin;
-$options_framework_admin->init();
+	// Loads the required Options Framework classes.
+	require plugin_dir_path( __FILE__ ) . 'includes/class-options-framework.php';
+	require plugin_dir_path( __FILE__ ) . 'includes/class-options-framework-admin.php';
+	require plugin_dir_path( __FILE__ ) . 'includes/class-options-interface.php';
+	require plugin_dir_path( __FILE__ ) . 'includes/class-options-media-uploader.php';
+	require plugin_dir_path( __FILE__ ) . 'includes/class-options-sanitization.php';
 
+	// Instantiate the main plugin class.
+	$options_framework = new Options_Framework;
+	$options_framework->init();
+
+	// Instantiate the options page.
+	$options_framework_admin = new Options_Framework_Admin;
+	$options_framework_admin->init();
+
+	// Instantiate the media uploader class
+	$options_framework_media_uploader = new Options_Framework_Media_Uploader;
+	$options_framework_media_uploader->init();
+
+}
+add_action( 'init', 'optionsframework_init', 20 );
 
 /*
  * Register hooks that are fired when the plugin is activated or deactivated.
  * When the plugin is deleted, the uninstall.php file is loaded.
- *
  */
 
- /*
 register_activation_hook( __FILE__, array( 'Options_Framework', 'activate' ) );
-register_deactivation_hook( __FILE__, array( 'Options_Framework', 'deactivate' ) );
-*/
+register_deactivation_hook( __FILE__, array( 'Options_Framework', 'delete_options' ) );
 
-/* Register plugin activation hooks */
+/**
+ * Helper function to return the theme option value.
+ * If no value has been saved, it returns $default.
+ * Needed because options are saved as serialized strings.
+ *
+ * Not in a class to support backwards compatibility in themes.
+ */
 
-/*
-register_activation_hook( __FILE__,'optionsframework_activation_hook' );
+if ( ! function_exists( 'of_get_option' ) ) :
 
-function optionsframework_activation_hook() {
-	register_uninstall_hook( __FILE__, 'optionsframework_delete_options' );
-}
+function of_get_option( $name, $default = false ) {
+	$config = get_option( 'optionsframework' );
 
-*/
-
-/* When uninstalled, deletes options */
-
-/*
-register_uninstall_hook( __FILE__, 'optionsframework_delete_options' );
-
-function optionsframework_delete_options() {
-
-	$optionsframework_settings = get_option( 'optionsframework' );
-
-	// Each theme saves its data in a seperate option, which all gets deleted
-	$knownoptions = $optionsframework_settings['knownoptions'];
-	if ( $knownoptions ) {
-		foreach ( $knownoptions as $key ) {
-			delete_option( $key );
-		}
+	if ( ! isset( $config['id'] ) ) {
+		return $default;
 	}
-	delete_option( 'optionsframework' );
-	delete_user_meta( $user_id, 'optionsframework_ignore_notice', 'true' );
+
+	$options = get_option( $config['id'] );
+
+	if ( isset( $options[$name] ) ) {
+		return $options[$name];
+	}
+
+	return $default;
 }
 
-*/
+endif;

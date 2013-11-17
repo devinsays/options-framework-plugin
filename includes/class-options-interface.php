@@ -1,14 +1,20 @@
 <?php
+/**
+ * @package   Options_Framework
+ * @author    Devin Price <devin@wptheming.com>
+ * @license   GPL-2.0+
+ * @link      http://wptheming.com
+ * @copyright 2013 WP Theming
+ */
 
 class Options_Framework_Interface {
 
 	/**
 	 * Generates the tabs that are used in the options menu
 	 */
-
 	function optionsframework_tabs() {
 		$counter = 0;
-		$options =& _optionsframework_options();
+		$options = & Options_Framework::_optionsframework_options();
 		$menu = '';
 
 		foreach ( $options as $value ) {
@@ -28,7 +34,6 @@ class Options_Framework_Interface {
 	/**
 	 * Generates the options fields that are used in the form.
 	 */
-
 	function optionsframework_fields() {
 
 		global $allowedtags;
@@ -43,7 +48,7 @@ class Options_Framework_Interface {
 		};
 
 		$settings = get_option($option_name);
-		$options =& _optionsframework_options();
+		$options = & Options_Framework::_optionsframework_options();
 
 		$counter = 0;
 		$menu = '';
@@ -207,7 +212,7 @@ class Options_Framework_Interface {
 
 			// Uploader
 			case "upload":
-				$output .= optionsframework_uploader( $value['id'], $val, null );
+				$output .= Options_Framework_Media_Uploader::optionsframework_uploader( $value['id'], $val, null );
 
 				break;
 
@@ -302,7 +307,7 @@ class Options_Framework_Interface {
 					$background['image'] = '';
 				}
 
-				$output .= optionsframework_uploader( $value['id'], $background['image'], null, esc_attr( $option_name . '[' . $value['id'] . '][image]' ) );
+				$output .= Options_Framework_Media_Uploader::optionsframework_uploader( $value['id'], $background['image'], null, esc_attr( $option_name . '[' . $value['id'] . '][image]' ) );
 
 				$class = 'of-background-properties';
 				if ( '' == $background['image'] ) {
