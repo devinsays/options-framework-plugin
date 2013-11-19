@@ -27,6 +27,9 @@ class Options_Framework {
 		// Load plugin text domain
 		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
 
+		// Needs to run every time in case theme has been changed
+		$this->set_theme_option();
+
 	}
 
 	/**
@@ -35,29 +38,49 @@ class Options_Framework {
 	 * @since 1.7.0
 	 */
 	public function load_plugin_textdomain() {
-	        $domain = self::SLUG;
-	        $locale = apply_filters( 'plugin_locale', get_locale(), $domain );
+		$domain = 'optionsframework';
+		$locale = apply_filters( 'plugin_locale', get_locale(), $domain );
 
-	        load_textdomain( $domain, trailingslashit( WP_LANG_DIR ) . $domain . '/' . $domain . '-' . $locale . '.mo' );
-	        load_plugin_textdomain( $domain, FALSE, basename( dirname( __FILE__ ) ) . '/languages' );
+		load_textdomain( $domain, trailingslashit( WP_LANG_DIR ) . $domain . '/' . $domain . '-' . $locale . '.mo' );
+		load_plugin_textdomain( $domain, FALSE, basename( dirname( __FILE__ ) ) . '/languages' );
 	}
 
 	/**
-	 * Deletes all options added by the Options Framework
+	 * Sets option defaults
+	 *
+	 * @since 1.7.0
 	 */
-	function delete_options() {
+	function set_theme_option() {
 
-	    $optionsframework_settings = get_option( 'optionsframework' );
+		// Load settings
+        $optionsframework_settings = get_option( 'optionsframework' );
 
-	    // Each theme saves its data in a seperate option, which all gets deleted
-	    $knownoptions = $optionsframework_settings['knownoptions'];
-	    if ( $knownoptions ) {
-			foreach ( $knownoptions as $key ) {
-				delete_option( $key );
-			}
-	    }
-	    delete_option( 'optionsframework' );
-	    delete_user_meta( $user_id, 'optionsframework_ignore_notice', 'true' );
+        // Updates the unique option id in the database if it has changed
+        if ( function_exists( 'optionsframework_option_name' ) ) {
+			optionsframework_option_name();
+        }
+        elseif ( has_action( 'optionsframework_option_name' ) ) {
+			do_action( 'optionsframework_option_name' );
+        }
+        // If the developer hasn't explicitly set an option id, we'll use a default
+        else {
+            $default_themename = get_option( 'stylesheet' );
+            $default_themename = preg_replace( "/\W/", "_", strtolower($default_themename ) );
+            $default_themename = 'optionsframework_' . $default_themename;
+            if ( isset( $optionsframework_settings['id'] ) ) {
+				if ( $optionsframework_settings['id'] == $default_themename ) {
+					// All good, using default theme id
+				} else {
+					$optionsframework_settings['id'] = $default_themename;
+					update_option( 'optionsframework', $optionsframework_settings );
+				}
+            }
+            else {
+				$optionsframework_settings['id'] = $default_themename;
+				update_option( 'optionsframework', $optionsframework_settings );
+            }
+        }
+
 	}
 
 	/**

@@ -54,14 +54,6 @@ function optionsframework_init() {
 }
 add_action( 'init', 'optionsframework_init', 20 );
 
-/*
- * Register hooks that are fired when the plugin is activated or deactivated.
- * When the plugin is deleted, the uninstall.php file is loaded.
- */
-
-register_activation_hook( __FILE__, array( 'Options_Framework', 'activate' ) );
-register_deactivation_hook( __FILE__, array( 'Options_Framework', 'delete_options' ) );
-
 /**
  * Helper function to return the theme option value.
  * If no value has been saved, it returns $default.
