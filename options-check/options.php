@@ -151,12 +151,14 @@ function optionsframework_options() {
 		'type' => 'select',
 		'options' => $options_categories);
 
+	if ( $options_tags ) {
 	$options[] = array(
 		'name' => __('Select a Tag', 'options_check'),
 		'desc' => __('Passed an array of tags with term_id and term_name', 'options_check'),
 		'id' => 'example_select_tags',
 		'type' => 'select',
 		'options' => $options_tags);
+	}
 
 	$options[] = array(
 		'name' => __('Select a Page', 'options_check'),

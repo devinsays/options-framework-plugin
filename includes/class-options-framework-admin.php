@@ -183,7 +183,10 @@ class Options_Framework_Admin {
 	 function options_page() { ?>
 
 		<div id="optionsframework-wrap" class="wrap">
-	    <?php screen_icon( 'themes' ); ?>
+
+		<?php $menu = $this->menu_settings(); ?>
+		<h2><?php echo esc_html( $menu['page_title'] ); ?></h2>
+
 	    <h2 class="nav-tab-wrapper">
 	        <?php echo Options_Framework_Interface::optionsframework_tabs(); ?>
 	    </h2>

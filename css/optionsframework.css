@@ -1,33 +1,23 @@
 /* Options Framework Admin Styles */
 
-.updated {
-	max-width:764px;
-	margin-bottom:0px !important;
-}
 #optionsframework {
-	position:relative;
-	z-index: 0;
-	max-width:780px;
-	background:#fff;
+    max-width:840px;
+    background:#fff;
 }
 #optionsframework h3 {
 	cursor: default;
+	background-color: #f1f1f1;
+	border-bottom: 1px solid #ddd;
 }
 #optionsframework p {
 	margin-bottom:0;
 	padding-bottom:10px;
-	line-height: 1.4em;
 }
 #optionsframework .section {
 	padding:10px 10px 0;
 }
 #optionsframework .group {
 	padding-bottom:40px;
-}
-#optionsframework .section .heading {
-	padding:10px 0px;
-	margin:0 0 15px;
-	border-bottom: 1px solid #dfdfdf;
 }
 #optionsframework .section .controls {
 	float: left;
@@ -48,9 +38,6 @@
 #optionsframework .section-checkbox .explain {
 	max-width:94%;
 }
-#optionsframework .of-input {
-	width:100%;
-}
 #optionsframework .controls select, #optionsframework .controls textarea {
 	margin-bottom:10px;
 	width:100%;
@@ -62,8 +49,7 @@
 	margin-bottom: 5px;
 }
 #optionsframework input.checkbox, #optionsframework input.of-radio {
-	width: 30px;
-	margin-top:2px;
+	margin: 0 10px 5px 0;
 	float:left;
 	clear:both;
 }
@@ -97,7 +83,7 @@
 }
 #optionsframework .of-background-properties {
 	clear:both;
-	margin-top: 18px;	
+	margin-top: 18px;
 }
 #optionsframework .controls .of-background-repeat {
 	width:125px;
@@ -169,15 +155,6 @@
 #optionsframework .controls input.upload {
 	width:80%;
 }
-#optionsframework .controls input.upload_button {
-	float:right;
-	border-color:#BBBBBB;
-	cursor:pointer;
-}
-#optionsframework .controls input.upload_button:hover {
-	border-color:#666666;
-	color:#000;
-}
 #optionsframework .screenshot {
 	float:left;
 	margin-left:1px;
@@ -186,7 +163,7 @@
 	margin-top:3px;
 }
 #optionsframework .screenshot img {
-	background:#FAFAFA;
+	background:#fafafa;
 	border-color:#ccc #eee #eee #ccc;
 	border-style:solid;
 	border-width:1px;
@@ -223,9 +200,8 @@
 
 #optionsframework-submit {
 	padding: 7px 10px;
-	border-top: 1px solid #ECECEC;
-	background-color: #F1F1F1;
-    background-image: -moz-linear-gradient(center top , #F9F9F9, #ECECEC);
+	border-top: 1px solid #ddd;
+	background-color: #f1f1f1;
 }
 #optionsframework .button-primary {
 	float:right;
