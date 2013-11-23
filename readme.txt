@@ -71,6 +71,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 * Update to class based plugin (large code refactor)
 * Drop color picker support for older versions of WordPress
+* Allow option pages without tabs
 
 = 1.6.1 =
 

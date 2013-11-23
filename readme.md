@@ -52,6 +52,12 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 ## Change log ##
 
+#### 1.7.0 ####
+
+* Update to class based plugin (large code refactor)
+* Drop color picker support for older versions of WordPress
+* Allow option pages without tabs
+
 #### 1.6.1 ####
 
 * Fix for update notice location

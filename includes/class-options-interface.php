@@ -92,7 +92,7 @@ class Options_Framework_Interface {
 				$val = $value['std'];
 			}
 
-			// If the option is already saved, ovveride $val
+			// If the option is already saved, override $val
 			if ( ( $value['type'] != 'heading' ) && ( $value['type'] != 'info') ) {
 				if ( isset( $settings[($value['id'])]) ) {
 					$val = $settings[($value['id'])];
@@ -412,7 +412,10 @@ class Options_Framework_Interface {
 
 			echo $output;
 		}
-		echo '</div>';
+
+		if ( Options_Framework_Interface::optionsframework_tabs() != '' ) {
+			echo '</div>';
+		}
 	}
 
 }
