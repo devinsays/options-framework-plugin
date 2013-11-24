@@ -12,7 +12,7 @@ class Options_Framework_Interface {
 	/**
 	 * Generates the tabs that are used in the options menu
 	 */
-	function optionsframework_tabs() {
+	static function optionsframework_tabs() {
 		$counter = 0;
 		$options = & Options_Framework::_optionsframework_options();
 		$menu = '';
@@ -34,7 +34,7 @@ class Options_Framework_Interface {
 	/**
 	 * Generates the options fields that are used in the form.
 	 */
-	function optionsframework_fields() {
+	static function optionsframework_fields() {
 
 		global $allowedtags;
 		$optionsframework_settings = get_option( 'optionsframework' );
@@ -413,6 +413,7 @@ class Options_Framework_Interface {
 			echo $output;
 		}
 
+		// Outputs closing div if there tabs
 		if ( Options_Framework_Interface::optionsframework_tabs() != '' ) {
 			echo '</div>';
 		}
