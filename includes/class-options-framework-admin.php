@@ -45,8 +45,8 @@ class Options_Framework_Admin {
 
 		} else {
 			// Display a notice if options aren't present in the theme
-			add_action( 'admin_notices', 'options_notice' );
-			add_action( 'admin_init', 'options_notice_ignore' );
+			add_action( 'admin_notices', array( $this, 'options_notice' ) );
+			add_action( 'admin_init', array( $this, 'options_notice_ignore' ) );
 		}
 
     }
