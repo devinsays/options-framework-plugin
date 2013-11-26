@@ -4,13 +4,141 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  \n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/options-framework-plugin\n"
-"POT-Creation-Date: 2013-10-23 13:35:37+00:00\n"
+"POT-Creation-Date: 2013-11-26 23:01:08+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "PO-Revision-Date: 2013-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: includes/class-options-framework-admin.php:64
+msgid "Your current theme does not have support for the Options Framework plugin.  <a href=\"%1$s\" target=\"_blank\">Learn More</a> | <a href=\"%2$s\">Hide Notice</a>"
+msgstr ""
+
+#: includes/class-options-framework-admin.php:116
+#: includes/class-options-framework-admin.php:117
+#: includes/class-options-framework-admin.php:336
+msgid "Theme Options"
+msgstr ""
+
+#: includes/class-options-framework-admin.php:202
+msgid "Save Options"
+msgstr ""
+
+#: includes/class-options-framework-admin.php:203
+msgid "Restore Defaults"
+msgstr ""
+
+#: includes/class-options-framework-admin.php:203
+msgid "Click OK to reset. Any theme settings will be lost!"
+msgstr ""
+
+#: includes/class-options-framework-admin.php:234
+msgid "Default options restored."
+msgstr ""
+
+#: includes/class-options-framework-admin.php:288
+msgid "Options saved."
+msgstr ""
+
+#: includes/class-options-media-uploader.php:63
+msgid "No file chosen"
+msgstr ""
+
+#: includes/class-options-media-uploader.php:66
+#: includes/class-options-media-uploader.php:119
+msgid "Upload"
+msgstr ""
+
+#: includes/class-options-media-uploader.php:68
+#: includes/class-options-media-uploader.php:120
+msgid "Remove"
+msgstr ""
+
+#: includes/class-options-media-uploader.php:71
+msgid "Upgrade your version of WordPress for full media support."
+msgstr ""
+
+#: includes/class-options-media-uploader.php:95
+msgid "View File"
+msgstr ""
+
+#: includes/class-options-sanitization.php:241
+msgid "No Repeat"
+msgstr ""
+
+#: includes/class-options-sanitization.php:242
+msgid "Repeat Horizontally"
+msgstr ""
+
+#: includes/class-options-sanitization.php:243
+msgid "Repeat Vertically"
+msgstr ""
+
+#: includes/class-options-sanitization.php:244
+msgid "Repeat All"
+msgstr ""
+
+#: includes/class-options-sanitization.php:257
+msgid "Top Left"
+msgstr ""
+
+#: includes/class-options-sanitization.php:258
+msgid "Top Center"
+msgstr ""
+
+#: includes/class-options-sanitization.php:259
+msgid "Top Right"
+msgstr ""
+
+#: includes/class-options-sanitization.php:260
+msgid "Middle Left"
+msgstr ""
+
+#: includes/class-options-sanitization.php:261
+msgid "Middle Center"
+msgstr ""
+
+#: includes/class-options-sanitization.php:262
+msgid "Middle Right"
+msgstr ""
+
+#: includes/class-options-sanitization.php:263
+msgid "Bottom Left"
+msgstr ""
+
+#: includes/class-options-sanitization.php:264
+msgid "Bottom Center"
+msgstr ""
+
+#: includes/class-options-sanitization.php:265
+msgid "Bottom Right"
+msgstr ""
+
+#: includes/class-options-sanitization.php:278
+msgid "Scroll Normally"
+msgstr ""
+
+#: includes/class-options-sanitization.php:279
+msgid "Fixed in Place"
+msgstr ""
+
+#: includes/class-options-sanitization.php:353
+msgid "Normal"
+msgstr ""
+
+#: includes/class-options-sanitization.php:354
+msgid "Italic"
+msgstr ""
+
+#: includes/class-options-sanitization.php:355
+msgid "Bold"
+msgstr ""
+
+#: includes/class-options-sanitization.php:356
+msgid "Bold Italic"
+msgstr ""
 
 #: options-check/options.php:32
 msgid "One"
@@ -104,266 +232,132 @@ msgstr ""
 msgid "Passed an array of categories with cat_ID and cat_name"
 msgstr ""
 
-#: options-check/options.php:155
+#: options-check/options.php:156
 msgid "Select a Tag"
 msgstr ""
 
-#: options-check/options.php:156
+#: options-check/options.php:157
 msgid "Passed an array of tags with term_id and term_name"
 msgstr ""
 
-#: options-check/options.php:162
+#: options-check/options.php:164
 msgid "Select a Page"
 msgstr ""
 
-#: options-check/options.php:163
+#: options-check/options.php:165
 msgid "Passed an array of pages with ID and post_title"
 msgstr ""
 
-#: options-check/options.php:169
+#: options-check/options.php:171
 msgid "Input Radio (one)"
 msgstr ""
 
-#: options-check/options.php:170
+#: options-check/options.php:172
 msgid "Radio select with default options \"one\"."
 msgstr ""
 
-#: options-check/options.php:177
+#: options-check/options.php:179
 msgid "Example Info"
 msgstr ""
 
-#: options-check/options.php:178
+#: options-check/options.php:180
 msgid "This is just some example information you can put in the panel."
 msgstr ""
 
-#: options-check/options.php:182
+#: options-check/options.php:184
 msgid "Input Checkbox"
 msgstr ""
 
-#: options-check/options.php:183
+#: options-check/options.php:185
 msgid "Example checkbox, defaults to true."
 msgstr ""
 
-#: options-check/options.php:189
+#: options-check/options.php:191
 msgid "Advanced Settings"
 msgstr ""
 
-#: options-check/options.php:193
+#: options-check/options.php:195
 msgid "Check to Show a Hidden Text Input"
 msgstr ""
 
-#: options-check/options.php:194
+#: options-check/options.php:196
 msgid "Click here and see what happens."
 msgstr ""
 
-#: options-check/options.php:199
+#: options-check/options.php:201
 msgid "Hidden Text Input"
 msgstr ""
 
-#: options-check/options.php:200
+#: options-check/options.php:202
 msgid "This option is hidden unless activated by a checkbox click."
 msgstr ""
 
-#: options-check/options.php:207
+#: options-check/options.php:209
 msgid "Uploader Test"
 msgstr ""
 
-#: options-check/options.php:208
+#: options-check/options.php:210
 msgid "This creates a full size uploader that previews the image."
 msgstr ""
 
-#: options-check/options.php:225
+#: options-check/options.php:227
 msgid "Example Background"
 msgstr ""
 
-#: options-check/options.php:226
+#: options-check/options.php:228
 msgid "Change the background CSS."
 msgstr ""
 
-#: options-check/options.php:232
+#: options-check/options.php:234
 msgid "Multicheck"
 msgstr ""
 
-#: options-check/options.php:233
+#: options-check/options.php:235
 msgid "Multicheck description."
 msgstr ""
 
-#: options-check/options.php:240
+#: options-check/options.php:242
 msgid "Colorpicker"
 msgstr ""
 
-#: options-check/options.php:241
+#: options-check/options.php:243
 msgid "No color selected by default."
 msgstr ""
 
-#: options-check/options.php:246
+#: options-check/options.php:248
 msgid "Typography"
 msgstr ""
 
-#: options-check/options.php:247
+#: options-check/options.php:249
 msgid "Example typography."
 msgstr ""
 
-#: options-check/options.php:253
+#: options-check/options.php:255
 msgid "Custom Typography"
 msgstr ""
 
-#: options-check/options.php:254
+#: options-check/options.php:256
 msgid "Custom typography options."
 msgstr ""
 
-#: options-check/options.php:261
+#: options-check/options.php:263
 msgid "Text Editor"
 msgstr ""
 
-#: options-check/options.php:279
+#: options-check/options.php:281
 msgid "Default Text Editor"
 msgstr ""
 
-#: options-check/options.php:280
-msgid ""
-"You can also pass settings to the editor.  Read more about wp_editor in <a "
-"href=\"%1$s\" target=\"_blank\">the WordPress codex</a>"
+#: options-check/options.php:282
+msgid "You can also pass settings to the editor.  Read more about wp_editor in <a href=\"%1$s\" target=\"_blank\">the WordPress codex</a>"
 msgstr ""
 
-#: options-framework.php:70
-msgid ""
-"Your current theme does not have support for the Options Framework plugin.  "
-"<a href=\"%1$s\" target=\"_blank\">Learn More</a> | <a href=\"%2$s\">Hide "
-"Notice</a>"
+#: options-check/options.php:294
+msgid "Additional Text Editor"
 msgstr ""
 
-#: options-framework.php:259 options-framework.php:260
-#: options-framework.php:490
-msgid "Theme Options"
-msgstr ""
-
-#: options-framework.php:305
-msgid "Clear"
-msgstr ""
-
-#: options-framework.php:306
-msgid "Default"
-msgstr ""
-
-#: options-framework.php:307
-msgid "Select Color"
-msgstr ""
-
-#: options-framework.php:353
-msgid "Save Options"
-msgstr ""
-
-#: options-framework.php:354
-msgid "Restore Defaults"
-msgstr ""
-
-#: options-framework.php:354
-msgid "Click OK to reset. Any theme settings will be lost!"
-msgstr ""
-
-#: options-framework.php:386
-msgid "Default options restored."
-msgstr ""
-
-#: options-framework.php:440
-msgid "Options saved."
-msgstr ""
-
-#: options-media-uploader.php:46
-msgid "No file chosen"
-msgstr ""
-
-#: options-media-uploader.php:49 options-media-uploader.php:106
-msgid "Upload"
-msgstr ""
-
-#: options-media-uploader.php:51 options-media-uploader.php:107
-msgid "Remove"
-msgstr ""
-
-#: options-media-uploader.php:54
-msgid "Upgrade your version of WordPress for full media support."
-msgstr ""
-
-#: options-media-uploader.php:78
-msgid "View File"
-msgstr ""
-
-#: options-sanitize.php:236
-msgid "No Repeat"
-msgstr ""
-
-#: options-sanitize.php:237
-msgid "Repeat Horizontally"
-msgstr ""
-
-#: options-sanitize.php:238
-msgid "Repeat Vertically"
-msgstr ""
-
-#: options-sanitize.php:239
-msgid "Repeat All"
-msgstr ""
-
-#: options-sanitize.php:252
-msgid "Top Left"
-msgstr ""
-
-#: options-sanitize.php:253
-msgid "Top Center"
-msgstr ""
-
-#: options-sanitize.php:254
-msgid "Top Right"
-msgstr ""
-
-#: options-sanitize.php:255
-msgid "Middle Left"
-msgstr ""
-
-#: options-sanitize.php:256
-msgid "Middle Center"
-msgstr ""
-
-#: options-sanitize.php:257
-msgid "Middle Right"
-msgstr ""
-
-#: options-sanitize.php:258
-msgid "Bottom Left"
-msgstr ""
-
-#: options-sanitize.php:259
-msgid "Bottom Center"
-msgstr ""
-
-#: options-sanitize.php:260
-msgid "Bottom Right"
-msgstr ""
-
-#: options-sanitize.php:273
-msgid "Scroll Normally"
-msgstr ""
-
-#: options-sanitize.php:274
-msgid "Fixed in Place"
-msgstr ""
-
-#: options-sanitize.php:348
-msgid "Normal"
-msgstr ""
-
-#: options-sanitize.php:349
-msgid "Italic"
-msgstr ""
-
-#: options-sanitize.php:350
-msgid "Bold"
-msgstr ""
-
-#: options-sanitize.php:351
-msgid "Bold Italic"
+#: options-check/options.php:295
+msgid "This editor includes media button."
 msgstr ""
 
 #: options-theme-customizer/options.php:101
