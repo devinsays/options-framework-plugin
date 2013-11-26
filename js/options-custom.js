@@ -1,6 +1,6 @@
 /**
- * Prints out the inline javascript needed for the colorpicker and choosing
- * the tabs in the panel.
+ * Custom scripts needed for the colorpicker, image button selectors,
+ * and navigation tabs.
  */
 
 jQuery(document).ready(function($) {

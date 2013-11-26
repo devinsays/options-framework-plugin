@@ -334,7 +334,7 @@ class Options_Framework_Admin {
 			'parent' => 'appearance',
 			'id' => 'of_theme_options',
 			'title' => __( 'Theme Options', 'optionsframework' ),
-			'href' => admin_url( $menu['menu_slug'] )
+			'href' => admin_url( 'themes.php?page=' . $menu['menu_slug'] )
 		) );
 	}
 
