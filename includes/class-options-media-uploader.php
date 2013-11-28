@@ -29,7 +29,7 @@ class Options_Framework_Media_Uploader {
 	 *
 	 */
 
-	function optionsframework_uploader( $_id, $_value, $_desc = '', $_name = '' ) {
+	static function optionsframework_uploader( $_id, $_value, $_desc = '', $_name = '' ) {
 
 		$optionsframework_settings = get_option( 'optionsframework' );
 

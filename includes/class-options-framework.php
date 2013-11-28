@@ -113,7 +113,7 @@ class Options_Framework {
 	 *
 	 * @return array (by reference)
 	 */
-	function &_optionsframework_options() {
+	static function &_optionsframework_options() {
 		static $options = null;
 
 		if ( !$options ) {

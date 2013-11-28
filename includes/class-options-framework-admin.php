@@ -110,7 +110,7 @@ class Options_Framework_Admin {
 	 * @since 1.7.0
 	 *
 	 */
-	function menu_settings() {
+	static function menu_settings() {
 
 		$menu = array(
 			'page_title' => __( 'Theme Options', 'optionsframework'),
