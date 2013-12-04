@@ -4,8 +4,8 @@ Contributors: @downstairsdev
 Tags: options, theme options
 Donate link: http://bit.ly/options-donate-2
 Requires at least: 3.6
-Tested up to: 3.7
-Stable tag: 1.6
+Tested up to: 3.7.1
+Stable tag: 1.7.0
 License: GPLv2
 
 == Description ==
@@ -71,6 +71,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 * Update to class based plugin (large code refactor)
 * Drop color picker support for older versions of WordPress
+* Better support for new admin interface in WordPress 3.8
 * Allow option pages without tabs
 
 = 1.6.1 =
