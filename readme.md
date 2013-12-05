@@ -52,6 +52,10 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 ## Change log ##
 
+#### 1.7.1 ####
+
+* Fix to use option name if set in options.php
+
 #### 1.7.0 ####
 
 * Update to class based plugin (large code refactor)

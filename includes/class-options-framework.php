@@ -15,7 +15,7 @@ class Options_Framework {
 	 * @since 1.7.0
 	 * @type string
 	 */
-	const VERSION = '1.7.0';
+	const VERSION = '1.7.1';
 
 	/**
 	 * Initialize the plugin.
@@ -28,7 +28,7 @@ class Options_Framework {
 		add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
 
 		// Needs to run every time in case theme has been changed
-		$this->set_theme_option();
+		add_action( 'admin_init', array( $this, 'set_theme_option' ) );
 
 	}
 
