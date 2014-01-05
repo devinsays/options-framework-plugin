@@ -38,6 +38,9 @@
 #optionsframework .section-checkbox .explain {
 	max-width:94%;
 }
+#optionsframework .controls input[type=text] {
+	width:100%;
+}
 #optionsframework .controls select, #optionsframework .controls textarea {
 	margin-bottom:10px;
 	width:100%;
