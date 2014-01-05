@@ -55,6 +55,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 #### 1.7.2 ####
 
 * Increase default width of text inputs
+* Rename add_options_page function to resolve automatic theme check conflicts
 
 #### 1.7.1 ####
 

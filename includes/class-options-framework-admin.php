@@ -31,7 +31,7 @@ class Options_Framework_Admin {
     	if ( $options ) {
 
 			// Add the options page and menu item.
-			add_action( 'admin_menu', array( $this, 'add_options_page' ) );
+			add_action( 'admin_menu', array( $this, 'add_custom_options_page' ) );
 
 			// Add the required scripts and styles
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_styles' ) );
@@ -127,7 +127,7 @@ class Options_Framework_Admin {
      *
      * @since 1.7.0
      */
-	function add_options_page() {
+	function add_custom_options_page() {
 
 		$menu = $this->menu_settings();
 		$this->options_screen = add_theme_page( $menu['page_title'], $menu['menu_title'], $menu['capability'], $menu['menu_slug'], array( $this, 'options_page' ) );
