@@ -71,6 +71,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 * Increase default width of text inputs
 * Rename add_options_page function to resolve automatic theme check conflicts
+* Check isset for $value['desc'] in info option
 * Only load styles on options page (props @AndorChen)
 
 = 1.7.1 =
