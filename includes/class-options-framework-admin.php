@@ -139,7 +139,11 @@ class Options_Framework_Admin {
      *
      * @since 1.7.0
      */
-	function enqueue_admin_styles() {
+	function enqueue_admin_styles( $hook ) {
+
+		if ( $this->options_screen != $hook )
+	        return;
+
 		wp_enqueue_style( 'optionsframework', plugin_dir_url( dirname(__FILE__) ) . 'css/optionsframework.css', array(),  Options_Framework::VERSION );
 		wp_enqueue_style( 'wp-color-picker' );
 	}
@@ -151,9 +155,7 @@ class Options_Framework_Admin {
      */
 	function enqueue_admin_scripts( $hook ) {
 
-		$menu = $this->menu_settings();
-
-		if ( 'appearance_page_' . $menu['menu_slug'] != $hook )
+		if ( $this->options_screen != $hook )
 	        return;
 
 		// Enqueue custom option panel JS
