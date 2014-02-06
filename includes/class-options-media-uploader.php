@@ -107,7 +107,7 @@ class Options_Framework_Media_Uploader {
 
 		$menu = Options_Framework_Admin::menu_settings();
 
-		if ( 'appearance_page_' . $menu['menu_slug'] != $hook )
+        if ( substr($hook, -strlen($menu['menu_slug'])) !== $menu['menu_slug'] )
 	        return;
 
 		if ( function_exists( 'wp_enqueue_media' ) )
