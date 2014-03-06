@@ -32,6 +32,8 @@ function optionsframework_init() {
 	if ( !current_user_can( 'edit_theme_options' ) )
 		return;
 
+	load_plugin_textdomain( 'optionsframework', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+
 	// Loads the required Options Framework classes.
 	require plugin_dir_path( __FILE__ ) . 'includes/class-options-framework.php';
 	require plugin_dir_path( __FILE__ ) . 'includes/class-options-framework-admin.php';
