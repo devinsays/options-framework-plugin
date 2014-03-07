@@ -76,6 +76,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * Fix loading of translation files (props @weslly)
 * Update Portuguese (BR) translations (props @weslly)
 * Add Danish translations (props @Tosak)
+* Allow menu parent to be filtered (props @nvsnkv)
 
 = 1.7.1 =
 

@@ -113,18 +113,20 @@ class Options_Framework_Admin {
 	static function menu_settings() {
 
 		$menu = array(
+
+			// Modes: submenu, menu
             'mode' => 'submenu',
 
-            //submenu default settings
+            // Submenu default settings
             'page_title' => __( 'Theme Options', 'optionsframework'),
 			'menu_title' => __('Theme Options', 'optionsframework'),
 			'capability' => 'edit_theme_options',
 			'menu_slug' => 'options-framework',
             'parent_slug' => 'themes.php',
 
-            //menu settings
-            'icon_url' => '',
-            'position' => '60.44'
+            // Menu default settings
+            'icon_url' => 'dashicons-admin-generic',
+            'position' => '61'
 
 		);
 
@@ -140,14 +142,30 @@ class Options_Framework_Admin {
 
 		$menu = $this->menu_settings();
 
-        switch($menu['mode'])
-        {
+        switch( $menu['mode'] ) {
+
             case 'menu':
-                $this->options_screen = add_menu_page($menu['page_title'],$menu['menu_title'],$menu['capability'],$menu['menu_slug'], array( $this, 'options_page' ), $menu['icon_url'], $menu['position']);
+            	// http://codex.wordpress.org/Function_Reference/add_menu_page
+                $this->options_screen = add_menu_page(
+                	$menu['page_title'],
+                	$menu['menu_title'],
+                	$menu['capability'],
+                	$menu['menu_slug'],
+                	array( $this, 'options_page' ),
+                	$menu['icon_url'],
+                	$menu['position']
+                );
                 break;
 
             default:
-                $this->options_screen = add_submenu_page($menu['parent_slug'], $menu['page_title'], $menu['menu_title'], $menu['capability'], $menu['menu_slug'], array( $this, 'options_page' ) );
+            	// http://codex.wordpress.org/Function_Reference/add_submenu_page
+                $this->options_screen = add_submenu_page(
+                	$menu['parent_slug'],
+                	$menu['page_title'],
+                	$menu['menu_title'],
+                	$menu['capability'],
+                	$menu['menu_slug'],
+                	array( $this, 'options_page' ) );
                 break;
         }
 	}
