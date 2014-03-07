@@ -113,10 +113,19 @@ class Options_Framework_Admin {
 	static function menu_settings() {
 
 		$menu = array(
-			'page_title' => __( 'Theme Options', 'optionsframework'),
+            'mode' => 'submenu',
+
+            //submenu default settings
+            'page_title' => __( 'Theme Options', 'optionsframework'),
 			'menu_title' => __('Theme Options', 'optionsframework'),
 			'capability' => 'edit_theme_options',
-			'menu_slug' => 'options-framework'
+			'menu_slug' => 'options-framework',
+            'parent_slug' => 'themes.php',
+
+            //menu settings
+            'icon_url' => '',
+            'position' => '60.44'
+
 		);
 
 		return apply_filters( 'optionsframework_menu', $menu );
@@ -130,8 +139,17 @@ class Options_Framework_Admin {
 	function add_custom_options_page() {
 
 		$menu = $this->menu_settings();
-		$this->options_screen = add_theme_page( $menu['page_title'], $menu['menu_title'], $menu['capability'], $menu['menu_slug'], array( $this, 'options_page' ) );
 
+        switch($menu['mode'])
+        {
+            case 'menu':
+                $this->options_screen = add_menu_page($menu['page_title'],$menu['menu_title'],$menu['capability'],$menu['menu_slug'], array( $this, 'options_page' ), $menu['icon_url'], $menu['position']);
+                break;
+
+            default:
+                $this->options_screen = add_submenu_page($menu['parent_slug'], $menu['page_title'], $menu['menu_title'], $menu['capability'], $menu['menu_slug'], array( $this, 'options_page' ) );
+                break;
+        }
 	}
 
 	/**
