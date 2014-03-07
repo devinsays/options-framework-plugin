@@ -4,8 +4,8 @@ Contributors: @downstairsdev
 Tags: options, theme options
 Donate link: http://bit.ly/options-donate-2
 Requires at least: 3.6
-Tested up to: 3.7.1
-Stable tag: 1.7.0
+Tested up to: 3.8.1
+Stable tag: 1.8.0
 License: GPLv2
 
 == Description ==
@@ -67,12 +67,15 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 == Changelog ==
 
-= 1.7.2 =
+= 1.8.0 =
 
 * Increase default width of text inputs
 * Rename add_options_page function to resolve automatic theme check conflicts
 * Check isset for $value['desc'] in info option
 * Only load styles on options page (props @AndorChen)
+* Fix loading of translation files (props @weslly)
+* Update Portuguese (BR) translations (props @weslly)
+* Add Danish translations (props @Tosak)
 
 = 1.7.1 =
 

@@ -12,7 +12,7 @@
  * Plugin Name: Options Framework
  * Plugin URI:  http://wptheming.com
  * Description: A framework for building theme options.
- * Version:     1.7.2
+ * Version:     1.8.0
  * Author:      Devin Price
  * Author URI:  http://wptheming.com
  * License:     GPL-2.0+
@@ -32,6 +32,7 @@ function optionsframework_init() {
 	if ( !current_user_can( 'edit_theme_options' ) )
 		return;
 
+	// Load translation files
 	load_plugin_textdomain( 'optionsframework', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 
 	// Loads the required Options Framework classes.
