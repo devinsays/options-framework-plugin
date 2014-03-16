@@ -41,6 +41,9 @@
 #optionsframework .controls input[type=text] {
 	width:100%;
 }
+#optionsframework .controls input[type=text].wp-color-picker {
+    width: 65px;
+}
 #optionsframework .controls select, #optionsframework .controls textarea {
 	margin-bottom:10px;
 	width:100%;

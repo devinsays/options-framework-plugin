@@ -55,6 +55,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 #### 1.8.1 ####
 
 * Indonesian translations.  Props @aryaprakasa.
+* Fix for colorpicker spacing.
 
 #### 1.8.0 ####
 
