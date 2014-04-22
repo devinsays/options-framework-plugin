@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Options Framework Plugin em português\n"
 "Report-Msgid-Bugs-To: http://wordpress.org/tag/options-framework-plugin\n"
-"POT-Creation-Date: 2013-11-26 23:01:08+00:00\n"
-"PO-Revision-Date: 2014-04-22 18:50-0000\n"
+"POT-Creation-Date: 2014-04-22 15:02:20+00:00\n"
+"PO-Revision-Date: 2014-04-22 18:54-0000\n"
 "Last-Translator: Pedro Mendonça <ped.gaspar@gmail.com>\n"
 "Language-Team: Pedro Mendonça <ped.gaspar@gmail.com>\n"
 "Language: pt_PT\n"
@@ -24,29 +24,29 @@ msgstr ""
 "O seu tema actual não suporta o plugin Options Framework.  <a href=\"%1$s\" "
 "target=\"_blank\">Saber Mais</a> | <a href=\"%2$s\">Esconder notificação</a>"
 
-#: includes/class-options-framework-admin.php:116
-#: includes/class-options-framework-admin.php:117
-#: includes/class-options-framework-admin.php:336
+#: includes/class-options-framework-admin.php:121
+#: includes/class-options-framework-admin.php:122
+#: includes/class-options-framework-admin.php:374
 msgid "Theme Options"
 msgstr "Opções do tema"
 
-#: includes/class-options-framework-admin.php:202
+#: includes/class-options-framework-admin.php:240
 msgid "Save Options"
 msgstr "Guardar opções"
 
-#: includes/class-options-framework-admin.php:203
+#: includes/class-options-framework-admin.php:241
 msgid "Restore Defaults"
 msgstr "Restaurar predefinições"
 
-#: includes/class-options-framework-admin.php:203
+#: includes/class-options-framework-admin.php:241
 msgid "Click OK to reset. Any theme settings will be lost!"
 msgstr "Clique em OK para restaurar. Todas as opções do tema serão perdidas!"
 
-#: includes/class-options-framework-admin.php:234
+#: includes/class-options-framework-admin.php:272
 msgid "Default options restored."
 msgstr "Opções predefinidas restauradas."
 
-#: includes/class-options-framework-admin.php:288
+#: includes/class-options-framework-admin.php:326
 msgid "Options saved."
 msgstr "Opções guardadas."
 
@@ -149,239 +149,182 @@ msgstr "Negrito"
 msgid "Bold Italic"
 msgstr "Itálico Negrito"
 
-#: options-check/options.php:32
-msgid "One"
-msgstr "Um"
+#~ msgid "One"
+#~ msgstr "Um"
 
-#: options-check/options.php:33
-msgid "Two"
-msgstr "Dois"
+#~ msgid "Two"
+#~ msgstr "Dois"
 
-#: options-check/options.php:34
-msgid "Three"
-msgstr "Três"
+#~ msgid "Three"
+#~ msgstr "Três"
 
-#: options-check/options.php:35
-msgid "Four"
-msgstr "Quatro"
+#~ msgid "Four"
+#~ msgstr "Quatro"
 
-#: options-check/options.php:36
-msgid "Five"
-msgstr "Cinco"
+#~ msgid "Five"
+#~ msgstr "Cinco"
 
-#: options-check/options.php:41
-msgid "French Toast"
-msgstr "Tosta"
+#~ msgid "French Toast"
+#~ msgstr "Tosta"
 
-#: options-check/options.php:42
-msgid "Pancake"
-msgstr "Panqueca"
+#~ msgid "Pancake"
+#~ msgstr "Panqueca"
 
-#: options-check/options.php:43
-msgid "Omelette"
-msgstr "Omolete"
+#~ msgid "Omelette"
+#~ msgstr "Omolete"
 
-#: options-check/options.php:44
-msgid "Crepe"
-msgstr "Crepe"
+#~ msgid "Crepe"
+#~ msgstr "Crepe"
 
-#: options-check/options.php:45
-msgid "Waffle"
-msgstr "Waffle"
+#~ msgid "Waffle"
+#~ msgstr "Waffle"
 
-#: options-check/options.php:105
-msgid "Basic Settings"
-msgstr "Definições básicas"
+#~ msgid "Basic Settings"
+#~ msgstr "Definições básicas"
 
-#: options-check/options.php:109
-msgid "Input Text Mini"
-msgstr "Campo de texto pequeno"
+#~ msgid "Input Text Mini"
+#~ msgstr "Campo de texto pequeno"
 
-#: options-check/options.php:110
-msgid "A mini text input field."
-msgstr "Um pequeno campo de texto."
+#~ msgid "A mini text input field."
+#~ msgstr "Um pequeno campo de texto."
 
-#: options-check/options.php:117
-msgid "Input Text"
-msgstr "Campo de texto"
+#~ msgid "Input Text"
+#~ msgstr "Campo de texto"
 
-#: options-check/options.php:118
-msgid "A text input field."
-msgstr "Um campo de texto."
+#~ msgid "A text input field."
+#~ msgstr "Um campo de texto."
 
-#: options-check/options.php:124
-msgid "Textarea"
-msgstr "Área de Texto"
+#~ msgid "Textarea"
+#~ msgstr "Área de Texto"
 
-#: options-check/options.php:125
-msgid "Textarea description."
-msgstr "Descrição da área de texto."
+#~ msgid "Textarea description."
+#~ msgstr "Descrição da área de texto."
 
-#: options-check/options.php:131
-msgid "Input Select Small"
-msgstr "Campo de selecção pequeno"
+#~ msgid "Input Select Small"
+#~ msgstr "Campo de selecção pequeno"
 
-#: options-check/options.php:132
-msgid "Small Select Box."
-msgstr "Caixa de selecção pequena."
+#~ msgid "Small Select Box."
+#~ msgstr "Caixa de selecção pequena."
 
-#: options-check/options.php:140
-msgid "Input Select Wide"
-msgstr "Campo de selecção grande"
+#~ msgid "Input Select Wide"
+#~ msgstr "Campo de selecção grande"
 
-#: options-check/options.php:141
-msgid "A wider select box."
-msgstr "Caixa de selecção mais larga."
+#~ msgid "A wider select box."
+#~ msgstr "Caixa de selecção mais larga."
 
-#: options-check/options.php:148
-msgid "Select a Category"
-msgstr "Seleccione uma categoria"
+#~ msgid "Select a Category"
+#~ msgstr "Seleccione uma categoria"
 
-#: options-check/options.php:149
-msgid "Passed an array of categories with cat_ID and cat_name"
-msgstr "Passou uma série de categorias com cat_ID e cat_name"
+#~ msgid "Passed an array of categories with cat_ID and cat_name"
+#~ msgstr "Passou uma série de categorias com cat_ID e cat_name"
 
-#: options-check/options.php:156
-msgid "Select a Tag"
-msgstr "Seleccione uma etiqueta"
+#~ msgid "Select a Tag"
+#~ msgstr "Seleccione uma etiqueta"
 
-#: options-check/options.php:157
-msgid "Passed an array of tags with term_id and term_name"
-msgstr "Passou uma série de etiquetas com term_id e term_name"
+#~ msgid "Passed an array of tags with term_id and term_name"
+#~ msgstr "Passou uma série de etiquetas com term_id e term_name"
 
-#: options-check/options.php:164
-msgid "Select a Page"
-msgstr "Seleccione uma página"
+#~ msgid "Select a Page"
+#~ msgstr "Seleccione uma página"
 
-#: options-check/options.php:165
-msgid "Passed an array of pages with ID and post_title"
-msgstr "Passou uma série de categorias com cat_ID e cat_name"
+#~ msgid "Passed an array of pages with ID and post_title"
+#~ msgstr "Passou uma série de categorias com cat_ID e cat_name"
 
-#: options-check/options.php:171
-msgid "Input Radio (one)"
-msgstr "Selector de opção"
+#~ msgid "Input Radio (one)"
+#~ msgstr "Selector de opção"
 
-#: options-check/options.php:172
-msgid "Radio select with default options \"one\"."
-msgstr "Selector de opção, seleccionado por omissão."
+#~ msgid "Radio select with default options \"one\"."
+#~ msgstr "Selector de opção, seleccionado por omissão."
 
-#: options-check/options.php:179
-msgid "Example Info"
-msgstr "Informação de exemplo"
+#~ msgid "Example Info"
+#~ msgstr "Informação de exemplo"
 
-#: options-check/options.php:180
-msgid "This is just some example information you can put in the panel."
-msgstr "Isto é apenas informação de exemplo que pode colocar no painel."
+#~ msgid "This is just some example information you can put in the panel."
+#~ msgstr "Isto é apenas informação de exemplo que pode colocar no painel."
 
-#: options-check/options.php:184
-msgid "Input Checkbox"
-msgstr "Caixa de verificação"
+#~ msgid "Input Checkbox"
+#~ msgstr "Caixa de verificação"
 
-#: options-check/options.php:185
-msgid "Example checkbox, defaults to true."
-msgstr "Caixa de verificação de exemplo, seleccionada por omissão."
+#~ msgid "Example checkbox, defaults to true."
+#~ msgstr "Caixa de verificação de exemplo, seleccionada por omissão."
 
-#: options-check/options.php:191
-msgid "Advanced Settings"
-msgstr "Definições avançadas"
+#~ msgid "Advanced Settings"
+#~ msgstr "Definições avançadas"
 
-#: options-check/options.php:195
-msgid "Check to Show a Hidden Text Input"
-msgstr "Seleccionar para mostrar um campo de texto escondido"
+#~ msgid "Check to Show a Hidden Text Input"
+#~ msgstr "Seleccionar para mostrar um campo de texto escondido"
 
-#: options-check/options.php:196
-msgid "Click here and see what happens."
-msgstr "Click aqui e veja o que acontece."
+#~ msgid "Click here and see what happens."
+#~ msgstr "Click aqui e veja o que acontece."
 
-#: options-check/options.php:201
-msgid "Hidden Text Input"
-msgstr "Campo de texto escondido"
+#~ msgid "Hidden Text Input"
+#~ msgstr "Campo de texto escondido"
 
-#: options-check/options.php:202
-msgid "This option is hidden unless activated by a checkbox click."
-msgstr ""
-"Esta opção encontra-se escondida a não ser que seja activada por uma caixa "
-"de verificação."
+#~ msgid "This option is hidden unless activated by a checkbox click."
+#~ msgstr ""
+#~ "Esta opção encontra-se escondida a não ser que seja activada por uma "
+#~ "caixa de verificação."
 
-#: options-check/options.php:209
-msgid "Uploader Test"
-msgstr "Texte de carregamento"
+#~ msgid "Uploader Test"
+#~ msgstr "Texte de carregamento"
 
-#: options-check/options.php:210
-msgid "This creates a full size uploader that previews the image."
-msgstr "Isto cria um campo de carregamento com pré-visualização da imagem."
+#~ msgid "This creates a full size uploader that previews the image."
+#~ msgstr "Isto cria um campo de carregamento com pré-visualização da imagem."
 
-#: options-check/options.php:227
-msgid "Example Background"
-msgstr "Fundo de exemplo"
+#~ msgid "Example Background"
+#~ msgstr "Fundo de exemplo"
 
-#: options-check/options.php:228
-msgid "Change the background CSS."
-msgstr "Modificar o CSS do fundo."
+#~ msgid "Change the background CSS."
+#~ msgstr "Modificar o CSS do fundo."
 
-#: options-check/options.php:234
-msgid "Multicheck"
-msgstr "Multi-verificação"
+#~ msgid "Multicheck"
+#~ msgstr "Multi-verificação"
 
-#: options-check/options.php:235
-msgid "Multicheck description."
-msgstr "Descrição da multi-verificação."
+#~ msgid "Multicheck description."
+#~ msgstr "Descrição da multi-verificação."
 
-#: options-check/options.php:242
-msgid "Colorpicker"
-msgstr "Selector de Cor"
+#~ msgid "Colorpicker"
+#~ msgstr "Selector de Cor"
 
-#: options-check/options.php:243
-msgid "No color selected by default."
-msgstr "Sem cor seleccionada por defeito."
+#~ msgid "No color selected by default."
+#~ msgstr "Sem cor seleccionada por defeito."
 
-#: options-check/options.php:248
-msgid "Typography"
-msgstr "Tipografia"
+#~ msgid "Typography"
+#~ msgstr "Tipografia"
 
-#: options-check/options.php:249
-msgid "Example typography."
-msgstr "Exemplo de tipografia."
+#~ msgid "Example typography."
+#~ msgstr "Exemplo de tipografia."
 
-#: options-check/options.php:255
-msgid "Custom Typography"
-msgstr "Tipografia personalizada."
+#~ msgid "Custom Typography"
+#~ msgstr "Tipografia personalizada."
 
-#: options-check/options.php:256
-msgid "Custom typography options."
-msgstr "Opções de tipografia personalizada."
+#~ msgid "Custom typography options."
+#~ msgstr "Opções de tipografia personalizada."
 
-#: options-check/options.php:263
-msgid "Text Editor"
-msgstr "Editor de texto"
+#~ msgid "Text Editor"
+#~ msgstr "Editor de texto"
 
-#: options-check/options.php:281
-msgid "Default Text Editor"
-msgstr "Editor de texto padrão"
+#~ msgid "Default Text Editor"
+#~ msgstr "Editor de texto padrão"
 
-#: options-check/options.php:282
-msgid ""
-"You can also pass settings to the editor.  Read more about wp_editor in <a "
-"href=\"%1$s\" target=\"_blank\">the WordPress codex</a>"
-msgstr ""
-"Também é possível passar opções para o editor.  Ler mais sobre wp_editor no "
-"<a href=\"%1$s\" target=\"_blank\">codex do WordPress</a>"
+#~ msgid ""
+#~ "You can also pass settings to the editor.  Read more about wp_editor in "
+#~ "<a href=\"%1$s\" target=\"_blank\">the WordPress codex</a>"
+#~ msgstr ""
+#~ "Também é possível passar opções para o editor.  Ler mais sobre wp_editor "
+#~ "no <a href=\"%1$s\" target=\"_blank\">codex do WordPress</a>"
 
-#: options-check/options.php:294
-msgid "Additional Text Editor"
-msgstr "Editor de texto adicional"
+#~ msgid "Additional Text Editor"
+#~ msgstr "Editor de texto adicional"
 
-#: options-check/options.php:295
-msgid "This editor includes media button."
-msgstr "Este editor inclui um botão de multimédia."
+#~ msgid "This editor includes media button."
+#~ msgstr "Este editor inclui um botão de multimédia."
 
-#: options-theme-customizer/options.php:101
-msgid "Basic"
-msgstr "Básico"
+#~ msgid "Basic"
+#~ msgstr "Básico"
 
-#: options-theme-customizer/options.php:158
-msgid "Extended"
-msgstr "Avançado"
+#~ msgid "Extended"
+#~ msgstr "Avançado"
 
 #~ msgid "Clear"
 #~ msgstr "Limpar"
