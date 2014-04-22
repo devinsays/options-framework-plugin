@@ -71,6 +71,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 * Indonesian translations.  Props @aryaprakasa.
 * Fix for colorpicker spacing.
+* Update translation .pot.
 
 = 1.8.0 =
 
