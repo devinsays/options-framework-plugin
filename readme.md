@@ -58,6 +58,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * Fix for colorpicker spacing.
 * Update translation .pot.
 * Updated Portuguese translations by @pedro-mendonca.
+* Use filtered values for optionsframework_admin_bar.
 
 #### 1.8.0 ####
 

@@ -366,14 +366,23 @@ class Options_Framework_Admin {
 	function optionsframework_admin_bar() {
 
 		$menu = $this->menu_settings();
+
 		global $wp_admin_bar;
 
-		$wp_admin_bar->add_menu( array(
+		if ( 'menu' == $menu['mode'] ) {
+			$href = admin_url( 'admin.php?page=' . $menu['menu_slug'] );
+		} else {
+			$href = admin_url( 'themes.php?page=' . $menu['menu_slug'] );
+		}
+
+		$args = array(
 			'parent' => 'appearance',
 			'id' => 'of_theme_options',
-			'title' => __( 'Theme Options', 'optionsframework' ),
-			'href' => admin_url( 'themes.php?page=' . $menu['menu_slug'] )
-		) );
+			'title' => $menu['menu_title'],
+			'href' => $href
+		);
+
+		$wp_admin_bar->add_menu( apply_filters( 'optionsframework_admin_bar', $args ) );
 	}
 
 }
