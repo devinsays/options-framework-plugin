@@ -4,7 +4,7 @@ Contributors: @downstairsdev
 Tags: options, theme options
 Donate link: http://bit.ly/options-donate-2
 Requires at least: 3.6
-Tested up to: 3.8.1
+Tested up to: 3.9
 Stable tag: 1.8.0
 License: GPLv2
 
@@ -72,6 +72,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * Indonesian translations.  Props @aryaprakasa.
 * Fix for colorpicker spacing.
 * Update translation .pot.
+* Updated Portuguese translations by @pedro-mendonca.
 
 = 1.8.0 =
 
