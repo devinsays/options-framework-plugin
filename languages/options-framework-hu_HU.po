@@ -1,135 +1,148 @@
-# Translation of Options Framework in Hungarian
-# This file is distributed under the same license as the Options Framework package.
+# Copyright (C) 2014
+# This file is distributed under the same license as the  package.
+# Translators:
+# Laszlo Espadas <kw@kardiweb.org>, 2014
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2012-06-17 03:04:08+0000\n"
+"Project-Id-Version: Options Framework plugin\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/options-framework-plugin\n"
+"POT-Creation-Date: 2014-04-22 15:02:20+00:00\n"
+"PO-Revision-Date: 2014-04-23 06:45+0000\n"
+"Last-Translator: Laszlo Espadas <kw @NOSPAM@ kardiweb dot org>\n"
+"Language-Team: Hungarian (Hungary) (http://www.transifex.com/projects/p/options-framework-plugin/language/hu_HU/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: GlotPress/0.1\n"
-"Project-Id-Version: Options Framework\n"
+"Language: hu_HU\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: options-sanitize.php:233
-msgid "Repeat Horizontally"
-msgstr "Vízszintes ismétlődés"
-
-#: options-sanitize.php:234
-msgid "Repeat Vertically"
-msgstr "Függőleges ismétlődés"
-
-#: options-sanitize.php:235
-msgid "Repeat All"
-msgstr "Mindegyik ismétlődjön"
-
-#: options-sanitize.php:248
-msgid "Top Left"
-msgstr "Bal felső"
-
-#: options-sanitize.php:249
-msgid "Top Center"
-msgstr "Középen fent"
-
-#: options-sanitize.php:250
-msgid "Top Right"
-msgstr "Jobb felső"
-
-#: options-sanitize.php:251
-msgid "Middle Left"
-msgstr "Közép bal"
-
-#: options-sanitize.php:252
-msgid "Middle Center"
-msgstr "Közép középen"
-
-#: options-sanitize.php:253
-msgid "Middle Right"
-msgstr "Közép jobb"
-
-#: options-sanitize.php:254
-msgid "Bottom Left"
-msgstr "Bal alsó"
-
-#: options-sanitize.php:255
-msgid "Bottom Center"
-msgstr "Középen alul"
-
-#: options-sanitize.php:256
-msgid "Bottom Right"
-msgstr "Jobb alsó"
-
-#: options-sanitize.php:269
-msgid "Scroll Normally"
-msgstr "Normál lapozás"
-
-#: options-sanitize.php:270
-msgid "Fixed in Place"
-msgstr "Hely javítása"
-
-#: options-sanitize.php:344
-msgid "Normal"
-msgstr "Normál"
-
-#: options-sanitize.php:345
-msgid "Italic"
-msgstr "Dőlt"
-
-#: options-sanitize.php:346
-msgid "Bold"
-msgstr "Félkövér"
-
-#: options-sanitize.php:347
-msgid "Bold Italic"
-msgstr "Félkövér dőlt"
-
-#: options-framework.php:71
-msgid "Your current theme does not have support for the Options Framework plugin.  <a href=\"%1$s\" target=\"_blank\">Learn More</a> | <a href=\"%2$s\">Hide Notice</a>"
+#: includes/class-options-framework-admin.php:64
+msgid ""
+"Your current theme does not have support for the Options Framework plugin.  "
+"<a href=\"%1$s\" target=\"_blank\">Learn More</a> | <a href=\"%2$s\">Hide "
+"Notice</a>"
 msgstr "A jelenlegi sablon nem támogatja az Options Framework bővítményt. <a href=\"%1$s\" target=\"_blank\">Bővebben</a> | <a href=\"%2$s\">Elrejtés</a>"
 
-#: options-framework.php:254 options-framework.php:456
+#: includes/class-options-framework-admin.php:121
+#: includes/class-options-framework-admin.php:122
+#: includes/class-options-framework-admin.php:374
 msgid "Theme Options"
 msgstr "Sablon beállítások"
 
-#: options-framework.php:323
+#: includes/class-options-framework-admin.php:240
 msgid "Save Options"
 msgstr "Beállítások mentése"
 
-#: options-framework.php:324
+#: includes/class-options-framework-admin.php:241
 msgid "Restore Defaults"
 msgstr "Alapértékek visszaállítása"
 
-#: options-framework.php:324
+#: includes/class-options-framework-admin.php:241
 msgid "Click OK to reset. Any theme settings will be lost!"
 msgstr "Kattintsunk az OK gombra az alapértékek visszaállításához. Minden jelenlegi beállítás elvész!"
 
-#: options-framework.php:358
+#: includes/class-options-framework-admin.php:272
 msgid "Default options restored."
 msgstr "Alapértékek visszaállítása."
 
-#: options-framework.php:400
+#: includes/class-options-framework-admin.php:326
 msgid "Options saved."
 msgstr "Sikeres mentés."
 
-#: options-medialibrary-uploader.php:26
-msgid "Options Framework Internal Container"
-msgstr "Options Framework belső tároló"
+#: includes/class-options-media-uploader.php:63
+msgid "No file chosen"
+msgstr "Nincs fájl kiválasztva"
 
-#: options-medialibrary-uploader.php:128
+#: includes/class-options-media-uploader.php:66
+#: includes/class-options-media-uploader.php:119
 msgid "Upload"
 msgstr "Feltőltés"
 
-#: options-medialibrary-uploader.php:151
+#: includes/class-options-media-uploader.php:68
+#: includes/class-options-media-uploader.php:120
+msgid "Remove"
+msgstr "Törlés"
+
+#: includes/class-options-media-uploader.php:71
+msgid "Upgrade your version of WordPress for full media support."
+msgstr "Frissítsük a WordPress rendszerünket a jobb media támogatásért."
+
+#: includes/class-options-media-uploader.php:95
 msgid "View File"
 msgstr "Fájl megtekintése"
 
-#: options-medialibrary-uploader.php:288
-msgid "Gallery"
-msgstr "Galéria"
-
-#: options-medialibrary-uploader.php:288
-msgid "Previously Uploaded"
-msgstr "Elöző feltőltés"
-
-#: options-sanitize.php:232
+#: includes/class-options-sanitization.php:241
 msgid "No Repeat"
 msgstr "Ne ismétlődjön"
+
+#: includes/class-options-sanitization.php:242
+msgid "Repeat Horizontally"
+msgstr "Vízszintes ismétlődés"
+
+#: includes/class-options-sanitization.php:243
+msgid "Repeat Vertically"
+msgstr "Függőleges ismétlődés"
+
+#: includes/class-options-sanitization.php:244
+msgid "Repeat All"
+msgstr "Mindegyik ismétlődjön"
+
+#: includes/class-options-sanitization.php:257
+msgid "Top Left"
+msgstr "Bal felső"
+
+#: includes/class-options-sanitization.php:258
+msgid "Top Center"
+msgstr "Középen fent"
+
+#: includes/class-options-sanitization.php:259
+msgid "Top Right"
+msgstr "Jobb felső"
+
+#: includes/class-options-sanitization.php:260
+msgid "Middle Left"
+msgstr "Közép bal"
+
+#: includes/class-options-sanitization.php:261
+msgid "Middle Center"
+msgstr "Közép középen"
+
+#: includes/class-options-sanitization.php:262
+msgid "Middle Right"
+msgstr "Közép jobb"
+
+#: includes/class-options-sanitization.php:263
+msgid "Bottom Left"
+msgstr "Bal alsó"
+
+#: includes/class-options-sanitization.php:264
+msgid "Bottom Center"
+msgstr "Középen alul"
+
+#: includes/class-options-sanitization.php:265
+msgid "Bottom Right"
+msgstr "Jobb alsó"
+
+#: includes/class-options-sanitization.php:278
+msgid "Scroll Normally"
+msgstr "Normál lapozás"
+
+#: includes/class-options-sanitization.php:279
+msgid "Fixed in Place"
+msgstr "Hely javítása"
+
+#: includes/class-options-sanitization.php:353
+msgid "Normal"
+msgstr "Normál"
+
+#: includes/class-options-sanitization.php:354
+msgid "Italic"
+msgstr "Dőlt"
+
+#: includes/class-options-sanitization.php:355
+msgid "Bold"
+msgstr "Félkövér"
+
+#: includes/class-options-sanitization.php:356
+msgid "Bold Italic"
+msgstr "Félkövér dőlt"
