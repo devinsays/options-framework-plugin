@@ -87,6 +87,9 @@
 	margin-right:5px;
 	float:left
 }
+#optionsframework .section-typography .wp-picker-container {
+	margin-top:2px;
+}
 #optionsframework .of-background-properties {
 	clear:both;
 	margin-top: 18px;
