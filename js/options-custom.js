@@ -25,17 +25,20 @@ jQuery(document).ready(function($) {
 
 	function options_framework_tabs() {
 
+		var $group = $('.group'),
+			$navtabs = $('.nav-tab-wrapper a'),
+			active_tab = '';
+
 		// Hides all the .group sections to start
-		$('.group').hide();
+		$group.hide();
 
 		// Find if a selected tab is saved in localStorage
-		var active_tab = '';
 		if ( typeof(localStorage) != 'undefined' ) {
-			active_tab = localStorage.getItem("active_tab");
+			active_tab = localStorage.getItem('active_tab');
 		}
 
 		// If active tab is saved and exists, load it's .group
-		if (active_tab != '' && $(active_tab).length ) {
+		if ( active_tab != '' && $(active_tab).length ) {
 			$(active_tab).fadeIn();
 			$(active_tab + '-tab').addClass('nav-tab-active');
 		} else {
@@ -44,31 +47,23 @@ jQuery(document).ready(function($) {
 		}
 
 		// Bind tabs clicks
-		$('.nav-tab-wrapper a').click(function(evt) {
+		$navtabs.click(function(e) {
 
-			evt.preventDefault();
+			e.preventDefault();
 
 			// Remove active class from all tabs
-			$('.nav-tab-wrapper a').removeClass('nav-tab-active');
+			$navtabs.removeClass('nav-tab-active');
 
 			$(this).addClass('nav-tab-active').blur();
 
-			var group = $(this).attr('href');
-
 			if (typeof(localStorage) != 'undefined' ) {
-				localStorage.setItem("active_tab", $(this).attr('href') );
+				localStorage.setItem('active_tab', $(this).attr('href') );
 			}
 
-			$('.group').hide();
-			$(group).fadeIn();
+			var selected = $(this).attr('href');
 
-			// Editor height sometimes needs adjustment when unhidden
-			$('.wp-editor-wrap').each(function() {
-				var editor_iframe = $(this).find('iframe');
-				if ( editor_iframe.height() < 30 ) {
-					editor_iframe.css({'height':'auto'});
-				}
-			});
+			$group.hide();
+			$(selected).fadeIn();
 
 		});
 	}
