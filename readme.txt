@@ -53,13 +53,14 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * textarea
 * checkbox
 * select
-* radio button
-* upload (image uploader)
+* radio buttons
+* upload (image/file uploader)
 * images (use images instead of radio buttons)
 * background (a set of options to define a background)
 * multicheck
-* color (a jquery color picker)
+* colorpicker
 * typography (a set of options to define typography)
+* editor
 
 == Screenshots ==
 
@@ -69,11 +70,12 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 = 1.8.1 =
 
-* Indonesian translations.  Props @aryaprakasa.
-* Fix for colorpicker spacing.
-* Update translation .pot.
-* Updated Portuguese translations by @pedro-mendonca.
-* Use filtered values for optionsframework_admin_bar.
+* Fix for colorpicker spacing
+* Better sanitization of upload option
+* Update translation .pot
+* Updated Portuguese translations by @pedro-mendonca
+* Indonesian translations props @aryaprakasa)
+* Use filtered values for optionsframework_admin_bar
 
 = 1.8.0 =
 

@@ -4,7 +4,7 @@
  * @author    Devin Price <devin@wptheming.com>
  * @license   GPL-2.0+
  * @link      http://wptheming.com
- * @copyright 2013 WP Theming
+ * @copyright 2010-2014 WP Theming
  */
 
 /* Text */
@@ -27,15 +27,15 @@ add_filter( 'of_sanitize_textarea', 'of_sanitize_textarea' );
 
 /* Select */
 
-add_filter( 'of_sanitize_select', 'of_sanitize_enum', 10, 2);
+add_filter( 'of_sanitize_select', 'of_sanitize_enum', 10, 2 );
 
 /* Radio */
 
-add_filter( 'of_sanitize_radio', 'of_sanitize_enum', 10, 2);
+add_filter( 'of_sanitize_radio', 'of_sanitize_enum', 10, 2 );
 
 /* Images */
 
-add_filter( 'of_sanitize_images', 'of_sanitize_enum', 10, 2);
+add_filter( 'of_sanitize_images', 'of_sanitize_enum', 10, 2 );
 
 /* Checkbox */
 
@@ -75,9 +75,9 @@ add_filter( 'of_sanitize_color', 'of_sanitize_hex' );
 
 function of_sanitize_upload( $input ) {
 	$output = '';
-	$filetype = wp_check_filetype($input);
+	$filetype = wp_check_filetype( $input );
 	if ( $filetype["ext"] ) {
-		$output = $input;
+		$output = esc_url( $input );
 	}
 	return $output;
 }
@@ -85,7 +85,7 @@ add_filter( 'of_sanitize_upload', 'of_sanitize_upload' );
 
 /* Editor */
 
-function of_sanitize_editor($input) {
+function of_sanitize_editor( $input ) {
 	if ( current_user_can( 'unfiltered_html' ) ) {
 		$output = $input;
 	}
@@ -109,7 +109,7 @@ function of_sanitize_allowedtags( $input ) {
 
 function of_sanitize_allowedposttags( $input ) {
 	global $allowedposttags;
-	$output = wpautop(wp_kses( $input, $allowedposttags));
+	$output = wpautop( wp_kses( $input, $allowedposttags) );
 	return $output;
 }
 add_filter( 'of_sanitize_info', 'of_sanitize_allowedposttags' );
