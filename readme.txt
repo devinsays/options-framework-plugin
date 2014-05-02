@@ -1,11 +1,11 @@
 === Options Framework ===
 
-Contributors: @downstairsdev
+Contributors: downstairsdev
 Tags: options, theme options
 Donate link: http://bit.ly/options-donate-2
 Requires at least: 3.6
 Tested up to: 3.9
-Stable tag: 1.8.1
+Stable tag: 1.8.2
 License: GPLv2
 
 == Description ==
