@@ -52,6 +52,10 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 ## Change log ##
 
+#### 1.8.2 ####
+
+* Fix for translation textdomain
+
 #### 1.8.1 ####
 
 * Fix for colorpicker spacing

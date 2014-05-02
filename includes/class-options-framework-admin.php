@@ -61,7 +61,7 @@ class Options_Framework_Admin {
 			$user_id = $current_user->ID;
 			if ( ! get_user_meta($user_id, 'optionsframework_ignore_notice') ) {
 				echo '<div class="updated optionsframework_setup_nag"><p>';
-				printf( __('Your current theme does not have support for the Options Framework plugin.  <a href="%1$s" target="_blank">Learn More</a> | <a href="%2$s">Hide Notice</a>', 'optionsframework'), 'http://wptheming.com/options-framework-plugin', '?optionsframework_nag_ignore=0');
+				printf( __('Your current theme does not have support for the Options Framework plugin.  <a href="%1$s" target="_blank">Learn More</a> | <a href="%2$s">Hide Notice</a>', 'options-framework' ), 'http://wptheming.com/options-framework-plugin', '?optionsframework_nag_ignore=0');
 				echo "</p></div>";
 			}
         }
@@ -118,8 +118,8 @@ class Options_Framework_Admin {
             'mode' => 'submenu',
 
             // Submenu default settings
-            'page_title' => __( 'Theme Options', 'optionsframework'),
-			'menu_title' => __('Theme Options', 'optionsframework'),
+            'page_title' => __( 'Theme Options', 'options-framework'),
+			'menu_title' => __('Theme Options', 'options-framework'),
 			'capability' => 'edit_theme_options',
 			'menu_slug' => 'options-framework',
             'parent_slug' => 'themes.php',
@@ -237,8 +237,8 @@ class Options_Framework_Admin {
 				<?php settings_fields( 'optionsframework' ); ?>
 				<?php Options_Framework_Interface::optionsframework_fields(); /* Settings */ ?>
 				<div id="optionsframework-submit">
-					<input type="submit" class="button-primary" name="update" value="<?php esc_attr_e( 'Save Options', 'optionsframework' ); ?>" />
-					<input type="submit" class="reset-button button-secondary" name="reset" value="<?php esc_attr_e( 'Restore Defaults', 'optionsframework' ); ?>" onclick="return confirm( '<?php print esc_js( __( 'Click OK to reset. Any theme settings will be lost!', 'optionsframework' ) ); ?>' );" />
+					<input type="submit" class="button-primary" name="update" value="<?php esc_attr_e( 'Save Options', 'options-framework' ); ?>" />
+					<input type="submit" class="reset-button button-secondary" name="reset" value="<?php esc_attr_e( 'Restore Defaults', 'options-framework' ); ?>" onclick="return confirm( '<?php print esc_js( __( 'Click OK to reset. Any theme settings will be lost!', 'options-framework' ) ); ?>' );" />
 					<div class="clear"></div>
 				</div>
 				</form>
@@ -269,7 +269,7 @@ class Options_Framework_Admin {
 		 */
 
 		if ( isset( $_POST['reset'] ) ) {
-			add_settings_error( 'options-framework', 'restore_defaults', __( 'Default options restored.', 'optionsframework' ), 'updated fade' );
+			add_settings_error( 'options-framework', 'restore_defaults', __( 'Default options restored.', 'options-framework' ), 'updated fade' );
 			return $this->get_default_values();
 		}
 
@@ -323,7 +323,7 @@ class Options_Framework_Admin {
 	 */
 
 	function save_options_notice() {
-		add_settings_error( 'options-framework', 'save_options', __( 'Options saved.', 'optionsframework' ), 'updated fade' );
+		add_settings_error( 'options-framework', 'save_options', __( 'Options saved.', 'options-framework' ), 'updated fade' );
 	}
 
 	/**

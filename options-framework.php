@@ -33,7 +33,7 @@ function optionsframework_init() {
 		return;
 
 	// Load translation files
-	load_plugin_textdomain( 'optionsframework', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+	load_plugin_textdomain( 'options-framework', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
 
 	// Loads the required Options Framework classes.
 	require plugin_dir_path( __FILE__ ) . 'includes/class-options-framework.php';
