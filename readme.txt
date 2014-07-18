@@ -68,6 +68,10 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 == Changelog ==
 
+= 1.8.3 =
+
+* Remove sanitization of info option and description field
+
 = 1.8.2 =
 
 * Fix for translation textdomain

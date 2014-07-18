@@ -383,7 +383,7 @@ class Options_Framework_Interface {
 					$output .= '<h4 class="heading">' . esc_html( $value['name'] ) . '</h4>' . "\n";
 				}
 				if ( isset( $value['desc'] ) ) {
-					$output .= apply_filters('of_sanitize_info', $value['desc'] ) . "\n";
+					$output .= $value['desc'] . "\n";
 				}
 				$output .= '</div>' . "\n";
 				break;
