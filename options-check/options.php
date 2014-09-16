@@ -1,29 +1,55 @@
-<?php
-/**
- * A unique identifier is defined to store the options in the database and reference them from the theme.
- * By default it uses the theme name, in lowercase and without spaces, but this can be changed if needed.
- * If the identifier changes, it'll appear as if the options have been reset.
+1
+/*
+2
+ * Helper function to return the theme option value. If no value has been saved, it returns $default.
+3
+ * Needed because options are saved as serialized strings.
+4
  *
+5
+ * This code allows the theme to work without errors if the Options Framework plugin has been disabled.
+6
  */
-
-function optionsframework_option_name() {
-
-	// This gets the theme name from the stylesheet (lowercase and without spaces)
-	$themename = get_option( 'stylesheet' );
-	$themename = preg_replace("/\W/", "_", strtolower($themename) );
-
-	$optionsframework_settings = get_option('optionsframework');
-	$optionsframework_settings['id'] = $themename;
-	update_option('optionsframework', $optionsframework_settings);
-
-	// echo $themename;
+7
+ 
+8
+if ( !function_exists( 'of_get_option' ) ) {
+9
+function of_get_option($name, $default = false) {
+10
+     
+11
+    $optionsframework_settings = get_option('optionsframework');
+12
+     
+13
+    // Gets the unique option id
+14
+    $option_name = $optionsframework_settings['id'];
+15
+     
+16
+    if ( get_option($option_name) ) {
+17
+        $options = get_option($option_name);
+18
+    }
+19
+         
+20
+    if ( isset($options[$name]) ) {
+21
+        return $options[$name];
+22
+    } else {
+23
+        return $default;
+24
+    }
+25
 }
-
-/**
- * Defines an array of options that will be used to generate the settings page and be saved in the database.
- * When creating the 'id' fields, make sure to use all lowercase and no spaces.
- *
- */
+26
+}
 
 function optionsframework_options() {
 
