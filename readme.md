@@ -52,6 +52,10 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 ## Change log ##
 
+#### Development ####
+
+* Update: Sanitization of editor field
+
 #### 1.8.3 ####
 
 * Remove sanitization of info option and description field
