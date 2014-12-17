@@ -15,7 +15,7 @@ class Options_Framework {
 	 * @since 1.7.0
 	 * @type string
 	 */
-	const VERSION = '1.8.2';
+	const VERSION = '1.8.3';
 
 	/**
 	 * Initialize the plugin.

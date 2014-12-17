@@ -2,7 +2,7 @@
 
 **Tags:** options, theme options
 **Requires at least:** 3.6
-**Tested up to:** 4.0
+**Tested up to:** 4.1
 **Stable tag:** 1.8.2
 **License:** GPLv2
 **Donate link:** http://bit.ly/options-donate-2
@@ -52,13 +52,10 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 ## Change log ##
 
-#### Development ####
-
-* Update: Sanitization of editor field
-
 #### 1.8.3 ####
 
-* Remove sanitization of info option and description field
+* Update: sanitization of info option and description field
+* Update: Sanitization of editor field
 
 #### 1.8.2 ####
 
