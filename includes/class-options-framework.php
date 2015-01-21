@@ -119,4 +119,13 @@ class Options_Framework {
 		return $options;
 	}
 
+	/**
+	 * Returns root relative url of plugin
+	 */
+	function root_url() {
+        $site_root = str_replace( '/wp-content/themes', '', get_theme_root() );
+        $plugin_root = str_replace( $site_root, '', dirname(__FILE__) );
+        $plugin_root = str_replace( '/includes', '/', $plugin_root );
+        return $plugin_root;
+	}
 }
