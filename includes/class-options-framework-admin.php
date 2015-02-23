@@ -370,9 +370,21 @@ class Options_Framework_Admin {
 		global $wp_admin_bar;
 
 		if ( 'menu' == $menu['mode'] ) {
-			$href = admin_url( 'admin.php?page=' . $menu['menu_slug'] );
+
+			if ( isset( $menu['parent_slug'] ) ) {
+				$href = admin_url( $menu['parent_slug'] . '?page=' . $menu['menu_slug'] );
+			} else {
+				$href = admin_url( 'admin.php?page=' . $menu['menu_slug'] );
+			}
+
 		} else {
-			$href = admin_url( 'themes.php?page=' . $menu['menu_slug'] );
+
+			if ( isset( $menu['parent_slug'] ) ) {
+				$href = admin_url( $menu['parent_slug'] . '?page=' . $menu['menu_slug'] );
+			} else {
+				$href = admin_url( 'themes.php?page=' . $menu['menu_slug'] );
+			}
+
 		}
 
 		$args = array(
