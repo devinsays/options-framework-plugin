@@ -274,7 +274,7 @@ function optionsframework_options() {
 	$wp_editor_settings = array(
 		'wpautop' => true, // Default
 		'textarea_rows' => 5,
-		'tinymce' => array( 'plugins' => 'wordpress' )
+		'tinymce' => array( 'plugins' => 'wordpress,wplink' )
 	);
 
 	$options[] = array(

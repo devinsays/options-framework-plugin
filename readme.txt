@@ -68,6 +68,10 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 == Changelog ==
 
+= Development =
+
+* Update: Include link button in tinyMCE (props @rosswintle)
+
 = 1.8.3 =
 
 * Update: sanitization of info option and description field

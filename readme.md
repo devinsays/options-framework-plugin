@@ -50,7 +50,11 @@ The "Options Check" theme is a blueprint for how to work with options.  It inclu
 
 You can also watch the video screencast I have at [http://wptheming.com/options-framework-plugin](http://wptheming.com/options-framework-plugin).
 
-## Change log ##
+## Changelog ##
+
+= Development =
+
+* Update: Include link button in tinyMCE (props @rosswintle)
 
 #### 1.8.3 ####
 

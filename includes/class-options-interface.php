@@ -353,7 +353,7 @@ class Options_Framework_Interface {
 				$default_editor_settings = array(
 					'textarea_name' => $textarea_name,
 					'media_buttons' => false,
-					'tinymce' => array( 'plugins' => 'wordpress' )
+					'tinymce' => array( 'plugins' => 'wordpress,wplink' )
 				);
 				$editor_settings = array();
 				if ( isset( $value['settings'] ) ) {
