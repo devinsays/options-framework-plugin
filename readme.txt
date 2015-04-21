@@ -4,8 +4,8 @@ Contributors: downstairsdev
 Tags: options, theme options
 Donate link: http://bit.ly/options-donate-2
 Requires at least: 3.6
-Tested up to: 4.1
-Stable tag: 1.8.2
+Tested up to: 4.2
+Stable tag: 1.8.4
 License: GPLv2
 
 == Description ==
@@ -68,7 +68,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 == Changelog ==
 
-= Development =
+= 1.8.4 =
 
 * Update: Include link button in tinyMCE (props @rosswintle)
 
