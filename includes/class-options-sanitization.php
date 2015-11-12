@@ -371,6 +371,47 @@ function of_sanitize_hex( $hex, $default = '' ) {
 add_filter( 'of_sanitize_color', 'of_sanitize_hex' );
 
 /**
+ * Sanitization for px
+ */
+function of_sanitize_px( $value ) {
+	$value_check = preg_replace( '/px/', '', $value );
+
+	return $value_check;
+}
+
+add_filter( 'of_px', 'of_sanitize_px' );
+
+/**
+ * Sanitization for css option.
+ */
+function of_sanitize_css( $input, $option ) {
+
+	$output = wp_parse_args( $input, array(
+		'margin_top'          => '',
+		'margin_right'        => '',
+		'margin_bottom'       => '',
+		'margin_left'         => '',
+		'border_top_width'    => '',
+		'border_right_width'  => '',
+		'border_bottom_width' => '',
+		'border_left_width'   => '',
+		'padding_top'         => '',
+		'padding_right'       => '',
+		'padding_bottom'      => '',
+		'padding_left'        => '',
+	) );
+
+
+	foreach ( $output as $key => $val ) {
+		$output[ $key ] = apply_filters( 'of_px', $val );
+	}
+
+	return $output;
+}
+
+add_filter( 'of_sanitize_css', 'of_sanitize_css', 10, 2 );
+
+/**
  * Get recognized font sizes.
  *
  * Returns an indexed array of all recognized font sizes.
