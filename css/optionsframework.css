@@ -221,7 +221,9 @@
 }
 #optionsframework .section:after {
 	clear: both;
-}}}/* Custom CSS */
+}
+
+/* Custom CSS */
 
 #optionsframework .c-css * {
     margin: 44px;
