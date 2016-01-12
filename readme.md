@@ -52,6 +52,10 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 ## Changelog ##
 
+#### Development ####
+
+* Update: Style headers to look nice in WordPress 4.4
+
 #### 1.8.4 ####
 
 * Update: Include link button in tinyMCE (props @rosswintle)
