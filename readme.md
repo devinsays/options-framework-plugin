@@ -1,4 +1,4 @@
-## Options Framework ##
+## Options Framework
 
 **Tags:** options, theme options
 **Requires at least:** 3.6
@@ -7,15 +7,15 @@
 **License:** GPLv2
 **Donate link:** http://bit.ly/options-donate-2
 
-## Screenshot ##
+## Screenshot
 
 ![An example of the "Advanced Options" tag in the "Options Check" theme using this plugin.](https://github.com/devinsays/options-framework-plugin/raw/master/screenshot-1.png)
 
-## Description ##
+## Description
 
 The Options Framework Plugin makes it easy to include an options panel in any WordPress theme.  It was built so developers can concentrate on making the actual theme rather than spending time creating an options panel from scratch.  It's free to use in both commercial and personal projects, just like WordPress itself.
 
-### Options Include: ###
+### Options Include:
 
 * text input
 * textarea
@@ -30,19 +30,19 @@ The Options Framework Plugin makes it easy to include an options panel in any Wo
 * typography (a set of options to define typography)
 * editor
 
-### Learn More ###
+### Learn More
 
 Please visit [http://wptheming.com/options-framework-plugin](http://wptheming.com/options-framework-plugin) for a full description of how to define and use the theme options.
 
-### Installation ###
+### Installation
 
 If your theme already has options enabled, they will show up under the appearance menu.
 
 If your theme doesn't have options, you can define them to options.php of your theme and they will instantly show up.  For more on how to do this, visit [http://wptheming.com/options-framework-plugin](http://wptheming.com/options-framework-plugin).
 
-## Frequently Asked Questions ##
+## Frequently Asked Questions
 
-### How do I build options for my own theme? ###
+### How do I build options for my own theme?
 
 Download the development version from GitHub [https://github.com/devinsays/options-framework-plugin](https://github.com/devinsays/options-framework-plugin) and copy the "options-check" folder into your themes directory.
 
@@ -50,26 +50,26 @@ The "Options Check" theme is a blueprint for how to work with options.  It inclu
 
 You can also watch the video screencast I have at [http://wptheming.com/options-framework-plugin](http://wptheming.com/options-framework-plugin).
 
-## Changelog ##
+## Changelog
 
-#### 1.8.5 ####
+#### 1.8.5
 
 * Update: Style headers to look nice in WordPress 4.4
 
-#### 1.8.4 ####
+#### 1.8.4
 
 * Update: Include link button in tinyMCE (props @rosswintle)
 
-#### 1.8.3 ####
+#### 1.8.3
 
 * Update: sanitization of info option and description field
 * Update: Sanitization of editor field
 
-#### 1.8.2 ####
+#### 1.8.2
 
 * Fix for translation textdomain
 
-#### 1.8.1 ####
+#### 1.8.1
 
 * Fix for colorpicker spacing
 * Better sanitization of upload option
@@ -78,7 +78,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * Indonesian translations props @aryaprakasa)
 * Use filtered values for optionsframework_admin_bar
 
-#### 1.8.0 ####
+#### 1.8.0
 
 * Increase default width of text inputs
 * Rename add_options_page function to resolve automatic theme check conflicts
@@ -89,25 +89,25 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * Add Danish translations (props @Tosak)
 * Allow menu parent to be filtered (props @nvsnkv)
 
-#### 1.7.1 ####
+#### 1.7.1
 
 * Fix to use option name if set in options.php
 
-#### 1.7.0 ####
+#### 1.7.0
 
 * Update to class based plugin (large code refactor)
 * Drop color picker support for older versions of WordPress
 * Better support for new admin interface in WordPress 3.8
 * Allow option pages without tabs
 
-#### 1.6.1 ####
+#### 1.6.1
 
 * Fix for update notice location
 * Use selected and checked functions more consistently
 * Reuse media modal for uploads
 * Portuguese translations (props @xipasduarte)
 
-#### 1.6 ####
+#### 1.6.0
 
 * Allow media buttons in the editor option
 * JS/CSS should only load on options page
@@ -115,15 +115,15 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * Menu settings filter
 * Fix js bindings for upload modal (props @themeblvd)
 
-#### 1.5.2 ####
+#### 1.5.2
 
 * Removed update routine to remove "optionsframework" post type
 
-#### 1.5.1 ####
+#### 1.5.1
 
 * Temporarily removed update routine
 
-#### 1.5 ####
+#### 1.5.0
 
 * Updated width of text input
 * New media uploader
@@ -134,7 +134,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * Russian translations (verha.net)
 * Swedish translations (kjeell.se)
 
-#### 1.4 ####
+#### 1.4.0
 
 * Add missing sanitization to typography color (@weplantmedia)
 * New colorpicker (props @mattweibe for getting this in WordPress core)
@@ -143,14 +143,14 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * Allow ids to passed to tabs (props @themeblvd)
 * Added optionsframework_after_validate hook (h/t @vanpop and @pryley)
 
-#### 1.3 ####
+#### 1.3.0
 
 * Allow options to save when set by theme customizer
 * Save checkbox options to boolean false rather than "0"
 * Added optionsframework_after hook
 * Hungarian translations by kardiweb.org
 
-#### 1.2 ####
+#### 1.2.0
 
 * Fix for font_size santization
 * Added internationalization support (@weslly)
@@ -159,7 +159,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * Make uploader post type non-public (@samargulies)
 * ID can now be passed on info option for styling purposes
 
-#### 1.1 ####
+#### 1.1.0
 
 * Added support for wp_editor
 * Updated textarea settings to allow rows parameter
@@ -167,13 +167,13 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * Filtering of typography options (@mattwiebe)
 * Updated methods for typography options
 
-#### 1.0 ####
+#### 1.0.0
 
 * Added filters for entire options array (props @inxilpro)
 * Added a filter for options.php location (props @mattwiebe)
 * Option header (h4) will not display in panel if name !isset (props @alepee)
 
-#### 0.9 ####
+#### 0.9.0
 
 * Load thickbox using site_url() to allow for https (props @samargulies)
 * Change santization to use $allowedposttags for textarea and info
@@ -183,20 +183,20 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * Allows dashes in the options id (props @mantone)
 * Uses add_theme_page over add_submenu_page (props @enile8)
 
-#### 0.8 ####
+#### 0.8.0
 
 * Saves tab states using local storage
 * Style updates WordPress 3.2 release
 * Added sanitization filter for info (of_sanitize_allowedtags)
 
-#### 0.7 ####
+#### 0.7.0
 
 * Added filtering for recognized arrays (like Font Face)
 * Using isset rather than !empty to return of_get_option
 * Significant updates for setting and restoring defaults
 * Background option outputs no-repeat rather than none
 
-#### 0.6 ####
+#### 0.6.0
 
 * Introduces validation filters (props @_mfields)
 * Better data sanitization and escaping (props @_mfields)
@@ -205,28 +205,28 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * Stores typography, backgrounds and multichecks directly as arrays
 * For full description, see: http://wptheming.com/2011/05/options-framework-0-6/
 
-#### 0.5 ####
+#### 0.5.0
 
 * Fixed errors when more than one multicheck options is used
 * Updated optionsframework_setdefaults so defaults actually save on first run
 * Require that all options have lowercase alphanumeric ids
 * Added link to options from the WordPress admin bar
 
-#### 0.4 ####
+#### 0.4.0
 
 * Updated multicheck option to save keys rather than values
 * Unset default array options after each output in optionsframework_setdefaults
 
-#### 0.3 ####
+#### 0.3.0
 
 * White listed options for increased security
 * Fixed errors with checkbox and select boxes
 * Improved the multicheck option and changed format
 
-#### 0.2 ####
+#### 0.2.0
 
 * Uploaded to the WordPress repository
 
-#### 0.1 ####
+#### 0.1.0
 
 * Initial release

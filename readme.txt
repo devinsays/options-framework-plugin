@@ -123,7 +123,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * Reuse media modal for uploads
 * Portuguese translations (props @xipasduarte)
 
-= 1.6 =
+= 1.6.0 =
 
 * Allow media buttons in the editor option
 * JS/CSS should only load on options page
@@ -139,7 +139,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 * Temporarily removed update routine
 
-= 1.5 =
+= 1.5.0 =
 
 * Updated width of text input
 * New media uploader
@@ -150,7 +150,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * Russian translations (verha.net)
 * Swedish translations (kjeell.se)
 
-= 1.4 =
+= 1.4.0 =
 
 * Add missing sanitization to typography color (@weplantmedia)
 * New colorpicker (props @mattweibe for getting this in WordPress core)
@@ -159,14 +159,14 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * Allow ids to passed to tabs (props @themeblvd)
 * Added optionsframework_after_validate hook (h/t @vanpop and @pryley)
 
-= 1.3 =
+= 1.3.0 =
 
 * Allow options to save when set by theme customizer
 * Save checkbox options to boolean false rather than "0"
 * Added optionsframework_after hook
 * Hungarian translations by kardiweb.org
 
-= 1.2 =
+= 1.2.0 =
 
 * Fix for font_size santization
 * Added internationalization support (@weslly)
@@ -175,7 +175,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * Make uploader post type non-public (@samargulies)
 * ID can now be passed on info option for styling purposes
 
-= 1.1 =
+= 1.1.0 =
 
 * Added support for wp_editor
 * Updated textarea settings to allow rows parameter
@@ -183,13 +183,13 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * Filtering of typography options (@mattwiebe)
 * Updated methods for typography options
 
-= 1.0 =
+= 1.0.0 =
 
 * Added filters for entire options array (props @inxilpro)
 * Added a filter for options.php location (props @mattwiebe)
 * Option header (h4) will not display in panel if name !isset (props @alepee)
 
-= 0.9 =
+= 0.9.0 =
 
 * Load thickbox using site_url() to allow for https (props @samargulies)
 * Change santization to use $allowedposttags for textarea and info
@@ -199,20 +199,20 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * Allows dashes in the options id (props @mantone)
 * Uses add_theme_page over add_submenu_page (props @enile8)
 
-= 0.8 =
+= 0.8.0 =
 
 * Saves tab states using local storage
 * Style updates WordPress 3.2 release
 * Added sanitization filter for info (of_sanitize_allowedtags)
 
-= 0.7 =
+= 0.7.0 =
 
 * Added filtering for recognized arrays (like Font Face)
 * Using isset rather than !empty to return of_get_option
 * Significant updates for setting and restoring defaults
 * Background option outputs no-repeat rather than none
 
-= 0.6 =
+= 0.6.0 =
 
 * Introduces validation filters (props @_mfields)
 * Better data sanitization and escaping (props @_mfields)
@@ -221,28 +221,28 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * Stores typography, backgrounds and multichecks directly as arrays
 * For full description, see: http://wptheming.com/2011/05/options-framework-0-6/
 
-= 0.5 =
+= 0.5.0 =
 
 * Fixed errors when more than one multicheck options is used
 * Updated optionsframework_setdefaults so defaults actually save on first run
 * Require that all options have lowercase alphanumeric ids
 * Added link to options from the WordPress admin bar
 
-= 0.4 =
+= 0.4.0 =
 
 * Updated multicheck option to save keys rather than values
 * Unset default array options after each output in optionsframework_setdefaults
 
-= 0.3 =
+= 0.3.0 =
 
 * White listed options for increased security
 * Fixed errors with checkbox and select boxes
 * Improved the multicheck option and changed format
 
-= 0.2 =
+= 0.2.0 =
 
 * Uploaded to the WordPress repository
 
-= 0.1 =
+= 0.1.0 =
 
 * Initial release
