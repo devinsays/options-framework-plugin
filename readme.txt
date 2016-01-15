@@ -5,7 +5,7 @@ Tags: options, theme options
 Donate link: http://bit.ly/options-donate-2
 Requires at least: 3.6
 Tested up to: 4.4.1
-Stable tag: 1.8.4
+Stable tag: 1.8.5
 License: GPLv2
 
 == Description ==
@@ -68,7 +68,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 == Changelog ==
 
-= Development =
+= 1.8.5 =
 
 * Update: Style headers to look nice in WordPress 4.4
 
