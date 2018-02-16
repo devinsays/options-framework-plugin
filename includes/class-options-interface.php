@@ -245,8 +245,8 @@ class Options_Framework_Interface {
 				if ( $typography_options['sizes'] ) {
 					$font_size = '<select class="of-typography of-typography-size" name="' . esc_attr( $option_name . '[' . $value['id'] . '][size]' ) . '" id="' . esc_attr( $value['id'] . '_size' ) . '">';
 					$sizes = $typography_options['sizes'];
-					foreach ( $sizes as $i ) {
-						$size = $i . 'px';
+					foreach ( $sizes as $size ) {
+						$size = $size . 'px';
 						$font_size .= '<option value="' . esc_attr( $size ) . '" ' . selected( $typography_stored['size'], $size, false ) . '>' . esc_html( $size ) . '</option>';
 					}
 					$font_size .= '</select>';

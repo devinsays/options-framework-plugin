@@ -78,7 +78,7 @@ add_filter( 'of_sanitize_checkbox', 'of_sanitize_checkbox' );
  * @return array of sanitized values ('1' or false)
  */
 function of_sanitize_multicheck( $input, $option ) {
-	$output = '';
+	$output = array();
 	if ( is_array( $input ) ) {
 		foreach( $option['options'] as $key => $value ) {
 			$output[$key] = false;

@@ -4,7 +4,7 @@ Contributors: downstairsdev
 Tags: options, theme options
 Donate link: http://bit.ly/options-donate-2
 Requires at least: 3.6
-Tested up to: 4.4.1
+Tested up to: 4.9.4
 Stable tag: 1.8.5
 License: GPLv2
 
@@ -29,13 +29,13 @@ The Options Framework Plugin makes it easy to include an options panel in any Wo
 
 = Learn More =
 
-Please visit [http://wptheming.com/options-framework-plugin](http://wptheming.com/options-framework-plugin) for a full description of how to define and use the theme options.
+Please visit [https://wptheming.com/options-framework-plugin](https://wptheming.com/options-framework-plugin) for a full description of how to define and use the theme options.
 
 == Installation ==
 
 If your theme already has options enabled, they will show up under the appearance menu.
 
-If your theme doesn't have options, you can define them to options.php of your theme and they will instantly show up.  For more on how to do this, visit [http://wptheming.com/options-framework-plugin](http://wptheming.com/options-framework-plugin).
+If your theme doesn't have options, you can define them to options.php of your theme and they will instantly show up.  For more on how to do this, visit [https://wptheming.com/options-framework-plugin](https://wptheming.com/options-framework-plugin).
 
 == Frequently Asked Questions ==
 
@@ -45,7 +45,7 @@ Download the development version from GitHub [https://github.com/devinsays/optio
 
 The "Options Check" theme is a blueprint for how to work with options.  It includes an example of every option available in the panel and sample output in the theme.
 
-You can also watch the video screencast I have at [http://wptheming.com/options-framework-plugin](http://wptheming.com/options-framework-plugin).
+You can also watch the video screencast I have at [https://wptheming.com/options-framework-plugin](https://wptheming.com/options-framework-plugin).
 
 = What options are available to use? =
 
@@ -68,7 +68,11 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 
 == Changelog ==
 
-= 1.8.5 =
+= 1.8.6 =
+
+* Fix: of_sanitize_multicheck should return an array
+
+= Development =
 
 * Update: Style headers to look nice in WordPress 4.4
 
@@ -219,7 +223,7 @@ You can also watch the video screencast I have at [http://wptheming.com/options-
 * Updates labels in options-interface.php
 * Changes how checkboxes saved in database ("0" or "1")
 * Stores typography, backgrounds and multichecks directly as arrays
-* For full description, see: http://wptheming.com/2011/05/options-framework-0-6/
+* For full description, see: https://wptheming.com/2011/05/options-framework-0-6/
 
 = 0.5.0 =
 
