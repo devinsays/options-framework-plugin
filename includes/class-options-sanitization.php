@@ -63,11 +63,9 @@ add_filter( 'of_sanitize_textarea', 'of_sanitize_textarea' );
  */
 function of_sanitize_checkbox( $input ) {
 	if ( $input ) {
-		$output = '1';
-	} else {
-		$output = false;
+		return '1';
 	}
-	return $output;
+	return false;
 }
 add_filter( 'of_sanitize_checkbox', 'of_sanitize_checkbox' );
 
@@ -278,7 +276,7 @@ function of_sanitize_font_size( $value ) {
 	if ( in_array( (int) $value_check, $recognized ) ) {
 		return $value;
 	}
-	return apply_filters( 'of_default_font_size', $recognized );
+	return apply_filters( 'of_default_font_size', current( $recognized ) );
 }
 add_filter( 'of_font_size', 'of_sanitize_font_size' );
 

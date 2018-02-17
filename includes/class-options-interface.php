@@ -94,10 +94,10 @@ class Options_Framework_Interface {
 
 			// If the option is already saved, override $val
 			if ( ( $value['type'] != 'heading' ) && ( $value['type'] != 'info') ) {
-				if ( isset( $settings[($value['id'])]) ) {
-					$val = $settings[($value['id'])];
+				if ( isset( $settings[$value['id']]) ) {
+					$val = $settings[$value['id']];
 					// Striping slashes of non-array options
-					if ( !is_array($val) ) {
+					if ( ! is_array( $val ) ) {
 						$val = stripslashes( $val );
 					}
 				}

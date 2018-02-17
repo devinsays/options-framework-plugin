@@ -10,25 +10,25 @@
 class Options_Framework_Admin {
 
 	/**
-     * Page hook for the options screen
-     *
-     * @since 1.7.0
-     * @type string
-     */
-    protected $options_screen = null;
+	 * Page hook for the options screen
+	 *
+	 * @since 1.7.0
+	 * @type string
+	 */
+	protected $options_screen = null;
 
-    /**
-     * Hook in the scripts and styles
-     *
-     * @since 1.7.0
-     */
-    public function init() {
+	/**
+	 * Hook in the scripts and styles
+	 *
+	 * @since 1.7.0
+	 */
+	public function init() {
 
 		// Gets options to load
-    	$options = & Options_Framework::_optionsframework_options();
+		$options = & Options_Framework::_optionsframework_options();
 
 		// Checks if options are available
-    	if ( $options ) {
+		if ( $options ) {
 
 			// Add the options page and menu item.
 			add_action( 'admin_menu', array( $this, 'add_custom_options_page' ) );
@@ -49,14 +49,14 @@ class Options_Framework_Admin {
 			add_action( 'admin_init', array( $this, 'options_notice_ignore' ) );
 		}
 
-    }
+	}
 
 	/**
-     * Let's the user know that options aren't available for their theme
-     */
-    function options_notice() {
+	 * Let's the user know that options aren't available for their theme
+	 */
+	function options_notice() {
 		global $pagenow;
-        if ( !is_multisite() && ( $pagenow == 'plugins.php' || $pagenow == 'themes.php' ) ) {
+		if ( !is_multisite() && ( $pagenow == 'plugins.php' || $pagenow == 'themes.php' ) ) {
 			global $current_user ;
 			$user_id = $current_user->ID;
 			if ( ! get_user_meta($user_id, 'optionsframework_ignore_notice') ) {
@@ -64,12 +64,12 @@ class Options_Framework_Admin {
 				printf( __('Your current theme does not have support for the Options Framework plugin.  <a href="%1$s" target="_blank">Learn More</a> | <a href="%2$s">Hide Notice</a>', 'options-framework' ), 'http://wptheming.com/options-framework-plugin', '?optionsframework_nag_ignore=0');
 				echo "</p></div>";
 			}
-        }
+		}
 	}
 
 	/**
-     * Allows the user to hide the options notice
-     */
+	 * Allows the user to hide the options notice
+	 */
 	function options_notice_ignore() {
 		global $current_user;
 		$user_id = $current_user->ID;
@@ -79,14 +79,14 @@ class Options_Framework_Admin {
 	}
 
 	/**
-     * Registers the settings
-     *
-     * @since 1.7.0
-     */
-    function settings_init() {
+	 * Registers the settings
+	 *
+	 * @since 1.7.0
+	 */
+	function settings_init() {
 
-    	// Load Options Framework Settings
-        $optionsframework_settings = get_option( 'optionsframework' );
+		// Load Options Framework Settings
+		$optionsframework_settings = get_option( 'optionsframework' );
 
 		// Registers the settings fields and callback
 		register_setting( 'optionsframework', $optionsframework_settings['id'],  array ( $this, 'validate_options' ) );
@@ -94,7 +94,7 @@ class Options_Framework_Admin {
 		// Displays notice after options save
 		add_action( 'optionsframework_after_validate', array( $this, 'save_options_notice' ) );
 
-    }
+	}
 
 	/*
 	 * Define menu options (still limited to appearance section)
@@ -115,18 +115,18 @@ class Options_Framework_Admin {
 		$menu = array(
 
 			// Modes: submenu, menu
-            'mode' => 'submenu',
+			'mode' => 'submenu',
 
-            // Submenu default settings
-            'page_title' => __( 'Theme Options', 'options-framework'),
+			// Submenu default settings
+			'page_title' => __( 'Theme Options', 'options-framework'),
 			'menu_title' => __('Theme Options', 'options-framework'),
 			'capability' => 'edit_theme_options',
 			'menu_slug' => 'options-framework',
-            'parent_slug' => 'themes.php',
+			'parent_slug' => 'themes.php',
 
-            // Menu default settings
-            'icon_url' => 'dashicons-admin-generic',
-            'position' => '61'
+			// Menu default settings
+			'icon_url' => 'dashicons-admin-generic',
+			'position' => '61'
 
 		);
 
@@ -134,68 +134,80 @@ class Options_Framework_Admin {
 	}
 
 	/**
-     * Add a subpage called "Theme Options" to the appearance menu.
-     *
-     * @since 1.7.0
-     */
+	 * Add a subpage called "Theme Options" to the appearance menu.
+	 *
+	 * @since 1.7.0
+	 */
 	function add_custom_options_page() {
 
 		$menu = $this->menu_settings();
 
-        switch( $menu['mode'] ) {
+		switch( $menu['mode'] ) {
 
-            case 'menu':
-            	// http://codex.wordpress.org/Function_Reference/add_menu_page
-                $this->options_screen = add_menu_page(
-                	$menu['page_title'],
-                	$menu['menu_title'],
-                	$menu['capability'],
-                	$menu['menu_slug'],
-                	array( $this, 'options_page' ),
-                	$menu['icon_url'],
-                	$menu['position']
-                );
-                break;
+			case 'menu':
+				// http://codex.wordpress.org/Function_Reference/add_menu_page
+				$this->options_screen = add_menu_page(
+					$menu['page_title'],
+					$menu['menu_title'],
+					$menu['capability'],
+					$menu['menu_slug'],
+					array( $this, 'options_page' ),
+					$menu['icon_url'],
+					$menu['position']
+				);
+				break;
 
-            default:
-            	// http://codex.wordpress.org/Function_Reference/add_submenu_page
-                $this->options_screen = add_submenu_page(
-                	$menu['parent_slug'],
-                	$menu['page_title'],
-                	$menu['menu_title'],
-                	$menu['capability'],
-                	$menu['menu_slug'],
-                	array( $this, 'options_page' ) );
-                break;
-        }
+			default:
+				// http://codex.wordpress.org/Function_Reference/add_submenu_page
+				$this->options_screen = add_submenu_page(
+					$menu['parent_slug'],
+					$menu['page_title'],
+					$menu['menu_title'],
+					$menu['capability'],
+					$menu['menu_slug'],
+					array( $this, 'options_page' ) );
+				break;
+		}
 	}
 
 	/**
-     * Loads the required stylesheets
-     *
-     * @since 1.7.0
-     */
+	 * Loads the required stylesheets
+	 *
+	 * @since 1.7.0
+	 */
 	function enqueue_admin_styles( $hook ) {
 
-		if ( $this->options_screen != $hook )
-	        return;
+		if ( $this->options_screen != $hook ) {
+			return;
+		}
 
-		wp_enqueue_style( 'optionsframework', plugin_dir_url( dirname(__FILE__) ) . 'css/optionsframework.css', array(),  Options_Framework::VERSION );
+		wp_enqueue_style(
+			'optionsframework',
+			plugin_dir_url( dirname(__FILE__) ) . 'css/optionsframework.css',
+			array(),
+			Options_Framework::VERSION
+		);
 		wp_enqueue_style( 'wp-color-picker' );
 	}
 
 	/**
-     * Loads the required javascript
-     *
-     * @since 1.7.0
-     */
+	 * Loads the required javascript
+	 *
+	 * @since 1.7.0
+	 */
 	function enqueue_admin_scripts( $hook ) {
 
-		if ( $this->options_screen != $hook )
-	        return;
+		if ( $this->options_screen != $hook ) {
+			return;
+		}
 
 		// Enqueue custom option panel JS
-		wp_enqueue_script( 'options-custom', plugin_dir_url( dirname(__FILE__) ) . 'js/options-custom.js', array( 'jquery','wp-color-picker' ), Options_Framework::VERSION );
+		wp_enqueue_script(
+			'options-custom',
+			plugin_dir_url( dirname(__FILE__) ) . 'js/options-custom.js',
+			array( 'jquery','wp-color-picker' ),
+			Options_Framework::VERSION
+		);
 
 		// Inline scripts from options-interface.php
 		add_action( 'admin_head', array( $this, 'of_admin_head' ) );
@@ -207,8 +219,8 @@ class Options_Framework_Admin {
 	}
 
 	/**
-     * Builds out the options panel.
-     *
+	 * Builds out the options panel.
+	 *
 	 * If we were using the Settings API as it was intended we would use
 	 * do_settings_sections here.  But as we don't want the settings wrapped in a table,
 	 * we'll call our own custom optionsframework_fields.  See options-interface.php
@@ -216,8 +228,8 @@ class Options_Framework_Admin {
 	 *
 	 * Nonces are provided using the settings_fields()
 	 *
-     * @since 1.7.0
-     */
+	 * @since 1.7.0
+	 */
 	 function options_page() { ?>
 
 		<div id="optionsframework-wrap" class="wrap">
@@ -225,14 +237,14 @@ class Options_Framework_Admin {
 		<?php $menu = $this->menu_settings(); ?>
 		<h2><?php echo esc_html( $menu['page_title'] ); ?></h2>
 
-	    <h2 class="nav-tab-wrapper">
-	        <?php echo Options_Framework_Interface::optionsframework_tabs(); ?>
-	    </h2>
+		<h2 class="nav-tab-wrapper">
+			<?php echo Options_Framework_Interface::optionsframework_tabs(); ?>
+		</h2>
 
-	    <?php settings_errors( 'options-framework' ); ?>
+		<?php settings_errors( 'options-framework' ); ?>
 
-	    <div id="optionsframework-metabox" class="metabox-holder">
-		    <div id="optionsframework" class="postbox">
+		<div id="optionsframework-metabox" class="metabox-holder">
+			<div id="optionsframework" class="postbox">
 				<form action="options.php" method="post">
 				<?php settings_fields( 'optionsframework' ); ?>
 				<?php Options_Framework_Interface::optionsframework_fields(); /* Settings */ ?>
@@ -269,7 +281,12 @@ class Options_Framework_Admin {
 		 */
 
 		if ( isset( $_POST['reset'] ) ) {
-			add_settings_error( 'options-framework', 'restore_defaults', __( 'Default options restored.', 'options-framework' ), 'updated fade' );
+			add_settings_error(
+				'options-framework',
+				'restore_defaults',
+				__( 'Default options restored.', 'options-framework' ),
+				'updated fade'
+			);
 			return $this->get_default_values();
 		}
 
@@ -323,7 +340,12 @@ class Options_Framework_Admin {
 	 */
 
 	function save_options_notice() {
-		add_settings_error( 'options-framework', 'save_options', __( 'Options saved.', 'options-framework' ), 'updated fade' );
+		add_settings_error(
+			'options-framework',
+			'save_options',
+			__( 'Options saved.', 'options-framework' ),
+			'updated fade'
+		);
 	}
 
 	/**

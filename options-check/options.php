@@ -68,8 +68,8 @@ function optionsframework_options() {
 
 	// Typography Options
 	$typography_options = array(
-		'sizes' => array( '6','12','14','16','20' ),
-		'faces' => array( 'Helvetica Neue' => 'Helvetica Neue','Arial' => 'Arial' ),
+		'sizes' => array( '12','14','16','20' ),
+		'faces' => array( 'Helvetica Neue' => 'Helvetica Neue', 'georgia' => 'Georgia' ),
 		'styles' => array( 'normal' => 'Normal','bold' => 'Bold' ),
 		'color' => false
 	);

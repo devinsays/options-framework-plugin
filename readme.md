@@ -52,9 +52,11 @@ You can also watch the video screencast I have at [https://wptheming.com/options
 
 ## Changelog
 
-#### Development
+#### 1.8.6
 
 * Fix: of_sanitize_multicheck should return an array
+* Fix: Typography size should returns a string rather than array
+* Fix: Fix isset notices in custom typography field for Options Check
 
 #### 1.8.5
 

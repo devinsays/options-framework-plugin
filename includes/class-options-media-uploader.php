@@ -60,6 +60,7 @@ class Options_Framework_Media_Uploader {
 		if ( $value ) {
 			$class = ' has-file';
 		}
+
 		$output .= '<input id="' . $id . '" class="upload' . $class . '" type="text" name="'.$name.'" value="' . $value . '" placeholder="' . __('No file chosen', 'options-framework') .'" />' . "\n";
 		if ( function_exists( 'wp_enqueue_media' ) ) {
 			if ( ( $value == '' ) ) {
@@ -107,13 +108,21 @@ class Options_Framework_Media_Uploader {
 
 		$menu = Options_Framework_Admin::menu_settings();
 
-        if ( substr( $hook, -strlen( $menu['menu_slug'] ) ) !== $menu['menu_slug'] )
-	        return;
+		if ( substr( $hook, -strlen( $menu['menu_slug'] ) ) !== $menu['menu_slug'] ) {
+			return;
+		}
 
-		if ( function_exists( 'wp_enqueue_media' ) )
+		if ( function_exists( 'wp_enqueue_media' ) ) {
 			wp_enqueue_media();
+		}
 
-		wp_register_script( 'of-media-uploader', plugin_dir_url( dirname(__FILE__) ) .'js/media-uploader.js', array( 'jquery' ), Options_Framework::VERSION );
+		wp_register_script(
+			'of-media-uploader',
+			plugin_dir_url( dirname(__FILE__) ) .'js/media-uploader.js',
+			array( 'jquery' ),
+			Options_Framework::VERSION
+		);
+
 		wp_enqueue_script( 'of-media-uploader' );
 		wp_localize_script( 'of-media-uploader', 'optionsframework_l10n', array(
 			'upload' => __( 'Upload', 'options-framework' ),
