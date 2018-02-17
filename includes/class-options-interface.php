@@ -396,6 +396,9 @@ class Options_Framework_Interface {
 				}
 				$class = '';
 				$class = ! empty( $value['id'] ) ? $value['id'] : $value['name'];
+				if ( isset( $value['class'] ) ) {
+					$class .= ' ' . $value['class'];
+				}
 				$class = preg_replace('/[^a-zA-Z0-9._\-]/', '', strtolower($class) );
 				$output .= '<div id="options-group-' . $counter . '" class="group ' . $class . '">';
 				$output .= '<h3>' . esc_html( $value['name'] ) . '</h3>' . "\n";
