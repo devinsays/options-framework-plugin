@@ -41,7 +41,7 @@
 	max-width:94%;
 }
 #optionsframework .controls input[type=text] {
-	width:100%;
+    /*width: 100%;*/
 }
 #optionsframework .controls input[type=text].wp-color-picker {
     width: 65px;
@@ -223,4 +223,95 @@
 }
 #optionsframework .section:after {
 	clear: both;
+}
+
+/* Custom CSS */
+
+#optionsframework .c-css * {
+    margin: 44px;
+    position: relative;
+}
+
+#optionsframework .c-css label {
+    position: absolute;
+    font-size: 9px;
+    line-height: 9px;
+    top: 6px;
+    left: 5px;
+    color: #2C2C2C;
+    margin: 0;
+    padding: 0;
+}
+
+#optionsframework .c-css input {
+    position: absolute;
+    text-align: center;
+    padding: 3px 0;
+    height: 24px;
+    width: 34px;
+    margin: 0;
+    border: 1px solid #bdbdbd;
+    font-size: 11px;
+    line-height: 11px;
+}
+
+#optionsframework .c-css input.c-top {
+    top: 11px;
+    left: 50%;
+    margin-left: -17px;
+}
+
+#optionsframework .c-css input.c-bottom {
+    bottom: 11px;
+    left: 50%;
+    margin-left: -17px;
+}
+
+#optionsframework .c-css input.c-left {
+    top: 50%;
+    left: 5px;
+    margin-top: -12px;
+}
+
+#optionsframework .c-css input.c-right {
+    top: 50%;
+    right: 5px;
+    margin-top: -12px;
+}
+
+#optionsframework .c-css .c-margin {
+    border: 1px dashed #bababa;
+    margin: 1px;
+}
+
+#optionsframework .c-css .c-margin .c-border {
+    border: 1px solid #d7d7d7;
+    background: #f6f6f6;
+}
+
+#optionsframework .c-css .c-margin .c-border .c-padding {
+    border: 1px solid #bababa;
+    background: #ebebeb;
+}
+
+#optionsframework .c-css .c-margin .c-border .c-padding .c-content {
+    border: 1px solid #bababa;
+    height: 50px;
+    padding: 0px;
+    text-align: center;
+    font-size: 10px;
+    line-height: 11px;
+    box-sizing: border-box;
+}
+
+#optionsframework .c-css .c-margin .c-border .c-padding .c-content i {
+    margin: 8px auto;
+    background: transparent center center no-repeat;
+    display: block;
+    width: 32px;
+    height: 32px;
+}
+
+#optionsframework .c-css .c-active {
+    background-color: #00aef0 !important;
 }

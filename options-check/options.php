@@ -260,6 +260,13 @@ function optionsframework_options() {
 		'options' => $typography_options );
 
 	$options[] = array(
+		'name' => __( 'Padding, Border, Margin', 'options_check' ),
+		'desc' => __( 'Set custom padding, border width or margin.', 'options_check' ),
+		'id'   => 'custom_css',
+		'type' => 'css'
+	);
+
+	$options[] = array(
 		'name' => __('Text Editor', 'options_check'),
 		'type' => 'heading' );
 

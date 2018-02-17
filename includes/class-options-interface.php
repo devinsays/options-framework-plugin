@@ -345,6 +345,52 @@ class Options_Framework_Interface {
 
 				break;
 
+				// Custom css
+				case "css":
+					$css_defaults = array(
+						'margin_top'          => '',
+						'margin_right'        => '',
+						'margin_bottom'       => '',
+						'margin_left'         => '',
+						'border_top_width'    => '',
+						'border_right_width'  => '',
+						'border_bottom_width' => '',
+						'border_left_width'   => '',
+						'padding_top'         => '',
+						'padding_right'       => '',
+						'padding_bottom'      => '',
+						'padding_left'        => '',
+					);
+
+					$css_stored = wp_parse_args( $val, $css_defaults );
+
+					$output .= '
+						<div class="c-css">
+							<div class="c-margin">
+								<label>margin</label>
+								<input type="text" name="' . esc_attr( $option_name . '[' . $value['id'] . '][margin_top]' ) . '" data-name="margin-top" class="c-top" placeholder="-" value="' . esc_attr( $css_stored['margin_top'] ) . '" id="' . esc_attr( $value['id'] . '_margin_top' ) . '">
+								<input type="text" name="' . esc_attr( $option_name . '[' . $value['id'] . '][margin_right]' ) . '" data-name="margin-right" class="c-right" placeholder="-" value="' . esc_attr( $css_stored['margin_right'] ) . '" id="' . esc_attr( $value['id'] . '_margin_right' ) . '">
+								<input type="text" name="' . esc_attr( $option_name . '[' . $value['id'] . '][margin_bottom]' ) . '" data-name="margin-bottom" class="c-bottom" placeholder="-" value="' . esc_attr( $css_stored['margin_bottom'] ) . '" id="' . esc_attr( $value['id'] . '_margin_bottom' ) . '">
+								<input type="text" name="' . esc_attr( $option_name . '[' . $value['id'] . '][margin_left]' ) . '" data-name="margin-left" class="c-left" placeholder="-" value="' . esc_attr( $css_stored['margin_left'] ) . '" id="' . esc_attr( $value['id'] . '_margin_left' ) . '">
+								<div class="c-border">
+									<label>border</label>
+									<input type="text" name="' . esc_attr( $option_name . '[' . $value['id'] . '][border_top_width]' ) . '" data-name="border-width-top" class="c-top" placeholder="-" value="' . esc_attr( $css_stored['border_top_width'] ) . '" id="' . esc_attr( $value['id'] . '_border_top_width' ) . '">
+									<input type="text" name="' . esc_attr( $option_name . '[' . $value['id'] . '][border_right_width]' ) . '" data-name="border-width-right" class="c-right" placeholder="-" value="' . esc_attr( $css_stored['border_right_width'] ) . '" id="' . esc_attr( $value['id'] . '_border_right_width' ) . '">
+									<input type="text" name="' . esc_attr( $option_name . '[' . $value['id'] . '][border_bottom_width]' ) . '" data-name="border-width-bottom" class="c-bottom" placeholder="-" value="' . esc_attr( $css_stored['border_bottom_width'] ) . '" id="' . esc_attr( $value['id'] . '_border_bottom_width' ) . '">
+									<input type="text" name="' . esc_attr( $option_name . '[' . $value['id'] . '][border_left_width]' ) . '" data-name="border-width-left" class="c-left" placeholder="-" value="' . esc_attr( $css_stored['border_left_width'] ) . '" id="' . esc_attr( $value['id'] . '_border_left_width' ) . '">
+									<div class="c-padding">
+										<label>padding</label>
+										<input type="text" name="' . esc_attr( $option_name . '[' . $value['id'] . '][padding_top]' ) . '" data-name="padding-top" class="c-top" placeholder="-" value="' . esc_attr( $css_stored['padding_top'] ) . '" id="' . esc_attr( $value['id'] . '_padding_top' ) . '">
+										<input type="text" name="' . esc_attr( $option_name . '[' . $value['id'] . '][padding_right]' ) . '" data-name="padding-right" class="c-right" placeholder="-" value="' . esc_attr( $css_stored['padding_right'] ) . '" id="' . esc_attr( $value['id'] . '_padding_right' ) . '">
+										<input type="text" name="' . esc_attr( $option_name . '[' . $value['id'] . '][padding_bottom]' ) . '" data-name="padding-bottom" class="c-bottom" placeholder="-" value="' . esc_attr( $css_stored['padding_bottom'] ) . '" id="' . esc_attr( $value['id'] . '_padding_bottom' ) . '">
+										<input type="text" name="' . esc_attr( $option_name . '[' . $value['id'] . '][padding_left]' ) . '" data-name="padding-left" class="c-left" placeholder="-" value="' . esc_attr( $css_stored['padding_left'] ) . '" id="' . esc_attr( $value['id'] . '_padding_left' ) . '">
+										<div class="c-content"><i></i></div>
+									</div>
+								</div>
+							</div>
+						</div>';
+					break;
+
 			// Editor
 			case 'editor':
 				$output .= '<div class="explain">' . wp_kses( $explain_value, $allowedtags ) . '</div>'."\n";
