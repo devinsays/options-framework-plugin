@@ -200,12 +200,20 @@ class Options_Framework_Admin {
 		if ( $this->options_screen != $hook ) {
 			return;
 		}
+        
+        // Enqueue alpha color picker
+        wp_enqueue_script( 
+            'wp-color-picker-alpha', 
+            plugin_dir_url( dirname(__FILE__) ) . 'js/wp-color-picker-alpha.min.js', 
+            array( 'wp-color-picker' ), 
+            Options_Framework::VERSION
+        );
 
 		// Enqueue custom option panel JS
 		wp_enqueue_script(
 			'options-custom',
 			plugin_dir_url( dirname(__FILE__) ) . 'js/options-custom.js',
-			array( 'jquery','wp-color-picker' ),
+			array( 'jquery','wp-color-picker-alpha' ),
 			Options_Framework::VERSION
 		);
 
