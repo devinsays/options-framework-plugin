@@ -187,7 +187,7 @@ function of_sanitize_background( $input ) {
 		'attachment' => 'scroll'
 	) );
 
-	$output['color'] = apply_filters( 'of_sanitize_hex', $input['color'] );
+	$output['color'] = apply_filters( 'of_sanitize_color', $input['color'] );
 	$output['image'] = apply_filters( 'of_sanitize_upload', $input['image'] );
 	$output['repeat'] = apply_filters( 'of_background_repeat', $input['repeat'] );
 	$output['position'] = apply_filters( 'of_background_position', $input['position'] );
@@ -366,7 +366,26 @@ function of_sanitize_hex( $hex, $default = '' ) {
 	}
 	return $default;
 }
-add_filter( 'of_sanitize_color', 'of_sanitize_hex' );
+add_filter( 'of_sanitize_hex', 'of_sanitize_hex' );
+
+/**
+ * Sanitize a color
+ *
+ * @param    string    Color in hexadecimal, rgba, or rgba notation. "#" may or may not be prepended to the hexadecimal
+ * @param    string    The value that this function should return if it cannot be recognized as a color.
+ * @return   string
+ */
+
+function of_sanitize_color( $color, $default = '' ) {
+	if ( of_validate_hex( $color ) ) {
+		return $color;
+	}
+    elseif ( of_validate_rgba_hsla( $color ) ) {
+        return $color;
+    }
+	return $default;
+}
+add_filter( 'of_sanitize_color', 'of_sanitize_color' );
 
 /**
  * Get recognized font sizes.
@@ -449,4 +468,16 @@ function of_validate_hex( $hex ) {
 	else {
 		return true;
 	}
+}
+
+/**
+ * Is a given string a color formatted in rgb(a) or hsl(a) notation?
+ *
+ * @param    string    Color in rgb(a) or hsl(a) notation.
+ * @return   bool
+ */
+function of_validate_rgba_hsla ( $color ) {
+    $color = trim( $color );
+    
+    return preg_match( '/^(rgb|hsl)a?\((-?\d+%?(deg|rad|grad|turn)?[,\s]+){2,3}[\s\/]*[\d\.]+%?\)$/i', $color );
 }
