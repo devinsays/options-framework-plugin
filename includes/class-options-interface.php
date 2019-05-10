@@ -206,7 +206,7 @@ class Options_Framework_Interface {
 					if ( $val !=  $value['std'] )
 						$default_color = ' data-default-color="' .$value['std'] . '" ';
 				}
-				$output .= '<input name="' . esc_attr( $option_name . '[' . $value['id'] . ']' ) . '" id="' . esc_attr( $value['id'] ) . '" class="of-color"  type="text" value="' . esc_attr( $val ) . '"' . $default_color .' />';
+				$output .= '<input name="' . esc_attr( $option_name . '[' . $value['id'] . ']' ) . '" id="' . esc_attr( $value['id'] ) . '" class="of-color color-picker" data-alpha="true"  type="text" value="' . esc_attr( $val ) . '"' . $default_color .' />';
 
 				break;
 
@@ -279,7 +279,7 @@ class Options_Framework_Interface {
 						if ( $val !=  $value['std']['color'] )
 							$default_color = ' data-default-color="' .$value['std']['color'] . '" ';
 					}
-					$font_color = '<input name="' . esc_attr( $option_name . '[' . $value['id'] . '][color]' ) . '" id="' . esc_attr( $value['id'] . '_color' ) . '" class="of-color of-typography-color  type="text" value="' . esc_attr( $typography_stored['color'] ) . '"' . $default_color .' />';
+					$font_color = '<input name="' . esc_attr( $option_name . '[' . $value['id'] . '][color]' ) . '" id="' . esc_attr( $value['id'] . '_color' ) . '" class="of-color of-typography-color color-picker" data-alpha="true"  type="text" value="' . esc_attr( $typography_stored['color'] ) . '"' . $default_color .' />';
 				}
 
 				// Allow modification/injection of typography fields
