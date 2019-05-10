@@ -201,13 +201,13 @@ class Options_Framework_Admin {
 			return;
 		}
         
-        // Enqueue alpha color picker
-        wp_enqueue_script( 
-            'wp-color-picker-alpha', 
-            plugin_dir_url( dirname(__FILE__) ) . 'js/wp-color-picker-alpha.min.js', 
-            array( 'wp-color-picker' ), 
-            Options_Framework::VERSION
-        );
+        	// Enqueue alpha color picker
+        	wp_enqueue_script( 
+            		'wp-color-picker-alpha', 
+            		plugin_dir_url( dirname(__FILE__) ) . 'js/wp-color-picker-alpha.min.js', 
+            		array( 'wp-color-picker' ), 
+            		Options_Framework::VERSION
+        	);
 
 		// Enqueue custom option panel JS
 		wp_enqueue_script(
